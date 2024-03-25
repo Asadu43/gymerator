@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gymmerator/screens/splash_screen/metamask_screen/account_setup/account_setup.dart';
+import 'package:gymmerator/utils/nav/nav.dart';
 
 import '../../../ui_component/app_button.dart';
 import '../../../utils/app_colors/appColors.dart';
@@ -11,8 +13,7 @@ class MetaMaskScreen extends StatefulWidget {
   State<MetaMaskScreen> createState() => _MetaMaskScreenState();
 }
 
-class _MetaMaskScreenState extends State<MetaMaskScreen>
-    with SingleTickerProviderStateMixin {
+class _MetaMaskScreenState extends State<MetaMaskScreen> with SingleTickerProviderStateMixin {
   // static Web3App? _walletConnect;
   static String? _url;
   // static SessionData? _sessionData;
@@ -115,52 +116,47 @@ class _MetaMaskScreenState extends State<MetaMaskScreen>
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                    'assets/images/splashBackground.png'), // Replace with your image asset path
-                fit: BoxFit.cover, // You can adjust the fit property as needed
-              )),
-      child :Padding(
+        body: Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+        image: AssetImage('assets/images/background.png'), // Replace with your image asset path
+        fit: BoxFit.cover, // You can adjust the fit property as needed
+      )),
+      child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-             SizedBox(
+            SizedBox(
               height: screenHeight / 6,
             ),
             Center(
                 child: SizedBox(
               height: 125,
               width: 125,
-              child:
-                  Image.asset("assets/images/metamask.png", fit: BoxFit.cover),
+              child: Image.asset("assets/images/metamask.png", fit: BoxFit.cover),
             )),
-             SizedBox(
-              height: screenHeight /4,
+            SizedBox(
+              height: screenHeight / 4,
             ),
             Center(
               child: Text("Connect to Metamask",
-                  style: GoogleFonts.barlow(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.white)),
+                  style: GoogleFonts.barlow(fontSize: 24, fontWeight: FontWeight.bold, color: AppColors.white)),
             ),
             Center(
               child: Text("Connect your metamask wallet",
-                  style: GoogleFonts.barlow(fontSize: 14,color: Colors.white60),
-                  textAlign: TextAlign.center),
+                  style: GoogleFonts.barlow(fontSize: 14, color: Colors.white60), textAlign: TextAlign.center),
             ),
-             SizedBox(
-              height: screenHeight /7,
+            SizedBox(
+              height: screenHeight / 7,
             ),
             AppButton(
-                    text: "Connect",
-                    onPressed: () async {
-                    },
-                  )
+              text: "Connect",
+              onPressed: () async {
+                Nav.push(context, const AccountSetup());
+              },
+            )
           ],
         ),
       ),

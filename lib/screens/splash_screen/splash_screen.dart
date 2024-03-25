@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/app_colors/appColors.dart';
+import '../../utils/nav/nav.dart';
 import 'metamask_screen/metamask_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,13 +16,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Delay for 2 seconds and then navigate to the next screen
+    // Delay for 5 seconds and then navigate to the next screen
     Future.delayed(const Duration(seconds: 5), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => const MetaMaskScreen(),
-        ),
-      );
+      Nav.pushReplace(context, const MetaMaskScreen());
     });
   }
 
@@ -38,13 +35,10 @@ class _SplashScreenState extends State<SplashScreen> {
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
           image: DecorationImage(
-        image: AssetImage(
-            'assets/images/splashBackground.png'), // Replace with your image asset path
+        image: AssetImage('assets/images/splashBackground.png'), // Replace with your image asset path
         fit: BoxFit.cover, // You can adjust the fit property as needed
       )),
       child: Column(
-        // crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: screenHeight / 3),
           Image.asset(
@@ -52,13 +46,12 @@ class _SplashScreenState extends State<SplashScreen> {
             height: 216,
             width: 246,
           ),
-           Text(
+          Text(
             "Gymerator App",
             style: GoogleFonts.barlow(fontSize: 32, color: AppColors.white),
           )
         ],
       ),
-    )
-        ));
+    )));
   }
 }

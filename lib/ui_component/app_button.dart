@@ -39,7 +39,7 @@ class AppButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20.0),
               ),
             ),
-            minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.width * 0.7, 50)),
+            minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
             backgroundColor:
             MaterialStateProperty.all(Colors.transparent),
             // elevation: MaterialStateProperty.all(3),
