@@ -5,7 +5,6 @@ import 'package:gymmerator/ui_component/app_textfield.dart';
 import '../../../../ui_component/app_button.dart';
 import '../../../../utils/app_colors/appColors.dart';
 import '../../../../utils/nav/nav.dart';
-import 'complete_setup/complete_setup.dart';
 
 class AccountSetup extends StatefulWidget {
   const AccountSetup({Key? key}) : super(key: key);
@@ -67,7 +66,7 @@ class _AccountSetupState extends State<AccountSetup> {
               AppButton(
                 text: "Submit",
                 onPressed: () async {
-                  Nav.push(context, const CompleteSetup());
+                  // Nav.push(context, const CompleteSetup());
                 },
               ),
               Row(

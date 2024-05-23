@@ -54,7 +54,7 @@ class _CompleteSetupState extends State<CompleteSetup> {
               ),
               CircularPercentIndicator(
                 radius: 100.0,
-                lineWidth: 20.0,
+                lineWidth: 12.0,
                 animation: true,
                 animateFromLastPercent: true,
                 // percent: percentage,
@@ -78,7 +78,7 @@ class _CompleteSetupState extends State<CompleteSetup> {
                 ),
               ),
               SizedBox(
-                height: 5.0.h,
+                height: screenHeight / 3.5,
               ),
               AppButton(text: "Start Training", onPressed: () {
 

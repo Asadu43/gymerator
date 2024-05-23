@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gymmerator/screens/splash_screen/registration_screens/login_screen/login_screen.dart';
+import 'package:gymmerator/screens/splash_screen/registration_screens/user_issue_screen/user_issue_screen.dart';
 
 import '../../utils/app_colors/appColors.dart';
 import '../../utils/nav/nav.dart';
+import 'main_screen/home_screen/schedule_workout_screen/exersice_screen/exersice_screen.dart';
+import 'main_screen/home_screen/schedule_workout_screen/schedule_workout_screen.dart';
+import 'main_screen/main_screen.dart';
+import 'main_screen/notification_screen/notification_screen.dart';
 import 'metamask_screen/metamask_screen.dart';
+import 'registration_screens/choose_plan_screen/choose_plan_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -18,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     // Delay for 5 seconds and then navigate to the next screen
     Future.delayed(const Duration(seconds: 5), () {
-      Nav.pushReplace(context, const MetaMaskScreen());
+      Nav.pushReplace(context, const MainScreen());
     });
   }
 
@@ -27,7 +34,6 @@ class _SplashScreenState extends State<SplashScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    final fontSize = screenWidth * 0.05;
     return SafeArea(
         child: Scaffold(
             body: Container(
@@ -35,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
           image: DecorationImage(
-        image: AssetImage('assets/images/splashBackground.png'), // Replace with your image asset path
+        image: AssetImage('assets/images/splash_background.png'), // Replace with your image asset path
         fit: BoxFit.cover, // You can adjust the fit property as needed
       )),
       child: Column(
@@ -43,12 +49,8 @@ class _SplashScreenState extends State<SplashScreen> {
           SizedBox(height: screenHeight / 3),
           Image.asset(
             "assets/images/logo.png",
-            height: 216,
-            width: 246,
-          ),
-          Text(
-            "Gymerator App",
-            style: GoogleFonts.barlow(fontSize: 32, color: AppColors.white),
+            height: screenHeight * 0.3,
+            width:screenWidth * 0.55,
           )
         ],
       ),
