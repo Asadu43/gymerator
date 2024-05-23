@@ -116,50 +116,41 @@ class _MetaMaskScreenState extends State<MetaMaskScreen> with SingleTickerProvid
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-        image: AssetImage('assets/images/background.png'), // Replace with your image asset path
-        fit: BoxFit.cover, // You can adjust the fit property as needed
-      )),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            SizedBox(
-              height: screenHeight / 6,
-            ),
-            Center(
-                child: SizedBox(
-              height: 125,
-              width: 125,
-              child: Image.asset("assets/images/metamask.png", fit: BoxFit.cover),
-            )),
-            SizedBox(
-              height: screenHeight / 4,
-            ),
-            Center(
-              child: Text("Connect to Metamask",
-                  style: GoogleFonts.barlow(fontSize: 24, fontWeight: FontWeight.bold, color: AppColors.white)),
-            ),
-            Center(
-              child: Text("Connect your metamask wallet",
-                  style: GoogleFonts.barlow(fontSize: 14, color: Colors.white60), textAlign: TextAlign.center),
-            ),
-            SizedBox(
-              height: screenHeight / 7,
-            ),
-            AppButton(
-              text: "Connect",
-              onPressed: () async {
-                Nav.push(context, const AccountSetup());
-              },
-            )
-          ],
-        ),
-      ),
-    ));
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              SizedBox(
+                height: screenHeight / 6,
+              ),
+              Center(
+                  child: SizedBox(
+                height: 125,
+                width: 125,
+                child: Image.asset("assets/images/metamask.png", fit: BoxFit.cover),
+              )),
+              SizedBox(
+                height: screenHeight / 3,
+              ),
+              Center(
+                child: Text("Welcome to Matamask",
+                    style: GoogleFonts.barlow(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.black)),
+              ),
+              Center(
+                child: Text("Connect your metamask wallet",
+                    style: GoogleFonts.barlow(fontSize: 14, color: Colors.black38), textAlign: TextAlign.center),
+              ),
+              SizedBox(
+                height: screenHeight / 9,
+              ),
+              AppButton(
+                text: "Connect",
+                onPressed: () async {
+                  Nav.push(context, const AccountSetup());
+                },
+              )
+            ],
+          ),
+        ));
   }
 }

@@ -40,8 +40,8 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
               SizedBox(
                 height: screenHeight / 14,
               ),
-              const SizedBox(
-                height: 20,
+               SizedBox(
+                height: screenHeight * 0.030,
               ),
               Text("Do you have knee issue?",
                   style: GoogleFonts.vazirmatn(
@@ -53,14 +53,14 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.vazirmatn(
                       fontSize: 11.sp, color: Colors.grey)),
-              const SizedBox(
-                height: 20,
+               SizedBox(
+                height: screenHeight * 0.030,
               ),
               InkWell(
                 onTap: () {
                 },
                 child: Container(
-                  height: 70,
+                  height: screenHeight * 0.09,
                   decoration: BoxDecoration(
                     // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
                      gradient: (checkboxValue == true && selectedIndex == 1) ? const LinearGradient(
@@ -125,11 +125,11 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
+               SizedBox(
+                height: screenHeight * 0.030,
               ),
               Container(
-                height: 70,
+                height: screenHeight * 0.09,
                 decoration: BoxDecoration(
                   // color: (checkboxValue == true && selectedIndex == 2) ? Colors.blue : Colors.red,
                   gradient: (checkboxValue == true && selectedIndex == 2) ? const LinearGradient(
@@ -194,11 +194,11 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                           fontSize: 7.sp, color: Colors.grey)),
                 ),
               ),
-              const SizedBox(
-                height: 20,
+               SizedBox(
+                height: screenHeight * 0.030,
               ),
               Container(
-                height: 70,
+                height: screenHeight * 0.09,
                 decoration: BoxDecoration(
                   // color:(checkboxValue == true && selectedIndex == 3) ? Colors.blue : Colors.red,
                   gradient: (checkboxValue == true && selectedIndex == 3) ? const LinearGradient(
@@ -266,7 +266,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                 ),
               ),
               SizedBox(
-                height: screenHeight / 3.5,
+                height: screenHeight / 3,
               ),
               AppButton(
                 text: "Submit",

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gymmerator/screens/splash_screen/registration_screens/complete_setup/complete_setup.dart';
 import 'package:gymmerator/screens/splash_screen/registration_screens/login_screen/login_screen.dart';
 import 'package:gymmerator/screens/splash_screen/registration_screens/user_issue_screen/user_issue_screen.dart';
 

@@ -43,8 +43,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                   SizedBox(
                     height: screenHeight / 14,
                   ),
-                  const SizedBox(
-                    height: 20,
+                   SizedBox(
+                    height: screenHeight * 0.030,
                   ),
                   Text("Choose Your Plan",
                       style: GoogleFonts.vazirmatn(
@@ -56,8 +56,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                       textAlign: TextAlign.center,
                       style: GoogleFonts.vazirmatn(
                           fontSize: 11.sp, color: Colors.grey)),
-                  const SizedBox(
-                    height: 20,
+                   SizedBox(
+                    height: screenHeight * 0.030,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,8 +66,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            height: 150,
-                            width: 150,
+                            height: screenHeight * 0.18,
+                            width: screenWidth * 0.4,
                             decoration: BoxDecoration(
                               // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
                               gradient: (checkboxValue == true && selectedIndex == 1) ? const LinearGradient(
@@ -110,8 +110,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                               child: Image.asset("assets/images/begginer.png"),
                             ),
                           ),
-                          const SizedBox(
-                            height: 10,
+                           SizedBox(
+                            height: screenHeight * 0.030,
                           ),
                           Text("Beginner",
                               style: GoogleFonts.vazirmatn(
@@ -126,8 +126,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            height: 150,
-                            width: 150,
+                            height: screenHeight * 0.18,
+                            width: screenWidth * 0.4,
                             decoration: BoxDecoration(
                               // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
                               gradient: (checkboxValue == true && selectedIndex == 2) ? const LinearGradient(
@@ -170,8 +170,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                               child: Image.asset("assets/images/intermedate.png"),
                             ),
                           ),
-                          const SizedBox(
-                            height: 10,
+                           SizedBox(
+                            height: screenHeight * 0.030,
                           ),
                           Text("Intermediate",
                               style: GoogleFonts.vazirmatn(
@@ -184,8 +184,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 20,
+                   SizedBox(
+                    height: screenHeight * 0.030,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -194,8 +194,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            height: 150,
-                            width: 150,
+                            height: screenHeight * 0.18,
+                            width: screenWidth * 0.4,
                             decoration: BoxDecoration(
                               // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
                               gradient: (checkboxValue == true && selectedIndex == 3) ? const LinearGradient(
@@ -238,8 +238,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                               child: Image.asset("assets/images/advance.png"),
                             ),
                           ),
-                          const SizedBox(
-                            height: 10,
+                           SizedBox(
+                             height: screenHeight * 0.030,
                           ),
                           Text("Advance",
                               style: GoogleFonts.vazirmatn(
@@ -254,8 +254,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            height: 150,
-                            width: 150,
+                            height: screenHeight * 0.18,
+                            width: screenWidth * 0.4,
                             decoration: BoxDecoration(
                               // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
                               gradient: (checkboxValue == true && selectedIndex == 4) ? const LinearGradient(
@@ -298,8 +298,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                               child: Image.asset("assets/images/expert.png"),
                             ),
                           ),
-                          const SizedBox(
-                            height: 10,
+                           SizedBox(
+                            height: screenHeight * 0.030,
                           ),
                           Text("Expert",
                               style: GoogleFonts.vazirmatn(
@@ -313,7 +313,7 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: screenHeight / 5.2,
+                    height: screenHeight / 7.4,
                   ),
                   AppButton(
                     text: "Submit",
