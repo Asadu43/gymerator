@@ -6,7 +6,13 @@ class AppTextField extends StatelessWidget {
   final String hintText;
   final Widget? icon;
   final TextEditingController? controller;
-  const AppTextField({Key? key, required this.hintText,  this.icon, this.controller})
+  final Color? color;
+  const AppTextField(
+      {Key? key,
+      required this.hintText,
+      this.icon,
+      this.controller,
+      this.color})
       : super(key: key);
 
   @override
@@ -23,14 +29,17 @@ class AppTextField extends StatelessWidget {
           padding: const EdgeInsets.only(left: 12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            border: Border.all(color: AppColors.white),
+            border: Border.all(color: color ?? Colors.white),
           ),
           child: TextField(
             textAlign: TextAlign.start,
             controller: controller,
             decoration: InputDecoration(
-              icon: icon,
-                hintText: hintText, border: InputBorder.none, hintStyle: GoogleFonts.barlow(fontSize: 14,color: Colors.grey)),
+                icon: icon,
+                hintText: hintText,
+                border: InputBorder.none,
+                hintStyle:
+                    GoogleFonts.barlow(fontSize: 14, color: Colors.grey)),
           ),
         )
       ],

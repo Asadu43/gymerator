@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/wallet_screen/wallet_screen.dart';
 import 'package:gymmerator/screens/splash_screen/metamask_screen/metamask_screen.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
 import 'package:sizer/sizer.dart';
@@ -72,6 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     size: 15,
                   )),
               ListTile(
+                onTap: () {
+                  Nav.push(context, const WalletScreen());
+                },
                   leading: CircleAvatar(
                     backgroundColor: Colors.grey.shade400,
                     radius: 25,

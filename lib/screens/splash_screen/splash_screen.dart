@@ -8,6 +8,7 @@ import '../../utils/app_colors/appColors.dart';
 import '../../utils/nav/nav.dart';
 import 'main_screen/home_screen/schedule_workout_screen/exersice_screen/exersice_screen.dart';
 import 'main_screen/home_screen/schedule_workout_screen/schedule_workout_screen.dart';
+import 'main_screen/home_screen/wallet_screen/send_screen/send_screen.dart';
 import 'main_screen/main_screen.dart';
 import 'main_screen/notification_screen/notification_screen.dart';
 import 'metamask_screen/metamask_screen.dart';
