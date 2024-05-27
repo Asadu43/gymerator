@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gymmerator/utils/app_colors/appColors.dart';
 
 class AppTextField extends StatelessWidget {
   final String hintText;

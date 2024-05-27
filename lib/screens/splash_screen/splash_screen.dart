@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:gymmerator/screens/splash_screen/registration_screens/complete_setup/complete_setup.dart';
-import 'package:gymmerator/screens/splash_screen/registration_screens/login_screen/login_screen.dart';
-import 'package:gymmerator/screens/splash_screen/registration_screens/user_issue_screen/user_issue_screen.dart';
 
-import '../../utils/app_colors/appColors.dart';
 import '../../utils/nav/nav.dart';
-import 'main_screen/home_screen/schedule_workout_screen/exersice_screen/exersice_screen.dart';
-import 'main_screen/home_screen/schedule_workout_screen/schedule_workout_screen.dart';
-import 'main_screen/home_screen/wallet_screen/send_screen/send_screen.dart';
 import 'main_screen/main_screen.dart';
-import 'main_screen/notification_screen/notification_screen.dart';
-import 'metamask_screen/metamask_screen.dart';
-import 'registration_screens/choose_plan_screen/choose_plan_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -43,7 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
           image: DecorationImage(
-        image: AssetImage('assets/images/splash_background.png'), // Replace with your image asset path
+        image: AssetImage(
+            'assets/images/splash_background.png'), // Replace with your image asset path
         fit: BoxFit.cover, // You can adjust the fit property as needed
       )),
       child: Column(
@@ -52,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Image.asset(
             "assets/images/logo.png",
             height: screenHeight * 0.3,
-            width:screenWidth * 0.55,
+            width: screenWidth * 0.55,
           )
         ],
       ),
