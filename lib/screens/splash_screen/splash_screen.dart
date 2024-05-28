@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gymmerator/screens/splash_screen/registration_screens/login_screen/login_screen.dart';
 
 import '../../utils/nav/nav.dart';
-import 'main_screen/main_screen.dart';
-import 'main_screen/my_cart_screen/checkout_screen/checkout_screen.dart';
-import 'main_screen/my_cart_screen/checkout_screen/payment_screen/order_summary_screen/order_summary_screen.dart';
-import 'main_screen/my_cart_screen/checkout_screen/payment_screen/payment_screen.dart';
-import 'main_screen/my_cart_screen/my_cart_screen.dart';
-import 'main_screen/notification_screen/notification_screen.dart';
-import 'metamask_screen/metamask_screen.dart';
-import 'registration_screens/choose_plan_screen/choose_plan_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

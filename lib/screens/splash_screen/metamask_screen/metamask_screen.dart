@@ -115,6 +115,7 @@ class _MetaMaskScreenState extends State<MetaMaskScreen>
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         body: Padding(
       padding: const EdgeInsets.all(20.0),

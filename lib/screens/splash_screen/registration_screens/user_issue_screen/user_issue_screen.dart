@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/registration_screens/choose_plan_screen/choose_plan_screen.dart';
+import 'package:gymmerator/screens/splash_screen/registration_screens/complete_setup/complete_setup.dart';
+import 'package:gymmerator/utils/nav/nav.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../ui_component/app_button.dart';
@@ -277,7 +279,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                 AppButton(
                   text: "Submit",
                   onPressed: () async {
-                    // Nav.push(context, const CompleteSetup());
+                    Nav.push(context, const ChoosePlanScreen());
                   },
                 ),
               ],

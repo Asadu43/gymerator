@@ -6,7 +6,6 @@ import '../../../../../../ui_component/app_button.dart';
 import '../../../../../../ui_component/app_textfield.dart';
 import '../../../../../../utils/nav/nav.dart';
 
-
 class ReceiveScreen extends StatefulWidget {
   const ReceiveScreen({super.key});
 
@@ -19,52 +18,51 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return SafeArea(
-        child: Scaffold(
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            Nav.pop(context);
-                          },
-                          icon: const Icon(Icons.arrow_back_ios)),
-                      SizedBox(width: screenWidth * 0.2),
-                      Text("Receive",
-                          style: GoogleFonts.vazirmatn(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black)),
-                    ],
-                  ),
-                  SizedBox(
-                    height: screenHeight * 0.02,
-                  ),
-                  const AppTextField(
-                    hintText: "address",
-                    color: Colors.grey,
-                  ),
-
-
-                  SizedBox(
-                    height: screenHeight * 0.73,
-                  ),
-                  AppButton(
-                    text: "Send",
-                    onPressed: () async {
-                      // Nav.push(context, const CompleteSetup());
-                    },
-                  ),
-                ],
-              ),
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Nav.pop(context);
+                        },
+                        icon: const Icon(Icons.arrow_back_ios)),
+                    SizedBox(width: screenWidth * 0.2),
+                    Text("Receive",
+                        style: GoogleFonts.vazirmatn(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black)),
+                  ],
+                ),
+                SizedBox(
+                  height: screenHeight * 0.02,
+                ),
+                const AppTextField(
+                  hintText: "address",
+                  color: Colors.grey,
+                ),
+                SizedBox(
+                  height: screenHeight * 0.73,
+                ),
+                AppButton(
+                  text: "Send",
+                  onPressed: () async {
+                    // Nav.push(context, const CompleteSetup());
+                  },
+                ),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

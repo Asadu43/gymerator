@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/main_screen.dart';
 import 'package:gymmerator/ui_component/app_button.dart';
-import 'package:gymmerator/utils/app_colors/appColors.dart';
+import 'package:gymmerator/utils/app_colors/app_colors.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:sizer/sizer.dart';
@@ -80,15 +80,14 @@ class _CompleteSetupState extends State<CompleteSetup> {
                 style:
                     GoogleFonts.barlow(fontSize: 13.sp, color: AppColors.white),
               ),
-              SizedBox(
-                height: screenHeight / 3.5,
-              ),
+              const Spacer(),
               AppButton(
                 text: "Start Training",
                 onPressed: () {
                   Nav.push(context, const MainScreen());
                 },
               ),
+              const SizedBox(height: 10),
               // Align(
               //   alignment: Alignment.bottomCenter,
               //   child: Container(
