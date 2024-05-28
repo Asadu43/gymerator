@@ -145,9 +145,7 @@ class _MetaMaskScreenState extends State<MetaMaskScreen>
                 style: GoogleFonts.barlow(fontSize: 14, color: Colors.black38),
                 textAlign: TextAlign.center),
           ),
-          SizedBox(
-            height: screenHeight / 6,
-          ),
+          const Spacer(),
           AppButton(
             text: "Connect",
             onPressed: () async {},
