@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gymmerator/screens/splash_screen/main_screen/chat_screen/chat_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/home_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/products_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/profile_screen/profile_screen.dart';
@@ -20,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final tabs = [
     const HomeScreen(),
-    Container(color: Colors.blue),
+    const ChatScreen(),
     const ProductsScreen(),
     const ProfileScreen(),
   ];
@@ -36,28 +37,40 @@ class _MainScreenState extends State<MainScreen> {
         items: [
           /// Home
           SalomonBottomBarItem(
-            icon: const Icon(Icons.home),
+            icon: Image.asset('assets/icons/main_screen_home_icon.png',
+                width: 24,
+                height: 24,
+                color: _currentIndex == 0 ? Colors.white : Colors.black),
             title: Text("Home", style: GoogleFonts.vazirmatn()),
             selectedColor: Colors.white,
           ),
 
           /// Likes
           SalomonBottomBarItem(
-            icon: const Icon(Icons.favorite_border),
-            title: Text("Likes", style: GoogleFonts.vazirmatn()),
+            icon: Image.asset('assets/icons/main_screen_chat_icon.png',
+                width: 24,
+                height: 24,
+                color: _currentIndex == 1 ? Colors.white : Colors.black),
+            title: Text("Chat Ai", style: GoogleFonts.vazirmatn()),
             selectedColor: Colors.white,
           ),
 
           /// Search
           SalomonBottomBarItem(
-            icon: const Icon(Icons.view_list_rounded),
+            icon: Image.asset('assets/icons/main_screen_products_icon.png',
+                width: 24,
+                height: 24,
+                color: _currentIndex == 2 ? Colors.white : Colors.black),
             title: Text("Products", style: GoogleFonts.vazirmatn()),
             selectedColor: Colors.white,
           ),
 
           /// Profile
           SalomonBottomBarItem(
-            icon: const Icon(Icons.person_outline),
+            icon: Image.asset('assets/icons/main_screen_profile_icon.png',
+                width: 24,
+                height: 24,
+                color: _currentIndex == 3 ? Colors.white : Colors.black),
             title: Text("Profile", style: GoogleFonts.vazirmatn()),
             selectedColor: Colors.white,
           ),
