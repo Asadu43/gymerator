@@ -16,35 +16,34 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return SafeArea(
-        child: Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Nav.pop(context);
-                      },
-                      icon: const Icon(Icons.arrow_back_ios)),
-                  SizedBox(width: screenWidth * 0.2),
-                  Text("Notifications",
-                      style: GoogleFonts.vazirmatn(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black)),
-                ],
-              ),
-              SizedBox(
-                height: screenHeight * 0.02,
-              ),
-              Container(
-                child: ListView.builder(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Nav.pop(context);
+                        },
+                        icon: const Icon(Icons.arrow_back_ios)),
+                    SizedBox(width: screenWidth * 0.2),
+                    Text("Notifications",
+                        style: GoogleFonts.vazirmatn(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black)),
+                  ],
+                ),
+                SizedBox(
+                  height: screenHeight * 0.02,
+                ),
+                ListView.builder(
                   itemCount: 15,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -88,12 +87,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       ),
                     );
                   },
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
-    ));
+    );
   }
 }

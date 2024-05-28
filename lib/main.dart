@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Gymmerator',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -22,7 +23,6 @@ class MyApp extends StatelessWidget {
           home: const SplashScreen(),
         );
       },
-
     );
   }
 }

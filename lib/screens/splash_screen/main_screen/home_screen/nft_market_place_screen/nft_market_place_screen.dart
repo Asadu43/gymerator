@@ -18,43 +18,42 @@ class _NftMarketPlaceScreenState extends State<NftMarketPlaceScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return SafeArea(
-        child: Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Nav.pop(context);
-                      },
-                      icon: const Icon(Icons.arrow_back_ios)),
-                  SizedBox(width: screenWidth * 0.2),
-                  Text("NFT Marketplace",
-                      style: GoogleFonts.vazirmatn(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black)),
-                ],
-              ),
-              SizedBox(
-                height: screenHeight * 0.02,
-              ),
-               AppTextField(
-                hintText: "search",
-                icon: Image.asset("assets/icons/global_search.png"),
-                color: Colors.grey,
-              ),
-              SizedBox(
-                height: screenHeight * 0.02,
-              ),
-              Container(
-                child: GridView.builder(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Nav.pop(context);
+                        },
+                        icon: const Icon(Icons.arrow_back_ios)),
+                    SizedBox(width: screenWidth * 0.2),
+                    Text("NFT Marketplace",
+                        style: GoogleFonts.vazirmatn(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black)),
+                  ],
+                ),
+                SizedBox(
+                  height: screenHeight * 0.02,
+                ),
+                AppTextField(
+                  hintText: "search",
+                  icon: Image.asset("assets/icons/global_search.png"),
+                  color: Colors.grey,
+                ),
+                SizedBox(
+                  height: screenHeight * 0.02,
+                ),
+                GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -66,7 +65,12 @@ class _NftMarketPlaceScreenState extends State<NftMarketPlaceScreen> {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        Nav.push(context, const  DetailsScreen(name: "NFT Name",image: "assets/images/nft_image.png",));
+                        Nav.push(
+                            context,
+                            const DetailsScreen(
+                              name: "NFT Name",
+                              image: "assets/images/nft_image.png",
+                            ));
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
@@ -150,11 +154,11 @@ class _NftMarketPlaceScreenState extends State<NftMarketPlaceScreen> {
                     );
                   },
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
-    ));
+    );
   }
 }

@@ -38,4 +38,5 @@ class AppColors {
       Color.fromRGBO(231, 231, 231, 1);
   static const Color profileDeleteDialogIconBackgroundColor =
       Color.fromRGBO(89, 153, 24, 1);
+  static const Color prductBuyNowButtonColor = Color.fromRGBO(50, 91, 8, 1);
 }

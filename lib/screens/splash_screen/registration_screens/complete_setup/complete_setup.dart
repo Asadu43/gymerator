@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/ui_component/app_button.dart';
-import 'package:gymmerator/utils/app_colors/appColors.dart';
+import 'package:gymmerator/utils/app_colors/app_colors.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:sizer/sizer.dart';
 
@@ -23,18 +23,19 @@ class _CompleteSetupState extends State<CompleteSetup> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return SafeArea(
-      child: Scaffold(
-          body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+    return Scaffold(
+        body: SafeArea(
+      child: Container(
+        height: screenHeight,
+        width: screenWidth,
         decoration: const BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('assets/images/background.png'), // Replace with your image asset path
+          image: AssetImage(
+              'assets/images/background.png'), // Replace with your image asset path
           fit: BoxFit.cover, // You can adjust the fit property as needed
         )),
         child: Padding(
-          padding: const EdgeInsets.only(left: 30.0,right: 30),
+          padding: const EdgeInsets.only(left: 30.0, right: 30),
           child: Column(
             children: [
               SizedBox(
@@ -44,10 +45,9 @@ class _CompleteSetupState extends State<CompleteSetup> {
                 "We create your training plan",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.barlow(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.sp,
-                  color:AppColors.white
-                ),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.sp,
+                    color: AppColors.white),
               ),
               SizedBox(
                 height: screenHeight * 0.1,
@@ -61,7 +61,10 @@ class _CompleteSetupState extends State<CompleteSetup> {
                 percent: percentage,
                 center: Text(
                   percent,
-                  style: GoogleFonts.barlow(fontWeight: FontWeight.bold, fontSize: 20.0,color: AppColors.white),
+                  style: GoogleFonts.barlow(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0,
+                      color: AppColors.white),
                 ),
                 circularStrokeCap: CircularStrokeCap.round,
                 progressColor: AppColors.contentColorPurple,
@@ -72,17 +75,16 @@ class _CompleteSetupState extends State<CompleteSetup> {
               Text(
                 (percentage == 1) ? "Completed" : "Please Wait",
                 textAlign: TextAlign.center,
-                style: GoogleFonts.barlow(
-                  fontSize: 13.sp,
-                  color:AppColors.white
-                ),
+                style:
+                    GoogleFonts.barlow(fontSize: 13.sp, color: AppColors.white),
               ),
               SizedBox(
                 height: screenHeight / 3.5,
               ),
-              AppButton(text: "Start Training", onPressed: () {
-
-              },),
+              AppButton(
+                text: "Start Training",
+                onPressed: () {},
+              ),
               // Align(
               //   alignment: Alignment.bottomCenter,
               //   child: Container(
@@ -118,7 +120,7 @@ class _CompleteSetupState extends State<CompleteSetup> {
             ],
           ),
         ),
-      )),
-    );
+      ),
+    ));
   }
 }

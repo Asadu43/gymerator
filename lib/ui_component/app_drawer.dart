@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/nft_market_place_screen/nft_market_place_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/wallet_screen/wallet_screen.dart';
+import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/favorite_products_screen/favorite_products_screen.dart';
 import 'package:gymmerator/screens/splash_screen/metamask_screen/metamask_screen.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
 
@@ -91,6 +92,9 @@ class AppDrawer extends StatelessWidget {
                   size: 15,
                 )),
             ListTile(
+                onTap: () {
+                  Nav.push(context, const FavoriteProductsScreen());
+                },
                 leading: CircleAvatar(
                   backgroundColor: Colors.grey.shade400,
                   radius: 25,
