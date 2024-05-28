@@ -74,7 +74,6 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                   AppButton(
                     text: "Submit",
                     onPressed: () async {
-                      // Nav.push(context, const CompleteSetup());
                     },
                   ),
                 ],

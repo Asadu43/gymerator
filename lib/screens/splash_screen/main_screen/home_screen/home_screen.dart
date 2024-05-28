@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/schedule_workout_screen/schedule_workout_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/wallet_screen/wallet_screen.dart';
 import 'package:gymmerator/screens/splash_screen/metamask_screen/metamask_screen.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
 import 'package:sizer/sizer.dart';
 
+import '../my_cart_screen/my_cart_screen.dart';
 import 'nft_market_place_screen/nft_market_place_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,8 +18,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool checkboxValue = false;
-  int selectedIndex = 0;
+  bool checkboxValue = true;
+  int selectedIndex = 2;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -90,6 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     size: 15,
                   )),
               ListTile(
+                onTap: () {
+                  Nav.push(context, const MyCartScreen());
+                },
                   leading: CircleAvatar(
                     backgroundColor: Colors.grey.shade400,
                     radius: 25,
@@ -224,7 +229,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 shadowColor: MaterialStateProperty.all(
                                     Colors.transparent),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Nav.push(context, const ScheduleWorkoutScreen());
+                              },
                               child: Text(
                                 "Start Traning",
                                 style: GoogleFonts.barlow(

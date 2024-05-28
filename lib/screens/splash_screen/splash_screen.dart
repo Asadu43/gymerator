@@ -10,6 +10,10 @@ import 'main_screen/home_screen/schedule_workout_screen/exersice_screen/exersice
 import 'main_screen/home_screen/schedule_workout_screen/schedule_workout_screen.dart';
 import 'main_screen/home_screen/wallet_screen/send_screen/send_screen.dart';
 import 'main_screen/main_screen.dart';
+import 'main_screen/my_cart_screen/checkout_screen/checkout_screen.dart';
+import 'main_screen/my_cart_screen/checkout_screen/payment_screen/order_summary_screen/order_summary_screen.dart';
+import 'main_screen/my_cart_screen/checkout_screen/payment_screen/payment_screen.dart';
+import 'main_screen/my_cart_screen/my_cart_screen.dart';
 import 'main_screen/notification_screen/notification_screen.dart';
 import 'metamask_screen/metamask_screen.dart';
 import 'registration_screens/choose_plan_screen/choose_plan_screen.dart';
@@ -27,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     // Delay for 5 seconds and then navigate to the next screen
     Future.delayed(const Duration(seconds: 5), () {
-      Nav.pushReplace(context, const MainScreen());
+      Nav.pushReplace(context, const LoginScreen());
     });
   }
 
@@ -43,7 +47,8 @@ class _SplashScreenState extends State<SplashScreen> {
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
           image: DecorationImage(
-        image: AssetImage('assets/images/splash_background.png'), // Replace with your image asset path
+        image: AssetImage(
+            'assets/images/splash_background.png'), // Replace with your image asset path
         fit: BoxFit.cover, // You can adjust the fit property as needed
       )),
       child: Column(
@@ -52,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Image.asset(
             "assets/images/logo.png",
             height: screenHeight * 0.3,
-            width:screenWidth * 0.55,
+            width: screenWidth * 0.55,
           )
         ],
       ),

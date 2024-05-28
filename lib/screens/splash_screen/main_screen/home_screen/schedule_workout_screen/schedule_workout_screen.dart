@@ -2,6 +2,7 @@ import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/schedule_workout_screen/exersice_screen/exersice_screen.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
 import 'package:sizer/sizer.dart';
 
@@ -93,27 +94,31 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
               height: screenHeight * 0.02,
             ),
 
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: screenHeight * 0.12,
+            InkWell(
+              onTap: () {
+                Nav.push(context, const ExerciseScreen());
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: screenHeight * 0.12,
+                  decoration: BoxDecoration(
+                    // color: Colors.red,
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 12.0),
+                    child: Row(children: [
+                      Image.asset("assets/images/dumbbells.png",fit: BoxFit.cover,),
+                      SizedBox(width: screenWidth * 0.2),
+                      Text("2 Dumbbells'",
+                          style: GoogleFonts.vazirmatn(
+                              fontSize: 14.sp,
+                              color: Colors.black)),
 
-                decoration: BoxDecoration(
-                  // color: Colors.red,
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 12.0),
-                  child: Row(children: [
-                    Image.asset("assets/images/dumbbells.png",fit: BoxFit.cover,),
-                    SizedBox(width: screenWidth * 0.2),
-                    Text("2 Dumbbells'",
-                        style: GoogleFonts.vazirmatn(
-                            fontSize: 14.sp,
-                            color: Colors.black)),
-
-                  ],),
+                    ],),
+                  ),
                 ),
               ),
             ),

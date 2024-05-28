@@ -43,11 +43,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: screenHeight / 14,
+                    height: screenHeight / 6,
                   ),
                   Image.asset('assets/images/logo_g.png'),
-                  const SizedBox(
-                    height: 20,
+                   SizedBox(
+                    height: screenHeight * 0.050,
                   ),
                   Text("Welcome!",
                       style: GoogleFonts.vazirmatn(
@@ -57,15 +57,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text("Please Sign in to get all the features",
                       style: GoogleFonts.vazirmatn(
                           fontSize: 12.sp, color: Colors.grey)),
-                  const SizedBox(
-                    height: 20,
+                   SizedBox(
+                    height: screenHeight * 0.040,
                   ),
                   const AppTextField(
                     hintText: "Email",
                     icon: Icon(Icons.email_outlined),
                   ),
-                  const SizedBox(
-                    height: 20,
+                   SizedBox(
+                    height: screenHeight * 0.030,
                   ),
                   const AppTextField(
                     hintText: "password",
@@ -84,8 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 20,
+                   SizedBox(
+                    height: screenHeight * 0.040,
                   ),
                   AppButton(
                     text: "Login",
@@ -109,8 +109,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 30,
+                   SizedBox(
+                    height: screenHeight * 0.040,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -132,11 +132,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: const Divider(color: Colors.grey)),
                     ],
                   ),
-                  const SizedBox(
-                    height: 30,
+                   SizedBox(
+                     height: screenHeight * 0.040,
                   ),
                   Container(
-                    height: 53,
+                    height:screenHeight *  0.07,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(30),
