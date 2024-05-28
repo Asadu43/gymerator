@@ -125,8 +125,8 @@ class _MetaMaskScreenState extends State<MetaMaskScreen>
           ),
           Center(
               child: SizedBox(
-            height: 125,
-            width: 125,
+            height: screenHeight * 0.18,
+            width: screenWidth * 0.3,
             child: Image.asset("assets/images/metamask.png", fit: BoxFit.cover),
           )),
           SizedBox(
@@ -145,13 +145,11 @@ class _MetaMaskScreenState extends State<MetaMaskScreen>
                 textAlign: TextAlign.center),
           ),
           SizedBox(
-            height: screenHeight / 9,
+            height: screenHeight / 6,
           ),
           AppButton(
             text: "Connect",
-            onPressed: () async {
-              Nav.push(context, const AccountSetup());
-            },
+            onPressed: () async {},
           )
         ],
       ),

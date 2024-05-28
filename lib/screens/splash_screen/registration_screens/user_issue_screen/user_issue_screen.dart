@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gymmerator/screens/splash_screen/registration_screens/choose_plan_screen/choose_plan_screen.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../ui_component/app_button.dart';

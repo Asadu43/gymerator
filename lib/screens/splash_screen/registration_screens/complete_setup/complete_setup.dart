@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gymmerator/screens/splash_screen/main_screen/main_screen.dart';
 import 'package:gymmerator/ui_component/app_button.dart';
-import 'package:gymmerator/utils/app_colors/app_colors.dart';
+import 'package:gymmerator/utils/app_colors/appColors.dart';
+import 'package:gymmerator/utils/nav/nav.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:sizer/sizer.dart';
 
@@ -83,7 +85,9 @@ class _CompleteSetupState extends State<CompleteSetup> {
               ),
               AppButton(
                 text: "Start Training",
-                onPressed: () {},
+                onPressed: () {
+                  Nav.push(context, const MainScreen());
+                },
               ),
               // Align(
               //   alignment: Alignment.bottomCenter,
@@ -114,9 +118,6 @@ class _CompleteSetupState extends State<CompleteSetup> {
               //     ),
               //   ),
               // ),
-              const SizedBox(
-                height: 15,
-              ),
             ],
           ),
         ),
