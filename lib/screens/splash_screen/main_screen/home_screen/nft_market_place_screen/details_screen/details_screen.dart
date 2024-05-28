@@ -143,7 +143,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.20,
+                  height: screenHeight * 0.10,
                 ),
                 AppButton(
                   text: "Purchase",

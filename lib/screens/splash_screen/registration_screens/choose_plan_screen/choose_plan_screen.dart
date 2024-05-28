@@ -327,15 +327,14 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: screenHeight / 7.4,
-                ),
+                const Spacer(),
                 AppButton(
                   text: "Submit",
                   onPressed: () async {
                     Nav.push(context, const CompleteSetup());
                   },
                 ),
+                const SizedBox(height: 10)
               ],
             ),
           ),

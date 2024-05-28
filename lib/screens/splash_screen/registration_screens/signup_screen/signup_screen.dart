@@ -8,6 +8,7 @@ import '../../../../ui_component/app_button.dart';
 import '../../../../ui_component/app_textfield.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/nav/nav.dart';
+import '../user_info_screen/user_info_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -94,7 +95,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 AppButton(
                   text: "Sign up",
                   onPressed: () async {
-                    Nav.push(context, const UserIssueScreen());
+                    Nav.push(context, const UserInfoScreen());
                   },
                 ),
                 Row(

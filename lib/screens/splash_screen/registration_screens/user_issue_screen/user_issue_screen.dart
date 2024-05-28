@@ -273,15 +273,14 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                             fontSize: 7.sp, color: Colors.grey)),
                   ),
                 ),
-                SizedBox(
-                  height: screenHeight / 3,
-                ),
+                const Spacer(),
                 AppButton(
                   text: "Submit",
                   onPressed: () async {
                     Nav.push(context, const ChoosePlanScreen());
                   },
                 ),
+                const SizedBox(height: 10,),
               ],
             ),
           ),

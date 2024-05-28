@@ -20,46 +20,42 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          Nav.pop(context);
-                        },
-                        icon: const Icon(Icons.arrow_back_ios)),
-                    SizedBox(width: screenWidth * 0.2),
-                    Text("Receive",
-                        style: GoogleFonts.vazirmatn(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black)),
-                  ],
-                ),
-                SizedBox(
-                  height: screenHeight * 0.02,
-                ),
-                const AppTextField(
-                  hintText: "address",
-                  color: Colors.grey,
-                ),
-                SizedBox(
-                  height: screenHeight * 0.73,
-                ),
-                AppButton(
-                  text: "Send",
-                  onPressed: () async {
-                    // Nav.push(context, const CompleteSetup());
-                  },
-                ),
-              ],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Nav.pop(context);
+                      },
+                      icon: const Icon(Icons.arrow_back_ios)),
+                  SizedBox(width: screenWidth * 0.2),
+                  Text("Receive",
+                      style: GoogleFonts.vazirmatn(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black)),
+                ],
+              ),
+              SizedBox(
+                height: screenHeight * 0.02,
+              ),
+              const AppTextField(
+                hintText: "address",
+                color: Colors.grey,
+              ),
+              const Spacer(),
+              AppButton(
+                text: "Send",
+                onPressed: () async {
+                  // Nav.push(context, const CompleteSetup());
+                },
+              ),
+            ],
           ),
         ),
       ),

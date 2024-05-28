@@ -6,6 +6,7 @@ import '../../../../ui_component/app_button.dart';
 import '../../../../ui_component/app_textfield.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/nav/nav.dart';
+import '../../main_screen/main_screen.dart';
 import '../forget_password_screen/forget_password_screen.dart';
 import '../signup_screen/signup_screen.dart';
 
@@ -22,7 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     AppButton(
                       text: "Login",
                       onPressed: () async {
-                        // Nav.push(context, const CompleteSetup());
+                        Nav.push(context, const MainScreen());
                       },
                     ),
                     Row(

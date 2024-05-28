@@ -165,7 +165,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 ),
                 //TODO it Will b In Listview
                 Padding(
-                  padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                  padding: const EdgeInsets.only(left: 12.0, right: 12.0),
                   child: Container(
                     height: screenHeight * 0.07,
                     decoration: BoxDecoration(
@@ -176,7 +176,7 @@ class _WalletScreenState extends State<WalletScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Image.asset("assets/icons/send.png"),
+                          Image.asset("assets/icons/send.png",height: 20,width: 20,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -184,7 +184,7 @@ class _WalletScreenState extends State<WalletScreen> {
                               Text(
                                 "Send",
                                 style: GoogleFonts.vazirmatn(
-                                    color: Colors.black, fontSize: 18),
+                                    color: Colors.black, fontSize: 12),
                               ),
                               Text(
                                 "0xFca318f88f11af575a8C6D9b82b631dC9dA25b85",
@@ -196,7 +196,7 @@ class _WalletScreenState extends State<WalletScreen> {
                           Text(
                             "1000 ETH",
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.black, fontSize: 18),
+                                color: Colors.black, fontSize: 12),
                           ),
                         ],
                       ),
@@ -207,7 +207,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   height: screenHeight * 0.02,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                  padding: const EdgeInsets.only(left: 12.0, right: 12.0),
                   child: Container(
                     height: screenHeight * 0.07,
                     decoration: BoxDecoration(
@@ -218,7 +218,7 @@ class _WalletScreenState extends State<WalletScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Image.asset("assets/icons/send.png"),
+                          Image.asset("assets/icons/send.png",height: 20,width: 20,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -226,7 +226,7 @@ class _WalletScreenState extends State<WalletScreen> {
                               Text(
                                 "Send",
                                 style: GoogleFonts.vazirmatn(
-                                    color: Colors.black, fontSize: 18),
+                                    color: Colors.black, fontSize: 12),
                               ),
                               Text(
                                 "0xFca318f88f11af575a8C6D9b82b631dC9dA25b85",
@@ -238,7 +238,7 @@ class _WalletScreenState extends State<WalletScreen> {
                           Text(
                             "1000 ETH",
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.black, fontSize: 18),
+                                color: Colors.black, fontSize: 12),
                           ),
                         ],
                       ),
@@ -249,7 +249,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   height: screenHeight * 0.02,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                  padding: const EdgeInsets.only(left: 12.0, right: 12.0),
                   child: Container(
                     height: screenHeight * 0.07,
                     decoration: BoxDecoration(
@@ -260,7 +260,7 @@ class _WalletScreenState extends State<WalletScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Image.asset("assets/icons/receive.png"),
+                          Image.asset("assets/icons/send.png",height: 20,width: 20,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -268,7 +268,7 @@ class _WalletScreenState extends State<WalletScreen> {
                               Text(
                                 "Send",
                                 style: GoogleFonts.vazirmatn(
-                                    color: Colors.black, fontSize: 18),
+                                    color: Colors.black, fontSize: 12),
                               ),
                               Text(
                                 "0xFca318f88f11af575a8C6D9b82b631dC9dA25b85",
@@ -280,7 +280,7 @@ class _WalletScreenState extends State<WalletScreen> {
                           Text(
                             "1000 ETH",
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.black, fontSize: 18),
+                                color: Colors.black, fontSize: 12),
                           ),
                         ],
                       ),
