@@ -87,45 +87,47 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: ListTile(
-                      onTap: () {
-                        setState(() {
-                          if ((checkboxValue == true) && (selectedIndex == 1)) {
-                            setState(() {
-                              checkboxValue = false;
-                              selectedIndex = 0;
-                            });
-                          } else {
-                            setState(() {
-                              checkboxValue = true;
-                              selectedIndex = 1;
-                            });
-                          }
-                        });
-                      },
-                      leading: Image.asset("assets/images/fine.png"),
-                      tileColor:
-                          ((checkboxValue == true) && (selectedIndex == 1))
-                              ? Colors.blue
-                              : Colors.red,
-                      trailing: Checkbox(
-                        checkColor: Colors.white,
-                        focusColor: Colors.white,
-                        activeColor: Colors.orange,
-                        // fillColor: Colors.orange,
-                        value: (checkboxValue == true && selectedIndex == 1),
-                        shape: const CircleBorder(),
-                        side: const BorderSide(color: Colors.white),
-                        onChanged: (bool? value) {
+                    child: Center(
+                      child: ListTile(
+                        onTap: () {
                           setState(() {
-                            checkboxValue = value!;
-                            selectedIndex = 1;
+                            if ((checkboxValue == true) && (selectedIndex == 1)) {
+                              setState(() {
+                                checkboxValue = false;
+                                selectedIndex = 0;
+                              });
+                            } else {
+                              setState(() {
+                                checkboxValue = true;
+                                selectedIndex = 1;
+                              });
+                            }
                           });
                         },
+                        leading: Image.asset("assets/images/fine.png"),
+                        tileColor:
+                            ((checkboxValue == true) && (selectedIndex == 1))
+                                ? Colors.blue
+                                : Colors.red,
+                        trailing: Checkbox(
+                          checkColor: Colors.white,
+                          focusColor: Colors.white,
+                          activeColor: Colors.orange,
+                          // fillColor: Colors.orange,
+                          value: (checkboxValue == true && selectedIndex == 1),
+                          shape: const CircleBorder(),
+                          side: const BorderSide(color: Colors.white),
+                          onChanged: (bool? value) {
+                            setState(() {
+                              checkboxValue = value!;
+                              selectedIndex = 1;
+                            });
+                          },
+                        ),
+                        title: Text("No,I’m fine",
+                            style: GoogleFonts.vazirmatn(
+                                fontSize: 11.sp, color: Colors.white)),
                       ),
-                      title: Text("No,I’m fine",
-                          style: GoogleFonts.vazirmatn(
-                              fontSize: 11.sp, color: Colors.white)),
                     ),
                   ),
                 ),
@@ -158,46 +160,48 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                     border: Border.all(color: Colors.white),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: ListTile(
-                    onTap: () {
-                      setState(() {
-                        if ((checkboxValue == true) && (selectedIndex == 2)) {
-                          setState(() {
-                            checkboxValue = false;
-                            selectedIndex = 0;
-                          });
-                        } else {
-                          setState(() {
-                            checkboxValue = true;
-                            selectedIndex = 2;
-                          });
-                        }
-                      });
-                    },
-                    leading: Image.asset("assets/images/impect.png"),
-                    tileColor: ((checkboxValue == true) && (selectedIndex == 2))
-                        ? Colors.blue
-                        : Colors.red,
-                    trailing: Checkbox(
-                      checkColor: Colors.white,
-                      focusColor: Colors.white,
-                      activeColor: Colors.orange,
-                      // fillColor: Colors.orange,
-                      value: (checkboxValue == true && selectedIndex == 2),
-                      shape: const CircleBorder(),
-                      side: const BorderSide(color: Colors.white),
-                      onChanged: (bool? value) {
+                  child: Center(
+                    child: ListTile(
+                      onTap: () {
                         setState(() {
-                          checkboxValue = value!;
+                          if ((checkboxValue == true) && (selectedIndex == 2)) {
+                            setState(() {
+                              checkboxValue = false;
+                              selectedIndex = 0;
+                            });
+                          } else {
+                            setState(() {
+                              checkboxValue = true;
+                              selectedIndex = 2;
+                            });
+                          }
                         });
                       },
+                      leading: Image.asset("assets/images/impect.png"),
+                      tileColor: ((checkboxValue == true) && (selectedIndex == 2))
+                          ? Colors.blue
+                          : Colors.red,
+                      trailing: Checkbox(
+                        checkColor: Colors.white,
+                        focusColor: Colors.white,
+                        activeColor: Colors.orange,
+                        // fillColor: Colors.orange,
+                        value: (checkboxValue == true && selectedIndex == 2),
+                        shape: const CircleBorder(),
+                        side: const BorderSide(color: Colors.white),
+                        onChanged: (bool? value) {
+                          setState(() {
+                            checkboxValue = value!;
+                          });
+                        },
+                      ),
+                      title: Text("No,I’m fine",
+                          style: GoogleFonts.vazirmatn(
+                              fontSize: 11.sp, color: Colors.white)),
+                      subtitle: Text("Friendly to over weight people",
+                          style: GoogleFonts.vazirmatn(
+                              fontSize: 7.sp, color: Colors.grey)),
                     ),
-                    title: Text("No,I’m fine",
-                        style: GoogleFonts.vazirmatn(
-                            fontSize: 11.sp, color: Colors.white)),
-                    subtitle: Text("Friendly to over weight people",
-                        style: GoogleFonts.vazirmatn(
-                            fontSize: 7.sp, color: Colors.grey)),
                   ),
                 ),
                 SizedBox(
@@ -229,48 +233,50 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                     border: Border.all(color: Colors.white),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: ListTile(
-                    onTap: () {
-                      setState(() {
-                        if ((checkboxValue == true) && (selectedIndex == 3)) {
-                          setState(() {
-                            checkboxValue = false;
-                            selectedIndex = 0;
-                          });
-                        } else {
-                          setState(() {
-                            checkboxValue = true;
-                            selectedIndex = 3;
-                          });
-                        }
-                      });
-                    },
-                    selectedTileColor: Colors.red,
-                    tileColor: ((checkboxValue == true) && (selectedIndex == 3))
-                        ? Colors.blue
-                        : Colors.red,
-                    leading: Image.asset("assets/images/jumpping.png"),
-                    trailing: Checkbox(
-                      checkColor: Colors.white,
-                      focusColor: Colors.white,
-                      activeColor: Colors.orange,
-                      // fillColor: Colors.orange,
-                      value: (checkboxValue == true && selectedIndex == 3),
-                      shape: const CircleBorder(),
-                      side: const BorderSide(color: Colors.white),
-                      onChanged: (bool? value) {
+                  child: Center(
+                    child: ListTile(
+                      onTap: () {
                         setState(() {
-                          checkboxValue = value!;
-                          print(checkboxValue);
+                          if ((checkboxValue == true) && (selectedIndex == 3)) {
+                            setState(() {
+                              checkboxValue = false;
+                              selectedIndex = 0;
+                            });
+                          } else {
+                            setState(() {
+                              checkboxValue = true;
+                              selectedIndex = 3;
+                            });
+                          }
                         });
                       },
+                      selectedTileColor: Colors.red,
+                      tileColor: ((checkboxValue == true) && (selectedIndex == 3))
+                          ? Colors.blue
+                          : Colors.red,
+                      leading: Image.asset("assets/images/jumpping.png"),
+                      trailing: Checkbox(
+                        checkColor: Colors.white,
+                        focusColor: Colors.white,
+                        activeColor: Colors.orange,
+                        // fillColor: Colors.orange,
+                        value: (checkboxValue == true && selectedIndex == 3),
+                        shape: const CircleBorder(),
+                        side: const BorderSide(color: Colors.white),
+                        onChanged: (bool? value) {
+                          setState(() {
+                            checkboxValue = value!;
+                            print(checkboxValue);
+                          });
+                        },
+                      ),
+                      title: Text("No Jumping",
+                          style: GoogleFonts.vazirmatn(
+                              fontSize: 11.sp, color: Colors.white)),
+                      subtitle: Text("No noies, apartment friendly",
+                          style: GoogleFonts.vazirmatn(
+                              fontSize: 7.sp, color: Colors.grey)),
                     ),
-                    title: Text("No Jumping",
-                        style: GoogleFonts.vazirmatn(
-                            fontSize: 11.sp, color: Colors.white)),
-                    subtitle: Text("No noies, apartment friendly",
-                        style: GoogleFonts.vazirmatn(
-                            fontSize: 7.sp, color: Colors.grey)),
                   ),
                 ),
                 const Spacer(),

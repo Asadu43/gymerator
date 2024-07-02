@@ -44,9 +44,10 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
               SizedBox(
                 height: screenHeight * 0.02,
               ),
-              const AppTextField(
+               AppTextField(
                 hintText: "address",
                 color: Colors.grey,
+                fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
               ),
               const Spacer(),
               AppButton(

@@ -53,6 +53,7 @@ class AppButton extends StatelessWidget {
           ),
           child: Text(
             text,
+            textAlign: TextAlign.center,
             style:  GoogleFonts.barlow(
               fontSize: 18,
               // fontWeight: FontWeight.w700,

@@ -15,6 +15,9 @@ class ProductItemCard extends StatefulWidget {
 class _ProductItemCardState extends State<ProductItemCard> {
   @override
   Widget build(BuildContext context) {
+
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,7 +25,7 @@ class _ProductItemCardState extends State<ProductItemCard> {
         Stack(
           children: [
             Container(
-                height: 160.0,
+                height: screenHeight * 0.178,
                 margin: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                   color: Colors.white,

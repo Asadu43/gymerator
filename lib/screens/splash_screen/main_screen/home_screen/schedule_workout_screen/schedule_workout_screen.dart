@@ -100,28 +100,33 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
               SizedBox(
                 height: screenHeight * 0.02,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: screenHeight * 0.12,
-                  decoration: BoxDecoration(
-                    // color: Colors.red,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 12.0),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          "assets/images/dumbbells.png",
-                          fit: BoxFit.cover,
-                        ),
-                        SizedBox(width: screenWidth * 0.2),
-                        Text("2 Dumbbells'",
-                            style: GoogleFonts.vazirmatn(
-                                fontSize: 14.sp, color: Colors.black)),
-                      ],
+              InkWell(
+                onTap: () {
+                  Nav.push(context, const ExerciseScreen());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: screenHeight * 0.12,
+                    decoration: BoxDecoration(
+                      // color: Colors.red,
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 12.0),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            "assets/images/dumbbells.png",
+                            fit: BoxFit.cover,
+                          ),
+                          SizedBox(width: screenWidth * 0.2),
+                          Text("2 Dumbbells'",
+                              style: GoogleFonts.vazirmatn(
+                                  fontSize: 14.sp, color: Colors.black)),
+                        ],
+                      ),
                     ),
                   ),
                 ),

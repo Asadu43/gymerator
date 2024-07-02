@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/models/product_model.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/featured_products_screen/featured_products_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/popular_products_screen/popular_products_screen.dart';
@@ -31,12 +32,14 @@ class _ProductsScreenState extends State<ProductsScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Padding(
-                    padding: EdgeInsets.all(8.0),
+                 Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: AppTextField(
                       hintText: 'Search products',
-                      icon: Icon(Icons.search),
+                      icon:const Icon(Icons.search),
                       color: Colors.grey,
+                      prefixIconColor: Colors.grey,
+                      fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
                     )),
                 const SizedBox(height: 16.0),
                 Row(

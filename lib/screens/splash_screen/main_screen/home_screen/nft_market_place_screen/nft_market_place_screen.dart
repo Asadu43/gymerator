@@ -94,7 +94,7 @@ class _NftMarketPlaceScreenState extends State<NftMarketPlaceScreen> {
                               Stack(
                                 children: [
                                   Container(
-                                    height: screenHeight * 0.11,
+                                    height: screenHeight * 0.10,
                                     decoration: const BoxDecoration(
                                       borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(10.0),

@@ -6,11 +6,15 @@ class AppTextField extends StatelessWidget {
   final Widget? icon;
   final TextEditingController? controller;
   final Color? color;
+  final Color? prefixIconColor;
+  final TextStyle? fieldTextStyle;
   const AppTextField(
       {Key? key,
       required this.hintText,
       this.icon,
       this.controller,
+      this.prefixIconColor,
+      this.fieldTextStyle,
       this.color})
       : super(key: key);
 
@@ -19,7 +23,8 @@ class AppTextField extends StatelessWidget {
     return Container(
       // width: MediaQuery.of(context).size.width * 0.7,
       height: MediaQuery.of(context).size.height * 0.060,
-      padding: const EdgeInsets.only(left: 12),
+      alignment: Alignment.center,
+      padding: const EdgeInsets.only(left: 12, top: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         border: Border.all(color: color ?? Colors.white),
@@ -27,12 +32,13 @@ class AppTextField extends StatelessWidget {
       child: TextField(
         textAlign: TextAlign.start,
         controller: controller,
+        style: fieldTextStyle ?? const TextStyle(color: Colors.white),
         decoration: InputDecoration(
-            icon: icon,
+            prefixIcon: icon,
+            prefixIconColor: prefixIconColor ?? Colors.white,
             hintText: hintText,
             border: InputBorder.none,
-            hintStyle:
-                GoogleFonts.barlow(fontSize: 14, color: Colors.grey)),
+            hintStyle: GoogleFonts.barlow(fontSize: 14, color: Colors.grey)),
       ),
     );
   }

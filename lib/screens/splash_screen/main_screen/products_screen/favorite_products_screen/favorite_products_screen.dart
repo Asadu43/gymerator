@@ -31,6 +31,7 @@ class _FavoriteProductsScreenState extends State<FavoriteProductsScreen> {
             const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: AppTextField(
+                  prefixIconColor: Colors.grey,
                   hintText: 'Search products',
                   icon: Icon(Icons.search),
                   color: Colors.grey,

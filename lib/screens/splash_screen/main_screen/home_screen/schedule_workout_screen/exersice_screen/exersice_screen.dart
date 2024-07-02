@@ -55,42 +55,47 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                 SizedBox(
                   height: screenHeight * 0.02,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: screenHeight * 0.12,
-                    decoration: BoxDecoration(
-                      // color: Colors.red,
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 12.0),
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            "assets/images/pilates.png",
-                            fit: BoxFit.cover,
-                          ),
-                          SizedBox(width: screenWidth * 0.02),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 10.0, left: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Interval pilates",
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.vazirmatn(
-                                        fontSize: 14.sp, color: Colors.black)),
-                                Text("00:30",
-                                    textAlign: TextAlign.start,
-                                    style: GoogleFonts.vazirmatn(
-                                        fontSize: 11.sp, color: Colors.grey)),
-                              ],
+                InkWell(
+                  onTap: () {
+                    Nav.push(context,const ExerciseDetailsScreen());
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: screenHeight * 0.12,
+                      decoration: BoxDecoration(
+                        // color: Colors.red,
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 12.0),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              "assets/images/pilates.png",
+                              fit: BoxFit.cover,
                             ),
-                          ),
-                        ],
+                            SizedBox(width: screenWidth * 0.02),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10.0, left: 10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Interval pilates",
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.vazirmatn(
+                                          fontSize: 14.sp, color: Colors.black)),
+                                  Text("00:30",
+                                      textAlign: TextAlign.start,
+                                      style: GoogleFonts.vazirmatn(
+                                          fontSize: 11.sp, color: Colors.grey)),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

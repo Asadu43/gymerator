@@ -45,16 +45,18 @@ class _SendScreenState extends State<SendScreen> {
               SizedBox(
                 height: screenHeight * 0.02,
               ),
-              const AppTextField(
+               AppTextField(
                 hintText: "address",
                 color: Colors.grey,
+                fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
               ),
               SizedBox(
                 height: screenHeight * 0.02,
               ),
-              const AppTextField(
+               AppTextField(
                 hintText: "amount",
                 color: Colors.grey,
+                fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
               ),
               const Spacer(),
               AppButton(

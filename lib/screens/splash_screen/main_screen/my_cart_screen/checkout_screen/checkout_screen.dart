@@ -50,23 +50,26 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 SizedBox(
                   height: screenHeight * 0.02,
                 ),
-                const AppTextField(
+                 AppTextField(
                   hintText: "Delivery Address",
                   color: Colors.grey,
+                  fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
                 ),
                 SizedBox(
                   height: screenHeight * 0.02,
                 ),
-                const AppTextField(
+                 AppTextField(
                   hintText: "Promo Code",
                   color: Colors.grey,
+                  fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
                 ),
                 SizedBox(
                   height: screenHeight * 0.02,
                 ),
-                const AppTextField(
+                 AppTextField(
                   hintText: "Billing Address",
                   color: Colors.grey,
+                  fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
                 ),
                 SizedBox(
                   height: screenHeight * 0.03,
