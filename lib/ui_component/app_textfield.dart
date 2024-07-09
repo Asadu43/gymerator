@@ -22,9 +22,9 @@ class AppTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // width: MediaQuery.of(context).size.width * 0.7,
-      height: MediaQuery.of(context).size.height * 0.060,
+      height: MediaQuery.of(context).size.height * 0.07,
       alignment: Alignment.center,
-      padding: const EdgeInsets.only(left: 12, top: 6),
+      padding: const EdgeInsets.only(left: 12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         border: Border.all(color: color ?? Colors.white),

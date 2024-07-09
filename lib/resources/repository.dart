@@ -1,0 +1,38 @@
+import 'package:gymmerator/models/api_response/ForgetPasswordApiResponse.dart';
+import 'package:gymmerator/models/api_response/UpdatePasswordApiResponse.dart';
+import 'package:gymmerator/models/api_response/VerifyOTPApiResponse.dart';
+import 'package:gymmerator/resources/api_providers/forget_password_post_api.dart';
+import 'package:gymmerator/resources/api_providers/update_password_put_api.dart';
+import 'package:gymmerator/resources/api_providers/verify_Otp_get_api.dart';
+
+import '../models/api_response/SignInApiResponse.dart';
+import '../models/api_response/SignupApiResponse.dart';
+import 'api_providers/sign_in_post_api.dart';
+import 'api_providers/signup_post_api.dart';
+
+class Repository {
+  Future<SignupApiResponse> signUp(Map data) {
+    final signUpPost = SignUpPostApi();
+    return signUpPost.signUpRequest(data);
+  }
+
+  Future<SignInApiResponse> signIn(Map data) {
+    final signInPost = SignInPostApi();
+    return signInPost.signInRequest(data);
+  }
+
+  Future<ForgetPasswordApiResponse> forgetRequest(Map data) {
+    final request = ForgetPasswordPostApi();
+    return request.forgetRequest(data);
+  }
+  Future<VerifyOtpApiResponse> verifyRequest(String email,int code) {
+    final request = VerifyOtpGetApi();
+    return request.verifyRequest(email,code);
+  }
+  Future<UpdatePasswordApiResponse> updateRequest(Map data) {
+    final request = UpdatePasswordPutApi();
+    return request.updateRequest(data);
+  }
+
+
+}
