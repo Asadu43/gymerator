@@ -27,7 +27,7 @@ class SignInCubit extends Cubit<SignInState> {
     print(signInModel.error);
     print(signInModel.message);
     if (signInModel.error == null) {
-      emit(SignInSuccessful(signInModel.message ?? "Sign Up Successfully"));
+      emit(SignInSuccessful(signInModel));
     } else {
       emit(SignInFailed(signInModel.message ?? "Incorrect email or password."));
     }

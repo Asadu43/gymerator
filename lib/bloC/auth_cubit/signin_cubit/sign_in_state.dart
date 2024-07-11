@@ -12,9 +12,9 @@ final class SignInInitial extends SignInState {}
 class LoadingState extends SignInState {}
 
 class SignInSuccessful extends SignInState {
-  final String message;
+  final SignInApiResponse response;
 
-  const SignInSuccessful(this.message);
+  const SignInSuccessful(this.response);
 }
 
 class SignInFailed extends SignInState {

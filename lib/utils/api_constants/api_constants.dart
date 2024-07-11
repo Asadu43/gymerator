@@ -8,4 +8,5 @@ class ApiConstants {
   static const String forgetPassword = "$baseUrl/api/user/forgotPassword";
   static const String verifyOTP = "$baseUrl/api/user/verifyOTP";
   static const String updatePassword = "$baseUrl/api/user/verifyOTP";
+  static const String updateUserInfo = "$baseUrl/api/user/updateInfo";
 }

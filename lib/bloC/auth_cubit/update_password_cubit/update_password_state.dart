@@ -11,14 +11,14 @@ final class UpdatePasswordInitial extends UpdatePasswordState {}
 
 class LoadingState extends UpdatePasswordState {}
 
-class SignInSuccessful extends UpdatePasswordState {
+class UpdatePasswordSuccessfully extends UpdatePasswordState {
   final String message;
 
-  const SignInSuccessful(this.message);
+  const UpdatePasswordSuccessfully(this.message);
 }
 
-class SignInFailed extends UpdatePasswordState {
+class PasswordUpdateFailed extends UpdatePasswordState {
   final String message;
 
-  const SignInFailed(this.message);
+  const PasswordUpdateFailed(this.message);
 }

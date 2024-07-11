@@ -24,9 +24,11 @@ class UpdatePasswordCubit extends Cubit<UpdatePasswordState> {
         await _repository.updateRequest(data);
 
     if (signInModel.error == null) {
-      emit(SignInSuccessful(signInModel.message ?? "Sign Up Successfully"));
+      emit(UpdatePasswordSuccessfully(
+          signInModel.message ?? "Update Password Successfully"));
     } else {
-      emit(SignInFailed(signInModel.message ?? "Incorrect email or password."));
+      emit(PasswordUpdateFailed(
+          signInModel.message ?? "Password Update Failed"));
     }
   }
 }

@@ -8,7 +8,15 @@ import '../../../../utils/nav/nav.dart';
 import '../complete_setup/complete_setup.dart';
 
 class ChoosePlanScreen extends StatefulWidget {
-  const ChoosePlanScreen({super.key});
+  final int gender;
+  final String heightUnit;
+  final double heightValue;
+  final String weightUnit;
+  final double weightValue;
+  final String age;
+  final String goal;
+
+  const ChoosePlanScreen({super.key, required this.gender, required this.heightUnit,required this.heightValue, required this.weightUnit, required this.weightValue, required this.age,required this.goal});
 
   @override
   State<ChoosePlanScreen> createState() => _ChoosePlanScreenState();
@@ -331,7 +339,16 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                 AppButton(
                   text: "Submit",
                   onPressed: () async {
-                    Nav.push(context, const CompleteSetup());
+
+                    print("Value... ${widget.weightValue}");
+                    print("Value... ${widget.heightValue}");
+                    print("Value... ${widget.goal}");
+                    print("Value... ${widget.gender}");
+                    print("Value... ${widget.weightUnit}");
+                    print("Value... ${widget.heightUnit}");
+                    print("age... ${widget.age}");
+
+                    // Nav.push(context, const CompleteSetup());
                   },
                 ),
                 const SizedBox(height: 10)

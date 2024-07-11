@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gymmerator/models/api_response/SignInApiResponse.dart';
+import 'package:gymmerator/screens/splash_screen/registration_screens/user_info_screen/user_info_screen.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:sizer/sizer.dart';
 
@@ -25,6 +27,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  SignInApiResponse? response;
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -37,9 +41,16 @@ class _LoginScreenState extends State<LoginScreen> {
             showSnackBar(context, state.message);
           }
           if (state is SignInSuccessful) {
+            response = state.response;
             emailController.clear();
             passwordController.clear();
-            showSnackBar(context, state.message, type: SnackBarType.success);
+            showSnackBar(context, response?.message ?? "Sign In Successfully", type: SnackBarType.success);
+
+            if(response?.data?.isRequiredInfoAdded == true){
+              Nav.pushAndRemoveAllRoute(context, const MainScreen());
+            }else {
+              Nav.push(context, const UserInfoScreen());
+            }
           }
         },
         builder: (context, state) {

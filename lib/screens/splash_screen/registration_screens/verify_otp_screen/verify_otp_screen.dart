@@ -36,7 +36,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           }
           if (state is VerifyOtpSuccessfully) {
             showSnackBar(context, state.message, type: SnackBarType.success);
-            Nav.push(context, const CreateNewPasswordScreen());
+            Nav.pushReplace(context, CreateNewPasswordScreen(email: widget.email));
           }
         },
         builder: (context, state) {

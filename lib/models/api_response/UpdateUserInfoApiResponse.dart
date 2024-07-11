@@ -1,5 +1,5 @@
-class SignInApiResponse {
-  SignInApiResponse({
+class UpdateUserInfoApiResponse {
+  UpdateUserInfoApiResponse({
     Data? data,
     String? message,
     dynamic error,
@@ -9,7 +9,7 @@ class SignInApiResponse {
     _error = error;
   }
 
-  SignInApiResponse.fromJson(dynamic json) {
+  UpdateUserInfoApiResponse.fromJson(dynamic json) {
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
     _message = json['message'];
     _error = json['error'];
@@ -27,6 +27,8 @@ class Data {
   Data({
     Address? address,
     Location? location,
+    Height? height,
+    Weight? weight,
     bool? isRequiredInfoAdded,
     String? id,
     String? firstName,
@@ -37,9 +39,14 @@ class Data {
     String? type,
     int? v,
     int? otp,
+    String? gender,
+    String? updatedAt,
+    String? workoutLevel,
   }) {
     _address = address;
     _location = location;
+    _height = height;
+    _weight = weight;
     _isRequiredInfoAdded = isRequiredInfoAdded;
     _id = id;
     _firstName = firstName;
@@ -50,6 +57,9 @@ class Data {
     _type = type;
     _v = v;
     _otp = otp;
+    _gender = gender;
+    _updatedAt = updatedAt;
+    _workoutLevel = workoutLevel;
   }
 
   Data.fromJson(dynamic json) {
@@ -57,6 +67,8 @@ class Data {
         json['address'] != null ? Address.fromJson(json['address']) : null;
     _location =
         json['location'] != null ? Location.fromJson(json['location']) : null;
+    _height = json['height'] != null ? Height.fromJson(json['height']) : null;
+    _weight = json['weight'] != null ? Weight.fromJson(json['weight']) : null;
     _isRequiredInfoAdded = json['isRequiredInfoAdded'];
     _id = json['_id'];
     _firstName = json['firstName'];
@@ -67,9 +79,14 @@ class Data {
     _type = json['type'];
     _v = json['__v'];
     _otp = json['otp'];
+    _gender = json['gender'];
+    _updatedAt = json['updatedAt'];
+    _workoutLevel = json['workoutLevel'];
   }
   Address? _address;
   Location? _location;
+  Height? _height;
+  Weight? _weight;
   bool? _isRequiredInfoAdded;
   String? _id;
   String? _firstName;
@@ -80,9 +97,14 @@ class Data {
   String? _type;
   int? _v;
   int? _otp;
+  String? _gender;
+  String? _updatedAt;
+  String? _workoutLevel;
 
   Address? get address => _address;
   Location? get location => _location;
+  Height? get height => _height;
+  Weight? get weight => _weight;
   bool? get isRequiredInfoAdded => _isRequiredInfoAdded;
   String? get id => _id;
   String? get firstName => _firstName;
@@ -93,6 +115,49 @@ class Data {
   String? get type => _type;
   int? get v => _v;
   int? get otp => _otp;
+  String? get gender => _gender;
+  String? get updatedAt => _updatedAt;
+  String? get workoutLevel => _workoutLevel;
+}
+
+class Weight {
+  Weight({
+    String? unit,
+    double? value,
+  }) {
+    _unit = unit;
+    _value = value;
+  }
+
+  Weight.fromJson(dynamic json) {
+    _unit = json['unit'];
+    _value = json['value'];
+  }
+  String? _unit;
+  double? _value;
+
+  String? get unit => _unit;
+  double? get value => _value;
+}
+
+class Height {
+  Height({
+    String? unit,
+    double? value,
+  }) {
+    _unit = unit;
+    _value = value;
+  }
+
+  Height.fromJson(dynamic json) {
+    _unit = json['unit'];
+    _value = json['value'];
+  }
+  String? _unit;
+  double? _value;
+
+  String? get unit => _unit;
+  double? get value => _value;
 }
 
 class Location {

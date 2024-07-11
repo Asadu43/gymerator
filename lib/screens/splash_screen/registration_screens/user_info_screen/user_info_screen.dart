@@ -4,8 +4,10 @@ import 'package:sizer/sizer.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../../ui_component/app_button.dart';
+import '../../../../ui_component/show_snackbar.dart';
 import '../../../../utils/nav/nav.dart';
 import '../../main_screen/profile_screen/profile_edit_screen/profile_edit_screen.dart';
+import '../choose_plan_screen/choose_plan_screen.dart';
 import '../user_issue_screen/user_issue_screen.dart';
 
 
@@ -23,6 +25,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   final TextEditingController heightCmController = TextEditingController();
   final TextEditingController heightFeetController = TextEditingController();
   final TextEditingController heightInchesController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
   WeightUnits weightUnit = WeightUnits.kg;
   HeightUnits heightUnit = HeightUnits.cm;
   double weightLb = 0;
@@ -208,12 +211,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                   },
                                 ),
                                 SizedBox(
-                                  width: 50,
+                                  width: 70,
                                   child: TextField(
                                     cursorColor: Colors.black,
           
                                     style: const TextStyle(
-                                        fontSize: 24, fontWeight: FontWeight.w600),
+                                        fontSize: 16,),
                                     keyboardType: TextInputType.number,
                                     decoration: InputDecoration(
                                       border: const UnderlineInputBorder(
@@ -331,6 +334,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   const SizedBox(height: 20),
                   const SizedBox(height: 20),
                   TextFormField(
+                    controller: ageController,
                     style: GoogleFonts.vazirmatn(color: Colors.white),
                     decoration: InputDecoration(
                       hintText: 'Enter your age',
@@ -372,11 +376,60 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   const Spacer(),
                   AppButton(
                     text: "Save",
-                    onPressed: () {
-                      Nav.push(context, const UserIssueScreen());
+                    onPressed: () async {
+
+                      if(ageController.text.isEmpty || goal == null){
+                        showSnackBar(context, "Some thing is missing");
+                      }else{
+                        if(weightUnit == WeightUnits.kg && heightUnit == HeightUnits.cm){
+                          print("weightKg... $weightKg");
+                          print("heightCm... $heightCm");
+                          Nav.push(context, ChoosePlanScreen(gender: selectedIndex,heightUnit: "cm",heightValue: heightCm,weightUnit: "Kg",weightValue: weightKg,age: ageController.text,goal: goal!));
+
+                        }if(weightUnit == WeightUnits.lb && heightUnit == HeightUnits.cm){
+                          print("weightLB... $weightLb");
+                          print("heightCm... $heightCm");
+                          Nav.push(context, ChoosePlanScreen(gender: selectedIndex,heightUnit: "cm",heightValue: heightCm,weightUnit: "lb",weightValue: weightLb,age: ageController.text,goal: goal!));
+
+                        }if(weightUnit == WeightUnits.kg && heightUnit == HeightUnits.ftIn){
+                          print("weightKg... $weightKg");
+                          print("heightFeet... $heightFeet");
+                          print("heightInches... $heightInches");
+
+                          String val = "${(heightFeet.toInt())}.${heightInches.toInt()}";
+
+                          Nav.push(context, ChoosePlanScreen(gender: selectedIndex,heightUnit: "Ft-in",heightValue: double.parse(val),weightUnit: "Kg",weightValue: weightKg,age: ageController.text,goal: goal!));
+
+                        }if(weightUnit == WeightUnits.lb && heightUnit == HeightUnits.ftIn){
+                          print("weightKg... $weightLb");
+                          print("heightFeet... $heightFeet");
+                          print("heightInches... $heightInches");
+                          print("${(heightFeet.toInt())}.${heightInches.toInt()}");
+
+                          String val = "${(heightFeet.toInt())}.${heightInches.toInt()}";
+
+                          Nav.push(context, ChoosePlanScreen(gender: selectedIndex,heightUnit: "Ft-in",heightValue: double.parse(val),weightUnit: "lb",weightValue: weightLb,age: ageController.text,goal: goal!));
+
+
+                        }
+                      }
+                      // await _savePressButtonPressed(context);
+                      // print("selectedIndex..... $selectedIndex");
+                      // print("weightUnit..... $weightUnit");
+                      // print("heightUnit..... $heightUnit");
+                      // print("age..... $ageController");
+                      print("goal..... $goal");
+                      //
+                      // print("weightKgController...,$weightLb");
+                      // print("heightCmController...,$heightCm");
+                      // print("heightFeetController...,$heightFeet");
+                      // print("heightInchesController...,$heightInches");
+
+                      // Nav.push(context, const UserIssueScreen());
           
                     },
                   ),
+                  const SizedBox(height: 20,)
                 ],
               ),
             ),
@@ -389,11 +442,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   SizedBox buildTextField(TextEditingController controller,
       Function(String)? onChanged, String suffixText) {
     return SizedBox(
-      width: 50,
+      width: 70,
       child: TextField(
         controller: controller,
         cursorColor: Colors.black,
-        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+        textAlign: TextAlign.center,
+        style: const TextStyle(fontSize: 16,),
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           border: const UnderlineInputBorder(
@@ -415,5 +469,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         onChanged: onChanged,
       ),
     );
+  }
+
+
+
+  Future<void> _savePressButtonPressed(BuildContext context) async {
+
   }
 }
