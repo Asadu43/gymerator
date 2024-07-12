@@ -37,7 +37,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   String? goal;
 
   bool checkboxValue = true;
-  int selectedIndex = 1;
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -381,26 +381,26 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       if(ageController.text.isEmpty || goal == null){
                         showSnackBar(context, "Some thing is missing");
                       }else{
-                        if(weightUnit == WeightUnits.kg && heightUnit == HeightUnits.cm){
+                        if(weightUnit == WeightUnits.kg && heightUnit == HeightUnits.cm && selectedIndex == 1){
                           print("weightKg... $weightKg");
                           print("heightCm... $heightCm");
-                          Nav.push(context, ChoosePlanScreen(gender: selectedIndex,heightUnit: "cm",heightValue: heightCm,weightUnit: "Kg",weightValue: weightKg,age: ageController.text,goal: goal!));
+                          Nav.push(context, ChoosePlanScreen(gender: "Male",heightUnit: "cm",heightValue: heightCm,weightUnit: "Kg",weightValue: weightKg,age: ageController.text,goal: goal!));
 
-                        }if(weightUnit == WeightUnits.lb && heightUnit == HeightUnits.cm){
+                        }if(weightUnit == WeightUnits.lb && heightUnit == HeightUnits.cm && selectedIndex == 2){
                           print("weightLB... $weightLb");
                           print("heightCm... $heightCm");
-                          Nav.push(context, ChoosePlanScreen(gender: selectedIndex,heightUnit: "cm",heightValue: heightCm,weightUnit: "lb",weightValue: weightLb,age: ageController.text,goal: goal!));
+                          Nav.push(context, ChoosePlanScreen(gender: "Female",heightUnit: "cm",heightValue: heightCm,weightUnit: "lb",weightValue: weightLb,age: ageController.text,goal: goal!));
 
-                        }if(weightUnit == WeightUnits.kg && heightUnit == HeightUnits.ftIn){
+                        }if(weightUnit == WeightUnits.kg && heightUnit == HeightUnits.ftIn && selectedIndex == 1){
                           print("weightKg... $weightKg");
                           print("heightFeet... $heightFeet");
                           print("heightInches... $heightInches");
 
                           String val = "${(heightFeet.toInt())}.${heightInches.toInt()}";
 
-                          Nav.push(context, ChoosePlanScreen(gender: selectedIndex,heightUnit: "Ft-in",heightValue: double.parse(val),weightUnit: "Kg",weightValue: weightKg,age: ageController.text,goal: goal!));
+                          Nav.push(context, ChoosePlanScreen(gender: "Male",heightUnit: "Ft-in",heightValue: double.parse(val),weightUnit: "Kg",weightValue: weightKg,age: ageController.text,goal: goal!));
 
-                        }if(weightUnit == WeightUnits.lb && heightUnit == HeightUnits.ftIn){
+                        }if(weightUnit == WeightUnits.lb && heightUnit == HeightUnits.ftIn  && selectedIndex == 2){
                           print("weightKg... $weightLb");
                           print("heightFeet... $heightFeet");
                           print("heightInches... $heightInches");
@@ -408,7 +408,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
                           String val = "${(heightFeet.toInt())}.${heightInches.toInt()}";
 
-                          Nav.push(context, ChoosePlanScreen(gender: selectedIndex,heightUnit: "Ft-in",heightValue: double.parse(val),weightUnit: "lb",weightValue: weightLb,age: ageController.text,goal: goal!));
+                          Nav.push(context, ChoosePlanScreen(gender: "Female",heightUnit: "Ft-in",heightValue: double.parse(val),weightUnit: "lb",weightValue: weightLb,age: ageController.text,goal: goal!));
 
 
                         }
@@ -418,7 +418,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       // print("weightUnit..... $weightUnit");
                       // print("heightUnit..... $heightUnit");
                       // print("age..... $ageController");
-                      print("goal..... $goal");
+                      // print("goal..... $goal");
                       //
                       // print("weightKgController...,$weightLb");
                       // print("heightCmController...,$heightCm");

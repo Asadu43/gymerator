@@ -8,7 +8,16 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:sizer/sizer.dart';
 
 class CompleteSetup extends StatefulWidget {
-  const CompleteSetup({super.key});
+  final String gender;
+  final String heightUnit;
+  final double heightValue;
+  final String weightUnit;
+  final double weightValue;
+  final int age;
+  final int goal;
+  final int plan;
+
+  const CompleteSetup({super.key, required this.gender, required this.heightUnit, required this.heightValue, required this.weightUnit, required this.weightValue, required this.age, required this.goal, required this.plan});
 
   @override
   State<CompleteSetup> createState() => _CompleteSetupState();

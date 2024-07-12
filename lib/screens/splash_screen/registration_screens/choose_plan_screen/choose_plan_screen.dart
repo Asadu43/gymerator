@@ -8,7 +8,7 @@ import '../../../../utils/nav/nav.dart';
 import '../complete_setup/complete_setup.dart';
 
 class ChoosePlanScreen extends StatefulWidget {
-  final int gender;
+  final String gender;
   final String heightUnit;
   final double heightValue;
   final String weightUnit;
@@ -16,7 +16,15 @@ class ChoosePlanScreen extends StatefulWidget {
   final String age;
   final String goal;
 
-  const ChoosePlanScreen({super.key, required this.gender, required this.heightUnit,required this.heightValue, required this.weightUnit, required this.weightValue, required this.age,required this.goal});
+  const ChoosePlanScreen(
+      {super.key,
+      required this.gender,
+      required this.heightUnit,
+      required this.heightValue,
+      required this.weightUnit,
+      required this.weightValue,
+      required this.age,
+      required this.goal});
 
   @override
   State<ChoosePlanScreen> createState() => _ChoosePlanScreenState();
@@ -339,7 +347,6 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                 AppButton(
                   text: "Submit",
                   onPressed: () async {
-
                     print("Value... ${widget.weightValue}");
                     print("Value... ${widget.heightValue}");
                     print("Value... ${widget.goal}");
@@ -348,7 +355,59 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                     print("Value... ${widget.heightUnit}");
                     print("age... ${widget.age}");
 
-                    // Nav.push(context, const CompleteSetup());
+                    if (widget.goal == "Lose Weight") {
+                      Nav.push(
+                          context,
+                          CompleteSetup(
+                            gender: "Male",
+                            heightUnit: "cm",
+                            heightValue: widget.heightValue,
+                            weightUnit: "Kg",
+                            weightValue: widget.weightValue,
+                            age: int.parse(widget.age),
+                            goal: 0,
+                            plan: selectedIndex,
+                          ));
+                    } else if (widget.goal == "Keep Fit") {
+                      Nav.push(
+                          context,
+                          CompleteSetup(
+                            gender: "Male",
+                            heightUnit: "cm",
+                            heightValue: widget.heightValue,
+                            weightUnit: "Kg",
+                            weightValue: widget.weightValue,
+                            age: int.parse(widget.age),
+                            goal: 1,
+                            plan: selectedIndex,
+                          ));
+                    } else if (widget.goal == "Get Stronger") {
+                      Nav.push(
+                          context,
+                          CompleteSetup(
+                            gender: "Male",
+                            heightUnit: "cm",
+                            heightValue: widget.heightValue,
+                            weightUnit: "Kg",
+                            weightValue: widget.weightValue,
+                            age: int.parse(widget.age),
+                            goal: 2,
+                            plan: selectedIndex,
+                          ));
+                    } else if (widget.goal == "Gain Muscle Mass") {
+                      Nav.push(
+                          context,
+                          CompleteSetup(
+                            gender: "Male",
+                            heightUnit: "cm",
+                            heightValue: widget.heightValue,
+                            weightUnit: "Kg",
+                            weightValue: widget.weightValue,
+                            age: int.parse(widget.age),
+                            goal: 3,
+                            plan: selectedIndex,
+                          ));
+                    }
                   },
                 ),
                 const SizedBox(height: 10)
