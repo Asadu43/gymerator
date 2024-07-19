@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/product_details_screen/product_details_screen.dart';
-import 'package:gymmerator/utils/nav/nav.dart';
 
-import '../models/api_response/Product.dart';
-import '../utils/api_constants/api_constants.dart';
+import '../../../../../models/api_response/Product.dart';
+import '../../../../../utils/api_constants/api_constants.dart';
+import '../../../../../utils/nav/nav.dart';
+import '../product_details_screen/product_details_screen.dart';
 
-class ProductItemCard extends StatefulWidget {
-  const ProductItemCard({
+class FeaturedProductItemCard extends StatefulWidget {
+  const FeaturedProductItemCard({
     super.key,
     required this.product,
   });
   final Product product;
 
   @override
-  State<ProductItemCard> createState() => _ProductItemCardState();
+  State<FeaturedProductItemCard> createState() => _ProductItemCardState();
 }
 
-class _ProductItemCardState extends State<ProductItemCard> {
+class _ProductItemCardState extends State<FeaturedProductItemCard> {
   @override
   Widget build(BuildContext context) {
 

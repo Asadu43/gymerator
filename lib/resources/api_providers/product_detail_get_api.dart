@@ -10,6 +10,8 @@ class ProductDetailGetApi {
       final Response response = await dio.get(
         "${ApiConstants.detailProduct}?productId=$id",
       );
+
+      print(response.data);
       if (response.statusCode == 200) {
         return ProductDetailApiResponse.fromJson(response.data);
       } else if (response.statusCode == 404) {

@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/product_details_screen/product_details_screen.dart';
-import 'package:gymmerator/utils/nav/nav.dart';
+import 'package:gymmerator/utils/api_constants/api_constants.dart';
 
-import '../models/api_response/Product.dart';
-import '../utils/api_constants/api_constants.dart';
+import '../../../../models/api_response/Product.dart';
+import '../../../../utils/nav/nav.dart';
 
-class ProductItemCard extends StatefulWidget {
-  const ProductItemCard({
+class HotProductItemCard extends StatefulWidget {
+  const HotProductItemCard({
     super.key,
     required this.product,
   });
   final Product product;
 
   @override
-  State<ProductItemCard> createState() => _ProductItemCardState();
+  State<HotProductItemCard> createState() => _HotProductItemCardState();
 }
 
-class _ProductItemCardState extends State<ProductItemCard> {
+class _HotProductItemCardState extends State<HotProductItemCard> {
   @override
   Widget build(BuildContext context) {
-
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {
-        if(widget.product.id != null){
+        if (widget.product.id != null) {
           Nav.push(context, ProductDetailsScreen(id: widget.product.id!));
         }
       },
@@ -41,7 +40,8 @@ class _ProductItemCardState extends State<ProductItemCard> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8.0),
                     image: DecorationImage(
-                      image: NetworkImage("${ApiConstants.baseUrl}/product/image/${widget.product.images?.first}"),
+                      image: NetworkImage(
+                          "${ApiConstants.baseUrl}/product/image/${widget.product.images?.first}"),
                       fit: BoxFit.fitHeight,
                     ),
                     boxShadow: const [
@@ -53,19 +53,16 @@ class _ProductItemCardState extends State<ProductItemCard> {
                       )
                     ],
                   )),
-              // Positioned(
-              //     right: 8.0,
-              //     top: 8.0,
-              //     child: InkWell(
-              //       onTap: () {
-              //         setState(() {
-              //           widget.product = !widget.product.like;
-              //         });
-              //       },
-              //       child: widget.product.like
-              //           ? const Icon(Icons.favorite, color: Colors.red)
-              //           : const Icon(Icons.favorite_border, color: Colors.black),
-              //     ))
+              Positioned(
+                  right: 8.0,
+                  top: 8.0,
+                  child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          // widget.product = !widget.product.like;
+                        });
+                      },
+                      child: const Icon(Icons.favorite, color: Colors.red)))
             ],
           ),
           const SizedBox(height: 8.0),

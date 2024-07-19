@@ -3,6 +3,8 @@ import 'package:gymmerator/models/product_model.dart';
 import 'package:gymmerator/ui_component/app_textfield.dart';
 import 'package:gymmerator/ui_component/product_item_card.dart';
 
+import 'favorite_product_item_card.dart';
+
 class FavoriteProductsScreen extends StatefulWidget {
   const FavoriteProductsScreen({super.key});
 
@@ -42,7 +44,7 @@ class _FavoriteProductsScreenState extends State<FavoriteProductsScreen> {
                 itemCount: favoriteProducts.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return ProductItemCard(
+                  return FavoriteProductItemCard(
                     product: favoriteProducts[index],
                   );
                 },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/products_screen.dart';
 import 'package:gymmerator/screens/splash_screen/splash_screen.dart';
 import 'package:sizer/sizer.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const UserInfoScreen(),
+          home: const ProductsScreen(),
         );
       },
     );
