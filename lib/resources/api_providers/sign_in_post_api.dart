@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:gymmerator/models/api_response/SignInApiResponse.dart';
 import '../../utils/api_constants/api_constants.dart';
 
@@ -10,6 +11,7 @@ class SignInPostApi {
           data: formData, options: Options(validateStatus: (status) {
         return status! <= 500;
       }));
+      storeToken(response.headers['x-auth-token']!.first);
       if (response.statusCode == 200) {
         return SignInApiResponse.fromJson(response.data);
       } else if (response.statusCode == 404) {
@@ -24,5 +26,9 @@ class SignInPostApi {
         return SignInApiResponse();
       }
     }
+  }
+
+  storeToken(String token) {
+    GetStorage().write('token', token);
   }
 }

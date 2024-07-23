@@ -59,54 +59,56 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                     fit: BoxFit
                         .cover, // You can adjust the fit property as needed
                   )),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: screenHeight / 14,
-                        ),
-                        Image.asset('assets/images/logo_g.png'),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Text("Create New Password",
-                            style: GoogleFonts.vazirmatn(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.white)),
-                        Text(
-                            "Your New Password Must Be Differnt from Previously Used Password.",
-                            style: GoogleFonts.vazirmatn(
-                                fontSize: 12.sp, color: Colors.grey)),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        AppTextField(
-                          controller: password1Controller,
-                          hintText: "New Password",
-                          icon: const Icon(Icons.lock_outline_sharp),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        AppTextField(
-                          controller: password2Controller,
-                          hintText: "Confirm Password",
-                          icon: const Icon(Icons.lock_outline_sharp),
-                        ),
-                        SizedBox(
-                          height: screenHeight / 3.2,
-                        ),
-                        AppButton(
-                          text: "Submit",
-                          onPressed: () async {
-                            _onSubmitButtonPressed(context);
-                            // Nav.push(context, const CompleteSetup());
-                          },
-                        ),
-                      ],
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: screenHeight / 14,
+                          ),
+                          Image.asset('assets/images/logo_g.png'),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Text("Create New Password",
+                              style: GoogleFonts.vazirmatn(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.white)),
+                          Text(
+                              "Your New Password Must Be Differnt from Previously Used Password.",
+                              style: GoogleFonts.vazirmatn(
+                                  fontSize: 12.sp, color: Colors.grey)),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          AppTextField(
+                            controller: password1Controller,
+                            hintText: "New Password",
+                            icon: const Icon(Icons.lock_outline_sharp),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          AppTextField(
+                            controller: password2Controller,
+                            hintText: "Confirm Password",
+                            icon: const Icon(Icons.lock_outline_sharp),
+                          ),
+                          SizedBox(
+                            height: screenHeight / 3.2,
+                          ),
+                          AppButton(
+                            text: "Submit",
+                            onPressed: () async {
+                              _onSubmitButtonPressed(context);
+                              // Nav.push(context, const CompleteSetup());
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -123,7 +125,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
       showSnackBar(context, "Please enter password");
     } else if (password2Controller.text.isEmpty) {
       showSnackBar(context, "Please enter password");
-    } else if (password1Controller.text == password2Controller.text) {
+    } else if (password1Controller.text != password2Controller.text) {
       showSnackBar(context, "Password not matched");
     } else {
       context.read<UpdatePasswordCubit>().updateRequest(

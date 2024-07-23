@@ -331,14 +331,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 40),
                   TextFormField(
                     controller: ageController,
                     style: GoogleFonts.vazirmatn(color: Colors.white),
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: 'Enter your age',
-          
+
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.white),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
@@ -442,12 +442,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   SizedBox buildTextField(TextEditingController controller,
       Function(String)? onChanged, String suffixText) {
     return SizedBox(
-      width: 70,
+      width: 60,
       child: TextField(
         controller: controller,
         cursorColor: Colors.black,
         textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 16,),
+        style: const TextStyle(fontSize: 14,),
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           border: const UnderlineInputBorder(
@@ -471,9 +471,4 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
     );
   }
 
-
-
-  Future<void> _savePressButtonPressed(BuildContext context) async {
-
-  }
 }

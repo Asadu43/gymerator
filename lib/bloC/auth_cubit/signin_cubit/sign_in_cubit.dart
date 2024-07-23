@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../models/api_response/SignInApiResponse.dart';
 import '../../../resources/repository.dart';
@@ -27,9 +28,14 @@ class SignInCubit extends Cubit<SignInState> {
     print(signInModel.error);
     print(signInModel.message);
     if (signInModel.error == null) {
+      storeToken(signInModel.data!.isRequiredInfoAdded!);
       emit(SignInSuccessful(signInModel));
     } else {
       emit(SignInFailed(signInModel.message ?? "Incorrect email or password."));
     }
+  }
+
+  storeToken(bool result) {
+    GetStorage().write('isRequiredInfoAdded', result);
   }
 }

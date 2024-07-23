@@ -36,6 +36,8 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
           workoutLevel // 0 = Beginner, 1 = Intermediate, 2 = Advance
     };
 
+    print("Data \n\n\ ${data} \n\n\n");
+
     final UpdateUserInfoApiResponse model =
         await _repository.updateUserInfoRequest(data);
     if (model.error == null) {

@@ -6,7 +6,7 @@ class ApiConstants {
   static const String signIn = "$baseUrl/api/user/login";
   static const String forgetPassword = "$baseUrl/api/user/forgotPassword";
   static const String verifyOTP = "$baseUrl/api/user/verifyOTP";
-  static const String updatePassword = "$baseUrl/api/user/verifyOTP";
+  static const String updatePassword = "$baseUrl/api/user/updatePassword";
   static const String updateUserInfo = "$baseUrl/api/user/updateInfo";
   static const String featuredProduct = "$baseUrl/api/products/featured";
   static const String detailProduct = "$baseUrl/api/products/details";

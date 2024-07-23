@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:gymmerator/screens/splash_screen/main_screen/main_screen.dart';
 import 'package:gymmerator/screens/splash_screen/registration_screens/login_screen/login_screen.dart';
 
 import '../../utils/nav/nav.dart';
@@ -16,7 +18,11 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     // Delay for 5 seconds and then navigate to the next screen
     Future.delayed(const Duration(seconds: 5), () {
-      Nav.pushReplace(context, const LoginScreen());
+      if(GetStorage().read('token') != null && GetStorage().read('isRequiredInfoAdded') == true){
+        Nav.push(context, const MainScreen());
+      }else {
+        Nav.pushReplace(context, const LoginScreen());
+      }
     });
   }
 

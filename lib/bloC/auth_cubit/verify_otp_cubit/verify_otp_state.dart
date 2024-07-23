@@ -22,3 +22,14 @@ class FailedToVerifyCode extends VerifyOtpState {
 
   const FailedToVerifyCode(this.message);
 }
+class CodeSendSuccessful extends VerifyOtpState {
+  final String message;
+
+  const CodeSendSuccessful(this.message);
+}
+
+class FailedToSendCode extends VerifyOtpState {
+  final String message;
+
+  const FailedToSendCode(this.message);
+}

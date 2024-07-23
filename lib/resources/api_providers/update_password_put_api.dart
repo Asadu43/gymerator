@@ -7,7 +7,7 @@ class UpdatePasswordPutApi {
   Future<UpdatePasswordApiResponse> updateRequest(Map formData) async {
     try {
       final Dio dio = Dio();
-      final Response response = await dio.put(ApiConstants.updatePassword,
+      final Response response = await dio.post(ApiConstants.updatePassword,
           data: formData, options: Options(validateStatus: (status) {
         return status! <= 500;
       }));
