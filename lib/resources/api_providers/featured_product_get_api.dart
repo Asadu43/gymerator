@@ -1,6 +1,3 @@
-
-
-
 import 'package:dio/dio.dart';
 import 'package:gymmerator/models/api_response/FeaturedProductApiResponse.dart';
 
@@ -11,11 +8,7 @@ class FeaturedProductGetApi {
     try {
       final Dio dio = Dio();
       final Response response = await dio.get(ApiConstants.featuredProduct);
-
-      print(response.data);
-      print(response.statusCode);
       if (response.statusCode == 200) {
-
         return FeaturedProductApiResponse.fromJson(response.data);
       } else if (response.statusCode == 404) {
         return FeaturedProductApiResponse.fromJson(response.data);

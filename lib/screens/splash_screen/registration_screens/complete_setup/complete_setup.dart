@@ -165,6 +165,6 @@ class _CompleteSetupState extends State<CompleteSetup> {
 
   Future<void> _savePressButtonPressed(BuildContext context) async {
 
-      context.read<UpdateUserInfoCubit>().updateInfoRequest(gender: widget.gender, heightUnit: widget.heightUnit, heightValue: widget.heightValue, weightUnit: widget.weightUnit, weightValue: widget.weightValue, age: widget.age, goal: widget.goal, workoutLevel: widget.plan-1);
+      context.read<UpdateUserInfoCubit>().updateInfoRequest(gender: widget.gender, heightUnit: widget.heightUnit, heightValue: widget.heightValue, weightUnit: widget.weightUnit, weightValue: widget.weightValue, age: widget.age, goal: widget.goal, workoutLevel: 0);
   }
 }

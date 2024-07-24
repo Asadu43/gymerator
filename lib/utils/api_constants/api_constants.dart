@@ -10,5 +10,7 @@ class ApiConstants {
   static const String updateUserInfo = "$baseUrl/api/user/updateInfo";
   static const String featuredProduct = "$baseUrl/api/products/featured";
   static const String detailProduct = "$baseUrl/api/products/details";
+  static const String addToCartProduct = "$baseUrl/api/carts/addItem";
+  static const String userCartProduct = "$baseUrl/api/carts/byUserID";
 }
 
