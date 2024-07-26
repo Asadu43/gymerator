@@ -1,5 +1,5 @@
-class GetAllFavoriteProductApiResponse {
-  GetAllFavoriteProductApiResponse({
+class RemoveFavoriteProductApiResponse {
+  RemoveFavoriteProductApiResponse({
       Data? data, 
       String? message, 
       dynamic error,}){
@@ -8,7 +8,7 @@ class GetAllFavoriteProductApiResponse {
     _error = error;
 }
 
-  GetAllFavoriteProductApiResponse.fromJson(dynamic json) {
+  RemoveFavoriteProductApiResponse.fromJson(dynamic json) {
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
     _message = json['message'];
     _error = json['error'];
@@ -44,7 +44,8 @@ class Data {
       String? updatedAt, 
       int? v, 
       int? age, 
-      String? gender,}){
+      String? gender, 
+      String? walletAddress,}){
     _address = address;
     _location = location;
     _height = height;
@@ -64,6 +65,7 @@ class Data {
     _v = v;
     _age = age;
     _gender = gender;
+    _walletAddress = walletAddress;
 }
 
   Data.fromJson(dynamic json) {
@@ -77,7 +79,7 @@ class Data {
     _email = json['email'];
     _password = json['password'];
     _goal = json['goal'];
-    // _workoutLevel = json['workoutLevel'];
+    _workoutLevel = json['workoutLevel'];
     _type = json['type'];
     _isRequiredInfoAdded = json['isRequiredInfoAdded'];
     if (json['favoriteProducts'] != null) {
@@ -91,6 +93,7 @@ class Data {
     _v = json['__v'];
     _age = json['age'];
     _gender = json['gender'];
+    _walletAddress = json['walletAddress'];
   }
   Address? _address;
   Location? _location;
@@ -111,6 +114,7 @@ class Data {
   int? _v;
   int? _age;
   String? _gender;
+  String? _walletAddress;
 
   Address? get address => _address;
   Location? get location => _location;
@@ -131,7 +135,7 @@ class Data {
   int? get v => _v;
   int? get age => _age;
   String? get gender => _gender;
-
+  String? get walletAddress => _walletAddress;
 
 }
 
@@ -147,13 +151,12 @@ class FavoriteProducts {
       String? category, 
       List<String>? tags, 
       List<String>? images, 
-      double? averageRating, 
-      List<String>? relatedProducts, 
+      int? averageRating, 
+      List<dynamic>? relatedProducts, 
       String? metaTitle, 
       String? metaDescription, 
-      List<Variants>? variants, 
-      List<dynamic>? attributes, 
-      List<Reviews>? reviews, 
+      List<dynamic>? variants, 
+      List<dynamic>? reviews, 
       List<dynamic>? discounts, 
       String? createdAt, 
       String? updatedAt, 
@@ -173,7 +176,6 @@ class FavoriteProducts {
     _metaTitle = metaTitle;
     _metaDescription = metaDescription;
     _variants = variants;
-    _attributes = attributes;
     _reviews = reviews;
     _discounts = discounts;
     _createdAt = createdAt;
@@ -190,36 +192,35 @@ class FavoriteProducts {
     _stock = json['stock'];
     _isAvailable = json['isAvailable'];
     _category = json['category'];
-    // _tags = json['tags'] != null ? json['tags'].cast<String>() : [];
+    _tags = json['tags'] != null ? json['tags'].cast<String>() : [];
     _images = json['images'] != null ? json['images'].cast<String>() : [];
-    // _averageRating = json['averageRating'];
-    // _relatedProducts = json['relatedProducts'] != null ? json['relatedProducts'].cast<String>() : [];
-    // _metaTitle = json['metaTitle'];
-    // _metaDescription = json['metaDescription'];
-    // if (json['variants'] != null) {
-    //   _variants = [];
-    //   json['variants'].forEach((v) {
-    //     _variants?.add(Variants.fromJson(v));
-    //   });
-    // }
-    // if (json['attributes'] != null) {
-    //   _attributes = [];
-    //   json['attributes'].forEach((v) {
-    //     _attributes?.add(v);
-    //   });
-    // }
-    // if (json['reviews'] != null) {
-    //   _reviews = [];
-    //   json['reviews'].forEach((v) {
-    //     _reviews?.add(Reviews.fromJson(v));
-    //   });
-    // }
-    // if (json['discounts'] != null) {
-    //   _discounts = [];
-    //   json['discounts'].forEach((v) {
-    //     _discounts?.add(v);
-    //   });
-    // }
+    _averageRating = json['averageRating'];
+    if (json['relatedProducts'] != null) {
+      _relatedProducts = [];
+      json['relatedProducts'].forEach((v) {
+        _relatedProducts?.add(v);
+      });
+    }
+    _metaTitle = json['metaTitle'];
+    _metaDescription = json['metaDescription'];
+    if (json['variants'] != null) {
+      _variants = [];
+      json['variants'].forEach((v) {
+        _variants?.add(v);
+      });
+    }
+    if (json['reviews'] != null) {
+      _reviews = [];
+      json['reviews'].forEach((v) {
+        _reviews?.add(v);
+      });
+    }
+    if (json['discounts'] != null) {
+      _discounts = [];
+      json['discounts'].forEach((v) {
+        _discounts?.add(v);
+      });
+    }
     _createdAt = json['createdAt'];
     _updatedAt = json['updatedAt'];
     _v = json['__v'];
@@ -234,13 +235,12 @@ class FavoriteProducts {
   String? _category;
   List<String>? _tags;
   List<String>? _images;
-  double? _averageRating;
-  List<String>? _relatedProducts;
+  int? _averageRating;
+  List<dynamic>? _relatedProducts;
   String? _metaTitle;
   String? _metaDescription;
-  List<Variants>? _variants;
-  List<dynamic>? _attributes;
-  List<Reviews>? _reviews;
+  List<dynamic>? _variants;
+  List<dynamic>? _reviews;
   List<dynamic>? _discounts;
   String? _createdAt;
   String? _updatedAt;
@@ -256,73 +256,16 @@ class FavoriteProducts {
   String? get category => _category;
   List<String>? get tags => _tags;
   List<String>? get images => _images;
-  double? get averageRating => _averageRating;
-  List<String>? get relatedProducts => _relatedProducts;
+  int? get averageRating => _averageRating;
+  List<dynamic>? get relatedProducts => _relatedProducts;
   String? get metaTitle => _metaTitle;
   String? get metaDescription => _metaDescription;
-  List<Variants>? get variants => _variants;
-  List<dynamic>? get attributes => _attributes;
-  List<Reviews>? get reviews => _reviews;
+  List<dynamic>? get variants => _variants;
+  List<dynamic>? get reviews => _reviews;
   List<dynamic>? get discounts => _discounts;
   String? get createdAt => _createdAt;
   String? get updatedAt => _updatedAt;
   int? get v => _v;
-
-}
-
-class Reviews {
-  Reviews({
-      String? userId, 
-      double? rating, 
-      String? review, 
-      String? id,}){
-    _userId = userId;
-    _rating = rating;
-    _review = review;
-    _id = id;
-}
-
-  Reviews.fromJson(dynamic json) {
-    _userId = json['userId'];
-    _rating = json['rating'];
-    _review = json['review'];
-    _id = json['_id'];
-  }
-  String? _userId;
-  double? _rating;
-  String? _review;
-  String? _id;
-
-  String? get userId => _userId;
-  double? get rating => _rating;
-  String? get review => _review;
-  String? get id => _id;
-
-
-}
-
-class Variants {
-  Variants({
-      String? name, 
-      List<String>? values, 
-      String? id,}){
-    _name = name;
-    _values = values;
-    _id = id;
-}
-
-  Variants.fromJson(dynamic json) {
-    _name = json['name'];
-    _values = json['values'] != null ? json['values'].cast<String>() : [];
-    _id = json['_id'];
-  }
-  String? _name;
-  List<String>? _values;
-  String? _id;
-
-  String? get name => _name;
-  List<String>? get values => _values;
-  String? get id => _id;
 
 
 }

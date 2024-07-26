@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:gymmerator/models/api_response/AddFavoriteProductApiResponse.dart';
+import 'package:gymmerator/models/api_response/AddToCartProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/ProductDetailApiResponse.dart';
 
 import '../../../resources/repository.dart';
@@ -19,6 +21,35 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
       emit(ProductDetailGetSuccessfully(model));
     } else {
       emit(FailedToGetProductDetail(model));
+    }
+  }
+
+  Future addToCartRequest(
+      {required String id,
+      required int quantity,
+      required int unitPrice}) async {
+    emit(LoadingState());
+    Map data = {"productId": id, "quantity": quantity, "unitPrice": unitPrice};
+
+    final AddToCartProductApiResponse model =
+        await _repository.cartRequest(data);
+    if (model.error == null) {
+      emit(AddToCartSuccessfully(model));
+    } else {
+      emit(FailedAddToCartProduct(model));
+    }
+  }
+
+  Future addToFavoriteRequest({
+    required String id,
+  }) async {
+    emit(LoadingState());
+    final AddFavoriteProductApiResponse model =
+        await _repository.addFavoriteProductRequest(id);
+    if (model.error == null) {
+      emit(AddToFavoriteSuccessfully(model));
+    } else {
+      emit(FailedAddToFavoriteProduct(model));
     }
   }
 }

@@ -9,7 +9,7 @@ class AllFavoriteProductGetApi {
     try {
       final Dio dio = Dio();
       dio.options.headers["x-auth-token"] = GetStorage().read('token');
-      final Response response = await dio.get(ApiConstants.userCartProduct);
+      final Response response = await dio.get(ApiConstants.userFavoriteProduct);
       if (response.statusCode == 200) {
         return GetAllFavoriteProductApiResponse.fromJson(response.data);
       } else if (response.statusCode == 404) {

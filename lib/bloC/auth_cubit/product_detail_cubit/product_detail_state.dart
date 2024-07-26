@@ -22,3 +22,27 @@ class FailedToGetProductDetail extends ProductDetailState {
 
   const FailedToGetProductDetail(this.response);
 }
+
+class AddToCartSuccessfully extends ProductDetailState {
+  final AddToCartProductApiResponse response;
+
+  const AddToCartSuccessfully(this.response);
+}
+
+class FailedAddToCartProduct extends ProductDetailState {
+  final AddToCartProductApiResponse response;
+
+  const FailedAddToCartProduct(this.response);
+}
+
+class AddToFavoriteSuccessfully extends ProductDetailState {
+  final AddFavoriteProductApiResponse response;
+
+  const AddToFavoriteSuccessfully(this.response);
+}
+
+class FailedAddToFavoriteProduct extends ProductDetailState {
+  final AddFavoriteProductApiResponse response;
+
+  const FailedAddToFavoriteProduct(this.response);
+}

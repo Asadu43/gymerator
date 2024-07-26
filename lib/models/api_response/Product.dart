@@ -20,7 +20,8 @@ class Product {
     List<dynamic>? discounts,
     String? createdAt,
     String? updatedAt,
-    int? v,}){
+    int? v,
+  }) {
     _id = id;
     _name = name;
     _description = description;
@@ -135,6 +136,4 @@ class Product {
   String? get createdAt => _createdAt;
   String? get updatedAt => _updatedAt;
   int? get v => _v;
-
-
 }
