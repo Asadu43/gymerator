@@ -5,6 +5,7 @@ import 'package:gymmerator/bloC/auth_cubit/featured_product_cubit/featured_produ
 import 'package:gymmerator/models/product_model.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/popular_products_screen/popular_product_item_card.dart';
 import 'package:gymmerator/ui_component/app_textfield.dart';
+import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/product_item_card.dart';
 
 import '../../../../../models/api_response/FeaturedProductApiResponse.dart';
@@ -20,21 +21,38 @@ class PopularProductsScreen extends StatefulWidget {
 class _PopularProductsScreenState extends State<PopularProductsScreen> {
   FeaturedProductApiResponse? response;
 
+
+  @override
+  void initState() {
+    context.read<FeaturedProductCubit>().featuredRequest();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FeaturedProductCubit()..featuredRequest(),
-      child: BlocConsumer<FeaturedProductCubit, FeaturedProductState>(
-        listener: (context, state) {
-          if (state is FailedToGetProduct) {
-            showSnackBar(context, response?.message ?? "Failed To Get Product");
-          }
-          if (state is FeaturedProductGetSuccessfully) {
-            response = state.response;
-          }
-        },
-        builder: (context, state) {
-          return Scaffold(
+    return BlocConsumer<FeaturedProductCubit, FeaturedProductState>(
+      listener: (context, state) {
+        if (state is FailedToGetProduct) {
+          showSnackBar(context, response?.message ?? "Failed To Get Product");
+        }
+        if (state is FeaturedProductGetSuccessfully) {
+          response = state.response;
+        }if(state is FailedToRemoveProduct){
+          showSnackBar(context, state.response.message ?? "Failed To Remove Favorite Product");
+        }if(state is RemoveFavoriteProductGetSuccessfully){
+          showSnackBar(context, state.response.message ?? "Remove Favorite Product Successfully",type: SnackBarType.success);
+          context.read<FeaturedProductCubit>().featuredRequest();
+        }if(state is FailedAddToFavoriteProduct){
+
+        }if(state is AddToFavoriteSuccessfully){
+          showSnackBar(context, state.response.message ?? "Add Favorite Product Successfully",type: SnackBarType.success);
+          context.read<FeaturedProductCubit>().featuredRequest();
+
+        }
+      },
+      builder: (context, state) {
+        return LoadingScreenAnimation(
+          isLoading: state is LoadingState,
+          child: Scaffold(
             appBar: AppBar(
                 title: const Text('Popular Products',
                     style: TextStyle(
@@ -81,9 +99,9 @@ class _PopularProductsScreenState extends State<PopularProductsScreen> {
                 ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

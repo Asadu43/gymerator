@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gymmerator/bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/product_details_screen/product_details_screen.dart';
 import 'package:gymmerator/utils/api_constants/api_constants.dart';
 
 import '../../../../models/api_response/Product.dart';
+import '../../../../ui_component/show_snackbar.dart';
 import '../../../../utils/nav/nav.dart';
 
 class HotProductItemCard extends StatefulWidget {
@@ -56,13 +59,21 @@ class _HotProductItemCardState extends State<HotProductItemCard> {
               Positioned(
                   right: 8.0,
                   top: 8.0,
-                  child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          // widget.product = !widget.product.like;
-                        });
-                      },
-                      child: const Icon(Icons.favorite, color: Colors.red)))
+                  child: widget.product.isFavorite == true
+                      ? IconButton(
+                          onPressed: () {
+                            context
+                                .read<FeaturedProductCubit>()
+                                .removeRequest(id: widget.product.id!);
+                          },
+                          icon: const Icon(Icons.favorite, color: Colors.red))
+                      : IconButton(
+                          onPressed: () {
+                            context
+                                .read<FeaturedProductCubit>()
+                                .addToFavoriteRequest(id: widget.product.id!);
+                          },
+                          icon: const Icon(Icons.favorite_border)))
             ],
           ),
           const SizedBox(height: 8.0),

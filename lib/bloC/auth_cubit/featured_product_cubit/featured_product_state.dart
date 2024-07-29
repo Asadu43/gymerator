@@ -22,3 +22,26 @@ class FailedToGetProduct extends FeaturedProductState {
 
   const FailedToGetProduct(this.response);
 }
+
+class RemoveFavoriteProductGetSuccessfully extends FeaturedProductState {
+  final RemoveFavoriteProductApiResponse response;
+
+  const RemoveFavoriteProductGetSuccessfully(this.response);
+}
+
+class FailedToRemoveProduct extends FeaturedProductState {
+  final RemoveFavoriteProductApiResponse response;
+
+  const FailedToRemoveProduct(this.response);
+}
+class AddToFavoriteSuccessfully extends FeaturedProductState {
+  final AddFavoriteProductApiResponse response;
+
+  const AddToFavoriteSuccessfully(this.response);
+}
+
+class FailedAddToFavoriteProduct extends FeaturedProductState {
+  final AddFavoriteProductApiResponse response;
+
+  const FailedAddToFavoriteProduct(this.response);
+}

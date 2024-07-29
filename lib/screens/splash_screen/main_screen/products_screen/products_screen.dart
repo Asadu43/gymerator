@@ -24,221 +24,177 @@ class ProductsScreen extends StatefulWidget {
 
 class _ProductsScreenState extends State<ProductsScreen> {
   FeaturedProductApiResponse? response;
+
+  @override
+  void initState() {
+    context.read<FeaturedProductCubit>().featuredRequest();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FeaturedProductCubit()..featuredRequest(),
-      child: BlocConsumer<FeaturedProductCubit, FeaturedProductState>(
-        listener: (context, state) {
-          if(state is FailedToGetProduct){
-            showSnackBar(context, "");
-          }if (state is FeaturedProductGetSuccessfully){
-            response = state.response;
-          }
-        },
-        builder: (context, state) {
-          return LoadingScreenAnimation(
-            isLoading: state is LoadingState,
-            child: Scaffold(
-              drawer: const AppDrawer(),
-              appBar: AppBar(
-                title: const Text('Hi, Noah!'),
-              ),
-              body: SingleChildScrollView(
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: AppTextField(
-                              hintText: 'Search products',
-                              icon: const Icon(Icons.search),
-                              color: Colors.grey,
-                              prefixIconColor: Colors.grey,
-                              fieldTextStyle:
-                                  GoogleFonts.vazirmatn(color: Colors.black),
-                            )),
-                        const SizedBox(height: 16.0),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Padding(
+    return BlocConsumer<FeaturedProductCubit, FeaturedProductState>(
+      listener: (context, state) {
+        if (state is FailedToGetProduct) {
+          showSnackBar(context, "Failed To Get Products");
+        }
+        if (state is FeaturedProductGetSuccessfully) {
+          response = state.response;
+        }
+        if (state is FailedToRemoveProduct) {
+          showSnackBar(context,
+              state.response.message ?? "Failed To Remove Favorite Product");
+        }
+        if (state is RemoveFavoriteProductGetSuccessfully) {
+          showSnackBar(context,
+              state.response.message ?? "Remove Favorite Product Successfully",
+              type: SnackBarType.success);
+          context.read<FeaturedProductCubit>().featuredRequest();
+        }
+        if (state is FailedAddToFavoriteProduct) {
+          showSnackBar(context,
+              state.response.message ?? "Failed To Add Favorite Product");
+        }
+        if (state is AddToFavoriteSuccessfully) {
+          showSnackBar(context,
+              state.response.message ?? "Add Favorite Product Successfully",
+              type: SnackBarType.success);
+          context.read<FeaturedProductCubit>().featuredRequest();
+        }
+      },
+      builder: (context, state) {
+        return LoadingScreenAnimation(
+          isLoading: state is LoadingState,
+          child: Scaffold(
+            drawer: const AppDrawer(),
+            appBar: AppBar(
+              title: const Text('Hi, Noah!'),
+            ),
+            body: SingleChildScrollView(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: AppTextField(
+                            hintText: 'Search products',
+                            icon: const Icon(Icons.search),
+                            color: Colors.grey,
+                            prefixIconColor: Colors.grey,
+                            fieldTextStyle:
+                                GoogleFonts.vazirmatn(color: Colors.black),
+                          )),
+                      const SizedBox(height: 16.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Featured Products',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const FeaturedProductsScreen()));
+                            },
+                            child: const Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                'Featured Products',
+                                'View All ',
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey),
                               ),
                             ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const FeaturedProductsScreen()));
-                              },
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  'View All ',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8.0),
-                        Expanded(
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: response?.data?.featuredProducts?.length ?? 0,
-                            itemExtent: MediaQuery.of(context).size.width * 0.4,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return ProductItemCard(
-                                product: response!.data!.featuredProducts![index],
-                              );
-                            },
                           ),
+                        ],
+                      ),
+                      const SizedBox(height: 8.0),
+                      Expanded(
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount:
+                              response?.data?.featuredProducts?.length ?? 0,
+                          itemExtent: MediaQuery.of(context).size.width * 0.4,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return ProductItemCard(
+                              product: response!.data!.featuredProducts![index],
+                            );
+                          },
                         ),
-                        const SizedBox(height: 16.0),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Padding(
+                      ),
+                      const SizedBox(height: 16.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Most Popular Products',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const PopularProductsScreen()));
+                            },
+                            child: const Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                'Most Popular Products',
+                                'View All',
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey),
                               ),
                             ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const PopularProductsScreen()));
-                              },
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  'View All',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8.0),
-                        Expanded(
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: response?.data?.hotProducts?.length ?? 0,
-                            itemExtent: MediaQuery.of(context).size.width * 0.4,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
-                                child: HotProductItemCard(
-                                  product: response!.data!.hotProducts![index],
-                                ),
-                              );
-                            },
                           ),
+                        ],
+                      ),
+                      const SizedBox(height: 8.0),
+                      Expanded(
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: response?.data?.hotProducts?.length ?? 0,
+                          itemExtent: MediaQuery.of(context).size.width * 0.4,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: ProductItemCard(
+                                product: response!.data!.hotProducts![index],
+                              ),
+                            );
+                          },
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
-
-List<Product> featuredProducts = [
-  Product(
-    imageUrl: 'assets/images/product1.png',
-    name: 'Product 1',
-    price: 290.9,
-    description:
-        'This is the description of Product 1 lasdkfjk aljksdfl lljlkj asdfljk lkjasdf lk',
-    like: true,
-  ),
-  Product(
-    imageUrl: 'assets/images/product2.png',
-    name: 'Product 2',
-    description: 'This is the description of Product 2',
-    price: 190.9,
-    like: false,
-  ),
-  Product(
-    imageUrl: 'assets/images/product1.png',
-    name: 'Product 1',
-    description: 'This is the description of Product 1',
-    price: 290.9,
-    like: true,
-  ),
-  Product(
-    imageUrl: 'assets/images/product2.png',
-    name: 'Product 2',
-    description: 'This is the description of Product 2',
-    price: 190.9,
-    like: false,
-  ),
-  Product(
-    imageUrl: 'assets/images/product1.png',
-    name: 'Product 1',
-    description: 'This is the description of Product 1',
-    price: 290.9,
-    like: true,
-  ),
-  Product(
-    imageUrl: 'assets/images/product2.png',
-    name: 'Product 2',
-    description: 'This is the description of Product 2',
-    price: 190.9,
-    like: false,
-  ),
-];
-
-List<Product> popularProducts = [
-  Product(
-    imageUrl: 'assets/images/product3.png',
-    name: 'Product 3',
-    description: 'This is the description of Product 3',
-    price: 290.9,
-    like: true,
-  ),
-  Product(
-    imageUrl: 'assets/images/product4.png',
-    name: 'Product 4',
-    description: 'This is the description of Product 4',
-    price: 190.9,
-    like: false,
-  ),
-  Product(
-    imageUrl: 'assets/images/product5.png',
-    name: 'Product 5',
-    description: 'This is the description of Product 5',
-    price: 290.9,
-    like: true,
-  ),
-];

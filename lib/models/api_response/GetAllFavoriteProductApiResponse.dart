@@ -1,3 +1,5 @@
+import 'Product.dart';
+
 class GetAllFavoriteProductApiResponse {
   GetAllFavoriteProductApiResponse({
       Data? data, 
@@ -39,7 +41,7 @@ class Data {
       String? workoutLevel, 
       String? type, 
       bool? isRequiredInfoAdded, 
-      List<FavoriteProducts>? favoriteProducts, 
+      List<Product>? favoriteProducts,
       String? createdAt, 
       String? updatedAt, 
       int? v, 
@@ -83,7 +85,7 @@ class Data {
     if (json['favoriteProducts'] != null) {
       _favoriteProducts = [];
       json['favoriteProducts'].forEach((v) {
-        _favoriteProducts?.add(FavoriteProducts.fromJson(v));
+        _favoriteProducts?.add(Product.fromJson(v));
       });
     }
     _createdAt = json['createdAt'];
@@ -105,7 +107,7 @@ class Data {
   String? _workoutLevel;
   String? _type;
   bool? _isRequiredInfoAdded;
-  List<FavoriteProducts>? _favoriteProducts;
+  List<Product>? _favoriteProducts;
   String? _createdAt;
   String? _updatedAt;
   int? _v;
@@ -125,7 +127,7 @@ class Data {
   String? get workoutLevel => _workoutLevel;
   String? get type => _type;
   bool? get isRequiredInfoAdded => _isRequiredInfoAdded;
-  List<FavoriteProducts>? get favoriteProducts => _favoriteProducts;
+  List<Product>? get favoriteProducts => _favoriteProducts;
   String? get createdAt => _createdAt;
   String? get updatedAt => _updatedAt;
   int? get v => _v;
@@ -135,140 +137,6 @@ class Data {
 
 }
 
-class FavoriteProducts {
-  FavoriteProducts({
-      String? id, 
-      String? name, 
-      String? description, 
-      int? price, 
-      String? sku, 
-      int? stock, 
-      bool? isAvailable, 
-      String? category, 
-      List<String>? tags, 
-      List<String>? images, 
-      double? averageRating, 
-      List<String>? relatedProducts, 
-      String? metaTitle, 
-      String? metaDescription, 
-      List<Variants>? variants, 
-      List<dynamic>? attributes, 
-      List<Reviews>? reviews, 
-      List<dynamic>? discounts, 
-      String? createdAt, 
-      String? updatedAt, 
-      int? v,}){
-    _id = id;
-    _name = name;
-    _description = description;
-    _price = price;
-    _sku = sku;
-    _stock = stock;
-    _isAvailable = isAvailable;
-    _category = category;
-    _tags = tags;
-    _images = images;
-    _averageRating = averageRating;
-    _relatedProducts = relatedProducts;
-    _metaTitle = metaTitle;
-    _metaDescription = metaDescription;
-    _variants = variants;
-    _attributes = attributes;
-    _reviews = reviews;
-    _discounts = discounts;
-    _createdAt = createdAt;
-    _updatedAt = updatedAt;
-    _v = v;
-}
-
-  FavoriteProducts.fromJson(dynamic json) {
-    _id = json['_id'];
-    _name = json['name'];
-    _description = json['description'];
-    _price = json['price'];
-    _sku = json['sku'];
-    _stock = json['stock'];
-    _isAvailable = json['isAvailable'];
-    _category = json['category'];
-    // _tags = json['tags'] != null ? json['tags'].cast<String>() : [];
-    _images = json['images'] != null ? json['images'].cast<String>() : [];
-    // _averageRating = json['averageRating'];
-    // _relatedProducts = json['relatedProducts'] != null ? json['relatedProducts'].cast<String>() : [];
-    // _metaTitle = json['metaTitle'];
-    // _metaDescription = json['metaDescription'];
-    // if (json['variants'] != null) {
-    //   _variants = [];
-    //   json['variants'].forEach((v) {
-    //     _variants?.add(Variants.fromJson(v));
-    //   });
-    // }
-    // if (json['attributes'] != null) {
-    //   _attributes = [];
-    //   json['attributes'].forEach((v) {
-    //     _attributes?.add(v);
-    //   });
-    // }
-    // if (json['reviews'] != null) {
-    //   _reviews = [];
-    //   json['reviews'].forEach((v) {
-    //     _reviews?.add(Reviews.fromJson(v));
-    //   });
-    // }
-    // if (json['discounts'] != null) {
-    //   _discounts = [];
-    //   json['discounts'].forEach((v) {
-    //     _discounts?.add(v);
-    //   });
-    // }
-    _createdAt = json['createdAt'];
-    _updatedAt = json['updatedAt'];
-    _v = json['__v'];
-  }
-  String? _id;
-  String? _name;
-  String? _description;
-  int? _price;
-  String? _sku;
-  int? _stock;
-  bool? _isAvailable;
-  String? _category;
-  List<String>? _tags;
-  List<String>? _images;
-  double? _averageRating;
-  List<String>? _relatedProducts;
-  String? _metaTitle;
-  String? _metaDescription;
-  List<Variants>? _variants;
-  List<dynamic>? _attributes;
-  List<Reviews>? _reviews;
-  List<dynamic>? _discounts;
-  String? _createdAt;
-  String? _updatedAt;
-  int? _v;
-
-  String? get id => _id;
-  String? get name => _name;
-  String? get description => _description;
-  int? get price => _price;
-  String? get sku => _sku;
-  int? get stock => _stock;
-  bool? get isAvailable => _isAvailable;
-  String? get category => _category;
-  List<String>? get tags => _tags;
-  List<String>? get images => _images;
-  double? get averageRating => _averageRating;
-  List<String>? get relatedProducts => _relatedProducts;
-  String? get metaTitle => _metaTitle;
-  String? get metaDescription => _metaDescription;
-  List<Variants>? get variants => _variants;
-  List<dynamic>? get attributes => _attributes;
-  List<Reviews>? get reviews => _reviews;
-  List<dynamic>? get discounts => _discounts;
-  String? get createdAt => _createdAt;
-  String? get updatedAt => _updatedAt;
-  int? get v => _v;
-
-}
 
 class Reviews {
   Reviews({

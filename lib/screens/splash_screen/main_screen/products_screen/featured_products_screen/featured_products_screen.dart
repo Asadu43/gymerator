@@ -20,74 +20,87 @@ class FeaturedProductsScreen extends StatefulWidget {
 
 class _FeaturedProductsScreenState extends State<FeaturedProductsScreen> {
   FeaturedProductApiResponse? response;
+
+  @override
+  void initState() {
+    context.read<FeaturedProductCubit>().featuredRequest();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FeaturedProductCubit()..featuredRequest(),
-      child: BlocConsumer<FeaturedProductCubit, FeaturedProductState>(
-        listener: (context, state) {
+    return BlocConsumer<FeaturedProductCubit, FeaturedProductState>(
+      listener: (context, state) {
 
-          if(state is FailedToGetProduct){
-            showSnackBar(context, state.response.message ?? "Failed To Get Products");
-          }if (state is FeaturedProductGetSuccessfully){
-            response = state.response;
-          }
-        },
-        builder: (context, state) {
-          return LoadingScreenAnimation(
-            isLoading: state is LoadingState,
-            child: Scaffold(
-              appBar: AppBar(
-                  title: const Text('Featured Products',
-                      style: TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold)),
-                  leading: IconButton(
-                    icon: const Icon(Icons.arrow_back_ios),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  )),
-              body: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: AppTextField(
-                          hintText: 'Search products',
-                          icon: const Icon(Icons.search),
-                          color: Colors.grey,
-                          prefixIconColor: Colors.grey,
-                          fieldTextStyle:
-                          GoogleFonts.vazirmatn(color: Colors.black),
-                        )),
-                    const SizedBox(height: 16.0),
-                    Expanded(
-                      child: GridView.builder(
-                        itemCount: response?.data?.featuredProducts?.length ?? 0,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return FeaturedProductItemCard(
-                            product: response!.data!.featuredProducts![index],
-                          );
-                        },
-                        gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 8.0,
-                          mainAxisSpacing: 8.0,
-                          childAspectRatio: 0.7,
-                        ),
+        if(state is FailedToGetProduct){
+          showSnackBar(context, state.response.message ?? "Failed To Get Products");
+        }if (state is FeaturedProductGetSuccessfully){
+          response = state.response;
+        }if(state is FailedToRemoveProduct){
+          showSnackBar(context, state.response.message ?? "Failed To Remove Favorite Product");
+        }if(state is RemoveFavoriteProductGetSuccessfully){
+          showSnackBar(context, state.response.message ?? "Remove Favorite Product Successfully",type: SnackBarType.success);
+          context.read<FeaturedProductCubit>().featuredRequest();
+        }if(state is FailedAddToFavoriteProduct){
+
+        }if(state is AddToFavoriteSuccessfully){
+          showSnackBar(context, state.response.message ?? "Add Favorite Product Successfully",type: SnackBarType.success);
+          context.read<FeaturedProductCubit>().featuredRequest();
+        }
+      },
+      builder: (context, state) {
+        return LoadingScreenAnimation(
+          isLoading: state is LoadingState,
+          child: Scaffold(
+            appBar: AppBar(
+                title: const Text('Featured Products',
+                    style: TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold)),
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back_ios),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                )),
+            body: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: AppTextField(
+                        hintText: 'Search products',
+                        icon: const Icon(Icons.search),
+                        color: Colors.grey,
+                        prefixIconColor: Colors.grey,
+                        fieldTextStyle:
+                        GoogleFonts.vazirmatn(color: Colors.black),
+                      )),
+                  const SizedBox(height: 16.0),
+                  Expanded(
+                    child: GridView.builder(
+                      itemCount: response?.data?.featuredProducts?.length ?? 0,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return ProductItemCard(
+                          product: response!.data!.featuredProducts![index],
+                        );
+                      },
+                      gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 8.0,
+                        mainAxisSpacing: 8.0,
+                        childAspectRatio: 0.7,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

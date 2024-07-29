@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gymmerator/bloC/auth_cubit/product_detail_cubit/product_detail_cubit.dart';
 import 'package:gymmerator/models/api_response/ProductDetailApiResponse.dart';
-import 'package:gymmerator/models/product_model.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
 import 'package:gymmerator/utils/app_colors/app_colors.dart';
 
+import '../../../../../bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart'
+    hide
+        LoadingState,
+        AddToFavoriteSuccessfully,
+        FailedToRemoveProduct,
+        RemoveFavoriteProductGetSuccessfully;
 import '../../../../../utils/api_constants/api_constants.dart';
+import '../../../../../utils/nav/nav.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   const ProductDetailsScreen({super.key, required this.id});
@@ -36,6 +42,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   }
 
   ProductDetailApiResponse? response;
+
+  Future<void> backScreen(BuildContext context) async {
+    // context.read<FeaturedProductCubit>().featuredRequest();
+    Nav.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +79,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             showSnackBar(context,
                 state.response.message ?? "Add Favorite Product Successfully",
                 type: SnackBarType.success);
+            context.read<FeaturedProductCubit>().featuredRequest();
+            context.read<ProductDetailCubit>().detailRequest(id: widget.id);
+          }
+          if (state is FailedToRemoveProduct) {
+            showSnackBar(context,
+                state.response.message ?? "Failed To Remove Favorite Product");
+          }
+          if (state is RemoveFavoriteProductGetSuccessfully) {
+            showSnackBar(
+                context,
+                state.response.message ??
+                    "Remove Favorite Product Successfully",
+                type: SnackBarType.success);
+            context.read<FeaturedProductCubit>().featuredRequest();
+            context.read<ProductDetailCubit>().detailRequest(id: widget.id);
           }
         },
         builder: (context, state) {
@@ -83,8 +109,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       children: [
                         IconButton(
                           icon: const Icon(Icons.arrow_back_ios),
-                          onPressed: () {
-                            Navigator.pop(context);
+                          onPressed: () async {
+                            backScreen(context);
                           },
                         ),
                         IconButton(
@@ -126,14 +152,23 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           style: const TextStyle(
                               fontSize: 24, fontWeight: FontWeight.bold),
                         ),
-                        InkWell(
-                            onTap: () {
-                              context
-                                  .read<ProductDetailCubit>()
-                                  .addToFavoriteRequest(
-                                      id: response!.data!.id!);
-                            },
-                            child: const Icon(Icons.favorite_border))
+                        (response?.data?.isFavorite == false)
+                            ? InkWell(
+                                onTap: () {
+                                  context
+                                      .read<ProductDetailCubit>()
+                                      .addToFavoriteRequest(
+                                          id: response!.data!.id!);
+                                },
+                                child: const Icon(Icons.favorite_border))
+                            : InkWell(
+                                onTap: () {
+                                  context
+                                      .read<ProductDetailCubit>()
+                                      .removeRequest(id: response!.data!.id!);
+                                },
+                                child: const Icon(Icons.favorite,
+                                    color: Colors.red))
                       ],
                     ),
                     const SizedBox(height: 8),
@@ -193,10 +228,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       ],
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'Description',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Description',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 8),
                     Text(

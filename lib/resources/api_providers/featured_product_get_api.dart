@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:gymmerator/models/api_response/FeaturedProductApiResponse.dart';
 
 import '../../utils/api_constants/api_constants.dart';
@@ -7,6 +8,7 @@ class FeaturedProductGetApi {
   Future<FeaturedProductApiResponse> featuredRequest() async {
     try {
       final Dio dio = Dio();
+      dio.options.headers["x-auth-token"] = GetStorage().read('token');
       final Response response = await dio.get(ApiConstants.featuredProduct);
       if (response.statusCode == 200) {
         return FeaturedProductApiResponse.fromJson(response.data);

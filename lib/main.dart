@@ -7,6 +7,7 @@ import 'package:gymmerator/screens/splash_screen/splash_screen.dart';
 import 'package:gymmerator/utils/internet_connection/dependency_injection.dart';
 import 'package:sizer/sizer.dart';
 
+import 'bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart';
 import 'bloC/auth_cubit/forget_password_cubit/forget_password_cubit.dart';
 import 'bloC/auth_cubit/verify_otp_cubit/verify_otp_cubit.dart';
 import 'screens/splash_screen/registration_screens/user_info_screen/user_info_screen.dart';
@@ -26,7 +27,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => VerifyOtpCubit(),
+          create: (context) => FeaturedProductCubit(),
+          child: BlocProvider(
+            create: (context) => VerifyOtpCubit(),
+          ),
         ),
       ],
       child: Sizer(

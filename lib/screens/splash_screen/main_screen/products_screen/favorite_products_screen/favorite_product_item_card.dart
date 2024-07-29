@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
 import '../../../../../models/api_response/GetAllFavoriteProductApiResponse.dart';
+import '../../../../../models/api_response/Product.dart';
 import '../../../../../utils/api_constants/api_constants.dart';
 import '../../../../../utils/nav/nav.dart';
 import '../product_details_screen/product_details_screen.dart';
@@ -11,7 +12,7 @@ class FavoriteProductItemCard extends StatefulWidget {
     super.key,
     required this.product,
   });
-  final FavoriteProducts product;
+  final Product product;
 
   @override
   State<FavoriteProductItemCard> createState() => _ProductItemCardState();
@@ -36,6 +37,7 @@ class _ProductItemCardState extends State<FavoriteProductItemCard> {
             children: [
               Container(
                 height: screenHeight * 0.178,
+                width: screenWidth * 0.4,
                 margin: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                   color: Colors.white,

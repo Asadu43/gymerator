@@ -1,5 +1,7 @@
 class Product {
   Product({
+    dynamic dimensions,
+    dynamic specifications,
     String? id,
     String? name,
     String? description,
@@ -15,13 +17,15 @@ class Product {
     String? metaTitle,
     String? metaDescription,
     List<dynamic>? variants,
-    List<dynamic>? attributes,
     List<dynamic>? reviews,
     List<dynamic>? discounts,
     String? createdAt,
     String? updatedAt,
     int? v,
+    bool? isFavorite,
   }) {
+    _dimensions = dimensions;
+    _specifications = specifications;
     _id = id;
     _name = name;
     _description = description;
@@ -37,15 +41,17 @@ class Product {
     _metaTitle = metaTitle;
     _metaDescription = metaDescription;
     _variants = variants;
-    _attributes = attributes;
     _reviews = reviews;
     _discounts = discounts;
     _createdAt = createdAt;
     _updatedAt = updatedAt;
     _v = v;
+    _isFavorite = isFavorite;
   }
 
   Product.fromJson(dynamic json) {
+    _dimensions = json['dimensions'];
+    _specifications = json['specifications'];
     _id = json['_id'];
     _name = json['name'];
     _description = json['description'];
@@ -71,12 +77,6 @@ class Product {
         _variants?.add(v);
       });
     }
-    if (json['attributes'] != null) {
-      _attributes = [];
-      json['attributes'].forEach((v) {
-        _attributes?.add(v);
-      });
-    }
     if (json['reviews'] != null) {
       _reviews = [];
       json['reviews'].forEach((v) {
@@ -92,7 +92,10 @@ class Product {
     _createdAt = json['createdAt'];
     _updatedAt = json['updatedAt'];
     _v = json['__v'];
+    _isFavorite = json['isFavorite'];
   }
+  dynamic _dimensions;
+  dynamic _specifications;
   String? _id;
   String? _name;
   String? _description;
@@ -108,13 +111,15 @@ class Product {
   String? _metaTitle;
   String? _metaDescription;
   List<dynamic>? _variants;
-  List<dynamic>? _attributes;
   List<dynamic>? _reviews;
   List<dynamic>? _discounts;
   String? _createdAt;
   String? _updatedAt;
   int? _v;
+  bool? _isFavorite;
 
+  dynamic get dimensions => _dimensions;
+  dynamic get specifications => _specifications;
   String? get id => _id;
   String? get name => _name;
   String? get description => _description;
@@ -130,10 +135,10 @@ class Product {
   String? get metaTitle => _metaTitle;
   String? get metaDescription => _metaDescription;
   List<dynamic>? get variants => _variants;
-  List<dynamic>? get attributes => _attributes;
   List<dynamic>? get reviews => _reviews;
   List<dynamic>? get discounts => _discounts;
   String? get createdAt => _createdAt;
   String? get updatedAt => _updatedAt;
   int? get v => _v;
+  bool? get isFavorite => _isFavorite;
 }
