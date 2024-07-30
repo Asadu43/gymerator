@@ -50,6 +50,13 @@ class _MyCartScreenState extends State<MyCartScreen> {
           }
           if (state is CartProductGetSuccessfully) {
             response = state.response;
+          }if (state is FailedToUpdateCartItem){
+            showSnackBar(context,
+                state.response.message ?? "Failed To Update Cart Product");
+          }if(state is CartItemUpdateSuccessfully){
+            showSnackBar(context,
+                state.response.message ?? "Cart Item Update Successfully",type: SnackBarType.success);
+            context.read<UserCartProductsCubit>().cartRequest();
           }
         },
         builder: (context, state) {
@@ -100,7 +107,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                     border: Border.all(color: Colors.grey)),
                                 child: Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 8.0, right: 8.0),
+                                      left: 2.0, right: 8.0),
                                   child: Row(
                                     // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
@@ -121,7 +128,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                           ),
                                         ),
                                       ),
-                                      const SizedBox(width: 40,),
+                                      const SizedBox(width: 20),
                                       SizedBox(
                                         width: screenWidth * 0.3,
                                         // color: Colors.red,
@@ -200,7 +207,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                         "\$ ${response?.data?.items?[index].total}" ??
                                             "",
                                         style: GoogleFonts.vazirmatn(
-                                            color: Colors.black, fontSize: 18),
+                                            color: Colors.black, fontSize: 14),
                                       ),
                                     ],
                                   ),

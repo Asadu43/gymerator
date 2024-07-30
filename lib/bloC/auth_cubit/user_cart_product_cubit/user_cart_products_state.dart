@@ -22,3 +22,27 @@ class FailedToGetProduct extends UserCartProductsState {
 
   const FailedToGetProduct(this.response);
 }
+
+class CartItemUpdateSuccessfully extends UserCartProductsState {
+  final UpdateCartItemApiResponse response;
+
+  const CartItemUpdateSuccessfully(this.response);
+}
+
+class FailedToUpdateCartItem extends UserCartProductsState {
+  final UpdateCartItemApiResponse response;
+
+  const FailedToUpdateCartItem(this.response);
+}
+
+class CartItemRemoveSuccessfully extends UserCartProductsState {
+  final RemoveCartItemApiResponse response;
+
+  const CartItemRemoveSuccessfully(this.response);
+}
+
+class FailedToRemoveCartItem extends UserCartProductsState {
+  final RemoveCartItemApiResponse response;
+
+  const FailedToRemoveCartItem(this.response);
+}

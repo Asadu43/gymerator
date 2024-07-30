@@ -16,5 +16,3 @@ class ProductDetailApiResponse {
   String? message;
   dynamic error;
 }
-
-

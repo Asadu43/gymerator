@@ -1,12 +1,13 @@
 class AddFavoriteProductApiResponse {
   AddFavoriteProductApiResponse({
-      Data? data, 
-      String? message, 
-      dynamic error,}){
+    Data? data,
+    String? message,
+    dynamic error,
+  }) {
     _data = data;
     _message = message;
     _error = error;
-}
+  }
 
   AddFavoriteProductApiResponse.fromJson(dynamic json) {
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
@@ -30,30 +31,30 @@ class AddFavoriteProductApiResponse {
     map['error'] = _error;
     return map;
   }
-
 }
 
 class Data {
   Data({
-      Address? address, 
-      Location? location, 
-      Height? height, 
-      Weight? weight, 
-      String? id, 
-      String? firstName, 
-      String? lastName, 
-      String? email, 
-      String? password, 
-      String? goal, 
-      String? workoutLevel, 
-      String? type, 
-      bool? isRequiredInfoAdded, 
-      List<String>? favoriteProducts, 
-      String? createdAt, 
-      String? updatedAt, 
-      int? v, 
-      int? age, 
-      String? gender,}){
+    Address? address,
+    Location? location,
+    Height? height,
+    Weight? weight,
+    String? id,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? password,
+    String? goal,
+    String? workoutLevel,
+    String? type,
+    bool? isRequiredInfoAdded,
+    List<String>? favoriteProducts,
+    String? createdAt,
+    String? updatedAt,
+    int? v,
+    int? age,
+    String? gender,
+  }) {
     _address = address;
     _location = location;
     _height = height;
@@ -73,11 +74,13 @@ class Data {
     _v = v;
     _age = age;
     _gender = gender;
-}
+  }
 
   Data.fromJson(dynamic json) {
-    _address = json['address'] != null ? Address.fromJson(json['address']) : null;
-    _location = json['location'] != null ? Location.fromJson(json['location']) : null;
+    _address =
+        json['address'] != null ? Address.fromJson(json['address']) : null;
+    _location =
+        json['location'] != null ? Location.fromJson(json['location']) : null;
     _height = json['height'] != null ? Height.fromJson(json['height']) : null;
     _weight = json['weight'] != null ? Weight.fromJson(json['weight']) : null;
     _id = json['_id'];
@@ -89,7 +92,9 @@ class Data {
     _workoutLevel = json['workoutLevel'];
     _type = json['type'];
     _isRequiredInfoAdded = json['isRequiredInfoAdded'];
-    _favoriteProducts = json['favoriteProducts'] != null ? json['favoriteProducts'].cast<String>() : [];
+    _favoriteProducts = json['favoriteProducts'] != null
+        ? json['favoriteProducts'].cast<String>()
+        : [];
     _createdAt = json['createdAt'];
     _updatedAt = json['updatedAt'];
     _v = json['__v'];
@@ -167,16 +172,16 @@ class Data {
     map['gender'] = _gender;
     return map;
   }
-
 }
 
 class Weight {
   Weight({
-      String? unit, 
-      double? value,}){
+    String? unit,
+    double? value,
+  }) {
     _unit = unit;
     _value = value;
-}
+  }
 
   Weight.fromJson(dynamic json) {
     _unit = json['unit'];
@@ -194,16 +199,16 @@ class Weight {
     map['value'] = _value;
     return map;
   }
-
 }
 
 class Height {
   Height({
-      String? unit, 
-      double? value,}){
+    String? unit,
+    double? value,
+  }) {
     _unit = unit;
     _value = value;
-}
+  }
 
   Height.fromJson(dynamic json) {
     _unit = json['unit'];
@@ -221,16 +226,16 @@ class Height {
     map['value'] = _value;
     return map;
   }
-
 }
 
 class Location {
   Location({
-      String? latitude, 
-      String? longitude,}){
+    String? latitude,
+    String? longitude,
+  }) {
     _latitude = latitude;
     _longitude = longitude;
-}
+  }
 
   Location.fromJson(dynamic json) {
     _latitude = json['latitude'];
@@ -248,24 +253,24 @@ class Location {
     map['longitude'] = _longitude;
     return map;
   }
-
 }
 
 class Address {
   Address({
-      String? address1, 
-      String? address2, 
-      String? city, 
-      String? state, 
-      String? country, 
-      String? postalCode,}){
+    String? address1,
+    String? address2,
+    String? city,
+    String? state,
+    String? country,
+    String? postalCode,
+  }) {
     _address1 = address1;
     _address2 = address2;
     _city = city;
     _state = state;
     _country = country;
     _postalCode = postalCode;
-}
+  }
 
   Address.fromJson(dynamic json) {
     _address1 = json['address1'];
@@ -299,5 +304,4 @@ class Address {
     map['postalCode'] = _postalCode;
     return map;
   }
-
 }

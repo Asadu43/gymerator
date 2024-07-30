@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:gymmerator/models/api_response/GetAllUserProductApiResponse.dart';
+import 'package:gymmerator/models/api_response/RemoveCartItemApiResponse.dart';
+import 'package:gymmerator/models/api_response/UpdateCartItemApiResponse.dart';
 
 import '../../../resources/repository.dart';
 
@@ -15,14 +17,31 @@ class UserCartProductsCubit extends Cubit<UserCartProductsState> {
     emit(LoadingState());
     final GetAllUserProductApiResponse model =
         await _repository.getCartProductRequest();
-
-    print(model.message);
-    print(model.error);
-    print(model.data);
     if (model.error == null) {
       emit(CartProductGetSuccessfully(model));
     } else {
       emit(FailedToGetProduct(model));
+    }
+  }
+
+  Future updateRequest({required String id, required int quantity}) async {
+    emit(LoadingState());
+    final UpdateCartItemApiResponse model =
+        await _repository.updateItemRequest(id, quantity);
+    if (model.error == null) {
+      emit(CartItemUpdateSuccessfully(model));
+    } else {
+      emit(FailedToUpdateCartItem(model));
+    }
+  }
+
+  Future removeRequest(String id) async {
+    emit(LoadingState());
+    final RemoveCartItemApiResponse model = await _repository.removeRequest(id);
+    if (model.error == null) {
+      emit(CartItemRemoveSuccessfully(model));
+    } else {
+      emit(FailedToRemoveCartItem(model));
     }
   }
 }

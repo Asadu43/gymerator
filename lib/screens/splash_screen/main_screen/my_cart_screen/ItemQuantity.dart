@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gymmerator/models/api_response/UpdateCartItemApiResponse.dart';
 
+import '../../../../bloC/auth_cubit/user_cart_product_cubit/user_cart_products_cubit.dart';
 import '../../../../ui_component/show_snackbar.dart';
 
 class ItemQuantity extends StatefulWidget {
@@ -25,18 +28,9 @@ class _ItemQuantityState extends State<ItemQuantity> {
     setState(() {
       count++;
     });
-    // final GetCartItemsApiResponse checkOutModel = await context.read<CartItemsCubit>().changeQuantity(id: widget.id, quantity: count);
-    // print('${checkOutModel}');
-    //   if(checkOutModel.result == true){
-    //     print('${checkOutModel}');
-    //
-    //     context.read<CartItemsCubit>().getCartItems(context);
-    //   }else{
-    //     showSnackBar(context,"Failed to Change Quantity");
-    //   }
-    // }else{
-    //   showSnackBar(context,"Product Out Of Stock");
-    // }
+    await context
+        .read<UserCartProductsCubit>()
+        .updateRequest(id: widget.id, quantity: count);
   }
 
   void decrement() async {
@@ -44,6 +38,10 @@ class _ItemQuantityState extends State<ItemQuantity> {
     setState(() {
       count--;
     });
+
+    await context
+        .read<UserCartProductsCubit>()
+        .updateRequest(id: widget.id, quantity: count);
     // final GetCartItemsApiResponse checkOutModel = await context.read<CartItemsCubit>().changeQuantity(id: widget.id, quantity: count);
     // if(checkOutModel.result == true){
     //   context.read<CartItemsCubit>().getCartItems(context);
@@ -66,18 +64,19 @@ class _ItemQuantityState extends State<ItemQuantity> {
     return Row(
       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Container(
-            height: screenHeight * 0.035,
-            width: screenWidth * 0.08,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: Colors.grey)),
-            child: IconButton(
-                onPressed: decrement,
-                icon: const Icon(
-                  Icons.remove,
-                  size: 15,
-                ))),
+        InkWell(
+          onTap: decrement,
+          child: Container(
+              height: 25,
+              width: 25,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: Colors.grey)),
+              child: const Icon(
+                Icons.remove,
+                size: 15,
+              )),
+        ),
         SizedBox(
           width: screenWidth * 0.03,
         ),
@@ -85,18 +84,19 @@ class _ItemQuantityState extends State<ItemQuantity> {
         SizedBox(
           width: screenWidth * 0.03,
         ),
-        Container(
-            height: screenHeight * 0.035,
-            width: screenWidth * 0.08,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: Colors.grey)),
-            child: IconButton(
-                onPressed: increment,
-                icon: const Icon(
-                  Icons.add,
-                  size: 15,
-                ))),
+        InkWell(
+          onTap: increment,
+          child: Container(
+              height: 25,
+              width: 25,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: Colors.grey)),
+              child: const Icon(
+                Icons.add,
+                size: 15,
+              )),
+        ),
       ],
     );
   }

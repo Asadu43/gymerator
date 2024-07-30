@@ -1,12 +1,13 @@
 class UpdatePasswordApiResponse {
   UpdatePasswordApiResponse({
-      Data? data, 
-      String? message, 
-      dynamic error,}){
+    Data? data,
+    String? message,
+    dynamic error,
+  }) {
     _data = data;
     _message = message;
     _error = error;
-}
+  }
 
   UpdatePasswordApiResponse.fromJson(dynamic json) {
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
@@ -30,21 +31,21 @@ class UpdatePasswordApiResponse {
     map['error'] = _error;
     return map;
   }
-
 }
 
 class Data {
   Data({
-      Address? address, 
-      Location? location, 
-      String? id, 
-      String? firstName, 
-      String? lastName, 
-      String? email, 
-      String? password, 
-      String? goal, 
-      String? type, 
-      int? v,}){
+    Address? address,
+    Location? location,
+    String? id,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? password,
+    String? goal,
+    String? type,
+    int? v,
+  }) {
     _address = address;
     _location = location;
     _id = id;
@@ -55,11 +56,13 @@ class Data {
     _goal = goal;
     _type = type;
     _v = v;
-}
+  }
 
   Data.fromJson(dynamic json) {
-    _address = json['address'] != null ? Address.fromJson(json['address']) : null;
-    _location = json['location'] != null ? Location.fromJson(json['location']) : null;
+    _address =
+        json['address'] != null ? Address.fromJson(json['address']) : null;
+    _location =
+        json['location'] != null ? Location.fromJson(json['location']) : null;
     _id = json['_id'];
     _firstName = json['firstName'];
     _lastName = json['lastName'];
@@ -109,16 +112,16 @@ class Data {
     map['__v'] = _v;
     return map;
   }
-
 }
 
 class Location {
   Location({
-      String? latitude, 
-      String? longitude,}){
+    String? latitude,
+    String? longitude,
+  }) {
     _latitude = latitude;
     _longitude = longitude;
-}
+  }
 
   Location.fromJson(dynamic json) {
     _latitude = json['latitude'];
@@ -136,24 +139,24 @@ class Location {
     map['longitude'] = _longitude;
     return map;
   }
-
 }
 
 class Address {
   Address({
-      String? address1, 
-      String? address2, 
-      String? city, 
-      String? state, 
-      String? country, 
-      String? postalCode,}){
+    String? address1,
+    String? address2,
+    String? city,
+    String? state,
+    String? country,
+    String? postalCode,
+  }) {
     _address1 = address1;
     _address2 = address2;
     _city = city;
     _state = state;
     _country = country;
     _postalCode = postalCode;
-}
+  }
 
   Address.fromJson(dynamic json) {
     _address1 = json['address1'];
@@ -187,5 +190,4 @@ class Address {
     map['postalCode'] = _postalCode;
     return map;
   }
-
 }

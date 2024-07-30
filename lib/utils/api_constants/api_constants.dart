@@ -13,7 +13,10 @@ class ApiConstants {
   static const String addToCartProduct = "$baseUrl/api/carts/addItem";
   static const String userCartProduct = "$baseUrl/api/carts/byUserID";
   static const String userFavoriteProduct = "$baseUrl/api/user";
-  static const String addFavoriteProduct = "$baseUrl/api/user/addFavoriteProduct";
-  static const String removeFavoriteProduct = "$baseUrl/api/user/removeFavoriteProduct";
+  static const String addFavoriteProduct =
+      "$baseUrl/api/user/addFavoriteProduct";
+  static const String removeFavoriteProduct =
+      "$baseUrl/api/user/removeFavoriteProduct";
+  static const String removeCartItem = "$baseUrl/api/user/removeItem";
+  static const String updateCartItem = "$baseUrl/api/carts/updateItemQuantity";
 }
-

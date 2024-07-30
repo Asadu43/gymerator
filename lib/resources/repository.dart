@@ -5,7 +5,9 @@ import 'package:gymmerator/models/api_response/ForgetPasswordApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllFavoriteProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllUserProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/ProductDetailApiResponse.dart';
+import 'package:gymmerator/models/api_response/RemoveCartItemApiResponse.dart';
 import 'package:gymmerator/models/api_response/RemoveFavoriteProductApiResponse.dart';
+import 'package:gymmerator/models/api_response/UpdateCartItemApiResponse.dart';
 import 'package:gymmerator/models/api_response/UpdatePasswordApiResponse.dart';
 import 'package:gymmerator/models/api_response/UpdateUserInfoApiResponse.dart';
 import 'package:gymmerator/models/api_response/VerifyOTPApiResponse.dart';
@@ -15,7 +17,9 @@ import 'package:gymmerator/resources/api_providers/all_favorite_product_get_api.
 import 'package:gymmerator/resources/api_providers/featured_product_get_api.dart';
 import 'package:gymmerator/resources/api_providers/forget_password_post_api.dart';
 import 'package:gymmerator/resources/api_providers/product_detail_get_api.dart';
+import 'package:gymmerator/resources/api_providers/remove_cart_item_put_api.dart';
 import 'package:gymmerator/resources/api_providers/remove_favorite_put_api.dart';
+import 'package:gymmerator/resources/api_providers/update_cart_item_put_api.dart';
 import 'package:gymmerator/resources/api_providers/update_password_put_api.dart';
 import 'package:gymmerator/resources/api_providers/update_user_info_put_api.dart';
 import 'package:gymmerator/resources/api_providers/user_cart_products_get_api.dart';
@@ -90,5 +94,15 @@ class Repository {
   Future<GetAllFavoriteProductApiResponse> getFavoriteProductRequest() {
     final request = AllFavoriteProductGetApi();
     return request.getFavoriteRequest();
+  }
+
+  Future<UpdateCartItemApiResponse> updateItemRequest(String id, int quantity) {
+    final request = UpdateCartItemPutApi();
+    return request.updateRequest(id, quantity);
+  }
+
+  Future<RemoveCartItemApiResponse> removeRequest(String id) {
+    final request = RemoveCartItemPutApi();
+    return request.removeRequest(id);
   }
 }

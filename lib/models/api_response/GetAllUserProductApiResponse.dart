@@ -2,13 +2,14 @@ import 'Product.dart';
 
 class GetAllUserProductApiResponse {
   GetAllUserProductApiResponse({
-      Data? data, 
-      String? message, 
-      dynamic error,}){
+    Data? data,
+    String? message,
+    dynamic error,
+  }) {
     _data = data;
     _message = message;
     _error = error;
-}
+  }
 
   GetAllUserProductApiResponse.fromJson(dynamic json) {
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
@@ -22,22 +23,21 @@ class GetAllUserProductApiResponse {
   Data? get data => _data;
   String? get message => _message;
   dynamic get error => _error;
-
-
 }
 
 class Data {
   Data({
-      String? id, 
-      String? user, 
-      int? v, 
-      String? createdAt, 
-      int? discount, 
-      List<Items>? items, 
-      int? subTotal, 
-      int? tax, 
-      int? total, 
-      String? updatedAt,}){
+    String? id,
+    String? user,
+    int? v,
+    String? createdAt,
+    int? discount,
+    List<Items>? items,
+    int? subTotal,
+    int? tax,
+    int? total,
+    String? updatedAt,
+  }) {
     _id = id;
     _user = user;
     _v = v;
@@ -48,7 +48,7 @@ class Data {
     _tax = tax;
     _total = total;
     _updatedAt = updatedAt;
-}
+  }
 
   Data.fromJson(dynamic json) {
     _id = json['_id'];
@@ -88,26 +88,26 @@ class Data {
   int? get tax => _tax;
   int? get total => _total;
   String? get updatedAt => _updatedAt;
-
-
 }
 
 class Items {
   Items({
-      Product? product, 
-      int? quantity, 
-      int? unitPrice, 
-      int? total, 
-      String? id,}){
+    Product? product,
+    int? quantity,
+    int? unitPrice,
+    int? total,
+    String? id,
+  }) {
     _product = product;
     _quantity = quantity;
     _unitPrice = unitPrice;
     _total = total;
     _id = id;
-}
+  }
 
   Items.fromJson(dynamic json) {
-    _product = json['product'] != null ? Product.fromJson(json['product']) : null;
+    _product =
+        json['product'] != null ? Product.fromJson(json['product']) : null;
     _quantity = json['quantity'];
     _unitPrice = json['unitPrice'];
     _total = json['total'];
@@ -124,8 +124,6 @@ class Items {
   int? get unitPrice => _unitPrice;
   int? get total => _total;
   String? get id => _id;
-
-
 }
 
 // class Product {

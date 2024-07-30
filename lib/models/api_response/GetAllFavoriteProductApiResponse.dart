@@ -2,13 +2,14 @@ import 'Product.dart';
 
 class GetAllFavoriteProductApiResponse {
   GetAllFavoriteProductApiResponse({
-      Data? data, 
-      String? message, 
-      dynamic error,}){
+    Data? data,
+    String? message,
+    dynamic error,
+  }) {
     _data = data;
     _message = message;
     _error = error;
-}
+  }
 
   GetAllFavoriteProductApiResponse.fromJson(dynamic json) {
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
@@ -22,31 +23,30 @@ class GetAllFavoriteProductApiResponse {
   Data? get data => _data;
   String? get message => _message;
   dynamic get error => _error;
-
-
 }
 
 class Data {
   Data({
-      Address? address, 
-      Location? location, 
-      Height? height, 
-      Weight? weight, 
-      String? id, 
-      String? firstName, 
-      String? lastName, 
-      String? email, 
-      String? password, 
-      String? goal, 
-      String? workoutLevel, 
-      String? type, 
-      bool? isRequiredInfoAdded, 
-      List<Product>? favoriteProducts,
-      String? createdAt, 
-      String? updatedAt, 
-      int? v, 
-      int? age, 
-      String? gender,}){
+    Address? address,
+    Location? location,
+    Height? height,
+    Weight? weight,
+    String? id,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? password,
+    String? goal,
+    String? workoutLevel,
+    String? type,
+    bool? isRequiredInfoAdded,
+    List<Product>? favoriteProducts,
+    String? createdAt,
+    String? updatedAt,
+    int? v,
+    int? age,
+    String? gender,
+  }) {
     _address = address;
     _location = location;
     _height = height;
@@ -66,11 +66,13 @@ class Data {
     _v = v;
     _age = age;
     _gender = gender;
-}
+  }
 
   Data.fromJson(dynamic json) {
-    _address = json['address'] != null ? Address.fromJson(json['address']) : null;
-    _location = json['location'] != null ? Location.fromJson(json['location']) : null;
+    _address =
+        json['address'] != null ? Address.fromJson(json['address']) : null;
+    _location =
+        json['location'] != null ? Location.fromJson(json['location']) : null;
     _height = json['height'] != null ? Height.fromJson(json['height']) : null;
     _weight = json['weight'] != null ? Weight.fromJson(json['weight']) : null;
     _id = json['_id'];
@@ -133,22 +135,20 @@ class Data {
   int? get v => _v;
   int? get age => _age;
   String? get gender => _gender;
-
-
 }
-
 
 class Reviews {
   Reviews({
-      String? userId, 
-      double? rating, 
-      String? review, 
-      String? id,}){
+    String? userId,
+    double? rating,
+    String? review,
+    String? id,
+  }) {
     _userId = userId;
     _rating = rating;
     _review = review;
     _id = id;
-}
+  }
 
   Reviews.fromJson(dynamic json) {
     _userId = json['userId'];
@@ -165,19 +165,18 @@ class Reviews {
   double? get rating => _rating;
   String? get review => _review;
   String? get id => _id;
-
-
 }
 
 class Variants {
   Variants({
-      String? name, 
-      List<String>? values, 
-      String? id,}){
+    String? name,
+    List<String>? values,
+    String? id,
+  }) {
     _name = name;
     _values = values;
     _id = id;
-}
+  }
 
   Variants.fromJson(dynamic json) {
     _name = json['name'];
@@ -191,17 +190,16 @@ class Variants {
   String? get name => _name;
   List<String>? get values => _values;
   String? get id => _id;
-
-
 }
 
 class Weight {
   Weight({
-      String? unit, 
-      double? value,}){
+    String? unit,
+    double? value,
+  }) {
     _unit = unit;
     _value = value;
-}
+  }
 
   Weight.fromJson(dynamic json) {
     _unit = json['unit'];
@@ -212,17 +210,16 @@ class Weight {
 
   String? get unit => _unit;
   double? get value => _value;
-
-
 }
 
 class Height {
   Height({
-      String? unit, 
-      double? value,}){
+    String? unit,
+    double? value,
+  }) {
     _unit = unit;
     _value = value;
-}
+  }
 
   Height.fromJson(dynamic json) {
     _unit = json['unit'];
@@ -233,17 +230,16 @@ class Height {
 
   String? get unit => _unit;
   double? get value => _value;
-
-
 }
 
 class Location {
   Location({
-      String? latitude, 
-      String? longitude,}){
+    String? latitude,
+    String? longitude,
+  }) {
     _latitude = latitude;
     _longitude = longitude;
-}
+  }
 
   Location.fromJson(dynamic json) {
     _latitude = json['latitude'];
@@ -254,25 +250,24 @@ class Location {
 
   String? get latitude => _latitude;
   String? get longitude => _longitude;
-
-
 }
 
 class Address {
   Address({
-      String? address1, 
-      String? address2, 
-      String? city, 
-      String? state, 
-      String? country, 
-      String? postalCode,}){
+    String? address1,
+    String? address2,
+    String? city,
+    String? state,
+    String? country,
+    String? postalCode,
+  }) {
     _address1 = address1;
     _address2 = address2;
     _city = city;
     _state = state;
     _country = country;
     _postalCode = postalCode;
-}
+  }
 
   Address.fromJson(dynamic json) {
     _address1 = json['address1'];
@@ -295,6 +290,4 @@ class Address {
   String? get state => _state;
   String? get country => _country;
   String? get postalCode => _postalCode;
-
-
 }
