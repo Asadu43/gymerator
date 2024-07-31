@@ -35,7 +35,7 @@ class UserCartProductsCubit extends Cubit<UserCartProductsState> {
     }
   }
 
-  Future removeRequest(String id) async {
+  Future removeRequest({required String id}) async {
     emit(LoadingState());
     final RemoveCartItemApiResponse model = await _repository.removeRequest(id);
     if (model.error == null) {

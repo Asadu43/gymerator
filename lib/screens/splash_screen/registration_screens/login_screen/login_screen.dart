@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +16,7 @@ import '../../../../utils/nav/nav.dart';
 import '../../main_screen/main_screen.dart';
 import '../forget_password_screen/forget_password_screen.dart';
 import '../signup_screen/signup_screen.dart';
+import 'auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -26,6 +28,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  final AuthService _authService = AuthService();
 
   SignInApiResponse? response;
 
@@ -44,11 +48,12 @@ class _LoginScreenState extends State<LoginScreen> {
             response = state.response;
             emailController.clear();
             passwordController.clear();
-            showSnackBar(context, response?.message ?? "Sign In Successfully", type: SnackBarType.success);
+            showSnackBar(context, response?.message ?? "Sign In Successfully",
+                type: SnackBarType.success);
 
-            if(response?.data?.isRequiredInfoAdded == true){
+            if (response?.data?.isRequiredInfoAdded == true) {
               Nav.pushAndRemoveAllRoute(context, const MainScreen());
-            }else {
+            } else {
               Nav.push(context, const UserInfoScreen());
             }
           }
@@ -64,8 +69,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     image: DecorationImage(
                   image: AssetImage(
                       'assets/images/background.png'), // Replace with your image asset path
-                  fit: BoxFit
-                      .cover, // You can adjust the fit property as needed
+                  fit:
+                      BoxFit.cover, // You can adjust the fit property as needed
                 )),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 30.0, right: 30.0),
@@ -170,26 +175,37 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                             height: screenHeight * 0.040,
                           ),
-                          Container(
-                            height: screenHeight * 0.07,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
-                              children: [
-                                Image.asset(
-                                  'assets/images/google.png',
-                                  height: 30,
-                                  width: 30,
-                                ),
-                                Text("Sign in with Google",
-                                    style: GoogleFonts.barlow(
-                                        fontSize: 14, color: Colors.white)),
-                                const SizedBox(),
-                              ],
+                          InkWell(
+                             onTap: () async {
+                               User? user = await _authService.signInWithGoogle();
+                               if (user != null) {
+                                 // Navigate to the next screen or display user information
+                                 print('User signed in: ${user.displayName}');
+                                 print('User signed in: ${user.email}');
+                               } else {
+                                 print('Sign in failed');
+                               }
+                             },
+                            child: Container(
+                              height: screenHeight * 0.07,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Image.asset(
+                                    'assets/images/google.png',
+                                    height: 30,
+                                    width: 30,
+                                  ),
+                                  Text("Sign in with Google",
+                                      style: GoogleFonts.barlow(
+                                          fontSize: 14, color: Colors.white)),
+                                  const SizedBox(),
+                                ],
+                              ),
                             ),
                           ),
                           const SizedBox(height: 20),

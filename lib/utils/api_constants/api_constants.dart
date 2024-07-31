@@ -17,6 +17,6 @@ class ApiConstants {
       "$baseUrl/api/user/addFavoriteProduct";
   static const String removeFavoriteProduct =
       "$baseUrl/api/user/removeFavoriteProduct";
-  static const String removeCartItem = "$baseUrl/api/user/removeItem";
+  static const String removeCartItem = "$baseUrl/api/carts/removeItem";
   static const String updateCartItem = "$baseUrl/api/carts/updateItemQuantity";
 }

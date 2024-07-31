@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gymmerator/bloC/auth_cubit/product_detail_cubit/product_detail_cubit.dart';
@@ -121,28 +122,57 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         ),
                       ],
                     ),
-                    LoadingScreenAnimation(
-                      isLoading: state is LoadingState,
-                      child: Center(
-                        child: Container(
-                          height: 200,
-                          margin: const EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Image.network(
-                            "${ApiConstants.baseUrl}/product/image/${response?.data?.images?.first ?? ""}",
-                            fit: BoxFit.fitHeight,
-                            errorBuilder: (context, error, stackTrace) {
-                              return const Center(
-                                child: Text('Please Wait'),
+
+                    (response?.data?.images != null) ? Center(
+                      child: CarouselSlider(
+
+                        options: CarouselOptions(height: 250.0,autoPlay: true,
+                          enlargeCenterPage: true,
+                          viewportFraction: 0.9,
+                          aspectRatio: 2.0,
+                        ),
+                        items: response?.data?.images?.map((i){
+                          return Builder(
+                            builder: (BuildContext context) {
+                              return SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  // decoration: const BoxDecoration(
+                                  //     color: Colors.amber
+                                  // ),
+                                  child: Image.network(
+                                    "${ApiConstants.baseUrl}/product/image/$i",
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return const Center(
+                                        child: Text('Please Wait'),
+                                      );
+                                    },
+                                  )
                               );
                             },
-                          ),
-                        ),
+                          );
+                        }).toList(),
                       ),
-                    ),
+
+                      // Container(
+                      //   height: 200,
+                      //   margin: const EdgeInsets.all(8.0),
+                      //   decoration: BoxDecoration(
+                      //     color: Colors.white,
+                      //     borderRadius: BorderRadius.circular(8.0),
+                      //   ),
+                      //   child: Image.network(
+                      //     "${ApiConstants.baseUrl}/product/image/${response?.data?.images?.first ?? ""}",
+                      //     fit: BoxFit.fitHeight,
+                      //     errorBuilder: (context, error, stackTrace) {
+                      //       return const Center(
+                      //         child: Text('Please Wait'),
+                      //       );
+                      //     },
+                      //   ),
+                      // ),
+                    ) : const SizedBox(),
+
                     const SizedBox(height: 16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
