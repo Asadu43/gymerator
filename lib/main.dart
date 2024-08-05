@@ -9,15 +9,17 @@ import 'package:gymmerator/screens/splash_screen/splash_screen.dart';
 import 'package:gymmerator/utils/internet_connection/dependency_injection.dart';
 import 'package:sizer/sizer.dart';
 
+import 'bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
 import 'bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart';
 import 'bloC/auth_cubit/forget_password_cubit/forget_password_cubit.dart';
+import 'bloC/auth_cubit/update_user_info_cubit/update_user_info_cubit.dart';
 import 'bloC/auth_cubit/verify_otp_cubit/verify_otp_cubit.dart';
 import 'firebase_options.dart';
 import 'screens/splash_screen/registration_screens/user_info_screen/user_info_screen.dart';
 
 void main() async {
   Stripe.publishableKey =
-  'pk_test_51IxRoaCVPPCU0vw3fI0PKNS2YPCBg48h4VSbMUD5c0VoeBghcfKsRiWgy20pz3HekcTFWiaCrIcZlkHGbdAHf3bB00vok4FEDh';
+      'pk_test_51IxRoaCVPPCU0vw3fI0PKNS2YPCBg48h4VSbMUD5c0VoeBghcfKsRiWgy20pz3HekcTFWiaCrIcZlkHGbdAHf3bB00vok4FEDh';
   DependencyInjection.init();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -36,10 +38,17 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => FeaturedProductCubit(),
-          child: BlocProvider(
-            create: (context) => VerifyOtpCubit(),
-          ),
         ),
+        BlocProvider(
+          create: (context) => UpdateUserInfoCubit(),
+        ),
+        BlocProvider(
+          create: (context) => VerifyOtpCubit(),
+        ),
+
+        BlocProvider(
+          create: (context) => AllFavoriteProductsCubit(),
+        )
       ],
       child: Sizer(
         builder: (context, orientation, deviceType) {

@@ -18,8 +18,8 @@ class AllFavoriteProductsCubit extends Cubit<AllFavoriteProductsState> {
         await _repository.getFavoriteProductRequest();
 
     print(model.error);
-    print(model.message);
-    print(model.message);
+    print("name");
+    print(model.data?.firstName);
     if (model.error == null) {
       emit(AllFavoriteProductGetSuccessfully(model));
     } else {

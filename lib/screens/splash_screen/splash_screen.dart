@@ -6,7 +6,7 @@ import 'package:gymmerator/screens/splash_screen/registration_screens/login_scre
 import '../../utils/nav/nav.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // Delay for 5 seconds and then navigate to the next screen
     Future.delayed(const Duration(seconds: 5), () {
 
-      if((GetStorage().read('token') != null) && (GetStorage().read('isRequiredInfoAdded') == false)){
+      if((GetStorage().read('token') != null) && (GetStorage().read('isRequiredInfoAdded') == true)){
         Nav.push(context, const MainScreen());
       }else {
         Nav.pushReplace(context, const LoginScreen());

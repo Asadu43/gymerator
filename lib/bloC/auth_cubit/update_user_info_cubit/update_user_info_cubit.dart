@@ -46,4 +46,112 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
       emit(FailedToUpdateUserInfo(model.message ?? "Failed To User Info."));
     }
   }
+
+  Future editProfileRequest({
+    required String heightUnit,
+    required double heightValue,
+    required String weightUnit,
+    required double weightValue,
+    required int age,
+    required String goal,
+  }) async {
+    emit(LoadingState());
+
+    var data;
+    if (goal == "Lose Weight") {
+      data = {
+        "heightUnit": heightUnit,
+        // cm, Ft-in
+        "heightValue": heightValue,
+        "weightUnit": weightUnit,
+        // Kg, lb
+        "weightValue": weightValue,
+        "age": age,
+        "goal": 0,
+        // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
+      };
+    }
+    if (goal == "Keep Fit") {
+      data = {
+        "heightUnit": heightUnit,
+        // cm, Ft-in
+        "heightValue": heightValue,
+        "weightUnit": weightUnit,
+        // Kg, lb
+        "weightValue": weightValue,
+        "age": age,
+        "goal": 1,
+        // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
+      };
+    }
+    if (goal == "Get Stronger") {
+      data = {
+        "heightUnit": heightUnit,
+        // cm, Ft-in
+        "heightValue": heightValue,
+        "weightUnit": weightUnit,
+        // Kg, lb
+        "weightValue": weightValue,
+        "age": age,
+        "goal": 2,
+        // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
+      };
+    }
+    if (goal == "Gain Muscle Mass") {
+      data = {
+        "heightUnit": heightUnit,
+        // cm, Ft-in
+        "heightValue": heightValue,
+        "weightUnit": weightUnit,
+        // Kg, lb
+        "weightValue": weightValue,
+        "age": age,
+        "goal": 3,
+        // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
+      };
+    }
+
+    print("Data \n\n\ ${data} \n\n\n");
+
+    final UpdateUserInfoApiResponse model =
+        await _repository.updateUserInfoRequest(data);
+    if (model.error == null) {
+      emit(UpdateUserSuccessfully(model.message ?? "Update User Successfully"));
+    } else {
+      emit(FailedToUpdateUserInfo(model.message ?? "Failed To User Info."));
+    }
+  }
+
+  Future editAccountRequest({
+    required String heightUnit,
+    required double heightValue,
+    required String weightUnit,
+    required double weightValue,
+    required int age,
+    required int goal,
+  }) async {
+    emit(LoadingState());
+
+    Map data = {
+      "heightUnit": heightUnit,
+      // cm, Ft-in
+      "heightValue": heightValue,
+      "weightUnit": weightUnit,
+      // Kg, lb
+      "weightValue": weightValue,
+      "age": age,
+      "goal": goal,
+      // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
+    };
+
+    print("Data \n\n\ ${data} \n\n\n");
+
+    final UpdateUserInfoApiResponse model =
+        await _repository.updateUserInfoRequest(data);
+    if (model.error == null) {
+      emit(UpdateUserSuccessfully(model.message ?? "Update User Successfully"));
+    } else {
+      emit(FailedToUpdateUserInfo(model.message ?? "Failed To User Info."));
+    }
+  }
 }
