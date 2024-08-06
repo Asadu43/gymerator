@@ -169,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           const ScheduleWorkoutScreen());
                                     },
                                     child: Text(
-                                      "Start Traning",
+                                      "Start Training",
                                       style: GoogleFonts.barlow(
                                         fontSize: 14,
                                         color: Colors.white,
