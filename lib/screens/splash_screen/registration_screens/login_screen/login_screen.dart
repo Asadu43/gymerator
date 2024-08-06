@@ -50,7 +50,6 @@ class _LoginScreenState extends State<LoginScreen> {
             passwordController.clear();
             showSnackBar(context, response?.message ?? "Sign In Successfully",
                 type: SnackBarType.success);
-
             if (response?.data?.isRequiredInfoAdded == true) {
               Nav.pushAndRemoveAllRoute(context, const MainScreen());
             } else {
@@ -176,16 +175,17 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: screenHeight * 0.040,
                           ),
                           InkWell(
-                             onTap: () async {
-                               User? user = await _authService.signInWithGoogle();
-                               if (user != null) {
-                                 // Navigate to the next screen or display user information
-                                 print('User signed in: ${user.displayName}');
-                                 print('User signed in: ${user.email}');
-                               } else {
-                                 print('Sign in failed');
-                               }
-                             },
+                            onTap: () async {
+                              User? user =
+                                  await _authService.signInWithGoogle();
+                              if (user != null) {
+                                // Navigate to the next screen or display user information
+                                print('User signed in: ${user.displayName}');
+                                print('User signed in: ${user.email}');
+                              } else {
+                                print('Sign in failed');
+                              }
+                            },
                             child: Container(
                               height: screenHeight * 0.07,
                               decoration: BoxDecoration(
@@ -193,7 +193,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 borderRadius: BorderRadius.circular(30),
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Image.asset(
                                     'assets/images/google.png',

@@ -81,7 +81,7 @@ class Data {
     _email = json['email'];
     _password = json['password'];
     _goal = json['goal'];
-    // _workoutLevel = json['workoutLevel'];
+    _workoutLevel = json['workoutLevel'];
     _type = json['type'];
     _isRequiredInfoAdded = json['isRequiredInfoAdded'];
     if (json['favoriteProducts'] != null) {
@@ -203,8 +203,25 @@ class Weight {
 
   Weight.fromJson(dynamic json) {
     _unit = json['unit'];
-    _value = json['value'];
+    _value = _convertToDouble(json['value']);
   }
+
+  // Method to convert a dynamic value to a double
+  static double? _convertToDouble(dynamic val) {
+    if (val == null) {
+      return null;
+    }
+    if (val is int) {
+      return val.toDouble();
+    } else if (val is double) {
+      return val;
+    } else if (val is String) {
+      return double.tryParse(val);
+    } else {
+      throw ArgumentError('Unsupported type: ${val.runtimeType}');
+    }
+  }
+
   String? _unit;
   double? _value;
 
@@ -223,8 +240,25 @@ class Height {
 
   Height.fromJson(dynamic json) {
     _unit = json['unit'];
-    _value = json['value'];
+    _value = _convertToDouble(json['value']);
   }
+
+  // Method to convert a dynamic value to a double
+  static double? _convertToDouble(dynamic val) {
+    if (val == null) {
+      return null;
+    }
+    if (val is int) {
+      return val.toDouble();
+    } else if (val is double) {
+      return val;
+    } else if (val is String) {
+      return double.tryParse(val);
+    } else {
+      throw ArgumentError('Unsupported type: ${val.runtimeType}');
+    }
+  }
+
   String? _unit;
   double? _value;
 

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:gymmerator/bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/profile_screen/account_edit_screen/account_edit_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/profile_screen/profile_edit_screen/profile_edit_screen.dart';
+import 'package:gymmerator/screens/splash_screen/registration_screens/login_screen/login_screen.dart';
 import 'package:gymmerator/ui_component/app_button.dart';
 import 'package:gymmerator/ui_component/app_dialog_box.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
@@ -164,10 +165,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             response?.data?.firstName ?? "",
                                         lastName:
                                             response?.data?.lastName ?? "",
-                                        email: response?.data?.email ?? "",
-                                        phoneNumber: "030300030303",
-                                        address:
-                                            "${response?.data?.address?.address1 ?? " "}  ${response?.data?.address?.city ?? " "} ${response?.data?.address?.state ?? " "} ${response?.data?.address?.country ?? " "}"));
+                                        address1:
+                                            response?.data?.address?.address1 ??
+                                                " ",
+                                        address2:
+                                            response?.data?.address?.address2 ??
+                                                " ",
+                                        city: response?.data?.address?.city ??
+                                            " ",
+                                        state: response?.data?.address?.state ??
+                                            " ",
+                                        country:
+                                            response?.data?.address?.country ??
+                                                " "));
                               },
                             ),
                             const Padding(
@@ -365,7 +375,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 AppButton(
                                                   text: "Logout",
                                                   onPressed: () {
-                                                    Navigator.of(context).pop();
+
+                                                    GetStorage().write('token', null);
+                                                    Nav.pushAndRemoveAllRoute(context, const LoginScreen());
                                                   },
                                                 ),
                                                 TextButton(

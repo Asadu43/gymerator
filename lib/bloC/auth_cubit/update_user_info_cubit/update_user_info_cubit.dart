@@ -57,18 +57,15 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   }) async {
     emit(LoadingState());
 
-    var data;
+    Map data = {};
     if (goal == "Lose Weight") {
       data = {
         "heightUnit": heightUnit,
-        // cm, Ft-in
         "heightValue": heightValue,
         "weightUnit": weightUnit,
-        // Kg, lb
         "weightValue": weightValue,
         "age": age,
-        "goal": 0,
-        // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
+        "goal": 0
       };
     }
     if (goal == "Keep Fit") {
@@ -78,7 +75,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
         "heightValue": heightValue,
         "weightUnit": weightUnit,
         // Kg, lb
-        "weightValue": weightValue,
+        "weightValue": weightValue.toDouble(),
         "age": age,
         "goal": 1,
         // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
@@ -87,27 +84,21 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
     if (goal == "Get Stronger") {
       data = {
         "heightUnit": heightUnit,
-        // cm, Ft-in
         "heightValue": heightValue,
         "weightUnit": weightUnit,
-        // Kg, lb
         "weightValue": weightValue,
         "age": age,
-        "goal": 2,
-        // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
+        "goal": 2
       };
     }
     if (goal == "Gain Muscle Mass") {
       data = {
         "heightUnit": heightUnit,
-        // cm, Ft-in
         "heightValue": heightValue,
         "weightUnit": weightUnit,
-        // Kg, lb
         "weightValue": weightValue,
         "age": age,
-        "goal": 3,
-        // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
+        "goal": 3
       };
     }
 
@@ -115,6 +106,10 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
 
     final UpdateUserInfoApiResponse model =
         await _repository.updateUserInfoRequest(data);
+
+    print("Data ${model.data}");
+    print("Message ${model.message}");
+    print("Error ${model.error}");
     if (model.error == null) {
       emit(UpdateUserSuccessfully(model.message ?? "Update User Successfully"));
     } else {
@@ -123,25 +118,24 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   }
 
   Future editAccountRequest({
-    required String heightUnit,
-    required double heightValue,
-    required String weightUnit,
-    required double weightValue,
-    required int age,
-    required int goal,
+    required String firstName,
+    required String lastName,
+    required String address1,
+    required String address2,
+    required String city,
+    required String state,
+    required String country,
   }) async {
     emit(LoadingState());
 
     Map data = {
-      "heightUnit": heightUnit,
-      // cm, Ft-in
-      "heightValue": heightValue,
-      "weightUnit": weightUnit,
-      // Kg, lb
-      "weightValue": weightValue,
-      "age": age,
-      "goal": goal,
-      // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
+      "firstName": firstName,
+      "lastName": lastName,
+      "address1": address1,
+      "address2": address2,
+      "city": city,
+      "state": state,
+      "country": country,
     };
 
     print("Data \n\n\ ${data} \n\n\n");

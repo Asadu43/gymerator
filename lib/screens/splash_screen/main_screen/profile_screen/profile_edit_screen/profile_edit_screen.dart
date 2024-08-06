@@ -7,7 +7,10 @@ import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:sizer/sizer.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
+import '../../../../../bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart'
+    hide LoadingState;
 import '../../../../../ui_component/show_snackbar.dart';
+import '../../../../../utils/nav/nav.dart';
 
 enum WeightUnits { kg, lb }
 
@@ -52,7 +55,6 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
 
   @override
   void initState() {
-    print(widget.goal);
     goal = widget.goal;
     ageController = TextEditingController(text: widget.age.toString());
     if (widget.weight == "Kg") {
@@ -60,7 +62,6 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
       weightKg = widget.weightValue;
       weightKgController =
           TextEditingController(text: widget.weightValue.toString());
-      // weightLbController = TextEditingController();
     } else {
       weightUnit = WeightUnits.lb;
       weightLb = widget.weightValue;
@@ -76,6 +77,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
       int minorVersion = int.parse(versionParts[1]);
       heightUnit = HeightUnits.ftIn;
       heightFeet = majorVersion;
+      heightInches = minorVersion;
 
       heightFeetController =
           TextEditingController(text: majorVersion.toString());
@@ -92,7 +94,6 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return BlocProvider(
       create: (context) => UpdateUserInfoCubit(),
       child: BlocConsumer<UpdateUserInfoCubit, UpdateUserInfoState>(
@@ -102,6 +103,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
           }
           if (state is UpdateUserSuccessfully) {
             showSnackBar(context, state.message, type: SnackBarType.success);
+            context.read<AllFavoriteProductsCubit>().featuredRequest();
+            Nav.pop(context);
           }
         },
         builder: (context, state) {
@@ -268,8 +271,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                                 return;
                                               }
                                               setState(() {
-                                                heightFeet =
-                                                    int.parse(value);
+                                                heightFeet = int.parse(value);
                                               });
                                             }, 'Ft'),
                                             buildTextField(
@@ -279,8 +281,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                                 return;
                                               }
                                               setState(() {
-                                                heightInches =
-                                                    int.parse(value);
+                                                heightInches = int.parse(value);
                                               });
                                             }, 'In'),
                                           ],
@@ -339,75 +340,63 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                     AppButton(
                       text: "Save",
                       onPressed: () {
-                        // print("age   ${ageController.text}");
-                        // print("goal   $goal");
-                        // print("weightKg... $weightKg");
-                        // print("heightFeet... $heightFeet");
-                        // print("heightInches... $heightInches");
-                        //
-                        // print("heightUnit... $heightUnit");
-                        // print("weightUnit... $weightUnit");
-                        //
-                        // if (weightUnit == WeightUnits.lb &&
-                        //     heightUnit == HeightUnits.cm) {
-                        //   print("heightUnit  ${heightCmController.text}");
-                        //   print("weightUnit  ${weightLbController.text}");
-                        // }
-                        // if (weightUnit == WeightUnits.kg &&
-                        //     heightUnit == HeightUnits.ftIn) {
-                        //   print(
-                        //       "heightInchesController  ${heightFeetController.text}");
-                        //   print(
-                        //       "heightInchesController  ${heightInchesController.text}");
-                        //   print("weightUnit  ${weightKgController.text}");
-                        // }
-
-
                         if (weightUnit == WeightUnits.kg &&
-                            heightUnit == HeightUnits.cm ) {
-
-                          context.read<UpdateUserInfoCubit>().editProfileRequest(heightUnit: "cm", heightValue: heightCm, weightUnit: "Kg", weightValue: weightKg!, age: int.parse(ageController.text), goal: goal!);
-
+                            heightUnit == HeightUnits.cm) {
+                          context
+                              .read<UpdateUserInfoCubit>()
+                              .editProfileRequest(
+                                  heightUnit: "cm",
+                                  heightValue: heightCm,
+                                  weightUnit: "Kg",
+                                  weightValue: weightKg!,
+                                  age: int.parse(ageController.text),
+                                  goal: goal!);
                         }
                         if (weightUnit == WeightUnits.lb &&
-                            heightUnit == HeightUnits.cm ) {
-
-                          context.read<UpdateUserInfoCubit>().editProfileRequest(heightUnit: "cm", heightValue: heightCm, weightUnit: "lb", weightValue: weightLb!, age: int.parse(ageController.text), goal: goal!);
-
+                            heightUnit == HeightUnits.cm) {
+                          context
+                              .read<UpdateUserInfoCubit>()
+                              .editProfileRequest(
+                                  heightUnit: "cm",
+                                  heightValue: heightCm,
+                                  weightUnit: "lb",
+                                  weightValue: weightLb!,
+                                  age: int.parse(ageController.text),
+                                  goal: goal!);
                         }
                         if (weightUnit == WeightUnits.kg &&
                             heightUnit == HeightUnits.ftIn) {
-                          // print("weightKg... $weightKg");
-                          // print("heightFeet... $heightFeet");
-                          // print("heightInches... $heightInches");
-
                           String val =
                               "${(heightFeet.toInt())}.${heightInches.toInt()}";
 
-                          context.read<UpdateUserInfoCubit>().editProfileRequest(heightUnit: "Ft-in", heightValue: double.parse(val), weightUnit: "Kg", weightValue: weightKg!, age: int.parse(ageController.text), goal: goal!);
-
-
+                          context
+                              .read<UpdateUserInfoCubit>()
+                              .editProfileRequest(
+                                  heightUnit: "Ft-in",
+                                  heightValue: double.parse(val),
+                                  weightUnit: "Kg",
+                                  weightValue: weightKg!,
+                                  age: int.parse(ageController.text),
+                                  goal: goal!);
                         }
                         if (weightUnit == WeightUnits.lb &&
                             heightUnit == HeightUnits.ftIn) {
-                          // print("weightKg... $weightLb");
-                          // print("heightFeet... $heightFeet");
-                          // print("heightInches... $heightInches");
-                          // print("${(heightFeet.toInt())}.${heightInches.toInt()}");
                           String val =
                               "${(heightFeet.toInt())}.${heightInches.toInt()}";
 
-                          context.read<UpdateUserInfoCubit>().editProfileRequest(heightUnit: "Ft-in", heightValue: double.parse(val), weightUnit: "lb", weightValue: weightLb!, age: int.parse(ageController.text), goal: goal!);
-
-
+                          context
+                              .read<UpdateUserInfoCubit>()
+                              .editProfileRequest(
+                                  heightUnit: "Ft-in",
+                                  heightValue: double.parse(val),
+                                  weightUnit: "lb",
+                                  weightValue: weightLb!,
+                                  age: int.parse(ageController.text),
+                                  goal: goal!);
                         }
-
-
-
-
                       },
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
                   ],
                 ),
               ),

@@ -21,7 +21,7 @@ import 'package:gymmerator/resources/api_providers/remove_cart_item_put_api.dart
 import 'package:gymmerator/resources/api_providers/remove_favorite_put_api.dart';
 import 'package:gymmerator/resources/api_providers/update_cart_item_put_api.dart';
 import 'package:gymmerator/resources/api_providers/update_password_put_api.dart';
-import 'package:gymmerator/resources/api_providers/update_user_info_put_api.dart';
+import 'package:gymmerator/resources/api_providers/update_user_info_post_api.dart';
 import 'package:gymmerator/resources/api_providers/user_cart_products_get_api.dart';
 import 'package:gymmerator/resources/api_providers/verify_Otp_get_api.dart';
 
@@ -57,7 +57,7 @@ class Repository {
   }
 
   Future<UpdateUserInfoApiResponse> updateUserInfoRequest(Map data) {
-    final request = UpdateUserInfoPutApi();
+    final request = UpdateUserInfoPostApi();
     return request.updateRequest(data);
   }
 
