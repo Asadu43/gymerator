@@ -11,8 +11,9 @@ class SignInPostApi {
           data: formData, options: Options(validateStatus: (status) {
         return status! <= 500;
       }));
-      storeToken(response.headers['x-auth-token']!.first);
+
       if (response.statusCode == 200) {
+        storeToken(response.headers['x-auth-token']!.first);
         return SignInApiResponse.fromJson(response.data);
       } else if (response.statusCode == 404) {
         return SignInApiResponse.fromJson(response.data);

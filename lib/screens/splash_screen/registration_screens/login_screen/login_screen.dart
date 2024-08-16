@@ -50,6 +50,8 @@ class _LoginScreenState extends State<LoginScreen> {
             passwordController.clear();
             showSnackBar(context, response?.message ?? "Sign In Successfully",
                 type: SnackBarType.success);
+
+            print(response?.data?.isRequiredInfoAdded);
             if (response?.data?.isRequiredInfoAdded == true) {
               Nav.pushAndRemoveAllRoute(context, const MainScreen());
             } else {
@@ -182,6 +184,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 // Navigate to the next screen or display user information
                                 print('User signed in: ${user.displayName}');
                                 print('User signed in: ${user.email}');
+                                print('User signed User Id:\n \n ${await user.getIdToken(false)} \n\n');
+                                // print(
+                                    // 'User signed User Id: ${await user.}');
                               } else {
                                 print('Sign in failed');
                               }

@@ -8,7 +8,8 @@ import '../../../../../ui_component/app_textfield.dart';
 import '../../../../../utils/nav/nav.dart';
 
 class CheckoutScreen extends StatefulWidget {
-  const CheckoutScreen({super.key});
+  final int totalAmount;
+  const CheckoutScreen({super.key, required this.totalAmount});
 
   @override
   State<CheckoutScreen> createState() => _CheckoutScreenState();
@@ -16,7 +17,6 @@ class CheckoutScreen extends StatefulWidget {
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
   int _groupValue = -1;
-
   int _selectedValue = -1;
 
   @override
@@ -121,14 +121,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         ),
                         RadioListTile(
                           value: 2,
-                          activeColor: Color(0xff3F710D),
+                          activeColor: const Color(0xff3F710D),
                           groupValue: _groupValue,
-                          fillColor: MaterialStateProperty.resolveWith(
+                          fillColor: WidgetStateProperty.resolveWith(
                             (states) {
                               if (states.contains(MaterialState.selected)) {
-                                return Color(0xff3F710D);
+                                return const Color(0xff3F710D);
                               }
-                              return Color(0xff3F710D);
+                              return const Color(0xff3F710D);
                             },
                           ),
                           onChanged: (value) {
@@ -150,7 +150,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   child: RadioListTile(
                     value: 1,
                     activeColor: const Color(0xff3F710D),
-                    fillColor: MaterialStateProperty.resolveWith(
+                    fillColor: WidgetStateProperty.resolveWith(
                       (states) {
                         if (states.contains(MaterialState.selected)) {
                           return const Color(0xff3F710D);
@@ -178,7 +178,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 AppButton(
                   text: "Confirm and Continue",
                   onPressed: () async {
-                    Nav.push(context, const PaymentScreen());
+                    Nav.push(context,  PaymentScreen(totalAmount: widget.totalAmount,));
                   },
                 ),
               ],

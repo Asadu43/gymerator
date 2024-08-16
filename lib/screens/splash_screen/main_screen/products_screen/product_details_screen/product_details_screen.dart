@@ -277,9 +277,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(
+                          padding:  EdgeInsets.symmetric(
                             vertical: 14,
-                            horizontal: 14,
+                            horizontal: screenWidth * 0.0014,
                           ),
                           decoration: BoxDecoration(
                             border: Border.all(

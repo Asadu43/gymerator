@@ -18,7 +18,7 @@ class _ReusableTextFieldState extends State<ReusableTextField> {
       child: TextFormField(keyboardType: widget.isNumber == null
           ? TextInputType.text
           : TextInputType.number,
-        decoration: InputDecoration(label: Text(widget.title),hintText: widget.hint),
+        decoration: InputDecoration(label: Text(widget.title),hintText: widget.hint,),
         validator: (value) => value!.isEmpty ? "Cannot be empty" : null,
         controller: widget.controller,
       ),

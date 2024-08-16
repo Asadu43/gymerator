@@ -411,8 +411,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         if (weightUnit == WeightUnits.kg &&
                             heightUnit == HeightUnits.cm &&
                             selectedIndex == 1) {
-
-
                           // print("weightKg... $weightKg");
                           // print("heightCm... $heightCm");
                           Nav.push(

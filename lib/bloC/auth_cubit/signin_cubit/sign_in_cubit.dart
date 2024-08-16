@@ -20,11 +20,10 @@ class SignInCubit extends Cubit<SignInState> {
 
     Map data = {
       "email": email,
-      "password": password,
+      "password": password
     };
     print(data);
     final SignInApiResponse signInModel = await _repository.signIn(data);
-
     print(signInModel.error);
     print(signInModel.message);
     if (signInModel.error == null) {
