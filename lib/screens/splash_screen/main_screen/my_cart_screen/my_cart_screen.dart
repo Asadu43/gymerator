@@ -234,10 +234,48 @@ class _MyCartScreenState extends State<MyCartScreen> {
                         (response?.data?.items?.isEmpty == true)
                             ? const SizedBox()
                             : Center(
-                                child: Text(
-                                  "Total Price \$ ${response?.data?.total.toString()}",
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Text(
+                                          "Total Price Before Discount ",
+                                        ),
+                                        Text(
+                                          "\$ ${response?.data?.subTotal}",
+                                          style: const TextStyle(
+                                            color: Colors.grey,
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Text(
+                                          "Total Discount ",
+                                        ),
+                                        Text(
+                                          "\$ ${response?.data?.discount?.toStringAsFixed(2)}",
+                                          style: const TextStyle(
+                                            color: Colors.grey,
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      "Total Price \$ ${response?.data?.total.toString()}",
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
                                 ),
                               ),
                         (response?.data?.items?.isEmpty == true)

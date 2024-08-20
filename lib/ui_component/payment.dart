@@ -1,19 +1,19 @@
-
 import 'dart:convert';
-import  'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 
-Future createPaymentIntent({required String name,
-  required String address,
-  required String pin,
-  required String city,
-  required String state,
-  required String country,
-  required String currency,
-  required String amount}) async{
-
+Future createPaymentIntent(
+    {required String name,
+    required String address,
+    required String pin,
+    required String city,
+    required String state,
+    required String country,
+    required String currency,
+    required String amount}) async {
   final url = Uri.parse('https://api.stripe.com/v1/payment_intents');
-  final secretKey= "sk_test_51IxRoaCVPPCU0vw3xAxpJNhtWnAWZUiYoZZpEnIYLqdTSiVZoUPF5PrZL7j1cziGKsJLZfjMIxWrgzhPV5H206sQ001g29204A";
-  final body={
+  final secretKey =
+      "sk_test_51IxRoaCVPPCU0vw3xAxpJNhtWnAWZUiYoZZpEnIYLqdTSiVZoUPF5PrZL7j1cziGKsJLZfjMIxWrgzhPV5H206sQ001g29204A";
+  final body = {
     'amount': amount,
     'currency': currency.toLowerCase(),
     'automatic_payment_methods[enabled]': 'true',
@@ -26,23 +26,25 @@ Future createPaymentIntent({required String name,
     'shipping[address][country]': country
   };
 
-  final response= await http.post(url,
+  final response = await http.post(url,
       headers: {
         "Authorization": "Bearer $secretKey",
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body: body
-  );
+      body: body);
 
   print(body);
 
-  if(response.statusCode==200){
+  if (response.statusCode == 200) {
+    print("response.body\n\n\n\n");
     print(response.body);
-    var json=jsonDecode(response.body);
+    print("response.body\n\n\n\\n\n");
+    var json = jsonDecode(response.body);
+    print("json\n\n\n\n");
     print(json);
+    print("json\n\n\n\n");
     return json;
-  }
-  else{
+  } else {
     print("error in calling payment intent");
   }
 }

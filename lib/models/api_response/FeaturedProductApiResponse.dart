@@ -27,30 +27,30 @@ class FeaturedProductApiResponse {
 
 class Data {
   Data({
-    List<Product>? featuredProducts,
-    List<Product>? hotProducts,
+    List<Product>? updatedHotProducts,
+    List<Product>? updatedFeaturedProducts,
   }) {
-    _featuredProducts = featuredProducts;
-    _hotProducts = hotProducts;
+    _updatedHotProducts = updatedHotProducts;
+    _updatedFeaturedProducts = updatedFeaturedProducts;
   }
 
   Data.fromJson(dynamic json) {
-    if (json['updatedFeaturedProducts'] != null) {
-      _featuredProducts = [];
-      json['updatedFeaturedProducts'].forEach((v) {
-        _featuredProducts?.add(Product.fromJson(v));
+    if (json['updatedHotProducts'] != null) {
+      _updatedHotProducts = [];
+      json['updatedHotProducts'].forEach((v) {
+        _updatedHotProducts?.add(Product.fromJson(v));
       });
     }
-    if (json['updatedHotProducts'] != null) {
-      _hotProducts = [];
-      json['updatedHotProducts'].forEach((v) {
-        _hotProducts?.add(Product.fromJson(v));
+    if (json['updatedFeaturedProducts'] != null) {
+      _updatedFeaturedProducts = [];
+      json['updatedFeaturedProducts'].forEach((v) {
+        _updatedFeaturedProducts?.add(Product.fromJson(v));
       });
     }
   }
-  List<Product>? _featuredProducts;
-  List<Product>? _hotProducts;
+  List<Product>? _updatedHotProducts;
+  List<Product>? _updatedFeaturedProducts;
 
-  List<Product>? get featuredProducts => _featuredProducts;
-  List<Product>? get hotProducts => _hotProducts;
+  List<Product>? get updatedHotProducts => _updatedHotProducts;
+  List<Product>? get updatedFeaturedProducts => _updatedFeaturedProducts;
 }

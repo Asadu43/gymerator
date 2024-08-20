@@ -3,17 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart';
 import 'package:gymmerator/models/api_response/FeaturedProductApiResponse.dart';
-import 'package:gymmerator/models/product_model.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/featured_products_screen/featured_products_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/popular_products_screen/popular_products_screen.dart';
-import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/product_details_screen/product_details_screen.dart';
 import 'package:gymmerator/ui_component/app_drawer.dart';
 import 'package:gymmerator/ui_component/app_textfield.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/product_item_card.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
-
-import 'hot_product_item_card.dart';
 
 class ProductsScreen extends StatefulWidget {
   const ProductsScreen({super.key});
@@ -68,7 +64,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
           child: Scaffold(
             drawer: const AppDrawer(),
             appBar: AppBar(
-              title: const Text('Hi, Noah!'),
+              title: const Text('Gymerator Store'),
             ),
             body: SingleChildScrollView(
               child: SizedBox(
@@ -127,12 +123,14 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount:
-                              response?.data?.featuredProducts?.length ?? 0,
+                              response?.data?.updatedFeaturedProducts?.length ??
+                                  0,
                           itemExtent: MediaQuery.of(context).size.width * 0.4,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return ProductItemCard(
-                              product: response!.data!.featuredProducts![index],
+                              product: response!
+                                  .data!.updatedFeaturedProducts![index],
                             );
                           },
                         ),
@@ -174,14 +172,16 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       Expanded(
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: response?.data?.hotProducts?.length ?? 0,
+                          itemCount:
+                              response?.data?.updatedHotProducts?.length ?? 0,
                           itemExtent: MediaQuery.of(context).size.width * 0.4,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.only(right: 8.0),
                               child: ProductItemCard(
-                                product: response!.data!.hotProducts![index],
+                                product:
+                                    response!.data!.updatedHotProducts![index],
                               ),
                             );
                           },

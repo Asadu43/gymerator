@@ -8,7 +8,7 @@ import '../../../../../ui_component/app_textfield.dart';
 import '../../../../../utils/nav/nav.dart';
 
 class CheckoutScreen extends StatefulWidget {
-  final int totalAmount;
+  final double totalAmount;
   const CheckoutScreen({super.key, required this.totalAmount});
 
   @override

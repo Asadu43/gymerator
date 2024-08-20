@@ -1,15 +1,12 @@
-import 'Product.dart';
-
 class GetAllUserProductApiResponse {
   GetAllUserProductApiResponse({
-    Data? data,
-    String? message,
-    dynamic error,
-  }) {
+      Data? data, 
+      String? message, 
+      dynamic error,}){
     _data = data;
     _message = message;
     _error = error;
-  }
+}
 
   GetAllUserProductApiResponse.fromJson(dynamic json) {
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
@@ -31,13 +28,12 @@ class Data {
     String? user,
     int? v,
     String? createdAt,
-    int? discount,
+    double? discount,
     List<Items>? items,
-    int? subTotal,
+    double? subTotal,
     int? tax,
-    int? total,
-    String? updatedAt,
-  }) {
+    double? total,
+    String? updatedAt,}){
     _id = id;
     _user = user;
     _v = v;
@@ -55,50 +51,52 @@ class Data {
     _user = json['user'];
     _v = json['__v'];
     _createdAt = json['createdAt'];
-    _discount = json['discount'];
+    _discount = (json['discount'] as num).toDouble();
     if (json['items'] != null) {
       _items = [];
       json['items'].forEach((v) {
         _items?.add(Items.fromJson(v));
       });
     }
-    _subTotal = json['subTotal'];
+    _subTotal = (json['subTotal']as num).toDouble();
     _tax = json['tax'];
-    _total = json['total'];
+    _total = (json['total']as num).toDouble();
     _updatedAt = json['updatedAt'];
   }
   String? _id;
   String? _user;
   int? _v;
   String? _createdAt;
-  int? _discount;
+  double? _discount;
   List<Items>? _items;
-  int? _subTotal;
+  double? _subTotal;
   int? _tax;
-  int? _total;
+  double? _total;
   String? _updatedAt;
 
   String? get id => _id;
   String? get user => _user;
   int? get v => _v;
   String? get createdAt => _createdAt;
-  int? get discount => _discount;
+  double? get discount => _discount;
   List<Items>? get items => _items;
-  int? get subTotal => _subTotal;
+  double? get subTotal => _subTotal;
   int? get tax => _tax;
-  int? get total => _total;
+  double? get total => _total;
   String? get updatedAt => _updatedAt;
+
 }
 
 class Items {
   Items({
     Product? product,
+    List<Variants>? variants,
     int? quantity,
     int? unitPrice,
     int? total,
-    String? id,
-  }) {
+    String? id,}){
     _product = product;
+    _variants = variants;
     _quantity = quantity;
     _unitPrice = unitPrice;
     _total = total;
@@ -106,185 +104,98 @@ class Items {
   }
 
   Items.fromJson(dynamic json) {
-    _product =
-        json['product'] != null ? Product.fromJson(json['product']) : null;
+    _product = json['product'] != null ? Product.fromJson(json['product']) : null;
+    if (json['variants'] != null) {
+      _variants = [];
+      json['variants'].forEach((v) {
+        _variants?.add(Variants.fromJson(v));
+      });
+    }
     _quantity = json['quantity'];
     _unitPrice = json['unitPrice'];
     _total = json['total'];
     _id = json['_id'];
   }
   Product? _product;
+  List<Variants>? _variants;
   int? _quantity;
   int? _unitPrice;
   int? _total;
   String? _id;
 
   Product? get product => _product;
+  List<Variants>? get variants => _variants;
   int? get quantity => _quantity;
   int? get unitPrice => _unitPrice;
   int? get total => _total;
   String? get id => _id;
+
 }
 
-// class Product {
-//   Product({
-//       String? id,
-//       String? name,
-//       String? description,
-//       int? price,
-//       String? sku,
-//       int? stock,
-//       bool? isAvailable,
-//       String? category,
-//       List<String>? tags,
-//       List<String>? images,
-//       int? averageRating,
-//       List<dynamic>? relatedProducts,
-//       String? metaTitle,
-//       String? metaDescription,
-//       List<dynamic>? variants,
-//       List<dynamic>? reviews,
-//       List<dynamic>? discounts,
-//       String? createdAt,
-//       String? updatedAt,
-//       int? v,}){
-//     _id = id;
-//     _name = name;
-//     _description = description;
-//     _price = price;
-//     _sku = sku;
-//     _stock = stock;
-//     _isAvailable = isAvailable;
-//     _category = category;
-//     _tags = tags;
-//     _images = images;
-//     _averageRating = averageRating;
-//     _relatedProducts = relatedProducts;
-//     _metaTitle = metaTitle;
-//     _metaDescription = metaDescription;
-//     _variants = variants;
-//     _reviews = reviews;
-//     _discounts = discounts;
-//     _createdAt = createdAt;
-//     _updatedAt = updatedAt;
-//     _v = v;
-// }
-//
-//   Product.fromJson(dynamic json) {
-//     _id = json['_id'];
-//     _name = json['name'];
-//     _description = json['description'];
-//     _price = json['price'];
-//     _sku = json['sku'];
-//     _stock = json['stock'];
-//     _isAvailable = json['isAvailable'];
-//     _category = json['category'];
-//     _tags = json['tags'] != null ? json['tags'].cast<String>() : [];
-//     _images = json['images'] != null ? json['images'].cast<String>() : [];
-//     _averageRating = json['averageRating'];
-//     if (json['relatedProducts'] != null) {
-//       _relatedProducts = [];
-//       json['relatedProducts'].forEach((v) {
-//         _relatedProducts?.add(Dynamic.fromJson(v));
-//       });
-//     }
-//     _metaTitle = json['metaTitle'];
-//     _metaDescription = json['metaDescription'];
-//     if (json['variants'] != null) {
-//       _variants = [];
-//       json['variants'].forEach((v) {
-//         _variants?.add(Dynamic.fromJson(v));
-//       });
-//     }
-//     if (json['reviews'] != null) {
-//       _reviews = [];
-//       json['reviews'].forEach((v) {
-//         _reviews?.add(Dynamic.fromJson(v));
-//       });
-//     }
-//     if (json['discounts'] != null) {
-//       _discounts = [];
-//       json['discounts'].forEach((v) {
-//         _discounts?.add(Dynamic.fromJson(v));
-//       });
-//     }
-//     _createdAt = json['createdAt'];
-//     _updatedAt = json['updatedAt'];
-//     _v = json['__v'];
-//   }
-//   String? _id;
-//   String? _name;
-//   String? _description;
-//   int? _price;
-//   String? _sku;
-//   int? _stock;
-//   bool? _isAvailable;
-//   String? _category;
-//   List<String>? _tags;
-//   List<String>? _images;
-//   int? _averageRating;
-//   List<dynamic>? _relatedProducts;
-//   String? _metaTitle;
-//   String? _metaDescription;
-//   List<dynamic>? _variants;
-//   List<dynamic>? _reviews;
-//   List<dynamic>? _discounts;
-//   String? _createdAt;
-//   String? _updatedAt;
-//   int? _v;
-//
-//   String? get id => _id;
-//   String? get name => _name;
-//   String? get description => _description;
-//   int? get price => _price;
-//   String? get sku => _sku;
-//   int? get stock => _stock;
-//   bool? get isAvailable => _isAvailable;
-//   String? get category => _category;
-//   List<String>? get tags => _tags;
-//   List<String>? get images => _images;
-//   int? get averageRating => _averageRating;
-//   List<dynamic>? get relatedProducts => _relatedProducts;
-//   String? get metaTitle => _metaTitle;
-//   String? get metaDescription => _metaDescription;
-//   List<dynamic>? get variants => _variants;
-//   List<dynamic>? get reviews => _reviews;
-//   List<dynamic>? get discounts => _discounts;
-//   String? get createdAt => _createdAt;
-//   String? get updatedAt => _updatedAt;
-//   int? get v => _v;
-//
-//   Map<String, dynamic> toJson() {
-//     final map = <String, dynamic>{};
-//     map['_id'] = _id;
-//     map['name'] = _name;
-//     map['description'] = _description;
-//     map['price'] = _price;
-//     map['sku'] = _sku;
-//     map['stock'] = _stock;
-//     map['isAvailable'] = _isAvailable;
-//     map['category'] = _category;
-//     map['tags'] = _tags;
-//     map['images'] = _images;
-//     map['averageRating'] = _averageRating;
-//     if (_relatedProducts != null) {
-//       map['relatedProducts'] = _relatedProducts?.map((v) => v.toJson()).toList();
-//     }
-//     map['metaTitle'] = _metaTitle;
-//     map['metaDescription'] = _metaDescription;
-//     if (_variants != null) {
-//       map['variants'] = _variants?.map((v) => v.toJson()).toList();
-//     }
-//     if (_reviews != null) {
-//       map['reviews'] = _reviews?.map((v) => v.toJson()).toList();
-//     }
-//     if (_discounts != null) {
-//       map['discounts'] = _discounts?.map((v) => v.toJson()).toList();
-//     }
-//     map['createdAt'] = _createdAt;
-//     map['updatedAt'] = _updatedAt;
-//     map['__v'] = _v;
-//     return map;
-//   }
-//
-// }
+class Variants {
+  Variants({
+    String? id,
+    String? variantType,
+    String? variant,
+    int? v,}){
+    _id = id;
+    _variantType = variantType;
+    _variant = variant;
+    _v = v;
+  }
+
+  Variants.fromJson(dynamic json) {
+    _id = json['_id'];
+    _variantType = json['variantType'];
+    _variant = json['variant'];
+    _v = json['__v'];
+  }
+  String? _id;
+  String? _variantType;
+  String? _variant;
+  int? _v;
+
+  String? get id => _id;
+  String? get variantType => _variantType;
+  String? get variant => _variant;
+  int? get v => _v;
+}
+
+class Product {
+  Product({
+    String? id,
+    String? name,
+    String? description,
+    int? price,
+    int? stock,
+    List<String>? images,}){
+    _id = id;
+    _name = name;
+    _description = description;
+    _price = price;
+    _stock = stock;
+    _images = images;
+  }
+
+  Product.fromJson(dynamic json) {
+    _id = json['_id'];
+    _name = json['name'];
+    _description = json['description'];
+    _price = json['price'];
+    _stock = json['stock'];
+    _images = json['images'] != null ? json['images'].cast<String>() : [];
+  }
+  String? _id;
+  String? _name;
+  String? _description;
+  int? _price;
+  int? _stock;
+  List<String>? _images;
+
+  String? get id => _id;
+  String? get name => _name;
+  String? get description => _description;
+  int? get price => _price;
+  int? get stock => _stock;
+  List<String>? get images => _images;
+}

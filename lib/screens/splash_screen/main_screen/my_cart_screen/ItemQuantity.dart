@@ -30,7 +30,7 @@ class _ItemQuantityState extends State<ItemQuantity> {
     });
     await context
         .read<UserCartProductsCubit>()
-        .updateRequest(id: widget.id, quantity: count);
+        .updateRequest(id: widget.id, quantity: 1);
   }
 
   void decrement() async {
@@ -41,7 +41,7 @@ class _ItemQuantityState extends State<ItemQuantity> {
 
     await context
         .read<UserCartProductsCubit>()
-        .updateRequest(id: widget.id, quantity: count);
+        .updateRequest(id: widget.id, quantity: -1);
     // final GetCartItemsApiResponse checkOutModel = await context.read<CartItemsCubit>().changeQuantity(id: widget.id, quantity: count);
     // if(checkOutModel.result == true){
     //   context.read<CartItemsCubit>().getCartItems(context);

@@ -17,6 +17,10 @@ class UserCartProductsCubit extends Cubit<UserCartProductsState> {
     emit(LoadingState());
     final GetAllUserProductApiResponse model =
         await _repository.getCartProductRequest();
+
+    print(model.data);
+    print(model.error);
+    print(model.message);
     if (model.error == null) {
       emit(CartProductGetSuccessfully(model));
     } else {

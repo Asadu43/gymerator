@@ -79,11 +79,11 @@ class _FeaturedProductsScreenState extends State<FeaturedProductsScreen> {
                   const SizedBox(height: 16.0),
                   Expanded(
                     child: GridView.builder(
-                      itemCount: response?.data?.featuredProducts?.length ?? 0,
+                      itemCount: response?.data?.updatedFeaturedProducts?.length ?? 0,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         return ProductItemCard(
-                          product: response!.data!.featuredProducts![index],
+                          product: response!.data!.updatedFeaturedProducts![index],
                         );
                       },
                       gridDelegate:

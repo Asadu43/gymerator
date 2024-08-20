@@ -101,241 +101,245 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           return LoadingScreenAnimation(
             isLoading: state is LoadingState,
             child: Scaffold(
-              body: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back_ios),
-                          onPressed: () async {
-                            backScreen(context);
-                          },
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.shopping_cart),
-                          onPressed: () {
-                            // Handle cart button press
-                          },
-                        ),
-                      ],
-                    ),
-
-                    (response?.data?.images != null) ? Center(
-                      child: CarouselSlider(
-
-                        options: CarouselOptions(height: 250.0,autoPlay: true,
-                          enlargeCenterPage: true,
-                          viewportFraction: 0.9,
-                          aspectRatio: 2.0,
-                        ),
-                        items: response?.data?.images?.map((i){
-                          return Builder(
-                            builder: (BuildContext context) {
-                              return SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  // decoration: const BoxDecoration(
-                                  //     color: Colors.amber
-                                  // ),
-                                  child: Image.network(
-                                    "${ApiConstants.baseUrl}/product/image/$i",
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return const Center(
-                                        child: Text('Please Wait'),
-                                      );
-                                    },
-                                  )
-                              );
+              body: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: ListView(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.arrow_back_ios),
+                            onPressed: () async {
+                              backScreen(context);
                             },
-                          );
-                        }).toList(),
+                          ),
+                          // IconButton(
+                          //   icon: const Icon(Icons.shopping_cart),
+                          //   onPressed: () {
+                          //     // Handle cart button press
+                          //   },
+                          // ),
+                        ],
                       ),
-
-                      // Container(
-                      //   height: 200,
-                      //   margin: const EdgeInsets.all(8.0),
-                      //   decoration: BoxDecoration(
-                      //     color: Colors.white,
-                      //     borderRadius: BorderRadius.circular(8.0),
-                      //   ),
-                      //   child: Image.network(
-                      //     "${ApiConstants.baseUrl}/product/image/${response?.data?.images?.first ?? ""}",
-                      //     fit: BoxFit.fitHeight,
-                      //     errorBuilder: (context, error, stackTrace) {
-                      //       return const Center(
-                      //         child: Text('Please Wait'),
-                      //       );
-                      //     },
-                      //   ),
-                      // ),
-                    ) : const SizedBox(),
-
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          response?.data?.name ?? "",
-                          style: const TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.bold),
-                        ),
-                        (response?.data?.isFavorite == false)
-                            ? InkWell(
-                                onTap: () {
-                                  context
-                                      .read<ProductDetailCubit>()
-                                      .addToFavoriteRequest(
-                                          id: response!.data!.id!);
-                                },
-                                child: const Icon(Icons.favorite_border))
-                            : InkWell(
-                                onTap: () {
-                                  context
-                                      .read<ProductDetailCubit>()
-                                      .removeRequest(id: response!.data!.id!);
-                                },
-                                child: const Icon(Icons.favorite,
-                                    color: Colors.red))
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Price',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                            Text(
-                              '\$ ${((response?.data?.price ?? 1) * _quantity)}',
-                              style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            InkWell(
-                              onTap: _decrementQuantity,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black),
-                                  borderRadius: BorderRadius.circular(4),
+                      (response?.data?.images != null)
+                          ? Center(
+                              child: CarouselSlider(
+                                options: CarouselOptions(
+                                  height: 250.0,
+                                  autoPlay: true,
+                                  enlargeCenterPage: true,
+                                  viewportFraction: 0.9,
+                                  aspectRatio: 2.0,
                                 ),
-                                child: const Icon(
-                                  Icons.remove,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              '$_quantity',
-                              style: const TextStyle(fontSize: 18),
-                            ),
-                            const SizedBox(width: 8),
-                            InkWell(
-                              onTap: _incrementQuantity,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black),
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: const Icon(
-                                  Icons.add,
-                                  color: Colors.black,
-                                ),
+                                items: response?.data?.images?.map((i) {
+                                  return Builder(
+                                    builder: (BuildContext context) {
+                                      return SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          // decoration: const BoxDecoration(
+                                          //     color: Colors.amber
+                                          // ),
+                                          child: Image.network(
+                                            "${ApiConstants.baseUrl}/product/image/$i",
+                                            fit: BoxFit.cover,
+                                            errorBuilder:
+                                                (context, error, stackTrace) {
+                                              return const Center(
+                                                child: Text('Please Wait'),
+                                              );
+                                            },
+                                          ));
+                                    },
+                                  );
+                                }).toList(),
                               ),
                             )
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Description',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      response?.data?.description ?? "",
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          padding:  EdgeInsets.symmetric(
-                            vertical: 14,
-                            horizontal: screenWidth * 0.0014,
+                          : const SizedBox(),
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            response?.data?.name ?? "",
+                            style: const TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold),
                           ),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color: AppColors.prductBuyNowButtonColor,
-                                width: 2),
-                            borderRadius: BorderRadius.circular(9),
-                          ),
-                          child: const Text(
-                            "Buy Now",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: AppColors.prductBuyNowButtonColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        InkWell(
-                          onTap: () {
-                            _onButtonPressed(context);
-                          },
-                          child: Container(
-                            width: screenWidth * 0.6,
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            decoration: BoxDecoration(
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black26,
-                                    offset: Offset(0, 5),
-                                    blurRadius: 5.0)
-                              ],
-                              gradient: const LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                // stops: const [0.0, 1.0],
-                                colors: [
-                                  Color(0xffB14501),
-                                  Color(0xff3F710D),
+                          (response?.data?.isFavorite == false)
+                              ? InkWell(
+                                  onTap: () {
+                                    context
+                                        .read<ProductDetailCubit>()
+                                        .addToFavoriteRequest(
+                                            id: response!.data!.id!);
+                                  },
+                                  child: const Icon(Icons.favorite_border))
+                              : InkWell(
+                                  onTap: () {
+                                    context
+                                        .read<ProductDetailCubit>()
+                                        .removeRequest(id: response!.data!.id!);
+                                  },
+                                  child: const Icon(Icons.favorite,
+                                      color: Colors.red))
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Price',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    '\$ ${((response?.data?.price ?? 1) * _quantity)}',
+                                    style: const TextStyle(
+                                        fontSize: 20, fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  (response?.data?.discount?.valid  == true ) ? Text(
+                                    '${((response?.data?.discount?.percentage))}%',
+                                    style: const TextStyle(
+                                      decoration: TextDecoration.lineThrough,
+                                        fontSize: 16,color: Colors.grey),
+                                  ) :  const SizedBox(),
+
                                 ],
                               ),
-                              // color: Colors.deepPurple.shade300,
-                              borderRadius: BorderRadius.circular(50),
+                            ],
+                          ),
+                          (response?.data?.isAvailable == true ) ? Row(
+                            children: [
+                              InkWell(
+                                onTap: _decrementQuantity,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: const Icon(
+                                    Icons.remove,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                '$_quantity',
+                                style: const TextStyle(fontSize: 18),
+                              ),
+                              const SizedBox(width: 8),
+                              InkWell(
+                                onTap: _incrementQuantity,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: const Icon(
+                                    Icons.add,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ) : const Text(
+                            'Out of stock',
+                            style: TextStyle(
+                                fontSize: 12 ,color: Colors.red),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Details',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        response?.data?.description ?? "",
+                      ),
+                      const SizedBox(height: 50),
+                      (response?.data?.isAvailable == true ) ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 14,
+                              horizontal: screenWidth * 0.04,
                             ),
-                            child: const Center(
-                              child: Text("Add to Cart",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                  )),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: AppColors.prductBuyNowButtonColor,
+                                  width: 2),
+                              borderRadius: BorderRadius.circular(9),
+                            ),
+                            child: const Text(
+                              "Buy Now",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: AppColors.prductBuyNowButtonColor,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 20),
-                      ],
-                    ),
-                  ],
+                          const SizedBox(width: 16),
+                          InkWell(
+                            onTap: () {
+                              _onButtonPressed(context);
+                            },
+                            child: Container(
+                              width: screenWidth * 0.6,
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              decoration: BoxDecoration(
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: Colors.black26,
+                                      offset: Offset(0, 5),
+                                      blurRadius: 5.0)
+                                ],
+                                gradient: const LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  // stops: const [0.0, 1.0],
+                                  colors: [
+                                    Color(0xffB14501),
+                                    Color(0xff3F710D),
+                                  ],
+                                ),
+                                // color: Colors.deepPurple.shade300,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: const Center(
+                                child: Text("Add to Cart",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                    )),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                        ],
+                      ) : const SizedBox(),
+
+                      const SizedBox(height: 20),
+                    ],
+                  ),
                 ),
               ),
             ),

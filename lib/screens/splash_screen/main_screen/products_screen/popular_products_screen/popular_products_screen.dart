@@ -21,12 +21,12 @@ class PopularProductsScreen extends StatefulWidget {
 class _PopularProductsScreenState extends State<PopularProductsScreen> {
   FeaturedProductApiResponse? response;
 
-
   @override
   void initState() {
     context.read<FeaturedProductCubit>().featuredRequest();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeaturedProductCubit, FeaturedProductState>(
@@ -36,17 +36,23 @@ class _PopularProductsScreenState extends State<PopularProductsScreen> {
         }
         if (state is FeaturedProductGetSuccessfully) {
           response = state.response;
-        }if(state is FailedToRemoveProduct){
-          showSnackBar(context, state.response.message ?? "Failed To Remove Favorite Product");
-        }if(state is RemoveFavoriteProductGetSuccessfully){
-          showSnackBar(context, state.response.message ?? "Remove Favorite Product Successfully",type: SnackBarType.success);
+        }
+        if (state is FailedToRemoveProduct) {
+          showSnackBar(context,
+              state.response.message ?? "Failed To Remove Favorite Product");
+        }
+        if (state is RemoveFavoriteProductGetSuccessfully) {
+          showSnackBar(context,
+              state.response.message ?? "Remove Favorite Product Successfully",
+              type: SnackBarType.success);
           context.read<FeaturedProductCubit>().featuredRequest();
-        }if(state is FailedAddToFavoriteProduct){
-
-        }if(state is AddToFavoriteSuccessfully){
-          showSnackBar(context, state.response.message ?? "Add Favorite Product Successfully",type: SnackBarType.success);
+        }
+        if (state is FailedAddToFavoriteProduct) {}
+        if (state is AddToFavoriteSuccessfully) {
+          showSnackBar(context,
+              state.response.message ?? "Add Favorite Product Successfully",
+              type: SnackBarType.success);
           context.read<FeaturedProductCubit>().featuredRequest();
-
         }
       },
       builder: (context, state) {
@@ -55,8 +61,8 @@ class _PopularProductsScreenState extends State<PopularProductsScreen> {
           child: Scaffold(
             appBar: AppBar(
                 title: const Text('Popular Products',
-                    style: TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold)),
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back_ios),
                   onPressed: () {
@@ -75,20 +81,22 @@ class _PopularProductsScreenState extends State<PopularProductsScreen> {
                         icon: const Icon(Icons.search),
                         color: Colors.grey,
                         prefixIconColor: Colors.grey,
-                        fieldTextStyle: GoogleFonts.vazirmatn(
-                            color: Colors.black),
+                        fieldTextStyle:
+                            GoogleFonts.vazirmatn(color: Colors.black),
                       )),
                   const SizedBox(height: 16.0),
                   Expanded(
                     child: GridView.builder(
-                      itemCount: response?.data?.hotProducts?.length ?? 0,
+                      itemCount:
+                          response?.data?.updatedHotProducts?.length ?? 0,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         return ProductItemCard(
-                          product: response!.data!.hotProducts![index],
+                          product: response!.data!.updatedHotProducts![index],
                         );
                       },
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 8.0,
                         mainAxisSpacing: 8.0,
@@ -105,4 +113,3 @@ class _PopularProductsScreenState extends State<PopularProductsScreen> {
     );
   }
 }
-

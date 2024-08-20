@@ -45,8 +45,7 @@ class Data {
     String? updatedAt,
     int? v,
     int? age,
-    String? gender,
-  }) {
+    String? gender,}){
     _address = address;
     _location = location;
     _height = height;
@@ -69,10 +68,8 @@ class Data {
   }
 
   Data.fromJson(dynamic json) {
-    _address =
-        json['address'] != null ? Address.fromJson(json['address']) : null;
-    _location =
-        json['location'] != null ? Location.fromJson(json['location']) : null;
+    _address = json['address'] != null ? Address.fromJson(json['address']) : null;
+    _location = json['location'] != null ? Location.fromJson(json['location']) : null;
     _height = json['height'] != null ? Height.fromJson(json['height']) : null;
     _weight = json['weight'] != null ? Weight.fromJson(json['weight']) : null;
     _id = json['_id'];
@@ -137,66 +134,50 @@ class Data {
   String? get gender => _gender;
 }
 
-class Reviews {
-  Reviews({
-    String? userId,
-    double? rating,
-    String? review,
-    String? id,
-  }) {
-    _userId = userId;
-    _rating = rating;
-    _review = review;
-    _id = id;
+class Discount {
+  Discount({
+    int? percentage,
+    bool? valid,}){
+    _percentage = percentage;
+    _valid = valid;
   }
 
-  Reviews.fromJson(dynamic json) {
-    _userId = json['userId'];
-    _rating = json['rating'];
-    _review = json['review'];
-    _id = json['_id'];
+  Discount.fromJson(dynamic json) {
+    _percentage = json['percentage'];
+    _valid = json['valid'];
   }
-  String? _userId;
-  double? _rating;
-  String? _review;
-  String? _id;
+  int? _percentage;
+  bool? _valid;
 
-  String? get userId => _userId;
-  double? get rating => _rating;
-  String? get review => _review;
-  String? get id => _id;
+  int? get percentage => _percentage;
+  bool? get valid => _valid;
+
 }
 
-class Variants {
-  Variants({
-    String? name,
-    List<String>? values,
-    String? id,
-  }) {
-    _name = name;
-    _values = values;
-    _id = id;
+class Specifications {
+  Specifications({
+    String? brand,
+    String? modelNumber,}){
+    _brand = brand;
+    _modelNumber = modelNumber;
   }
 
-  Variants.fromJson(dynamic json) {
-    _name = json['name'];
-    _values = json['values'] != null ? json['values'].cast<String>() : [];
-    _id = json['_id'];
+  Specifications.fromJson(dynamic json) {
+    _brand = json['brand'];
+    _modelNumber = json['modelNumber'];
   }
-  String? _name;
-  List<String>? _values;
-  String? _id;
+  String? _brand;
+  String? _modelNumber;
 
-  String? get name => _name;
-  List<String>? get values => _values;
-  String? get id => _id;
+  String? get brand => _brand;
+  String? get modelNumber => _modelNumber;
+
 }
 
 class Weight {
   Weight({
     String? unit,
-    double? value,
-  }) {
+    double? value,}){
     _unit = unit;
     _value = value;
   }
@@ -227,13 +208,13 @@ class Weight {
 
   String? get unit => _unit;
   double? get value => _value;
+
 }
 
 class Height {
   Height({
     String? unit,
-    double? value,
-  }) {
+    double? value,}){
     _unit = unit;
     _value = value;
   }
@@ -269,8 +250,7 @@ class Height {
 class Location {
   Location({
     String? latitude,
-    String? longitude,
-  }) {
+    String? longitude,}){
     _latitude = latitude;
     _longitude = longitude;
   }
@@ -284,6 +264,7 @@ class Location {
 
   String? get latitude => _latitude;
   String? get longitude => _longitude;
+
 }
 
 class Address {
@@ -293,8 +274,7 @@ class Address {
     String? city,
     String? state,
     String? country,
-    String? postalCode,
-  }) {
+    String? postalCode,}){
     _address1 = address1;
     _address2 = address2;
     _city = city;
