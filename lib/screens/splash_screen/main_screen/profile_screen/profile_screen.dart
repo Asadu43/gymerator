@@ -12,6 +12,7 @@ import 'package:gymmerator/utils/app_colors/app_colors.dart';
 
 import '../../../../models/api_response/GetAllFavoriteProductApiResponse.dart';
 import '../../../../ui_component/show_snackbar.dart';
+import '../../../../utils/api_constants/api_constants.dart';
 import '../../../../utils/nav/nav.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -67,11 +68,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       child: Column(
                         children: [
-                          const CircleAvatar(
+                           CircleAvatar(
                             radius: 50,
-                            backgroundImage: AssetImage(
-                              'assets/images/profile.png',
+                            backgroundImage: response?.data?.profile == null ? null : NetworkImage(
+                              '${ApiConstants.baseUrl}/profile/image/${response?.data?.profile}',
                             ),
+                             child: response?.data?.profile == null
+                                 ? Text(
+                               response?.data?.firstName?[0].toUpperCase() ?? "",
+                               style: const TextStyle(fontSize: 40, color: Colors.white),
+                             )
+                                 : null,
                           ),
                           const SizedBox(height: 10),
                           Text(

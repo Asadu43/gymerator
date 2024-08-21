@@ -4,6 +4,7 @@ import 'package:gymmerator/models/api_response/FeaturedProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/ForgetPasswordApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllFavoriteProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllUserProductApiResponse.dart';
+import 'package:gymmerator/models/api_response/LoginWithGoogleApiResponse.dart';
 import 'package:gymmerator/models/api_response/ProductDetailApiResponse.dart';
 import 'package:gymmerator/models/api_response/RemoveCartItemApiResponse.dart';
 import 'package:gymmerator/models/api_response/RemoveFavoriteProductApiResponse.dart';
@@ -39,6 +40,11 @@ class Repository {
   Future<SignInApiResponse> signIn(Map data) {
     final signInPost = SignInPostApi();
     return signInPost.signInRequest(data);
+  }
+
+  Future<LoginWithGoogleApiResponse> loginWithGoogle(Map data) {
+    final signInPost = SignInPostApi();
+    return signInPost.loginWithGoogleRequest(data);
   }
 
   Future<ForgetPasswordApiResponse> forgetRequest(Map data) {

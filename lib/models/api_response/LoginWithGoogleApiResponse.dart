@@ -1,7 +1,5 @@
-import 'Product.dart';
-
-class GetAllFavoriteProductApiResponse {
-  GetAllFavoriteProductApiResponse({
+class LoginWithGoogleApiResponse {
+  LoginWithGoogleApiResponse({
     Data? data,
     String? message,
     dynamic error,
@@ -11,7 +9,7 @@ class GetAllFavoriteProductApiResponse {
     _error = error;
   }
 
-  GetAllFavoriteProductApiResponse.fromJson(dynamic json) {
+  LoginWithGoogleApiResponse.fromJson(dynamic json) {
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
     _message = json['message'];
     _error = json['error'];
@@ -35,18 +33,20 @@ class Data {
     String? firstName,
     String? lastName,
     String? email,
-    String? password,
+    String? mobileNumber,
     String? goal,
     String? workoutLevel,
     String? type,
     bool? isRequiredInfoAdded,
-    List<Product>? favoriteProducts,
+    List<dynamic>? favoriteProducts,
     String? createdAt,
     String? updatedAt,
     int? v,
+    String? profile,
     int? age,
     String? gender,
-    String? profile,}){
+    String? walletAddress,
+  }) {
     _address = address;
     _location = location;
     _height = height;
@@ -55,7 +55,7 @@ class Data {
     _firstName = firstName;
     _lastName = lastName;
     _email = email;
-    _password = password;
+    _mobileNumber = mobileNumber;
     _goal = goal;
     _workoutLevel = workoutLevel;
     _type = type;
@@ -64,21 +64,24 @@ class Data {
     _createdAt = createdAt;
     _updatedAt = updatedAt;
     _v = v;
+    _profile = profile;
     _age = age;
     _gender = gender;
-    _profile = profile;
+    _walletAddress = walletAddress;
   }
 
   Data.fromJson(dynamic json) {
-    _address = json['address'] != null ? Address.fromJson(json['address']) : null;
-    _location = json['location'] != null ? Location.fromJson(json['location']) : null;
+    _address =
+        json['address'] != null ? Address.fromJson(json['address']) : null;
+    _location =
+        json['location'] != null ? Location.fromJson(json['location']) : null;
     _height = json['height'] != null ? Height.fromJson(json['height']) : null;
     _weight = json['weight'] != null ? Weight.fromJson(json['weight']) : null;
     _id = json['_id'];
     _firstName = json['firstName'];
     _lastName = json['lastName'];
     _email = json['email'];
-    _password = json['password'];
+    _mobileNumber = json['mobileNumber'];
     _goal = json['goal'];
     _workoutLevel = json['workoutLevel'];
     _type = json['type'];
@@ -86,15 +89,16 @@ class Data {
     if (json['favoriteProducts'] != null) {
       _favoriteProducts = [];
       json['favoriteProducts'].forEach((v) {
-        _favoriteProducts?.add(Product.fromJson(v));
+        _favoriteProducts?.add(v);
       });
     }
     _createdAt = json['createdAt'];
     _updatedAt = json['updatedAt'];
     _v = json['__v'];
+    _profile = json['profile'];
     _age = json['age'];
     _gender = json['gender'];
-    _profile = json['profile'];
+    _walletAddress = json['walletAddress'];
   }
   Address? _address;
   Location? _location;
@@ -104,18 +108,19 @@ class Data {
   String? _firstName;
   String? _lastName;
   String? _email;
-  String? _password;
+  String? _mobileNumber;
   String? _goal;
   String? _workoutLevel;
   String? _type;
   bool? _isRequiredInfoAdded;
-  List<Product>? _favoriteProducts;
+  List<dynamic>? _favoriteProducts;
   String? _createdAt;
   String? _updatedAt;
   int? _v;
+  String? _profile;
   int? _age;
   String? _gender;
-  String? _profile;
+  String? _walletAddress;
 
   Address? get address => _address;
   Location? get location => _location;
@@ -125,65 +130,26 @@ class Data {
   String? get firstName => _firstName;
   String? get lastName => _lastName;
   String? get email => _email;
-  String? get password => _password;
+  String? get mobileNumber => _mobileNumber;
   String? get goal => _goal;
   String? get workoutLevel => _workoutLevel;
   String? get type => _type;
   bool? get isRequiredInfoAdded => _isRequiredInfoAdded;
-  List<Product>? get favoriteProducts => _favoriteProducts;
+  List<dynamic>? get favoriteProducts => _favoriteProducts;
   String? get createdAt => _createdAt;
   String? get updatedAt => _updatedAt;
   int? get v => _v;
+  String? get profile => _profile;
   int? get age => _age;
   String? get gender => _gender;
-  String? get profile => _profile;
-
-}
-
-class Discount {
-  Discount({
-    int? percentage,
-    bool? valid,}){
-    _percentage = percentage;
-    _valid = valid;
-  }
-
-  Discount.fromJson(dynamic json) {
-    _percentage = json['percentage'];
-    _valid = json['valid'];
-  }
-  int? _percentage;
-  bool? _valid;
-
-  int? get percentage => _percentage;
-  bool? get valid => _valid;
-
-}
-
-class Specifications {
-  Specifications({
-    String? brand,
-    String? modelNumber,}){
-    _brand = brand;
-    _modelNumber = modelNumber;
-  }
-
-  Specifications.fromJson(dynamic json) {
-    _brand = json['brand'];
-    _modelNumber = json['modelNumber'];
-  }
-  String? _brand;
-  String? _modelNumber;
-
-  String? get brand => _brand;
-  String? get modelNumber => _modelNumber;
-
+  String? get walletAddress => _walletAddress;
 }
 
 class Weight {
   Weight({
     String? unit,
-    double? value,}){
+    double? value,
+  }) {
     _unit = unit;
     _value = value;
   }
@@ -192,7 +158,6 @@ class Weight {
     _unit = json['unit'];
     _value = _convertToDouble(json['value']);
   }
-
   // Method to convert a dynamic value to a double
   static double? _convertToDouble(dynamic val) {
     if (val == null) {
@@ -214,13 +179,13 @@ class Weight {
 
   String? get unit => _unit;
   double? get value => _value;
-
 }
 
 class Height {
   Height({
     String? unit,
-    double? value,}){
+    double? value,
+  }) {
     _unit = unit;
     _value = value;
   }
@@ -229,7 +194,6 @@ class Height {
     _unit = json['unit'];
     _value = _convertToDouble(json['value']);
   }
-
   // Method to convert a dynamic value to a double
   static double? _convertToDouble(dynamic val) {
     if (val == null) {
@@ -256,7 +220,8 @@ class Height {
 class Location {
   Location({
     String? latitude,
-    String? longitude,}){
+    String? longitude,
+  }) {
     _latitude = latitude;
     _longitude = longitude;
   }
@@ -270,7 +235,6 @@ class Location {
 
   String? get latitude => _latitude;
   String? get longitude => _longitude;
-
 }
 
 class Address {
@@ -278,36 +242,37 @@ class Address {
     String? address1,
     String? address2,
     String? city,
-    String? state,
     String? country,
-    String? postalCode,}){
+    String? postalCode,
+    String? state,
+  }) {
     _address1 = address1;
     _address2 = address2;
     _city = city;
-    _state = state;
     _country = country;
     _postalCode = postalCode;
+    _state = state;
   }
 
   Address.fromJson(dynamic json) {
     _address1 = json['address1'];
     _address2 = json['address2'];
     _city = json['city'];
-    _state = json['state'];
     _country = json['country'];
     _postalCode = json['postalCode'];
+    _state = json['state'];
   }
   String? _address1;
   String? _address2;
   String? _city;
-  String? _state;
   String? _country;
   String? _postalCode;
+  String? _state;
 
   String? get address1 => _address1;
   String? get address2 => _address2;
   String? get city => _city;
-  String? get state => _state;
   String? get country => _country;
   String? get postalCode => _postalCode;
+  String? get state => _state;
 }

@@ -22,3 +22,15 @@ class SignInFailed extends SignInState {
 
   const SignInFailed(this.message);
 }
+
+class LoginWithGoogleSuccessfully extends SignInState {
+  final LoginWithGoogleApiResponse response;
+
+  const LoginWithGoogleSuccessfully(this.response);
+}
+
+class LoginWithGoogleFailed extends SignInState {
+  final String message;
+
+  const LoginWithGoogleFailed(this.message);
+}

@@ -11,7 +11,7 @@ Future createPaymentIntent(
     required String currency,
     required String amount}) async {
   final url = Uri.parse('https://api.stripe.com/v1/payment_intents');
-  final secretKey =
+  const secretKey =
       "sk_test_51IxRoaCVPPCU0vw3xAxpJNhtWnAWZUiYoZZpEnIYLqdTSiVZoUPF5PrZL7j1cziGKsJLZfjMIxWrgzhPV5H206sQ001g29204A";
   final body = {
     'amount': amount,
@@ -32,13 +32,7 @@ Future createPaymentIntent(
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: body);
-
-  print(body);
-
   if (response.statusCode == 200) {
-    print("response.body\n\n\n\n");
-    print(response.body);
-    print("response.body\n\n\n\\n\n");
     var json = jsonDecode(response.body);
     print("json\n\n\n\n");
     print(json);

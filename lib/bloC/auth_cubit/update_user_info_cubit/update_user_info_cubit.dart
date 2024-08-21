@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:gymmerator/models/api_response/UpdateUserInfoApiResponse.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../resources/repository.dart';
 
@@ -125,6 +126,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
     required String city,
     required String state,
     required String country,
+    XFile? profileImage,
   }) async {
     emit(LoadingState());
 

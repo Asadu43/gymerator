@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gymmerator/models/api_response/LoginWithGoogleApiResponse.dart';
 
 import '../../../models/api_response/SignInApiResponse.dart';
 import '../../../resources/repository.dart';
@@ -17,20 +18,41 @@ class SignInCubit extends Cubit<SignInState> {
     required String password,
   }) async {
     emit(LoadingState());
-
-    Map data = {
-      "email": email,
-      "password": password
-    };
-    print(data);
+    Map data = {"email": email, "password": password};
     final SignInApiResponse signInModel = await _repository.signIn(data);
-    print(signInModel.error);
-    print(signInModel.message);
     if (signInModel.error == null) {
       storeToken(signInModel.data!.isRequiredInfoAdded!);
       emit(SignInSuccessful(signInModel));
     } else {
       emit(SignInFailed(signInModel.message ?? "Incorrect email or password."));
+    }
+  }
+
+  Future loginWithGoogle({
+    required String displayName,
+    required String email,
+    required String phoneNumber,
+    String? photoURL,
+  }) async {
+    emit(LoadingState());
+
+    Map data = {
+      "displayName": displayName,
+      "email": email,
+      "phoneNumber": phoneNumber,
+      "photoURL": photoURL ?? ""
+    };
+    final LoginWithGoogleApiResponse signInModel =
+        await _repository.loginWithGoogle(data);
+    print(signInModel.message);
+    print(signInModel.data);
+    print(signInModel.error);
+    if (signInModel.error == null) {
+      storeToken(signInModel.data!.isRequiredInfoAdded!);
+      emit(LoginWithGoogleSuccessfully(signInModel));
+    } else {
+      emit(LoginWithGoogleFailed(
+          signInModel.message ?? "Incorrect email or password."));
     }
   }
 

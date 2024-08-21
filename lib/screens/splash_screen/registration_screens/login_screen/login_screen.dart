@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gymmerator/models/api_response/LoginWithGoogleApiResponse.dart';
 import 'package:gymmerator/models/api_response/SignInApiResponse.dart';
 import 'package:gymmerator/screens/splash_screen/registration_screens/user_info_screen/user_info_screen.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
@@ -32,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final AuthService _authService = AuthService();
 
   SignInApiResponse? response;
+  LoginWithGoogleApiResponse? googleResponse;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +55,24 @@ class _LoginScreenState extends State<LoginScreen> {
 
             print(response?.data?.isRequiredInfoAdded);
             if (response?.data?.isRequiredInfoAdded == true) {
+              Nav.pushAndRemoveAllRoute(context, const MainScreen());
+            } else {
+              Nav.push(context, const UserInfoScreen());
+            }
+          }
+
+          if (state is LoginWithGoogleFailed) {
+            showSnackBar(context, state.message);
+          }
+          if (state is LoginWithGoogleSuccessfully) {
+            googleResponse = state.response;
+            emailController.clear();
+            passwordController.clear();
+            showSnackBar(
+                context, googleResponse?.message ?? "Sign In Successfully",
+                type: SnackBarType.success);
+
+            if (googleResponse?.data?.isRequiredInfoAdded == true) {
               Nav.pushAndRemoveAllRoute(context, const MainScreen());
             } else {
               Nav.push(context, const UserInfoScreen());
@@ -181,14 +201,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               User? user =
                                   await _authService.signInWithGoogle();
                               if (user != null) {
-                                // Navigate to the next screen or display user information
-                                print('User signed in: ${user.displayName}');
-                                print('User signed in: ${user.email}');
-                                print('User signed User Id:\n \n ${await user.getIdToken(false)} \n\n');
-                                // print(
-                                    // 'User signed User Id: ${await user.}');
+                                context.read<SignInCubit>().loginWithGoogle(
+                                    displayName: user.displayName ?? "",
+                                    email: user.email ?? "",
+                                    phoneNumber: user.phoneNumber ?? "",
+                                    photoURL: user.photoURL ?? "");
                               } else {
-                                print('Sign in failed');
+                                showSnackBar(context, 'Sign in failed');
                               }
                             },
                             child: Container(

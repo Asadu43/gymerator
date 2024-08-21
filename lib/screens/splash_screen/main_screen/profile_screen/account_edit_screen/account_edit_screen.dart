@@ -1,12 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gymmerator/bloC/auth_cubit/update_user_info_cubit/update_user_info_cubit.dart';
 import 'package:gymmerator/ui_component/app_button.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../../bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart'
     hide LoadingState;
 import '../../../../../ui_component/show_snackbar.dart';
+import '../../../../../utils/api_constants/api_constants.dart';
 import '../../../../../utils/nav/nav.dart';
 
 class AccountEditScreen extends StatefulWidget {
@@ -47,6 +51,18 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
   TextEditingController stateController = TextEditingController();
   TextEditingController countryController = TextEditingController();
 
+  XFile? _image;
+  dynamic profileImage;
+
+  Future _imgFromGallery() async {
+    final XFile? image = await ImagePicker()
+        .pickImage(source: ImageSource.gallery, imageQuality: 50);
+
+    setState(() {
+      _image = image;
+    });
+  }
+
   @override
   void initState() {
     firstNameController = TextEditingController(text: widget.firstName);
@@ -63,6 +79,8 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return BlocProvider(
       create: (context) => UpdateUserInfoCubit(),
       child: BlocConsumer<UpdateUserInfoCubit, UpdateUserInfoState>(
@@ -99,22 +117,61 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      CircleAvatar(
-                        radius: 50,
-                        backgroundImage:
-                            const AssetImage('assets/images/profile.png'),
-                        // Replace with your image asset
-                        child: Align(
-                          alignment: Alignment.bottomRight,
-                          child: CircleAvatar(
-                            radius: 15,
-                            backgroundColor: Colors.white,
-                            child: IconButton(
-                              icon: const Icon(Icons.camera_alt, size: 15),
-                              onPressed: () {},
+                      Center(
+                        child: Stack(children: [
+                          Center(
+                            child: Container(
+                              height: screenHeight * 0.19,
+                              width: screenWidth * 0.4,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(80),
+                              ),
+                              child: _image != null
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(80),
+                                      child: Image.file(
+                                        File(_image!.path),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                  : ClipRRect(
+                                      borderRadius: BorderRadius.circular(80),
+                                      child: profileImage == null
+                                          ? Center(
+                                              child: Text(
+                                                widget.firstName[0]
+                                                    .toUpperCase(),
+                                                style: const TextStyle(
+                                                    fontSize: 40,
+                                                    color: Colors.black),
+                                              ),
+                                            )
+                                          : Image.network(
+                                              "${ApiConstants.baseUrl}${profileImage!}",
+                                              fit: BoxFit.cover,
+                                            )),
                             ),
                           ),
-                        ),
+                          Positioned(
+                              bottom: -20,
+                              right: screenWidth * 0.3,
+                              child: GestureDetector(
+                                onTap: () {
+                                  _imgFromGallery();
+                                },
+                                child: Container(
+                                  height: screenHeight * 0.1,
+                                  width: screenWidth * 0.1,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.grey.shade300,
+                                  ),
+                                  child: const Icon(Icons.camera_alt_outlined,
+                                      color: Colors.grey),
+                                ),
+                              ))
+                        ]),
                       ),
                       const SizedBox(height: 20),
                       TextFormField(
@@ -250,6 +307,17 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
     } else if (countryController.text.isEmpty) {
       showSnackBar(context, "Please enter Country");
     } else {
+      // if (_image != null) {
+      //   context.read<UpdateUserInfoCubit>().editAccountRequest(
+      //       firstName: firstNameController.text,
+      //       lastName: lastNameController.text,
+      //       address1: address1Controller.text,
+      //       address2: address2Controller.text,
+      //       city: cityController.text,
+      //       state: stateController.text,
+      //       country: countryController.text,
+      //       profileImage: _image);
+      // }
       context.read<UpdateUserInfoCubit>().editAccountRequest(
           firstName: firstNameController.text,
           lastName: lastNameController.text,

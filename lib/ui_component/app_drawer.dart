@@ -12,6 +12,8 @@ import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
 
+import '../utils/api_constants/api_constants.dart';
+
 class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
 
@@ -54,8 +56,17 @@ class _AppDrawerState extends State<AppDrawer> {
                     decoration: const BoxDecoration(
                       color: Color(0xff599918),
                     ),
-                    currentAccountPicture: const CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/traning.png'),
+                    currentAccountPicture: CircleAvatar(
+                      backgroundImage:response?.data?.profile == null ? null : NetworkImage(
+                        '${ApiConstants.baseUrl}/profile/image/${response?.data?.profile}',
+                      ),
+                      child: response?.data?.profile == null
+                          ? Text(
+                              response?.data?.firstName?[0].toUpperCase() ?? "",
+                              style: const TextStyle(
+                                  fontSize: 40, color: Colors.white),
+                            )
+                          : null,
                     ),
                   ),
                   ListTile(

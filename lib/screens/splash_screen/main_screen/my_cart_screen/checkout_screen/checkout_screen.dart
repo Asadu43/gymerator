@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/my_cart_screen/checkout_screen/payment_screen/payment_screen.dart';
+import 'package:gymmerator/ui_component/show_snackbar.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../ui_component/app_button.dart';
@@ -16,173 +17,209 @@ class CheckoutScreen extends StatefulWidget {
 }
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
-  int _groupValue = -1;
-  int _selectedValue = -1;
+  TextEditingController deliveryAddressController = TextEditingController();
+  TextEditingController billingAddressController = TextEditingController();
+  int _paymentMethodValue = -1;
+  int _termAndConditionValue = -1;
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          Nav.pop(context);
-                        },
-                        icon: const Icon(Icons.arrow_back_ios)),
-                    SizedBox(width: screenWidth * 0.2),
-                    Text("Send",
-                        style: GoogleFonts.vazirmatn(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black)),
-                  ],
-                ),
-                SizedBox(
-                  height: screenHeight * 0.02,
-                ),
-                 AppTextField(
-                  hintText: "Delivery Address",
-                  color: Colors.grey,
-                  fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
-                ),
-                SizedBox(
-                  height: screenHeight * 0.02,
-                ),
-                 AppTextField(
-                  hintText: "Promo Code",
-                  color: Colors.grey,
-                  fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
-                ),
-                SizedBox(
-                  height: screenHeight * 0.02,
-                ),
-                 AppTextField(
-                  hintText: "Billing Address",
-                  color: Colors.grey,
-                  fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
-                ),
-                SizedBox(
-                  height: screenHeight * 0.03,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 12.0),
-                  child: Text("Payment method",
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Nav.pop(context);
+                      },
+                      icon: const Icon(Icons.arrow_back_ios)),
+                  SizedBox(width: screenWidth * 0.2),
+                  Text("Send",
                       style: GoogleFonts.vazirmatn(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.bold,
                           color: Colors.black)),
-                ),
-                SizedBox(
-                  height: screenHeight * 0.02,
-                ),
-                Card(
-                  color: Colors.white,
-                  elevation: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        RadioListTile(
-                          value: 1,
-                          activeColor: const Color(0xff3F710D),
-                          groupValue: _groupValue,
-                          fillColor: MaterialStateProperty.resolveWith(
-                            (states) {
-                              if (states.contains(MaterialState.selected)) {
-                                return const Color(0xff3F710D);
-                              }
+                ],
+              ),
+              SizedBox(
+                height: screenHeight * 0.02,
+              ),
+               AppTextField(
+                 controller: deliveryAddressController,
+                hintText: "Delivery Address",
+                color: Colors.grey,
+                fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
+              ),
+              SizedBox(
+                height: screenHeight * 0.02,
+              ),
+               AppTextField(
+                 controller: billingAddressController,
+                hintText: "Billing Address",
+                color: Colors.grey,
+                fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
+              ),
+              SizedBox(
+                height: screenHeight * 0.03,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 12.0),
+                child: Text("Payment method",
+                    style: GoogleFonts.vazirmatn(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black)),
+              ),
+              SizedBox(
+                height: screenHeight * 0.02,
+              ),
+              Card(
+                color: Colors.white,
+                elevation: 10,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      RadioListTile(
+                        value: 1,
+                        activeColor: const Color(0xff3F710D),
+                        groupValue: _paymentMethodValue,
+                        fillColor: WidgetStateProperty.resolveWith(
+                          (states) {
+                            if (states.contains(WidgetState.selected)) {
                               return const Color(0xff3F710D);
-                            },
-                          ),
-                          onChanged: (value) {
-                            setState(() {
-                              _groupValue = value!;
-                            });
+                            }
+                            return const Color(0xff3F710D);
                           },
-                          title: const Text("Crypto Method"),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(
-                              left: 24, right: 24, top: 8, bottom: 8),
-                          child: Divider(
-                            color: Colors.grey,
-                            thickness: 2,
-                          ),
-                        ),
-                        RadioListTile(
-                          value: 2,
-                          activeColor: const Color(0xff3F710D),
-                          groupValue: _groupValue,
-                          fillColor: WidgetStateProperty.resolveWith(
-                            (states) {
-                              if (states.contains(MaterialState.selected)) {
-                                return const Color(0xff3F710D);
-                              }
-                              return const Color(0xff3F710D);
-                            },
-                          ),
-                          onChanged: (value) {
-                            setState(() {
-                              _groupValue = value!;
-                            });
-                          },
-                          title: const Text("Credit card"),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: screenHeight * 0.03,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: RadioListTile(
-                    value: 1,
-                    activeColor: const Color(0xff3F710D),
-                    fillColor: WidgetStateProperty.resolveWith(
-                      (states) {
-                        if (states.contains(MaterialState.selected)) {
-                          return const Color(0xff3F710D);
-                        }
-                        return const Color(0xff3F710D);
-                      },
-                    ),
-                    groupValue: _selectedValue,
-                    onChanged: (value) {
-                      setState(() {
-                        _selectedValue = value!;
-                      });
-                    },
-                    title: Text(
-                      "I Agree Terms & Conditions",
-                      style: GoogleFonts.vazirmatn(
-                        color: const Color(0xff3F710D),
+                        onChanged: (value) {
+                          setState(() {
+                            _paymentMethodValue = value!;
+                          });
+                        },
+                        title: const Text("Card"),
                       ),
+                      const Padding(
+                        padding: EdgeInsets.only(
+                            left: 24, right: 24, top: 8, bottom: 8),
+                        child: Divider(
+                          color: Colors.grey,
+                          thickness: 2,
+                        ),
+                      ),
+                      RadioListTile(
+                        value: 2,
+                        activeColor: const Color(0xff3F710D),
+                        groupValue: _paymentMethodValue,
+                        fillColor: WidgetStateProperty.resolveWith(
+                          (states) {
+                            if (states.contains(WidgetState.selected)) {
+                              return const Color(0xff3F710D);
+                            }
+                            return const Color(0xff3F710D);
+                          },
+                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            _paymentMethodValue = value!;
+                          });
+                        },
+                        title: const Text("Cash on Delivery"),
+                      ),
+                      // const Padding(
+                      //   padding: EdgeInsets.only(
+                      //       left: 24, right: 24, top: 8, bottom: 8),
+                      //   child: Divider(
+                      //     color: Colors.grey,
+                      //     thickness: 2,
+                      //   ),
+                      // ),
+                      // RadioListTile(
+                      //   value: 2,
+                      //   activeColor: const Color(0xff3F710D),
+                      //   groupValue: _groupValue,
+                      //   fillColor: WidgetStateProperty.resolveWith(
+                      //         (states) {
+                      //       if (states.contains(MaterialState.selected)) {
+                      //         return const Color(0xff3F710D);
+                      //       }
+                      //       return const Color(0xff3F710D);
+                      //     },
+                      //   ),
+                      //   onChanged: (value) {
+                      //     setState(() {
+                      //       _groupValue = value!;
+                      //     });
+                      //   },
+                      //   title: const Text("Credit card"),
+                      // ),
+                    ],
+                  ),
+                ),
+              ),
+               const Spacer(),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: RadioListTile(
+                  value: 1,
+                  activeColor: const Color(0xff3F710D),
+                  fillColor: WidgetStateProperty.resolveWith(
+                    (states) {
+                      if (states.contains(MaterialState.selected)) {
+                        return const Color(0xff3F710D);
+                      }
+                      return const Color(0xff3F710D);
+                    },
+                  ),
+                  groupValue: _termAndConditionValue,
+                  onChanged: (value) {
+                    setState(() {
+                      _termAndConditionValue = value!;
+                    });
+                  },
+                  title: Text(
+                    "I Agree Terms & Conditions",
+                    style: GoogleFonts.vazirmatn(
+                      color: const Color(0xff3F710D),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: screenHeight * 0.18,
-                ),
-                AppButton(
-                  text: "Confirm and Continue",
-                  onPressed: () async {
-                    Nav.push(context,  PaymentScreen(totalAmount: widget.totalAmount,));
-                  },
-                ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: screenHeight * 0.01,
+              ),
+              AppButton(
+                text: "Confirm and Continue",
+                onPressed: () async {
+                  if(deliveryAddressController.text.isEmpty){
+                    showSnackBar(context, "Please enter Delivery Address");
+                  }else if(billingAddressController.text.isEmpty){
+                    showSnackBar(context, "Please enter Billing Address");
+                  }else if (_paymentMethodValue == -1){
+                    showSnackBar(context, "Please select payment method");
+                  }else if (_termAndConditionValue == -1){
+                    showSnackBar(context, "Please select terms and conditions");
+                  }else {
+                    if(_paymentMethodValue == 1){
+                      Nav.push(context,
+                          PaymentScreen(totalAmount: widget.totalAmount,deliveryAddress: deliveryAddressController.text,billingAddress: billingAddressController.text,paymentMethod: 'Card',));
+                    }else {
+                      Nav.push(context,
+                          PaymentScreen(totalAmount: widget.totalAmount,deliveryAddress: deliveryAddressController.text,billingAddress: billingAddressController.text,paymentMethod: 'Cash on Delivery',));
+                    }
+                  }
+                },
+              ),
+            ],
           ),
         ),
       ),
