@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:gymmerator/models/api_response/AddFavoriteProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/AddToCartProductApiResponse.dart';
+import 'package:gymmerator/models/api_response/CreateOrderApiResponse.dart';
 import 'package:gymmerator/models/api_response/FeaturedProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/ForgetPasswordApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllFavoriteProductApiResponse.dart';
@@ -15,6 +17,7 @@ import 'package:gymmerator/models/api_response/VerifyOTPApiResponse.dart';
 import 'package:gymmerator/resources/api_providers/add_favorite_product_post_api.dart';
 import 'package:gymmerator/resources/api_providers/add_to_cart_post_api.dart';
 import 'package:gymmerator/resources/api_providers/all_favorite_product_get_api.dart';
+import 'package:gymmerator/resources/api_providers/create_order_post_api.dart';
 import 'package:gymmerator/resources/api_providers/featured_product_get_api.dart';
 import 'package:gymmerator/resources/api_providers/forget_password_post_api.dart';
 import 'package:gymmerator/resources/api_providers/product_detail_get_api.dart';
@@ -23,6 +26,7 @@ import 'package:gymmerator/resources/api_providers/remove_favorite_put_api.dart'
 import 'package:gymmerator/resources/api_providers/update_cart_item_put_api.dart';
 import 'package:gymmerator/resources/api_providers/update_password_put_api.dart';
 import 'package:gymmerator/resources/api_providers/update_user_info_post_api.dart';
+import 'package:gymmerator/resources/api_providers/update_user_profile_post_api.dart';
 import 'package:gymmerator/resources/api_providers/user_cart_products_get_api.dart';
 import 'package:gymmerator/resources/api_providers/verify_Otp_get_api.dart';
 
@@ -47,6 +51,11 @@ class Repository {
     return signInPost.loginWithGoogleRequest(data);
   }
 
+  Future<GetAllFavoriteProductApiResponse> updateUserProfile(FormData data) {
+    final model = UpdateUserProfilePostApi();
+    return model.updateRequest(data);
+  }
+
   Future<ForgetPasswordApiResponse> forgetRequest(Map data) {
     final request = ForgetPasswordPostApi();
     return request.forgetRequest(data);
@@ -62,7 +71,7 @@ class Repository {
     return request.updateRequest(data);
   }
 
-  Future<UpdateUserInfoApiResponse> updateUserInfoRequest(Map data) {
+  Future<UpdateUserInfoApiResponse> updateUserInfoRequest(FormData data) {
     final request = UpdateUserInfoPostApi();
     return request.updateRequest(data);
   }
@@ -110,5 +119,10 @@ class Repository {
   Future<RemoveCartItemApiResponse> removeRequest(String id) {
     final request = RemoveCartItemPutApi();
     return request.removeRequest(id);
+  }
+
+  Future<CreateOrderApiResponse> createRequest(Map data) {
+    final request = CreateOrderPostApi();
+    return request.createRequest(data);
   }
 }

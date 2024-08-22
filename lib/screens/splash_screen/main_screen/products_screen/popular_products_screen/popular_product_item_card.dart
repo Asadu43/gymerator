@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gymmerator/models/api_response/FeaturedProductApiResponse.dart';
-import 'package:gymmerator/models/product_model.dart';
+
+import '../../../../../models/api_response/Product.dart';
 
 class PopularProductItemCard extends StatefulWidget {
   const PopularProductItemCard({
@@ -16,7 +16,6 @@ class PopularProductItemCard extends StatefulWidget {
 class _ProductItemCardState extends State<PopularProductItemCard> {
   @override
   Widget build(BuildContext context) {
-
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Column(

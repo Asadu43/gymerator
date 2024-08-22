@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart';
-import 'package:gymmerator/models/product_model.dart';
-import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/popular_products_screen/popular_product_item_card.dart';
 import 'package:gymmerator/ui_component/app_textfield.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/product_item_card.dart';

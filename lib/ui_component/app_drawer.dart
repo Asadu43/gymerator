@@ -58,7 +58,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                     currentAccountPicture: CircleAvatar(
                       backgroundImage:response?.data?.profile == null ? null : NetworkImage(
-                        '${ApiConstants.baseUrl}/profile/image/${response?.data?.profile}',
+                        '${ApiConstants.baseUrl}/profile/${response?.data?.profile}',
                       ),
                       child: response?.data?.profile == null
                           ? Text(
@@ -69,23 +69,23 @@ class _AppDrawerState extends State<AppDrawer> {
                           : null,
                     ),
                   ),
-                  ListTile(
-                      onTap: () {
-                        Nav.push(context, const NftMarketPlaceScreen());
-                      },
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.grey.shade400,
-                        radius: 25,
-                        child: Image.asset("assets/icons/nft.png"),
-                      ),
-                      title: Text("NFT Marketplace",
-                          style: GoogleFonts.vazirmatn(
-                              fontSize: 14, color: Colors.black)),
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.black,
-                        size: 15,
-                      )),
+                  // ListTile(
+                  //     onTap: () {
+                  //       Nav.push(context, const NftMarketPlaceScreen());
+                  //     },
+                  //     leading: CircleAvatar(
+                  //       backgroundColor: Colors.grey.shade400,
+                  //       radius: 25,
+                  //       child: Image.asset("assets/icons/nft.png"),
+                  //     ),
+                  //     title: Text("NFT Marketplace",
+                  //         style: GoogleFonts.vazirmatn(
+                  //             fontSize: 14, color: Colors.black)),
+                  //     trailing: const Icon(
+                  //       Icons.arrow_forward_ios,
+                  //       color: Colors.black,
+                  //       size: 15,
+                  //     )),
                   ListTile(
                       onTap: () {
                         Nav.push(context, const MetaMaskScreen());
@@ -103,23 +103,23 @@ class _AppDrawerState extends State<AppDrawer> {
                         color: Colors.black,
                         size: 15,
                       )),
-                  ListTile(
-                      onTap: () {
-                        Nav.push(context, const WalletScreen());
-                      },
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.grey.shade400,
-                        radius: 25,
-                        child: Image.asset("assets/icons/wallet.png"),
-                      ),
-                      title: Text("Wallet",
-                          style: GoogleFonts.vazirmatn(
-                              fontSize: 14, color: Colors.black)),
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.black,
-                        size: 15,
-                      )),
+                  // ListTile(
+                  //     onTap: () {
+                  //       Nav.push(context, const WalletScreen());
+                  //     },
+                  //     leading: CircleAvatar(
+                  //       backgroundColor: Colors.grey.shade400,
+                  //       radius: 25,
+                  //       child: Image.asset("assets/icons/wallet.png"),
+                  //     ),
+                  //     title: Text("Wallet",
+                  //         style: GoogleFonts.vazirmatn(
+                  //             fontSize: 14, color: Colors.black)),
+                  //     trailing: const Icon(
+                  //       Icons.arrow_forward_ios,
+                  //       color: Colors.black,
+                  //       size: 15,
+                  //     )),
                   ListTile(
                       onTap: () {
                         Nav.push(context, const MyCartScreen());

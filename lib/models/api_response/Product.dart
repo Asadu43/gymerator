@@ -59,12 +59,12 @@ class Product {
     _category = json['category'];
     _tags = json['tags'] != null ? json['tags'].cast<String>() : [];
     _images = json['images'] != null ? json['images'].cast<String>() : [];
-    // if (json['variants'] != null) {
-    //   _variants = [];
-    //   json['variants'].forEach((v) {
-    //     _variants?.add(Variants.fromJson(v));
-    //   });
-    // }
+    if (json['variants'] != null) {
+      _variants = [];
+      json['variants'].forEach((v) {
+        _variants?.add(Variants.fromJson(v));
+      });
+    }
     _averageRating = json['averageRating'];
     if (json['relatedProducts'] != null) {
       _relatedProducts = [];

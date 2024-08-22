@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:gymmerator/models/api_response/UpdateUserInfoApiResponse.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../resources/repository.dart';
 
 part 'update_user_info_state.dart';
@@ -24,7 +25,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   }) async {
     emit(LoadingState());
 
-    Map data = {
+    FormData formData = FormData.fromMap({
       "gender": gender, // Male, Female, Prefer Not to Say
       "heightUnit": heightUnit, // cm, Ft-in
       "heightValue": heightValue,
@@ -35,12 +36,12 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
           goal, // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
       "workoutLevel":
           workoutLevel // 0 = Beginner, 1 = Intermediate, 2 = Advance
-    };
+    });
 
-    print("Data \n\n\ ${data} \n\n\n");
+    print("Data \n\n\ ${formData} \n\n\n");
 
     final UpdateUserInfoApiResponse model =
-        await _repository.updateUserInfoRequest(data);
+        await _repository.updateUserInfoRequest(formData);
     if (model.error == null) {
       emit(UpdateUserSuccessfully(model.message ?? "Update User Successfully"));
     } else {
@@ -58,19 +59,19 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   }) async {
     emit(LoadingState());
 
-    Map data = {};
+    FormData data = FormData();
     if (goal == "Lose Weight") {
-      data = {
+      data = FormData.fromMap({
         "heightUnit": heightUnit,
         "heightValue": heightValue,
         "weightUnit": weightUnit,
         "weightValue": weightValue,
         "age": age,
         "goal": 0
-      };
+      });
     }
     if (goal == "Keep Fit") {
-      data = {
+      data = FormData.fromMap({
         "heightUnit": heightUnit,
         // cm, Ft-in
         "heightValue": heightValue,
@@ -80,27 +81,27 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
         "age": age,
         "goal": 1,
         // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
-      };
+      });
     }
     if (goal == "Get Stronger") {
-      data = {
+      data = FormData.fromMap({
         "heightUnit": heightUnit,
         "heightValue": heightValue,
         "weightUnit": weightUnit,
         "weightValue": weightValue,
         "age": age,
         "goal": 2
-      };
+      });
     }
     if (goal == "Gain Muscle Mass") {
-      data = {
+      data = FormData.fromMap({
         "heightUnit": heightUnit,
         "heightValue": heightValue,
         "weightUnit": weightUnit,
         "weightValue": weightValue,
         "age": age,
         "goal": 3
-      };
+      });
     }
 
     print("Data \n\n\ ${data} \n\n\n");
@@ -130,24 +131,73 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
   }) async {
     emit(LoadingState());
 
-    Map data = {
-      "firstName": firstName,
-      "lastName": lastName,
-      "address1": address1,
-      "address2": address2,
-      "city": city,
-      "state": state,
-      "country": country,
-    };
+    print(profileImage);
+    FormData? formData;
+    if (profileImage != null) {
+      formData = FormData.fromMap({
+        "firstName": firstName,
+        "lastName": lastName,
+        "address1": address1,
+        "address2": address2,
+        "city": city,
+        "state": state,
+        "country": country,
+        "profile": await MultipartFile.fromFile(profileImage.path,
+            contentType: MediaType("image", "jpeg"))
+      });
+    } else {
+      formData = FormData.fromMap({
+        "firstName": firstName,
+        "lastName": lastName,
+        "address1": address1,
+        "address2": address2,
+        "city": city,
+        "state": state,
+        "country": country
+      });
+    }
 
-    print("Data \n\n\ ${data} \n\n\n");
+    print(formData.fields);
 
     final UpdateUserInfoApiResponse model =
-        await _repository.updateUserInfoRequest(data);
+        await _repository.updateUserInfoRequest(formData);
     if (model.error == null) {
       emit(UpdateUserSuccessfully(model.message ?? "Update User Successfully"));
     } else {
       emit(FailedToUpdateUserInfo(model.message ?? "Failed To User Info."));
     }
   }
+
+  // Future updateUserProfile({
+  //   required XFile profileImage,
+  // }) async {
+  //
+  //
+  //    String fileName = path.basename(profileImage.path);
+  //    print(profileImage.path);
+  //    print(fileName);
+  //   // print(await MultipartFile.fromFile(
+  //   //   profileImage.path,
+  //   // ));
+  //   // print(profileImage.path);
+  //   // final formData = FormData.fromMap({
+  //   //   'profile': await MultipartFile.fromFile(
+  //   //     profileImage.path,
+  //   //   ),
+  //   // });
+  //
+  //   Map data = {
+  //     "profile": fileName,
+  //   };
+  //
+  //   print("Profile Image \n\n ${data} \n\n\n");
+  //
+  //   final GetAllFavoriteProductApiResponse model =
+  //   await _repository.updateUserProfile(data);
+  //   if (model.error == null) {
+  //     emit(UpdateUserSuccessfully(model.message ?? "Update User Successfully"));
+  //   } else {
+  //     emit(FailedToUpdateUserInfo(model.message ?? "Failed To Update User Info."));
+  //   }
+  // }
 }

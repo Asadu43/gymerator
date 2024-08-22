@@ -91,6 +91,7 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
           if (state is UpdateUserSuccessfully) {
             showSnackBar(context, state.message, type: SnackBarType.success);
             context.read<AllFavoriteProductsCubit>().featuredRequest();
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
             Nav.pop(context);
           }
         },
@@ -307,25 +308,26 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
     } else if (countryController.text.isEmpty) {
       showSnackBar(context, "Please enter Country");
     } else {
-      // if (_image != null) {
-      //   context.read<UpdateUserInfoCubit>().editAccountRequest(
-      //       firstName: firstNameController.text,
-      //       lastName: lastNameController.text,
-      //       address1: address1Controller.text,
-      //       address2: address2Controller.text,
-      //       city: cityController.text,
-      //       state: stateController.text,
-      //       country: countryController.text,
-      //       profileImage: _image);
-      // }
-      context.read<UpdateUserInfoCubit>().editAccountRequest(
-          firstName: firstNameController.text,
-          lastName: lastNameController.text,
-          address1: address1Controller.text,
-          address2: address2Controller.text,
-          city: cityController.text,
-          state: stateController.text,
-          country: countryController.text);
+      if (_image != null) {
+        context.read<UpdateUserInfoCubit>().editAccountRequest(
+            firstName: firstNameController.text,
+            lastName: lastNameController.text,
+            address1: address1Controller.text,
+            address2: address2Controller.text,
+            city: cityController.text,
+            state: stateController.text,
+            country: countryController.text,
+            profileImage: _image);
+      } else {
+        context.read<UpdateUserInfoCubit>().editAccountRequest(
+            firstName: firstNameController.text,
+            lastName: lastNameController.text,
+            address1: address1Controller.text,
+            address2: address2Controller.text,
+            city: cityController.text,
+            state: stateController.text,
+            country: countryController.text);
+      }
     }
   }
 }

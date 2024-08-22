@@ -71,7 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                            CircleAvatar(
                             radius: 50,
                             backgroundImage: response?.data?.profile == null ? null : NetworkImage(
-                              '${ApiConstants.baseUrl}/profile/image/${response?.data?.profile}',
+                              '${ApiConstants.baseUrl}/profile/${response?.data?.profile}',
                             ),
                              child: response?.data?.profile == null
                                  ? Text(

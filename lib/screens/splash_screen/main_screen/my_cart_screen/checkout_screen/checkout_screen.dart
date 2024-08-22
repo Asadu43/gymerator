@@ -53,8 +53,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               SizedBox(
                 height: screenHeight * 0.02,
               ),
-               AppTextField(
-                 controller: deliveryAddressController,
+              AppTextField(
+                controller: deliveryAddressController,
                 hintText: "Delivery Address",
                 color: Colors.grey,
                 fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
@@ -62,8 +62,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               SizedBox(
                 height: screenHeight * 0.02,
               ),
-               AppTextField(
-                 controller: billingAddressController,
+              AppTextField(
+                controller: billingAddressController,
                 hintText: "Billing Address",
                 color: Colors.grey,
                 fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
@@ -166,7 +166,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   ),
                 ),
               ),
-               const Spacer(),
+              const Spacer(),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: RadioListTile(
@@ -200,21 +200,33 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               AppButton(
                 text: "Confirm and Continue",
                 onPressed: () async {
-                  if(deliveryAddressController.text.isEmpty){
+                  if (deliveryAddressController.text.isEmpty) {
                     showSnackBar(context, "Please enter Delivery Address");
-                  }else if(billingAddressController.text.isEmpty){
+                  } else if (billingAddressController.text.isEmpty) {
                     showSnackBar(context, "Please enter Billing Address");
-                  }else if (_paymentMethodValue == -1){
+                  } else if (_paymentMethodValue == -1) {
                     showSnackBar(context, "Please select payment method");
-                  }else if (_termAndConditionValue == -1){
+                  } else if (_termAndConditionValue == -1) {
                     showSnackBar(context, "Please select terms and conditions");
-                  }else {
-                    if(_paymentMethodValue == 1){
-                      Nav.push(context,
-                          PaymentScreen(totalAmount: widget.totalAmount,deliveryAddress: deliveryAddressController.text,billingAddress: billingAddressController.text,paymentMethod: 'Card',));
-                    }else {
-                      Nav.push(context,
-                          PaymentScreen(totalAmount: widget.totalAmount,deliveryAddress: deliveryAddressController.text,billingAddress: billingAddressController.text,paymentMethod: 'Cash on Delivery',));
+                  } else {
+                    if (_paymentMethodValue == 1) {
+                      Nav.push(
+                          context,
+                          PaymentScreen(
+                            totalAmount: widget.totalAmount,
+                            deliveryAddress: deliveryAddressController.text,
+                            billingAddress: billingAddressController.text,
+                            paymentMethod: 'Card',
+                          ));
+                    } else {
+                      Nav.push(
+                          context,
+                          PaymentScreen(
+                            totalAmount: widget.totalAmount,
+                            deliveryAddress: deliveryAddressController.text,
+                            billingAddress: billingAddressController.text,
+                            paymentMethod: 'Cash on Delivery',
+                          ));
                     }
                   }
                 },

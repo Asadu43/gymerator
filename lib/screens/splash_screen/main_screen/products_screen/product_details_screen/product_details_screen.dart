@@ -258,6 +258,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ),
                         ],
                       ),
+
+                      const SizedBox(height: 16),
+                       Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            response?.data?.variants?.first.variant ?? "",
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold,color: Colors.black),
+                          ),
+                        ],
+                      ),
                       const SizedBox(height: 16),
                       const Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -353,6 +365,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     context.read<ProductDetailCubit>().addToCartRequest(
         id: response!.data!.id!,
         quantity: _quantity,
-        unitPrice: _quantity * int.parse(response!.data!.price!.toString()));
+        variants: response!.data!.variants!.first.id!);
   }
 }

@@ -5,7 +5,7 @@ import '../../models/api_response/UpdateUserInfoApiResponse.dart';
 import '../../utils/api_constants/api_constants.dart';
 
 class UpdateUserInfoPostApi {
-  Future<UpdateUserInfoApiResponse> updateRequest(Map formData) async {
+  Future<UpdateUserInfoApiResponse> updateRequest(FormData formData) async {
     try {
       final Dio dio = Dio();
       dio.options.headers["x-auth-token"] = GetStorage().read('token');
@@ -13,6 +13,8 @@ class UpdateUserInfoPostApi {
           data: formData, options: Options(validateStatus: (status) {
         return status! <= 500;
       }));
+
+      print(response.data);
       if (response.statusCode == 200) {
         return UpdateUserInfoApiResponse.fromJson(response.data);
       } else if (response.statusCode == 404) {

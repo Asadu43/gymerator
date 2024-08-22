@@ -28,9 +28,9 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
   Future addToCartRequest(
       {required String id,
       required int quantity,
-      required int unitPrice}) async {
+      required String variants}) async {
     emit(LoadingState());
-    Map data = {"productId": id, "quantity": quantity, "unitPrice": unitPrice};
+    Map data = {"productId": id, "quantity": quantity, "variants": [variants]};
 
     final AddToCartProductApiResponse model =
         await _repository.cartRequest(data);
