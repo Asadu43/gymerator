@@ -9,14 +9,13 @@ class AppTextField extends StatelessWidget {
   final Color? prefixIconColor;
   final TextStyle? fieldTextStyle;
   const AppTextField(
-      {Key? key,
+      {super.key,
       required this.hintText,
       this.icon,
       this.controller,
       this.prefixIconColor,
       this.fieldTextStyle,
-      this.color})
-      : super(key: key);
+      this.color});
 
   @override
   Widget build(BuildContext context) {

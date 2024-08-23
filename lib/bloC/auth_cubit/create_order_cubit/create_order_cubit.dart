@@ -31,7 +31,9 @@ class CreateOrderCubit extends Cubit<CreateOrderState> {
       "currency": currency
     };
 
+    print("n\n\n\n\n");
     print(data);
+    print("\n\n\n\n");
     final CreateOrderApiResponse model = await _repository.createRequest(data);
     if (model.error == null) {
       emit(CreateOrderSuccessfully(model));

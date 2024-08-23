@@ -68,17 +68,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       child: Column(
                         children: [
-                           CircleAvatar(
+                          CircleAvatar(
                             radius: 50,
-                            backgroundImage: response?.data?.profile == null ? null : NetworkImage(
-                              '${ApiConstants.baseUrl}/profile/${response?.data?.profile}',
-                            ),
-                             child: response?.data?.profile == null
-                                 ? Text(
-                               response?.data?.firstName?[0].toUpperCase() ?? "",
-                               style: const TextStyle(fontSize: 40, color: Colors.white),
-                             )
-                                 : null,
+                            backgroundImage: response?.data?.profile == null
+                                ? null
+                                : NetworkImage(
+                                    '${ApiConstants.baseUrl}/profile/${response?.data?.profile}',
+                                  ),
+                            child: response?.data?.profile == null
+                                ? Text(
+                                    response?.data?.firstName?[0]
+                                            .toUpperCase() ??
+                                        "",
+                                    style: const TextStyle(
+                                        fontSize: 40, color: Colors.white),
+                                  )
+                                : null,
                           ),
                           const SizedBox(height: 10),
                           Text(
@@ -184,7 +189,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             " ",
                                         country:
                                             response?.data?.address?.country ??
-                                                " "));
+                                                " ",
+                                        response?.data?.profile));
                               },
                             ),
                             const Padding(
@@ -382,9 +388,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 AppButton(
                                                   text: "Logout",
                                                   onPressed: () {
-
-                                                    GetStorage().write('token', null);
-                                                    Nav.pushAndRemoveAllRoute(context, const LoginScreen());
+                                                    GetStorage()
+                                                        .write('token', null);
+                                                    Nav.pushAndRemoveAllRoute(
+                                                        context,
+                                                        const LoginScreen());
                                                   },
                                                 ),
                                                 TextButton(

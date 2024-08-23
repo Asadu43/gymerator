@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gymmerator/screens/splash_screen/main_screen/my_cart_screen/checkout_screen/payment_screen/payment_screen.dart';
+import 'package:gymmerator/screens/splash_screen/main_screen/my_cart_screen/checkout_screen/select_payment_method_screen.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
 import 'package:sizer/sizer.dart';
 
@@ -19,8 +19,29 @@ class CheckoutScreen extends StatefulWidget {
 class _CheckoutScreenState extends State<CheckoutScreen> {
   TextEditingController deliveryAddressController = TextEditingController();
   TextEditingController billingAddressController = TextEditingController();
-  int _paymentMethodValue = -1;
-  int _termAndConditionValue = -1;
+  TextEditingController cityController = TextEditingController();
+  TextEditingController stateController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
+  TextEditingController postalCodeController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+
+  List<String> currencyList = <String>[
+    'USD',
+    'INR',
+    'EUR',
+    'JPY',
+    'GBP',
+    'AED'
+  ];
+  String selectedCurrency = 'USD';
+
+  @override
+  void initState() {
+    amountController =
+        TextEditingController(text: widget.totalAmount.toStringAsFixed(2));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +64,21 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       },
                       icon: const Icon(Icons.arrow_back_ios)),
                   SizedBox(width: screenWidth * 0.2),
-                  Text("Send",
+                  Text("Check out",
                       style: GoogleFonts.vazirmatn(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.bold,
                           color: Colors.black)),
                 ],
+              ),
+              SizedBox(
+                height: screenHeight * 0.02,
+              ),
+              AppTextField(
+                controller: nameController,
+                hintText: "Name",
+                color: Colors.grey,
+                fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
               ),
               SizedBox(
                 height: screenHeight * 0.02,
@@ -69,165 +99,149 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
               ),
               SizedBox(
-                height: screenHeight * 0.03,
+                height: screenHeight * 0.02,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0),
-                child: Text("Payment method",
-                    style: GoogleFonts.vazirmatn(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: screenWidth / 2.4,
+                    child: AppTextField(
+                      controller: amountController,
+                      hintText: "Amount",
+                      color: Colors.grey,
+                      fieldTextStyle:
+                          GoogleFonts.vazirmatn(color: Colors.black),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                      width: screenWidth / 2.4,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        border: Border.all(color: Colors.grey),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: DropdownButton<String>(
+                          isExpanded: true,
+                          value: selectedCurrency,
+                          icon: const Icon(Icons.arrow_downward),
+                          elevation: 16,
+                          style: const TextStyle(color: Colors.black),
+                          underline: const SizedBox(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              selectedCurrency = newValue!;
+                            });
+                          },
+                          items: currencyList
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ))
+                ],
               ),
               SizedBox(
                 height: screenHeight * 0.02,
               ),
-              Card(
-                color: Colors.white,
-                elevation: 10,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      RadioListTile(
-                        value: 1,
-                        activeColor: const Color(0xff3F710D),
-                        groupValue: _paymentMethodValue,
-                        fillColor: WidgetStateProperty.resolveWith(
-                          (states) {
-                            if (states.contains(WidgetState.selected)) {
-                              return const Color(0xff3F710D);
-                            }
-                            return const Color(0xff3F710D);
-                          },
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            _paymentMethodValue = value!;
-                          });
-                        },
-                        title: const Text("Card"),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(
-                            left: 24, right: 24, top: 8, bottom: 8),
-                        child: Divider(
-                          color: Colors.grey,
-                          thickness: 2,
-                        ),
-                      ),
-                      RadioListTile(
-                        value: 2,
-                        activeColor: const Color(0xff3F710D),
-                        groupValue: _paymentMethodValue,
-                        fillColor: WidgetStateProperty.resolveWith(
-                          (states) {
-                            if (states.contains(WidgetState.selected)) {
-                              return const Color(0xff3F710D);
-                            }
-                            return const Color(0xff3F710D);
-                          },
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            _paymentMethodValue = value!;
-                          });
-                        },
-                        title: const Text("Cash on Delivery"),
-                      ),
-                      // const Padding(
-                      //   padding: EdgeInsets.only(
-                      //       left: 24, right: 24, top: 8, bottom: 8),
-                      //   child: Divider(
-                      //     color: Colors.grey,
-                      //     thickness: 2,
-                      //   ),
-                      // ),
-                      // RadioListTile(
-                      //   value: 2,
-                      //   activeColor: const Color(0xff3F710D),
-                      //   groupValue: _groupValue,
-                      //   fillColor: WidgetStateProperty.resolveWith(
-                      //         (states) {
-                      //       if (states.contains(MaterialState.selected)) {
-                      //         return const Color(0xff3F710D);
-                      //       }
-                      //       return const Color(0xff3F710D);
-                      //     },
-                      //   ),
-                      //   onChanged: (value) {
-                      //     setState(() {
-                      //       _groupValue = value!;
-                      //     });
-                      //   },
-                      //   title: const Text("Credit card"),
-                      // ),
-                    ],
-                  ),
-                ),
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: RadioListTile(
-                  value: 1,
-                  activeColor: const Color(0xff3F710D),
-                  fillColor: WidgetStateProperty.resolveWith(
-                    (states) {
-                      if (states.contains(MaterialState.selected)) {
-                        return const Color(0xff3F710D);
-                      }
-                      return const Color(0xff3F710D);
-                    },
-                  ),
-                  groupValue: _termAndConditionValue,
-                  onChanged: (value) {
-                    setState(() {
-                      _termAndConditionValue = value!;
-                    });
-                  },
-                  title: Text(
-                    "I Agree Terms & Conditions",
-                    style: GoogleFonts.vazirmatn(
-                      color: const Color(0xff3F710D),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: screenWidth / 2.4,
+                    child: AppTextField(
+                      controller: cityController,
+                      hintText: "City",
+                      color: Colors.grey,
+                      fieldTextStyle:
+                          GoogleFonts.vazirmatn(color: Colors.black),
                     ),
                   ),
-                ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  SizedBox(
+                    width: screenWidth / 2.4,
+                    child: AppTextField(
+                      controller: stateController,
+                      hintText: "State",
+                      color: Colors.grey,
+                      fieldTextStyle:
+                          GoogleFonts.vazirmatn(color: Colors.black),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
-                height: screenHeight * 0.01,
+                height: screenHeight * 0.02,
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: screenWidth / 2.4,
+                    child: AppTextField(
+                      controller: countryController,
+                      hintText: "Country",
+                      color: Colors.grey,
+                      fieldTextStyle:
+                          GoogleFonts.vazirmatn(color: Colors.black),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  SizedBox(
+                    width: screenWidth / 2.4,
+                    child: AppTextField(
+                      controller: postalCodeController,
+                      hintText: "Postal code",
+                      color: Colors.grey,
+                      fieldTextStyle:
+                          GoogleFonts.vazirmatn(color: Colors.black),
+                    ),
+                  ),
+                ],
+              ),
+              const Spacer(),
               AppButton(
-                text: "Confirm and Continue",
+                text: "Continue",
                 onPressed: () async {
-                  if (deliveryAddressController.text.isEmpty) {
+                  if (nameController.text.isEmpty) {
+                    showSnackBar(context, "Please enter Name");
+                  } else if (deliveryAddressController.text.isEmpty) {
                     showSnackBar(context, "Please enter Delivery Address");
                   } else if (billingAddressController.text.isEmpty) {
                     showSnackBar(context, "Please enter Billing Address");
-                  } else if (_paymentMethodValue == -1) {
-                    showSnackBar(context, "Please select payment method");
-                  } else if (_termAndConditionValue == -1) {
-                    showSnackBar(context, "Please select terms and conditions");
+                  } else if (cityController.text.isEmpty) {
+                    showSnackBar(context, "Please enter City");
+                  } else if (stateController.text.isEmpty) {
+                    showSnackBar(context, "Please enter State");
+                  } else if (countryController.text.isEmpty) {
+                    showSnackBar(context, "Please enter Country");
+                  } else if (postalCodeController.text.isEmpty) {
+                    showSnackBar(context, "Please enter Postal Code");
                   } else {
-                    if (_paymentMethodValue == 1) {
-                      Nav.push(
-                          context,
-                          PaymentScreen(
-                            totalAmount: widget.totalAmount,
-                            deliveryAddress: deliveryAddressController.text,
-                            billingAddress: billingAddressController.text,
-                            paymentMethod: 'Card',
-                          ));
-                    } else {
-                      Nav.push(
-                          context,
-                          PaymentScreen(
-                            totalAmount: widget.totalAmount,
-                            deliveryAddress: deliveryAddressController.text,
-                            billingAddress: billingAddressController.text,
-                            paymentMethod: 'Cash on Delivery',
-                          ));
-                    }
+                    Nav.push(
+                        context,
+                        SelectPaymentMethodScreen(
+                          totalAmount: widget.totalAmount,
+                          deliveryAddress: deliveryAddressController.text,
+                          billingAddress: billingAddressController.text,
+                          name: nameController.text,
+                          currency: selectedCurrency,
+                          city: cityController.text,
+                          state: stateController.text,
+                          country: countryController.text,
+                          postalCode: postalCodeController.text,
+                        ));
                   }
                 },
               ),

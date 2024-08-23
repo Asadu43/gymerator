@@ -157,9 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               BorderRadius.circular(10.0),
                                         ),
                                       ),
-                                      backgroundColor:
-                                          WidgetStateProperty.all(
-                                              Colors.transparent),
+                                      backgroundColor: WidgetStateProperty.all(
+                                          Colors.transparent),
                                       // elevation: MaterialStateProperty.all(3),
                                       shadowColor: WidgetStateProperty.all(
                                           Colors.transparent),
@@ -240,20 +239,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             child: InkWell(
                               onTap: () {
-                                setState(() {
-                                  if ((checkboxValue == true) &&
-                                      (selectedIndex == 1)) {
-                                    setState(() {
-                                      checkboxValue = false;
-                                      selectedIndex = 0;
-                                    });
-                                  } else {
-                                    setState(() {
-                                      checkboxValue = true;
-                                      selectedIndex = 1;
-                                    });
-                                  }
-                                });
+                                // setState(() {
+                                //   if ((checkboxValue == true) &&
+                                //       (selectedIndex == 1)) {
+                                //     setState(() {
+                                //       checkboxValue = false;
+                                //       selectedIndex = 0;
+                                //     });
+                                //   } else {
+                                //     setState(() {
+                                //       checkboxValue = true;
+                                //       selectedIndex = 1;
+                                //     });
+                                //   }
+                                // });
                               },
                               child: Image.asset("assets/images/begginer.png"),
                             ),
@@ -305,18 +304,18 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: InkWell(
                               onTap: () {
                                 setState(() {
-                                  if ((checkboxValue == true) &&
-                                      (selectedIndex == 2)) {
-                                    setState(() {
-                                      checkboxValue = false;
-                                      selectedIndex = 0;
-                                    });
-                                  } else {
-                                    setState(() {
-                                      checkboxValue = true;
-                                      selectedIndex = 2;
-                                    });
-                                  }
+                                  // if ((checkboxValue == true) &&
+                                  //     (selectedIndex == 2)) {
+                                  //   setState(() {
+                                  //     checkboxValue = false;
+                                  //     selectedIndex = 0;
+                                  //   });
+                                  // } else {
+                                  //   setState(() {
+                                  //     checkboxValue = true;
+                                  //     selectedIndex = 2;
+                                  //   });
+                                  // }
                                 });
                               },
                               child:
@@ -374,20 +373,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             child: InkWell(
                               onTap: () {
-                                setState(() {
-                                  if ((checkboxValue == true) &&
-                                      (selectedIndex == 3)) {
-                                    setState(() {
-                                      checkboxValue = false;
-                                      selectedIndex = 0;
-                                    });
-                                  } else {
-                                    setState(() {
-                                      checkboxValue = true;
-                                      selectedIndex = 3;
-                                    });
-                                  }
-                                });
+                                // setState(() {
+                                //   if ((checkboxValue == true) &&
+                                //       (selectedIndex == 3)) {
+                                //     setState(() {
+                                //       checkboxValue = false;
+                                //       selectedIndex = 0;
+                                //     });
+                                //   } else {
+                                //     setState(() {
+                                //       checkboxValue = true;
+                                //       selectedIndex = 3;
+                                //     });
+                                //   }
+                                // });
                               },
                               child: Image.asset("assets/images/advance.png"),
                             ),
@@ -438,20 +437,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             child: InkWell(
                               onTap: () {
-                                setState(() {
-                                  if ((checkboxValue == true) &&
-                                      (selectedIndex == 4)) {
-                                    setState(() {
-                                      checkboxValue = false;
-                                      selectedIndex = 0;
-                                    });
-                                  } else {
-                                    setState(() {
-                                      checkboxValue = true;
-                                      selectedIndex = 4;
-                                    });
-                                  }
-                                });
+                                // setState(() {
+                                //   if ((checkboxValue == true) &&
+                                //       (selectedIndex == 4)) {
+                                //     setState(() {
+                                //       checkboxValue = false;
+                                //       selectedIndex = 0;
+                                //     });
+                                //   } else {
+                                //     setState(() {
+                                //       checkboxValue = true;
+                                //       selectedIndex = 4;
+                                //     });
+                                //   }
+                                // });
                               },
                               child: Image.asset("assets/images/expert.png"),
                             ),

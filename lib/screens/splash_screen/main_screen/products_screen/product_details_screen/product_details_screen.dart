@@ -5,7 +5,6 @@ import 'package:gymmerator/bloC/auth_cubit/product_detail_cubit/product_detail_c
 import 'package:gymmerator/models/api_response/ProductDetailApiResponse.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
-import 'package:gymmerator/utils/app_colors/app_colors.dart';
 
 import '../../../../../bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart'
     hide
@@ -27,6 +26,7 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   int _quantity = 1;
+  int _selectedIndex = -1; // Initialize with -1 to indicate no selection
 
   void _incrementQuantity() {
     setState(() {
@@ -52,7 +52,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return BlocProvider(
       create: (context) => ProductDetailCubit()..detailRequest(id: widget.id),
       child: BlocConsumer<ProductDetailCubit, ProductDetailState>(
@@ -202,73 +201,128 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   Text(
                                     '\$ ${((response?.data?.price ?? 1) * _quantity)}',
                                     style: const TextStyle(
-                                        fontSize: 20, fontWeight: FontWeight.bold),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   const SizedBox(width: 20),
-                                  (response?.data?.discount?.valid  == true ) ? Text(
-                                    '${((response?.data?.discount?.percentage))}%',
-                                    style: const TextStyle(
-                                      decoration: TextDecoration.lineThrough,
-                                        fontSize: 16,color: Colors.grey),
-                                  ) :  const SizedBox(),
-
+                                  (response?.data?.discount?.valid == true)
+                                      ? Text(
+                                          '${((response?.data?.discount?.percentage))}%',
+                                          style: const TextStyle(
+                                              decoration:
+                                                  TextDecoration.lineThrough,
+                                              fontSize: 16,
+                                              color: Colors.grey),
+                                        )
+                                      : const SizedBox(),
                                 ],
                               ),
                             ],
                           ),
-                          (response?.data?.isAvailable == true ) ? Row(
-                            children: [
-                              InkWell(
-                                onTap: _decrementQuantity,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black),
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  child: const Icon(
-                                    Icons.remove,
-                                    color: Colors.black,
-                                  ),
+                          (response?.data?.isAvailable == true)
+                              ? Row(
+                                  children: [
+                                    InkWell(
+                                      onTap: _decrementQuantity,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                        ),
+                                        child: const Icon(
+                                          Icons.remove,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      '$_quantity',
+                                      style: const TextStyle(fontSize: 18),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    InkWell(
+                                      onTap: _incrementQuantity,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                        ),
+                                        child: const Icon(
+                                          Icons.add,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                )
+                              : const Text(
+                                  'Out of stock',
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.red),
                                 ),
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                '$_quantity',
-                                style: const TextStyle(fontSize: 18),
-                              ),
-                              const SizedBox(width: 8),
-                              InkWell(
-                                onTap: _incrementQuantity,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black),
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  child: const Icon(
-                                    Icons.add,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ) : const Text(
-                            'Out of stock',
-                            style: TextStyle(
-                                fontSize: 12 ,color: Colors.red),
-                          ),
                         ],
                       ),
-
-                      const SizedBox(height: 16),
-                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            response?.data?.variants?.first.variant ?? "",
-                            style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold,color: Colors.black),
-                          ),
-                        ],
+                      const SizedBox(height: 8),
+                      const Text(
+                        'Product Variants',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      const SizedBox(height: 8),
+                      SizedBox(
+                        height: 50,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: response?.data?.variants?.length ??
+                              0, // Replace with actual data source
+                          itemBuilder: (context, index) {
+                            bool isSelected = _selectedIndex == index;
+                            return GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _selectedIndex = index;
+                                });
+                              },
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Container(
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                        color: isSelected
+                                            ? Colors.blue
+                                            : Colors.black),
+                                    color: isSelected
+                                        ? Colors.blue.withOpacity(0.3)
+                                        : Colors
+                                            .white, // Change color based on selection
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      response?.data?.variants?[index]
+                                              .variant ??
+                                          "", // Replace with actual text
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: isSelected
+                                            ? Colors.blue
+                                            : Colors
+                                                .black, // Change text color based on selection
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                       const SizedBox(height: 16),
                       const Row(
@@ -286,69 +340,72 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         response?.data?.description ?? "",
                       ),
                       const SizedBox(height: 50),
-                      (response?.data?.isAvailable == true ) ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 14,
-                              horizontal: screenWidth * 0.04,
-                            ),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: AppColors.prductBuyNowButtonColor,
-                                  width: 2),
-                              borderRadius: BorderRadius.circular(9),
-                            ),
-                            child: const Text(
-                              "Buy Now",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: AppColors.prductBuyNowButtonColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          InkWell(
-                            onTap: () {
-                              _onButtonPressed(context);
-                            },
-                            child: Container(
-                              width: screenWidth * 0.6,
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              decoration: BoxDecoration(
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.black26,
-                                      offset: Offset(0, 5),
-                                      blurRadius: 5.0)
-                                ],
-                                gradient: const LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  // stops: const [0.0, 1.0],
-                                  colors: [
-                                    Color(0xffB14501),
-                                    Color(0xff3F710D),
-                                  ],
+                      (response?.data?.isAvailable == true)
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Container(
+                                //   padding: EdgeInsets.symmetric(
+                                //     vertical: 14,
+                                //     horizontal: screenWidth * 0.04,
+                                //   ),
+                                //   decoration: BoxDecoration(
+                                //     border: Border.all(
+                                //         color:
+                                //             AppColors.prductBuyNowButtonColor,
+                                //         width: 2),
+                                //     borderRadius: BorderRadius.circular(9),
+                                //   ),
+                                //   child: const Text(
+                                //     "Buy Now",
+                                //     style: TextStyle(
+                                //       fontSize: 18,
+                                //       color: AppColors.prductBuyNowButtonColor,
+                                //       fontWeight: FontWeight.bold,
+                                //     ),
+                                //   ),
+                                // ),
+                                // const SizedBox(width: 16),
+                                InkWell(
+                                  onTap: () {
+                                    _onButtonPressed(context);
+                                  },
+                                  child: Container(
+                                    width: screenWidth * 0.9,
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 16),
+                                    decoration: BoxDecoration(
+                                      boxShadow: const [
+                                        BoxShadow(
+                                            color: Colors.black26,
+                                            offset: Offset(0, 5),
+                                            blurRadius: 5.0)
+                                      ],
+                                      gradient: const LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        // stops: const [0.0, 1.0],
+                                        colors: [
+                                          Color(0xffB14501),
+                                          Color(0xff3F710D),
+                                        ],
+                                      ),
+                                      // color: Colors.deepPurple.shade300,
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: const Center(
+                                      child: Text("Add to Cart",
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.white,
+                                          )),
+                                    ),
+                                  ),
                                 ),
-                                // color: Colors.deepPurple.shade300,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              child: const Center(
-                                child: Text("Add to Cart",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                    )),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                        ],
-                      ) : const SizedBox(),
-
+                                const SizedBox(height: 20),
+                              ],
+                            )
+                          : const SizedBox(),
                       const SizedBox(height: 20),
                     ],
                   ),
@@ -362,9 +419,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   }
 
   Future<void> _onButtonPressed(BuildContext context) async {
-    context.read<ProductDetailCubit>().addToCartRequest(
-        id: response!.data!.id!,
-        quantity: _quantity,
-        variants: response!.data!.variants!.first.id!);
+    if (_selectedIndex == -1) {
+      showSnackBar(context, "Please Select Variant");
+    } else {
+      context.read<ProductDetailCubit>().addToCartRequest(
+          id: response!.data!.id!,
+          quantity: _quantity,
+          variants: response!.data!.variants![_selectedIndex].id!);
+    }
   }
 }

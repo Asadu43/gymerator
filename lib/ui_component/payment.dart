@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 Future createPaymentIntent(
     {required String name,
     required String address,
-    required String pin,
+    required String postalCode,
     required String city,
     required String state,
     required String country,
@@ -20,7 +20,7 @@ Future createPaymentIntent(
     'description': "Test Donation",
     'shipping[name]': name,
     'shipping[address][line1]': address,
-    'shipping[address][postal_code]': pin,
+    'shipping[address][postal_code]': postalCode,
     'shipping[address][city]': city,
     'shipping[address][state]': state,
     'shipping[address][country]': country

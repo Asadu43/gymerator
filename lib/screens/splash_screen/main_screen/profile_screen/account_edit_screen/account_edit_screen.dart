@@ -16,15 +16,15 @@ import '../../../../../utils/nav/nav.dart';
 class AccountEditScreen extends StatefulWidget {
   final String firstName;
   final String lastName;
-  // final String email;
   // final String phoneNumber;
   final String address1;
   final String address2;
   final String city;
   final String state;
   final String country;
+  final String? image;
 
-  const AccountEditScreen(
+  const AccountEditScreen(this.image,
       {super.key,
       required this.firstName,
       required this.lastName,
@@ -138,7 +138,7 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
                                     )
                                   : ClipRRect(
                                       borderRadius: BorderRadius.circular(80),
-                                      child: profileImage == null
+                                      child: widget.image == null
                                           ? Center(
                                               child: Text(
                                                 widget.firstName[0]
@@ -149,7 +149,7 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
                                               ),
                                             )
                                           : Image.network(
-                                              "${ApiConstants.baseUrl}${profileImage!}",
+                                              "${ApiConstants.baseUrl}/profile/${widget.image}",
                                               fit: BoxFit.cover,
                                             )),
                             ),
