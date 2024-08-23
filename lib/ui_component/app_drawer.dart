@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
 import 'package:gymmerator/models/api_response/GetAllFavoriteProductApiResponse.dart';
-import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/nft_market_place_screen/nft_market_place_screen.dart';
-import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/wallet_screen/wallet_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/my_cart_screen/my_cart_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/favorite_products_screen/favorite_products_screen.dart';
 import 'package:gymmerator/screens/splash_screen/metamask_screen/metamask_screen.dart';
@@ -95,7 +93,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         radius: 25,
                         child: Image.asset("assets/icons/metamask.png"),
                       ),
-                      title: Text("Matamask",
+                      title: Text("Metamask",
                           style: GoogleFonts.vazirmatn(
                               fontSize: 14, color: Colors.black)),
                       trailing: const Icon(
