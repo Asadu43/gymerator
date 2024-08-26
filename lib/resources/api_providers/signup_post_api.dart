@@ -10,13 +10,15 @@ class SignUpPostApi {
           data: formData, options: Options(validateStatus: (status) {
         return status! <= 500;
       }));
+      print(response.statusCode);
+      print(response.data);
       if (response.statusCode == 200) {
         return SignupApiResponse.fromJson(response.data);
       } else {
-        return SignupApiResponse(error: response.statusMessage);
+        return SignupApiResponse.fromJson(response.data);
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         return SignupApiResponse.fromJson(e.response?.data);
       } else {
         return SignupApiResponse();

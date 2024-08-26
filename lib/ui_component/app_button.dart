@@ -5,7 +5,8 @@ class AppButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
 
-  const AppButton({super.key,
+  const AppButton({
+    super.key,
     required this.text,
     required this.onPressed,
   });
@@ -33,17 +34,16 @@ class AppButton extends StatelessWidget {
       ),
       child: ElevatedButton(
         style: ButtonStyle(
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ),
           ),
-          minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
-          backgroundColor:
-          MaterialStateProperty.all(Colors.transparent),
+          minimumSize: WidgetStateProperty.all(
+              Size(MediaQuery.of(context).size.width, 60)),
+          backgroundColor: WidgetStateProperty.all(Colors.transparent),
           // elevation: MaterialStateProperty.all(3),
-          shadowColor:
-          MaterialStateProperty.all(Colors.transparent),
+          shadowColor: WidgetStateProperty.all(Colors.transparent),
         ),
         onPressed: onPressed,
         child: Padding(
@@ -54,7 +54,7 @@ class AppButton extends StatelessWidget {
           child: Text(
             text,
             textAlign: TextAlign.center,
-            style:  GoogleFonts.barlow(
+            style: GoogleFonts.vazirmatn(
               fontSize: 18,
               // fontWeight: FontWeight.w700,
               color: Colors.white,

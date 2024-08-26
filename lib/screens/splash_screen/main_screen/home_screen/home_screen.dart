@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black)),
                                 Text(
-                                    "Includes circuits to work \n every muscle",
+                                    "Includes circuits to work \nevery muscle",
                                     style: GoogleFonts.vazirmatn(
                                         fontSize: 11.sp, color: Colors.grey)),
                                 SizedBox(
@@ -169,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     },
                                     child: Text(
                                       "Start Training",
-                                      style: GoogleFonts.barlow(
+                                      style: GoogleFonts.vazirmatn(
                                         fontSize: 14,
                                         color: Colors.white,
                                       ),

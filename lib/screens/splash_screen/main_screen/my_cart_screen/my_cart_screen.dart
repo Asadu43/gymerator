@@ -8,7 +8,6 @@ import 'package:gymmerator/screens/splash_screen/main_screen/my_cart_screen/Item
 import 'package:gymmerator/screens/splash_screen/main_screen/my_cart_screen/checkout_screen/checkout_screen.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
-import 'package:gymmerator/utils/app_colors/app_colors.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../ui_component/app_button.dart';
@@ -47,8 +46,8 @@ class _MyCartScreenState extends State<MyCartScreen> {
       child: BlocConsumer<UserCartProductsCubit, UserCartProductsState>(
         listener: (context, state) {
           if (state is FailedToGetProduct) {
-            showSnackBar(context,
-                state.response.message ?? "Failed To Get Cart Product");
+            // showSnackBar(context,
+            //     state.response.message ?? "Failed To Get Cart Product");
           }
           if (state is CartProductGetSuccessfully) {
             response = state.response;
@@ -94,7 +93,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 },
                                 icon: const Icon(Icons.arrow_back_ios)),
                             SizedBox(width: screenWidth * 0.2),
-                            Text("My Cart",
+                            Text("  My Cart",
                                 style: GoogleFonts.vazirmatn(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.bold,
@@ -104,9 +103,13 @@ class _MyCartScreenState extends State<MyCartScreen> {
                         SizedBox(
                           height: screenHeight * 0.02,
                         ),
-                        (response?.data?.items?.isEmpty == true)
-                            ? const Center(
-                                child: Text("No Item in Cart"),
+                        (response?.data == null ||
+                                response?.data?.items?.isEmpty == true)
+                            ? Center(
+                                child: Text(
+                                  "No Item in Cart",
+                                  style: GoogleFonts.vazirmatn(),
+                                ),
                               )
                             : ListView.builder(
                                 itemCount: response?.data?.items?.length ?? 0,
@@ -231,7 +234,8 @@ class _MyCartScreenState extends State<MyCartScreen> {
                         SizedBox(
                           height: screenHeight * 0.05,
                         ),
-                        (response?.data?.items?.isEmpty == true)
+                        (response?.data == null ||
+                                response?.data?.items?.isEmpty == true)
                             ? const SizedBox()
                             : Center(
                                 child: Column(
@@ -245,7 +249,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                         ),
                                         Text(
                                           "\$ ${response?.data?.subTotal}",
-                                          style: const TextStyle(
+                                          style: GoogleFonts.vazirmatn(
                                             color: Colors.grey,
                                             decoration:
                                                 TextDecoration.lineThrough,
@@ -257,12 +261,13 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        const Text(
+                                        Text(
                                           "Total Discount ",
+                                          style: GoogleFonts.vazirmatn(),
                                         ),
                                         Text(
                                           "\$ ${response?.data?.discount?.toStringAsFixed(2)}",
-                                          style: const TextStyle(
+                                          style: GoogleFonts.vazirmatn(
                                             color: Colors.grey,
                                             decoration:
                                                 TextDecoration.lineThrough,
@@ -272,18 +277,20 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                     ),
                                     Text(
                                       "Total Price \$ ${response?.data?.total.toString()}",
-                                      style: const TextStyle(
+                                      style: GoogleFonts.vazirmatn(
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
                               ),
-                        (response?.data?.items?.isEmpty == true)
+                        (response?.data == null ||
+                                response?.data?.items?.isEmpty == true)
                             ? const SizedBox()
                             : SizedBox(
                                 height: screenHeight * 0.1,
                               ),
-                        (response?.data?.items?.isEmpty == true)
+                        (response?.data == null ||
+                                response?.data?.items?.isEmpty == true)
                             ? const SizedBox()
                             : AppButton(
                                 text: "Checkout",

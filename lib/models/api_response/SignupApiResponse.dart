@@ -10,7 +10,7 @@ class SignupApiResponse {
   }
 
   SignupApiResponse.fromJson(dynamic json) {
-    _data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    // _data = json['data'] != null ? Data.fromJson(json['data']) : null;
     _message = json['message'];
     _error = json['error'];
   }

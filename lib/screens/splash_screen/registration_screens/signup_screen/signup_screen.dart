@@ -14,7 +14,6 @@ import '../../../../ui_component/app_textfield.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/common/common.dart';
 import '../../../../utils/nav/nav.dart';
-import '../user_info_screen/user_info_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -74,7 +73,6 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return BlocProvider(
       create: (context) => SignupCubit(),
@@ -121,9 +119,9 @@ class _SignupScreenState extends State<SignupScreen> {
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.white)),
-                          Text("Please Sign in to get all the features",
+                          Text("Please Sign up to get all the features",
                               style: GoogleFonts.vazirmatn(
-                                  fontSize: 12.sp, color: Colors.grey)),
+                                  fontSize: 11.sp, color: Colors.grey)),
                           const SizedBox(
                             height: 20,
                           ),
@@ -153,8 +151,18 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                           AppTextField(
                             controller: phoneNumberController,
+                            textInputType: TextInputType.number,
                             hintText: "Mobile Number",
                             icon: const Icon(Icons.phone),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+
+                          AppTextField(
+                            controller: countryController,
+                            hintText: "Country",
+                            icon: const Icon(Icons.location_on_outlined),
                           ),
                           const SizedBox(
                             height: 20,
@@ -178,7 +186,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           AppTextField(
                             controller: cityController,
                             hintText: "Enter your city",
-                            icon: const Icon(Icons.person_outline_outlined),
+                            icon: const Icon(Icons.location_on_outlined),
                           ),
                           const SizedBox(
                             height: 20,
@@ -186,23 +194,17 @@ class _SignupScreenState extends State<SignupScreen> {
                           AppTextField(
                             controller: stateController,
                             hintText: "Enter your state",
-                            icon: const Icon(Icons.person_outline_outlined),
+                            icon: const Icon(Icons.location_on_outlined),
                           ),
+
                           const SizedBox(
                             height: 20,
                           ),
                           AppTextField(
-                            controller: countryController,
-                            hintText: "Country",
-                            icon: const Icon(Icons.person_outline_outlined),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          AppTextField(
+                            textInputType: TextInputType.number,
                             controller: postalCodeController,
                             hintText: "Enter your postal code",
-                            icon: const Icon(Icons.person_outline_outlined),
+                            icon: const Icon(Icons.location_on_outlined),
                           ),
                           const SizedBox(
                             height: 20,
@@ -219,21 +221,23 @@ class _SignupScreenState extends State<SignupScreen> {
                             text: "Sign up",
                             onPressed: () async {
                               await _onSignUpButtonPressed(context);
-                              // Nav.push(context, const UserInfoScreen());
                             },
+                          ),
+                          const SizedBox(
+                            height: 8,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("Already have an account? ",
-                                  style: GoogleFonts.barlow(
+                                  style: GoogleFonts.vazirmatn(
                                       fontSize: 14, color: Colors.grey)),
                               InkWell(
                                 onTap: () {
                                   Nav.push(context, const LoginScreen());
                                 },
                                 child: Text("Sign In",
-                                    style: GoogleFonts.barlow(
+                                    style: GoogleFonts.vazirmatn(
                                         fontSize: 14, color: Colors.white)),
                               ),
                             ],

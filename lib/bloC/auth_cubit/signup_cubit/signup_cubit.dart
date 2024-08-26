@@ -40,15 +40,15 @@ class SignupCubit extends Cubit<SignupState> {
       "state": state,
       "country": country,
       "postalCode": postalCode,
-      "latitude": lastName,
+      "latitude": lat,
       "longitude": long
     };
     print(data);
     final SignupApiResponse signUpModel = await _repository.signUp(data);
     if (signUpModel.error == null) {
-      emit(const SignUpSuccessful("Sign Up Successfully"));
+      emit(SignUpSuccessful(signUpModel.message ?? "Sign Up Successfully"));
     } else {
-      emit(const SignUpFailed("Sign Up Failed"));
+      emit(SignUpFailed(signUpModel.message!));
     }
   }
 }

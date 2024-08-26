@@ -83,6 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
           return LoadingScreenAnimation(
             isLoading: state is LoadingState,
             child: Scaffold(
+              resizeToAvoidBottomInset: false,
               body: Container(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
@@ -101,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: screenHeight / 7.5,
+                            height: screenHeight / 10,
                           ),
                           Image.asset('assets/images/logo_g.png'),
                           SizedBox(
@@ -112,9 +113,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.white)),
+                          SizedBox(
+                            height: screenHeight * 0.01,
+                          ),
                           Text("Please Sign in to get all the features",
                               style: GoogleFonts.vazirmatn(
-                                  fontSize: 12.sp, color: Colors.grey)),
+                                  fontSize: 11.sp, color: Colors.grey)),
                           SizedBox(
                             height: screenHeight * 0.040,
                           ),
@@ -131,6 +135,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             hintText: "password",
                             icon: const Icon(Icons.lock_open_outlined),
                           ),
+                          SizedBox(
+                            height: screenHeight * 0.01,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -140,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       context, const ForgetPasswordScreen());
                                 },
                                 child: Text("Forget Password?",
-                                    style: GoogleFonts.barlow(
+                                    style: GoogleFonts.vazirmatn(
                                         fontSize: 14, color: Colors.white)),
                               ),
                             ],
@@ -154,18 +161,21 @@ class _LoginScreenState extends State<LoginScreen> {
                               await _onSignInButtonPressed(context);
                             },
                           ),
+                          SizedBox(
+                            height: screenHeight * 0.01,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("Do you have an account? ",
-                                  style: GoogleFonts.barlow(
+                                  style: GoogleFonts.vazirmatn(
                                       fontSize: 14, color: Colors.grey)),
                               InkWell(
                                 onTap: () {
                                   Nav.push(context, const SignupScreen());
                                 },
                                 child: Text("Create Account",
-                                    style: GoogleFonts.barlow(
+                                    style: GoogleFonts.vazirmatn(
                                         fontSize: 14, color: Colors.white)),
                               ),
                             ],
@@ -183,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 width: 16,
                               ),
                               Text("OR",
-                                  style: GoogleFonts.barlow(
+                                  style: GoogleFonts.vazirmatn(
                                       fontSize: 14, color: Colors.white)),
                               const SizedBox(
                                 width: 16,
@@ -226,7 +236,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     width: 30,
                                   ),
                                   Text("Sign in with Google",
-                                      style: GoogleFonts.barlow(
+                                      style: GoogleFonts.vazirmatn(
                                           fontSize: 14, color: Colors.white)),
                                   const SizedBox(),
                                 ],

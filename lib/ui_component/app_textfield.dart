@@ -8,6 +8,7 @@ class AppTextField extends StatelessWidget {
   final Color? color;
   final Color? prefixIconColor;
   final TextStyle? fieldTextStyle;
+  final TextInputType? textInputType;
   const AppTextField(
       {super.key,
       required this.hintText,
@@ -15,6 +16,7 @@ class AppTextField extends StatelessWidget {
       this.controller,
       this.prefixIconColor,
       this.fieldTextStyle,
+        this.textInputType,
       this.color});
 
   @override
@@ -32,12 +34,13 @@ class AppTextField extends StatelessWidget {
         textAlign: TextAlign.start,
         controller: controller,
         style: fieldTextStyle ?? const TextStyle(color: Colors.white),
+        keyboardType: textInputType ?? TextInputType.text,
         decoration: InputDecoration(
             prefixIcon: icon,
             prefixIconColor: prefixIconColor ?? Colors.white,
             hintText: hintText,
             border: InputBorder.none,
-            hintStyle: GoogleFonts.barlow(fontSize: 14, color: Colors.grey)),
+            hintStyle: GoogleFonts.vazirmatn(fontSize: 14, color: Colors.grey)),
       ),
     );
   }

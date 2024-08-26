@@ -5,10 +5,11 @@ import 'package:gymmerator/bloC/auth_cubit/featured_product_cubit/featured_produ
 import 'package:gymmerator/models/api_response/FeaturedProductApiResponse.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/featured_products_screen/featured_products_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/popular_products_screen/popular_products_screen.dart';
+import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/product_item_card.dart';
 import 'package:gymmerator/ui_component/app_drawer.dart';
 import 'package:gymmerator/ui_component/app_textfield.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
-import 'package:gymmerator/ui_component/product_item_card.dart';
+import 'package:gymmerator/ui_component/featured_product_item_card.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
 
 class ProductsScreen extends StatefulWidget {
@@ -29,6 +30,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
     return BlocConsumer<FeaturedProductCubit, FeaturedProductState>(
       listener: (context, state) {
         if (state is FailedToGetProduct) {
@@ -110,8 +112,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                               child: Text(
                                 'View All ',
                                 style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
                                     color: Colors.grey),
                               ),
                             ),
@@ -119,23 +120,25 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         ],
                       ),
                       const SizedBox(height: 8.0),
-                      Expanded(
+                      SizedBox(
+                        height: screenHeight * 0.3,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount:
                               response?.data?.updatedFeaturedProducts?.length ??
                                   0,
-                          itemExtent: MediaQuery.of(context).size.width * 0.4,
+                          itemExtent: MediaQuery.of(context).size.width * 0.3,
+
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return ProductItemCard(
+                            return FeaturedProductItemCard(
                               product: response!
                                   .data!.updatedFeaturedProducts![index],
                             );
                           },
                         ),
                       ),
-                      const SizedBox(height: 16.0),
+                      // const SizedBox(height: 16.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -160,8 +163,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                               child: Text(
                                 'View All',
                                 style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
                                     color: Colors.grey),
                               ),
                             ),
@@ -174,7 +176,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           scrollDirection: Axis.horizontal,
                           itemCount:
                               response?.data?.updatedHotProducts?.length ?? 0,
-                          itemExtent: MediaQuery.of(context).size.width * 0.4,
+                          itemExtent: MediaQuery.of(context).size.width * 0.45,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return Padding(

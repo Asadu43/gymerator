@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/product_details_screen/product_details_screen.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
 
@@ -7,18 +8,18 @@ import '../bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart';
 import '../models/api_response/Product.dart';
 import '../utils/api_constants/api_constants.dart';
 
-class ProductItemCard extends StatefulWidget {
-  const ProductItemCard({
+class FeaturedProductItemCard extends StatefulWidget {
+  const FeaturedProductItemCard({
     super.key,
     required this.product,
   });
   final Product product;
 
   @override
-  State<ProductItemCard> createState() => _ProductItemCardState();
+  State<FeaturedProductItemCard> createState() => _ProductItemCardState();
 }
 
-class _ProductItemCardState extends State<ProductItemCard> {
+class _ProductItemCardState extends State<FeaturedProductItemCard> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -30,13 +31,15 @@ class _ProductItemCardState extends State<ProductItemCard> {
         }
       },
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             children: [
               Container(
-                  height: screenHeight * 0.178,
+                  height: screenHeight * 0.2,
+                  width: screenWidth * 0.33,
                   margin: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -84,28 +87,17 @@ class _ProductItemCardState extends State<ProductItemCard> {
                 widget.product.name!,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style:  GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
               ),
             ),
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.4,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                "\$${widget.product.price.toString()}",
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.4,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(widget.product.description!,
-                  maxLines: 2, overflow: TextOverflow.ellipsis),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              "\$${widget.product.price.toString()}",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style:  GoogleFonts.vazirmatn(color: Colors.grey),
             ),
           ),
         ],

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../ui_component/app_button.dart';
+import '../../../../ui_component/show_snackbar.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/nav/nav.dart';
 import '../complete_setup/complete_setup.dart';
@@ -345,68 +346,72 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                 ),
                 const Spacer(),
                 AppButton(
-                  text: "Submit",
+                  text: "Next",
                   onPressed: () async {
-                    print("Value... ${widget.weightValue}");
-                    print("Value... ${widget.heightValue}");
-                    print("Value... ${widget.goal}");
-                    print("Value... ${widget.gender}");
-                    print("Value... ${widget.weightUnit}");
-                    print("Value... ${widget.heightUnit}");
-                    print("age... ${widget.age}");
 
-                    if (widget.goal == "Lose Weight") {
-                      Nav.push(
-                          context,
-                          CompleteSetup(
-                            gender: "Male",
-                            heightUnit: "cm",
-                            heightValue: widget.heightValue,
-                            weightUnit: "Kg",
-                            weightValue: widget.weightValue,
-                            age: int.parse(widget.age),
-                            goal: 0,
-                            plan: selectedIndex,
-                          ));
-                    } else if (widget.goal == "Keep Fit") {
-                      Nav.push(
-                          context,
-                          CompleteSetup(
-                            gender: "Male",
-                            heightUnit: "cm",
-                            heightValue: widget.heightValue,
-                            weightUnit: "Kg",
-                            weightValue: widget.weightValue,
-                            age: int.parse(widget.age),
-                            goal: 1,
-                            plan: selectedIndex,
-                          ));
-                    } else if (widget.goal == "Get Stronger") {
-                      Nav.push(
-                          context,
-                          CompleteSetup(
-                            gender: "Male",
-                            heightUnit: "cm",
-                            heightValue: widget.heightValue,
-                            weightUnit: "Kg",
-                            weightValue: widget.weightValue,
-                            age: int.parse(widget.age),
-                            goal: 2,
-                            plan: selectedIndex,
-                          ));
-                    } else if (widget.goal == "Gain Muscle Mass") {
-                      Nav.push(
-                          context,
-                          CompleteSetup(
-                            gender: "Male",
-                            heightUnit: "cm",
-                            heightValue: widget.heightValue,
-                            weightUnit: "Kg",
-                            weightValue: widget.weightValue,
-                            age: int.parse(widget.age),
-                            goal: 3,
-                            plan: selectedIndex,
-                          ));
+                    if (selectedIndex == 0) {
+                      showSnackBar(context, "Please select plan");
+                    } else {
+                      print("Value... ${widget.weightValue}");
+                      print("Value... ${widget.heightValue}");
+                      print("Value... ${widget.goal}");
+                      print("Value... ${widget.gender}");
+                      print("Value... ${widget.weightUnit}");
+                      print("Value... ${widget.heightUnit}");
+                      print("age... ${widget.age}");
+                      if (widget.goal == "Lose Weight") {
+                        Nav.push(
+                            context,
+                            CompleteSetup(
+                              gender: "Male",
+                              heightUnit: "cm",
+                              heightValue: widget.heightValue,
+                              weightUnit: "Kg",
+                              weightValue: widget.weightValue,
+                              age: int.parse(widget.age),
+                              goal: 0,
+                              plan: selectedIndex,
+                            ));
+                      } else if (widget.goal == "Keep Fit") {
+                        Nav.push(
+                            context,
+                            CompleteSetup(
+                              gender: "Male",
+                              heightUnit: "cm",
+                              heightValue: widget.heightValue,
+                              weightUnit: "Kg",
+                              weightValue: widget.weightValue,
+                              age: int.parse(widget.age),
+                              goal: 1,
+                              plan: selectedIndex,
+                            ));
+                      } else if (widget.goal == "Get Stronger") {
+                        Nav.push(
+                            context,
+                            CompleteSetup(
+                              gender: "Male",
+                              heightUnit: "cm",
+                              heightValue: widget.heightValue,
+                              weightUnit: "Kg",
+                              weightValue: widget.weightValue,
+                              age: int.parse(widget.age),
+                              goal: 2,
+                              plan: selectedIndex,
+                            ));
+                      } else if (widget.goal == "Gain Muscle Mass") {
+                        Nav.push(
+                            context,
+                            CompleteSetup(
+                              gender: "Male",
+                              heightUnit: "cm",
+                              heightValue: widget.heightValue,
+                              weightUnit: "Kg",
+                              weightValue: widget.weightValue,
+                              age: int.parse(widget.age),
+                              goal: 3,
+                              plan: selectedIndex,
+                            ));
+                      }
                     }
                   },
                 ),

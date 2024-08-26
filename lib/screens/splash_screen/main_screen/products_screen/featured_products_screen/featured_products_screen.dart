@@ -4,11 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart';
 import 'package:gymmerator/ui_component/app_textfield.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
-import 'package:gymmerator/ui_component/product_item_card.dart';
 
 import '../../../../../models/api_response/FeaturedProductApiResponse.dart';
 import '../../../../../ui_component/show_snackbar.dart';
-import 'featured_product_item_card.dart';
+import '../product_item_card.dart';
 
 class FeaturedProductsScreen extends StatefulWidget {
   const FeaturedProductsScreen({super.key});

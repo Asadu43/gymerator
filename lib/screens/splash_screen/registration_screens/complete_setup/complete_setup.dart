@@ -95,11 +95,11 @@ class _CompleteSetupState extends State<CompleteSetup> {
                       height: screenHeight * 0.1,
                     ),
                     Text(
-                      "We create your training plan",
+                      "We Create Your \nTraining Plan",
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.barlow(
+                      style: GoogleFonts.vazirmatn(
                           fontWeight: FontWeight.bold,
-                          fontSize: 18.sp,
+                          fontSize: 16.sp,
                           color: AppColors.white),
                     ),
                     SizedBox(
@@ -123,7 +123,7 @@ class _CompleteSetupState extends State<CompleteSetup> {
                       percent: percentage,
                       center: Text(
                         percent,
-                        style: GoogleFonts.barlow(
+                        style: GoogleFonts.vazirmatn(
                             fontWeight: FontWeight.bold,
                             fontSize: 20.0,
                             color: AppColors.white),
@@ -137,7 +137,7 @@ class _CompleteSetupState extends State<CompleteSetup> {
                     Text(
                       (percentage == 1) ? "Completed" : "Please Wait",
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.barlow(
+                      style: GoogleFonts.vazirmatn(
                           fontSize: 13.sp, color: AppColors.white),
                     ),
                     const Spacer(),
@@ -147,7 +147,6 @@ class _CompleteSetupState extends State<CompleteSetup> {
                             onPressed: () async {
 
                               await _savePressButtonPressed(context);
-                              print(widget.plan);
                               // Nav.push(context, const MainScreen());
                             },
                           )
