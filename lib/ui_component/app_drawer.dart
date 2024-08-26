@@ -79,7 +79,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
                 title: Text("Metamask",
                     style: GoogleFonts.vazirmatn(
-                        fontSize: 14, color: Colors.black)),
+                        fontSize: 12, color: Colors.black)),
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
                   color: Colors.black,
@@ -121,7 +121,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
                   color: Colors.black,
-                  size: 15,
+                  size: 12,
                 )),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -138,7 +138,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
                 title: Text("Favorite product",
                     style: GoogleFonts.vazirmatn(
-                        fontSize: 14, color: Colors.black)),
+                        fontSize: 12, color: Colors.black)),
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
                   color: Colors.black,

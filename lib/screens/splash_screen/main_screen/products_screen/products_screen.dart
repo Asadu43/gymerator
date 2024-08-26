@@ -111,9 +111,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
                               padding: EdgeInsets.all(8.0),
                               child: Text(
                                 'View All ',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey),
+                                style:
+                                    TextStyle(fontSize: 14, color: Colors.grey),
                               ),
                             ),
                           ),
@@ -128,7 +127,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
                               response?.data?.updatedFeaturedProducts?.length ??
                                   0,
                           itemExtent: MediaQuery.of(context).size.width * 0.3,
-
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return FeaturedProductItemCard(
@@ -162,9 +160,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
                               padding: EdgeInsets.all(8.0),
                               child: Text(
                                 'View All',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey),
+                                style:
+                                    TextStyle(fontSize: 14, color: Colors.grey),
                               ),
                             ),
                           ),
