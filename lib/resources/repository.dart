@@ -5,6 +5,8 @@ import 'package:gymmerator/models/api_response/CreateOrderApiResponse.dart';
 import 'package:gymmerator/models/api_response/FeaturedProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/ForgetPasswordApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllFavoriteProductApiResponse.dart';
+import 'package:gymmerator/models/api_response/GetAllProductApiResponse.dart';
+import 'package:gymmerator/models/api_response/GetAllUserOrdersApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllUserProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/LoginWithGoogleApiResponse.dart';
 import 'package:gymmerator/models/api_response/ProductDetailApiResponse.dart';
@@ -17,6 +19,7 @@ import 'package:gymmerator/models/api_response/VerifyOTPApiResponse.dart';
 import 'package:gymmerator/resources/api_providers/add_favorite_product_post_api.dart';
 import 'package:gymmerator/resources/api_providers/add_to_cart_post_api.dart';
 import 'package:gymmerator/resources/api_providers/all_favorite_product_get_api.dart';
+import 'package:gymmerator/resources/api_providers/all_product_get_api.dart';
 import 'package:gymmerator/resources/api_providers/create_order_post_api.dart';
 import 'package:gymmerator/resources/api_providers/featured_product_get_api.dart';
 import 'package:gymmerator/resources/api_providers/forget_password_post_api.dart';
@@ -28,6 +31,7 @@ import 'package:gymmerator/resources/api_providers/update_password_put_api.dart'
 import 'package:gymmerator/resources/api_providers/update_user_info_post_api.dart';
 import 'package:gymmerator/resources/api_providers/update_user_profile_post_api.dart';
 import 'package:gymmerator/resources/api_providers/user_cart_products_get_api.dart';
+import 'package:gymmerator/resources/api_providers/user_orders_get_api.dart';
 import 'package:gymmerator/resources/api_providers/verify_Otp_get_api.dart';
 
 import '../models/api_response/SignInApiResponse.dart';
@@ -124,5 +128,15 @@ class Repository {
   Future<CreateOrderApiResponse> createRequest(Map data) {
     final request = CreateOrderPostApi();
     return request.createRequest(data);
+  }
+
+  Future<GetAllProductApiResponse> getProductRequest() {
+    final request = AllProductGetApi();
+    return request.getProductRequest();
+  }
+
+  Future<GetAllUserOrdersApiResponse> getAllOrdersRequest() {
+    final request = UserOrdersGetApi();
+    return request.getAllOrdersRequest();
   }
 }

@@ -34,6 +34,7 @@ class FailedToRemoveProduct extends FeaturedProductState {
 
   const FailedToRemoveProduct(this.response);
 }
+
 class AddToFavoriteSuccessfully extends FeaturedProductState {
   final AddFavoriteProductApiResponse response;
 
@@ -44,4 +45,16 @@ class FailedAddToFavoriteProduct extends FeaturedProductState {
   final AddFavoriteProductApiResponse response;
 
   const FailedAddToFavoriteProduct(this.response);
+}
+
+class GetAllProductSuccessfully extends FeaturedProductState {
+  final GetAllProductApiResponse response;
+
+  const GetAllProductSuccessfully(this.response);
+}
+
+class FailedToGetAllProduct extends FeaturedProductState {
+  final String response;
+
+  const FailedToGetAllProduct(this.response);
 }
