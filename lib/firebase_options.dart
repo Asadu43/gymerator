@@ -65,5 +65,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'test-app-689d0.appspot.com',
     iosBundleId: 'com.gymmerator.gymmerator',
   );
-
 }

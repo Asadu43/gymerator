@@ -1,12 +1,13 @@
 class GetAllUserProductApiResponse {
   GetAllUserProductApiResponse({
-      Data? data, 
-      String? message, 
-      dynamic error,}){
+    Data? data,
+    String? message,
+    dynamic error,
+  }) {
     _data = data;
     _message = message;
     _error = error;
-}
+  }
 
   GetAllUserProductApiResponse.fromJson(dynamic json) {
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
@@ -33,7 +34,8 @@ class Data {
     double? subTotal,
     int? tax,
     double? total,
-    String? updatedAt,}){
+    String? updatedAt,
+  }) {
     _id = id;
     _user = user;
     _v = v;
@@ -58,9 +60,9 @@ class Data {
         _items?.add(Items.fromJson(v));
       });
     }
-    _subTotal = (json['subTotal']as num).toDouble();
+    _subTotal = (json['subTotal'] as num).toDouble();
     _tax = json['tax'];
-    _total = (json['total']as num).toDouble();
+    _total = (json['total'] as num).toDouble();
     _updatedAt = json['updatedAt'];
   }
   String? _id;
@@ -84,7 +86,6 @@ class Data {
   int? get tax => _tax;
   double? get total => _total;
   String? get updatedAt => _updatedAt;
-
 }
 
 class Items {
@@ -94,7 +95,8 @@ class Items {
     int? quantity,
     int? unitPrice,
     int? total,
-    String? id,}){
+    String? id,
+  }) {
     _product = product;
     _variants = variants;
     _quantity = quantity;
@@ -104,7 +106,8 @@ class Items {
   }
 
   Items.fromJson(dynamic json) {
-    _product = json['product'] != null ? Product.fromJson(json['product']) : null;
+    _product =
+        json['product'] != null ? Product.fromJson(json['product']) : null;
     if (json['variants'] != null) {
       _variants = [];
       json['variants'].forEach((v) {
@@ -129,7 +132,6 @@ class Items {
   int? get unitPrice => _unitPrice;
   int? get total => _total;
   String? get id => _id;
-
 }
 
 class Variants {
@@ -137,7 +139,8 @@ class Variants {
     String? id,
     String? variantType,
     String? variant,
-    int? v,}){
+    int? v,
+  }) {
     _id = id;
     _variantType = variantType;
     _variant = variant;
@@ -168,7 +171,8 @@ class Product {
     String? description,
     int? price,
     int? stock,
-    List<String>? images,}){
+    List<String>? images,
+  }) {
     _id = id;
     _name = name;
     _description = description;

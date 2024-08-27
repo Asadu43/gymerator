@@ -1,5 +1,3 @@
-
-
 import 'package:dio/dio.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gymmerator/models/api_response/RemoveCartItemApiResponse.dart';
@@ -12,7 +10,7 @@ class RemoveCartItemPutApi {
       final Dio dio = Dio();
       dio.options.headers["x-auth-token"] = GetStorage().read('token');
       final Response response =
-      await dio.put(ApiConstants.removeCartItem, queryParameters: {
+          await dio.put(ApiConstants.removeCartItem, queryParameters: {
         'itemID': id,
       }, options: Options(validateStatus: (status) {
         return status! <= 500;
@@ -25,7 +23,7 @@ class RemoveCartItemPutApi {
         return RemoveCartItemApiResponse.fromJson(response.data);
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         return RemoveCartItemApiResponse.fromJson(e.response?.data);
       } else {
         return RemoveCartItemApiResponse();

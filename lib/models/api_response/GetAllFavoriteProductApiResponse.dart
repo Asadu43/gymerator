@@ -46,7 +46,8 @@ class Data {
     int? v,
     int? age,
     String? gender,
-    String? profile,}){
+    String? profile,
+  }) {
     _address = address;
     _location = location;
     _height = height;
@@ -70,8 +71,10 @@ class Data {
   }
 
   Data.fromJson(dynamic json) {
-    _address = json['address'] != null ? Address.fromJson(json['address']) : null;
-    _location = json['location'] != null ? Location.fromJson(json['location']) : null;
+    _address =
+        json['address'] != null ? Address.fromJson(json['address']) : null;
+    _location =
+        json['location'] != null ? Location.fromJson(json['location']) : null;
     _height = json['height'] != null ? Height.fromJson(json['height']) : null;
     _weight = json['weight'] != null ? Weight.fromJson(json['weight']) : null;
     _id = json['_id'];
@@ -137,13 +140,13 @@ class Data {
   int? get age => _age;
   String? get gender => _gender;
   String? get profile => _profile;
-
 }
 
 class Discount {
   Discount({
     int? percentage,
-    bool? valid,}){
+    bool? valid,
+  }) {
     _percentage = percentage;
     _valid = valid;
   }
@@ -157,13 +160,13 @@ class Discount {
 
   int? get percentage => _percentage;
   bool? get valid => _valid;
-
 }
 
 class Specifications {
   Specifications({
     String? brand,
-    String? modelNumber,}){
+    String? modelNumber,
+  }) {
     _brand = brand;
     _modelNumber = modelNumber;
   }
@@ -177,13 +180,13 @@ class Specifications {
 
   String? get brand => _brand;
   String? get modelNumber => _modelNumber;
-
 }
 
 class Weight {
   Weight({
     String? unit,
-    double? value,}){
+    double? value,
+  }) {
     _unit = unit;
     _value = value;
   }
@@ -214,13 +217,13 @@ class Weight {
 
   String? get unit => _unit;
   double? get value => _value;
-
 }
 
 class Height {
   Height({
     String? unit,
-    double? value,}){
+    double? value,
+  }) {
     _unit = unit;
     _value = value;
   }
@@ -256,7 +259,8 @@ class Height {
 class Location {
   Location({
     String? latitude,
-    String? longitude,}){
+    String? longitude,
+  }) {
     _latitude = latitude;
     _longitude = longitude;
   }
@@ -270,7 +274,6 @@ class Location {
 
   String? get latitude => _latitude;
   String? get longitude => _longitude;
-
 }
 
 class Address {
@@ -280,7 +283,8 @@ class Address {
     String? city,
     String? state,
     String? country,
-    String? postalCode,}){
+    String? postalCode,
+  }) {
     _address1 = address1;
     _address2 = address2;
     _city = city;

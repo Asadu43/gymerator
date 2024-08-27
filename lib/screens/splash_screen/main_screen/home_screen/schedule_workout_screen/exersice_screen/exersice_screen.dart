@@ -57,7 +57,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                 ),
                 InkWell(
                   onTap: () {
-                    Nav.push(context,const ExerciseDetailsScreen());
+                    Nav.push(context, const ExerciseDetailsScreen());
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -86,7 +86,8 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                   Text("Interval pilates",
                                       textAlign: TextAlign.center,
                                       style: GoogleFonts.vazirmatn(
-                                          fontSize: 14.sp, color: Colors.black)),
+                                          fontSize: 14.sp,
+                                          color: Colors.black)),
                                   Text("00:30",
                                       textAlign: TextAlign.start,
                                       style: GoogleFonts.vazirmatn(

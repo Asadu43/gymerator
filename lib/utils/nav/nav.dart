@@ -8,11 +8,15 @@ class Nav {
   }
 
   static void pushReplace(BuildContext context, Widget widget) {
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => widget));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => widget));
   }
 
   static void pushAndRemoveAllRoute(BuildContext context, Widget widget) {
-    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => widget), (Route route) => false);
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => widget),
+        (Route route) => false);
   }
 
   static void pop(BuildContext context) {

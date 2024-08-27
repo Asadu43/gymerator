@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
-import '../../../../../models/api_response/GetAllFavoriteProductApiResponse.dart';
 import '../../../../../models/api_response/Product.dart';
 import '../../../../../utils/api_constants/api_constants.dart';
 import '../../../../../utils/nav/nav.dart';
@@ -64,14 +63,15 @@ class _ProductItemCardState extends State<FavoriteProductItemCard> {
                   ),
                 ),
               ),
-
               Positioned(
                   right: 8.0,
                   top: 8.0,
                   child: InkWell(
                     onTap: () async {
                       setState(() {
-                         context.read<AllFavoriteProductsCubit>().removeRequest(id: widget.product.id!);
+                        context
+                            .read<AllFavoriteProductsCubit>()
+                            .removeRequest(id: widget.product.id!);
                       });
                     },
                     child: const Icon(Icons.favorite, color: Colors.red),

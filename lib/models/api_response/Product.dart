@@ -21,7 +21,8 @@ class Product {
     String? createdAt,
     String? updatedAt,
     int? v,
-    bool? isFavorite,}){
+    bool? isFavorite,
+  }) {
     _specifications = specifications;
     _discount = discount;
     _id = id;
@@ -47,8 +48,11 @@ class Product {
   }
 
   Product.fromJson(dynamic json) {
-    _specifications = json['specifications'] != null ? Specifications.fromJson(json['specifications']) : null;
-    _discount = json['discount'] != null ? Discount.fromJson(json['discount']) : null;
+    _specifications = json['specifications'] != null
+        ? Specifications.fromJson(json['specifications'])
+        : null;
+    _discount =
+        json['discount'] != null ? Discount.fromJson(json['discount']) : null;
     _id = json['_id'];
     _name = json['name'];
     _description = json['description'];
@@ -130,14 +134,14 @@ class Product {
   String? get updatedAt => _updatedAt;
   int? get v => _v;
   bool? get isFavorite => _isFavorite;
-
 }
 
 class Variants {
   Variants({
     String? id,
     String? variantType,
-    String? variant,}){
+    String? variant,
+  }) {
     _id = id;
     _variantType = variantType;
     _variant = variant;
@@ -155,14 +159,13 @@ class Variants {
   String? get id => _id;
   String? get variantType => _variantType;
   String? get variant => _variant;
-
-
 }
 
 class Discount {
   Discount({
     int? percentage,
-    bool? valid,}){
+    bool? valid,
+  }) {
     _percentage = percentage;
     _valid = valid;
   }
@@ -176,14 +179,13 @@ class Discount {
 
   int? get percentage => _percentage;
   bool? get valid => _valid;
-
-
 }
 
 class Specifications {
   Specifications({
     String? brand,
-    String? modelNumber,}){
+    String? modelNumber,
+  }) {
     _brand = brand;
     _modelNumber = modelNumber;
   }
@@ -197,7 +199,6 @@ class Specifications {
 
   String? get brand => _brand;
   String? get modelNumber => _modelNumber;
-
 }
 
 class RelatedProducts {
@@ -207,7 +208,8 @@ class RelatedProducts {
     String? description,
     int? stock,
     String? category,
-    List<String>? images,}){
+    List<String>? images,
+  }) {
     _id = id;
     _name = name;
     _description = description;
@@ -237,5 +239,4 @@ class RelatedProducts {
   int? get stock => _stock;
   String? get category => _category;
   List<String>? get images => _images;
-
 }

@@ -30,14 +30,14 @@ class SignInPostApi {
     }
   }
 
-
-  Future<LoginWithGoogleApiResponse> loginWithGoogleRequest(Map formData) async {
+  Future<LoginWithGoogleApiResponse> loginWithGoogleRequest(
+      Map formData) async {
     try {
       final Dio dio = Dio();
       final Response response = await dio.post(ApiConstants.loginWithGoogle,
           data: formData, options: Options(validateStatus: (status) {
-            return status! <= 500;
-          }));
+        return status! <= 500;
+      }));
       print(response.data);
       if (response.statusCode == 200) {
         storeToken(response.headers['x-auth-token']!.first);

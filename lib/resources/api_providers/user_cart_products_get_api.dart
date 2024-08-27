@@ -1,6 +1,3 @@
-
-
-
 import 'package:dio/dio.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gymmerator/models/api_response/GetAllUserProductApiResponse.dart';
@@ -25,7 +22,7 @@ class UserCartProductsGetApi {
         return GetAllUserProductApiResponse.fromJson(response.data);
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         return GetAllUserProductApiResponse.fromJson(e.response?.data);
       } else {
         return GetAllUserProductApiResponse();

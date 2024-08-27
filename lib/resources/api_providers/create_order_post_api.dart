@@ -1,5 +1,3 @@
-
-
 import 'package:dio/dio.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gymmerator/models/api_response/CreateOrderApiResponse.dart';
@@ -13,8 +11,8 @@ class CreateOrderPostApi {
       dio.options.headers["x-auth-token"] = GetStorage().read('token');
       final Response response = await dio.post(ApiConstants.createOrder,
           data: formData, options: Options(validateStatus: (status) {
-            return status! <= 500;
-          }));
+        return status! <= 500;
+      }));
       print(response.statusCode);
       print(response.data);
       print("response.data");

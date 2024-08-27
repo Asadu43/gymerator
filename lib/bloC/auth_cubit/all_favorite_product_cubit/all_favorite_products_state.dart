@@ -34,4 +34,3 @@ class FailedToRemoveProduct extends AllFavoriteProductsState {
 
   const FailedToRemoveProduct(this.response);
 }
-

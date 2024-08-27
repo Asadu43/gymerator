@@ -1,12 +1,13 @@
 class OrderPlaceApiResponse {
   OrderPlaceApiResponse({
-      Data? data, 
-      String? message, 
-      dynamic error,}){
+    Data? data,
+    String? message,
+    dynamic error,
+  }) {
     _data = data;
     _message = message;
     _error = error;
-}
+  }
 
   OrderPlaceApiResponse.fromJson(dynamic json) {
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
@@ -30,20 +31,20 @@ class OrderPlaceApiResponse {
     map['error'] = _error;
     return map;
   }
-
 }
 
 class Data {
   Data({
-      String? user, 
-      List<Products>? products, 
-      int? totalAmount, 
-      String? status, 
-      String? paymentMethod, 
-      String? id, 
-      String? createdAt, 
-      String? updatedAt, 
-      int? v,}){
+    String? user,
+    List<Products>? products,
+    int? totalAmount,
+    String? status,
+    String? paymentMethod,
+    String? id,
+    String? createdAt,
+    String? updatedAt,
+    int? v,
+  }) {
     _user = user;
     _products = products;
     _totalAmount = totalAmount;
@@ -53,7 +54,7 @@ class Data {
     _createdAt = createdAt;
     _updatedAt = updatedAt;
     _v = v;
-}
+  }
 
   Data.fromJson(dynamic json) {
     _user = json['user'];
@@ -106,22 +107,22 @@ class Data {
     map['__v'] = _v;
     return map;
   }
-
 }
 
 class Products {
   Products({
-      String? product, 
-      int? quantity, 
-      int? unitPrice, 
-      int? total, 
-      String? id,}){
+    String? product,
+    int? quantity,
+    int? unitPrice,
+    int? total,
+    String? id,
+  }) {
     _product = product;
     _quantity = quantity;
     _unitPrice = unitPrice;
     _total = total;
     _id = id;
-}
+  }
 
   Products.fromJson(dynamic json) {
     _product = json['product'];
@@ -151,5 +152,4 @@ class Products {
     map['_id'] = _id;
     return map;
   }
-
 }

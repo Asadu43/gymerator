@@ -63,19 +63,19 @@ class _ProductItemCardState extends State<FeaturedProductItemCard> {
                   top: 8.0,
                   child: widget.product.isFavorite == true
                       ? IconButton(
-                      onPressed: () {
-                        context
-                            .read<FeaturedProductCubit>()
-                            .removeRequest(id: widget.product.id!);
-                      },
-                      icon: const Icon(Icons.favorite, color: Colors.red))
+                          onPressed: () {
+                            context
+                                .read<FeaturedProductCubit>()
+                                .removeRequest(id: widget.product.id!);
+                          },
+                          icon: const Icon(Icons.favorite, color: Colors.red))
                       : IconButton(
-                      onPressed: () {
-                        context
-                            .read<FeaturedProductCubit>()
-                            .addToFavoriteRequest(id: widget.product.id!);
-                      },
-                      icon: const Icon(Icons.favorite_border)))
+                          onPressed: () {
+                            context
+                                .read<FeaturedProductCubit>()
+                                .addToFavoriteRequest(id: widget.product.id!);
+                          },
+                          icon: const Icon(Icons.favorite_border)))
             ],
           ),
           const SizedBox(height: 8.0),
@@ -87,7 +87,7 @@ class _ProductItemCardState extends State<FeaturedProductItemCard> {
                 widget.product.name!,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style:  GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
+                style: GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -97,7 +97,7 @@ class _ProductItemCardState extends State<FeaturedProductItemCard> {
               "\$${widget.product.price.toString()}",
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style:  GoogleFonts.vazirmatn(color: Colors.grey),
+              style: GoogleFonts.vazirmatn(color: Colors.grey),
             ),
           ),
         ],

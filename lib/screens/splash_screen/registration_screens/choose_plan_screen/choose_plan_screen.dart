@@ -348,7 +348,6 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                 AppButton(
                   text: "Next",
                   onPressed: () async {
-
                     if (selectedIndex == 0) {
                       showSnackBar(context, "Please select plan");
                     } else {

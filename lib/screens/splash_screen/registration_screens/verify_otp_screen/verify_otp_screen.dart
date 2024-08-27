@@ -28,14 +28,12 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   bool _isTextVisible = true;
 
   void _hideTextForOneMinute() {
-
     context.read<VerifyOtpCubit>().forgetRequest(
-      email: widget.email,
-    );
+          email: widget.email,
+        );
     setState(() {
       _isTextVisible = false;
     });
-
 
     Timer(const Duration(minutes: 1), () {
       setState(() {
@@ -115,7 +113,8 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                           },
                         ),
                         const SizedBox(height: 20),
-                        if (_isTextVisible)  Row(
+                        if (_isTextVisible)
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("Did not receive OTP? ",
@@ -129,10 +128,10 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                               ),
                             ],
                           ),
-
-                        if (!_isTextVisible) Text("OTP send successfully please check your email ",
-                            style: GoogleFonts.barlow(
-                                fontSize: 14, color: Colors.white)),
+                        if (!_isTextVisible)
+                          Text("OTP send successfully please check your email ",
+                              style: GoogleFonts.barlow(
+                                  fontSize: 14, color: Colors.white)),
                         const Spacer(),
                         AppButton(
                           text: "Verify",

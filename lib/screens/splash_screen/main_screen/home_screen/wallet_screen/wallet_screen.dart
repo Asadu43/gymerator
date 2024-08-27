@@ -176,7 +176,11 @@ class _WalletScreenState extends State<WalletScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Image.asset("assets/icons/send.png",height: 20,width: 20,),
+                          Image.asset(
+                            "assets/icons/send.png",
+                            height: 20,
+                            width: 20,
+                          ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -218,7 +222,11 @@ class _WalletScreenState extends State<WalletScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Image.asset("assets/icons/send.png",height: 20,width: 20,),
+                          Image.asset(
+                            "assets/icons/send.png",
+                            height: 20,
+                            width: 20,
+                          ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -260,7 +268,11 @@ class _WalletScreenState extends State<WalletScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Image.asset("assets/icons/send.png",height: 20,width: 20,),
+                          Image.asset(
+                            "assets/icons/send.png",
+                            height: 20,
+                            width: 20,
+                          ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,

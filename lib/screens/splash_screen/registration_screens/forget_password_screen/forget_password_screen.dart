@@ -36,7 +36,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           }
           if (state is CodeSendSuccessful) {
             showSnackBar(context, state.message, type: SnackBarType.success);
-            Nav.pushReplace(context, VerifyOtpScreen(email: emailController.text));
+            Nav.pushReplace(
+                context, VerifyOtpScreen(email: emailController.text));
             emailController.clear();
           }
         },

@@ -4,11 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/product_details_screen/product_details_screen.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
 
-
 import '../../../../bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart';
 import '../../../../models/api_response/Product.dart';
 import '../../../../utils/api_constants/api_constants.dart';
-
 
 class ProductItemCard extends StatefulWidget {
   const ProductItemCard({
@@ -64,19 +62,19 @@ class _ProductItemCardState extends State<ProductItemCard> {
                   top: 8.0,
                   child: widget.product.isFavorite == true
                       ? IconButton(
-                      onPressed: () {
-                        context
-                            .read<FeaturedProductCubit>()
-                            .removeRequest(id: widget.product.id!);
-                      },
-                      icon: const Icon(Icons.favorite, color: Colors.red))
+                          onPressed: () {
+                            context
+                                .read<FeaturedProductCubit>()
+                                .removeRequest(id: widget.product.id!);
+                          },
+                          icon: const Icon(Icons.favorite, color: Colors.red))
                       : IconButton(
-                      onPressed: () {
-                        context
-                            .read<FeaturedProductCubit>()
-                            .addToFavoriteRequest(id: widget.product.id!);
-                      },
-                      icon: const Icon(Icons.favorite_border)))
+                          onPressed: () {
+                            context
+                                .read<FeaturedProductCubit>()
+                                .addToFavoriteRequest(id: widget.product.id!);
+                          },
+                          icon: const Icon(Icons.favorite_border)))
             ],
           ),
           const SizedBox(height: 8.0),
@@ -88,7 +86,7 @@ class _ProductItemCardState extends State<ProductItemCard> {
                 widget.product.name!,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style:  GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
+                style: GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -107,10 +105,13 @@ class _ProductItemCardState extends State<ProductItemCard> {
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.4,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(widget.product.description!,
-                  maxLines: 2, overflow: TextOverflow.ellipsis, style: GoogleFonts.vazirmatn(),
-            )),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  widget.product.description!,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.vazirmatn(),
+                )),
           ),
         ],
       ),

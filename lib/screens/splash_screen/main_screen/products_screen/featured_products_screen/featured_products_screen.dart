@@ -24,24 +24,33 @@ class _FeaturedProductsScreenState extends State<FeaturedProductsScreen> {
     context.read<FeaturedProductCubit>().featuredRequest();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeaturedProductCubit, FeaturedProductState>(
       listener: (context, state) {
-
-        if(state is FailedToGetProduct){
-          showSnackBar(context, state.response.message ?? "Failed To Get Products");
-        }if (state is FeaturedProductGetSuccessfully){
+        if (state is FailedToGetProduct) {
+          showSnackBar(
+              context, state.response.message ?? "Failed To Get Products");
+        }
+        if (state is FeaturedProductGetSuccessfully) {
           response = state.response;
-        }if(state is FailedToRemoveProduct){
-          showSnackBar(context, state.response.message ?? "Failed To Remove Favorite Product");
-        }if(state is RemoveFavoriteProductGetSuccessfully){
-          showSnackBar(context, state.response.message ?? "Remove Favorite Product Successfully",type: SnackBarType.success);
+        }
+        if (state is FailedToRemoveProduct) {
+          showSnackBar(context,
+              state.response.message ?? "Failed To Remove Favorite Product");
+        }
+        if (state is RemoveFavoriteProductGetSuccessfully) {
+          showSnackBar(context,
+              state.response.message ?? "Remove Favorite Product Successfully",
+              type: SnackBarType.success);
           context.read<FeaturedProductCubit>().featuredRequest();
-        }if(state is FailedAddToFavoriteProduct){
-
-        }if(state is AddToFavoriteSuccessfully){
-          showSnackBar(context, state.response.message ?? "Add Favorite Product Successfully",type: SnackBarType.success);
+        }
+        if (state is FailedAddToFavoriteProduct) {}
+        if (state is AddToFavoriteSuccessfully) {
+          showSnackBar(context,
+              state.response.message ?? "Add Favorite Product Successfully",
+              type: SnackBarType.success);
           context.read<FeaturedProductCubit>().featuredRequest();
         }
       },
@@ -51,8 +60,8 @@ class _FeaturedProductsScreenState extends State<FeaturedProductsScreen> {
           child: Scaffold(
             appBar: AppBar(
                 title: const Text('Featured Products',
-                    style: TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold)),
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back_ios),
                   onPressed: () {
@@ -72,20 +81,22 @@ class _FeaturedProductsScreenState extends State<FeaturedProductsScreen> {
                         color: Colors.grey,
                         prefixIconColor: Colors.grey,
                         fieldTextStyle:
-                        GoogleFonts.vazirmatn(color: Colors.black),
+                            GoogleFonts.vazirmatn(color: Colors.black),
                       )),
                   const SizedBox(height: 16.0),
                   Expanded(
                     child: GridView.builder(
-                      itemCount: response?.data?.updatedFeaturedProducts?.length ?? 0,
+                      itemCount:
+                          response?.data?.updatedFeaturedProducts?.length ?? 0,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         return ProductItemCard(
-                          product: response!.data!.updatedFeaturedProducts![index],
+                          product:
+                              response!.data!.updatedFeaturedProducts![index],
                         );
                       },
                       gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 8.0,
                         mainAxisSpacing: 8.0,
@@ -102,4 +113,3 @@ class _FeaturedProductsScreenState extends State<FeaturedProductsScreen> {
     );
   }
 }
-

@@ -46,6 +46,7 @@ class FailedAddToFavoriteProduct extends ProductDetailState {
 
   const FailedAddToFavoriteProduct(this.response);
 }
+
 class RemoveFavoriteProductGetSuccessfully extends ProductDetailState {
   final RemoveFavoriteProductApiResponse response;
 

@@ -16,7 +16,7 @@ class AppTextField extends StatelessWidget {
       this.controller,
       this.prefixIconColor,
       this.fieldTextStyle,
-        this.textInputType,
+      this.textInputType,
       this.color});
 
   @override

@@ -195,7 +195,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                               Text(
+                              Text(
                                 'Price',
                                 style: GoogleFonts.vazirmatn(fontSize: 18),
                               ),
@@ -243,7 +243,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     const SizedBox(width: 8),
                                     Text(
                                       '$_quantity',
-                                      style: GoogleFonts.vazirmatn(fontSize: 18),
+                                      style:
+                                          GoogleFonts.vazirmatn(fontSize: 18),
                                     ),
                                     const SizedBox(width: 8),
                                     InkWell(
@@ -263,7 +264,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     )
                                   ],
                                 )
-                              :  Text(
+                              : Text(
                                   'Out of stock',
                                   style: GoogleFonts.vazirmatn(
                                       fontSize: 12, color: Colors.red),
@@ -271,7 +272,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         ],
                       ),
                       const SizedBox(height: 8),
-                       Text(
+                      Text(
                         'Product Variants',
                         style: GoogleFonts.vazirmatn(fontSize: 18),
                       ),
@@ -330,7 +331,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         ),
                       ),
                       const SizedBox(height: 16),
-                       Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
@@ -343,8 +344,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       const SizedBox(height: 8),
                       Text(
                         response?.data?.description ?? "",
-                        style:
-                        GoogleFonts.vazirmatn(),
+                        style: GoogleFonts.vazirmatn(),
                       ),
                       const SizedBox(height: 50),
                       (response?.data?.isAvailable == true)
@@ -400,7 +400,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       // color: Colors.deepPurple.shade300,
                                       borderRadius: BorderRadius.circular(50),
                                     ),
-                                    child:  Center(
+                                    child: Center(
                                       child: Text("Add to Cart",
                                           style: GoogleFonts.vazirmatn(
                                             fontSize: 18,

@@ -19,12 +19,10 @@ class FeaturedProductItemCard extends StatefulWidget {
 class _ProductItemCardState extends State<FeaturedProductItemCard> {
   @override
   Widget build(BuildContext context) {
-
-    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {
-        if(widget.product.id != null){
+        if (widget.product.id != null) {
           Nav.push(context, ProductDetailsScreen(id: widget.product.id!));
         }
       },
@@ -41,7 +39,8 @@ class _ProductItemCardState extends State<FeaturedProductItemCard> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8.0),
                     image: DecorationImage(
-                      image: NetworkImage("${ApiConstants.baseUrl}/product/image/${widget.product.images?.first}"),
+                      image: NetworkImage(
+                          "${ApiConstants.baseUrl}/product/image/${widget.product.images?.first}"),
                       fit: BoxFit.fitHeight,
                     ),
                     boxShadow: const [

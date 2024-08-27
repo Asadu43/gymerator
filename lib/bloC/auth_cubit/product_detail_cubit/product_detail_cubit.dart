@@ -30,7 +30,11 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
       required int quantity,
       required String variants}) async {
     emit(LoadingState());
-    Map data = {"productId": id, "quantity": quantity, "variants": [variants]};
+    Map data = {
+      "productId": id,
+      "quantity": quantity,
+      "variants": [variants]
+    };
 
     final AddToCartProductApiResponse model =
         await _repository.cartRequest(data);
@@ -57,7 +61,7 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
   Future removeRequest({required String id}) async {
     emit(LoadingState());
     final RemoveFavoriteProductApiResponse model =
-    await _repository.removeFavoriteRequest(id);
+        await _repository.removeFavoriteRequest(id);
 
     if (model.error == null) {
       emit(RemoveFavoriteProductGetSuccessfully(model));

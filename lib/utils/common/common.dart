@@ -10,7 +10,6 @@ int noOfRequest = 0;
 int noOfAcceptRequest = 0;
 var docList;
 
-
 String currentCity = '';
 double currentLat = 0;
 double currentLong = 0;

@@ -335,8 +335,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                             return;
                                           }
                                           setState(() {
-                                            heightInches =
-                                                double.parse(value);
+                                            heightInches = double.parse(value);
                                           });
                                         }, 'In'),
                                       ],
@@ -354,7 +353,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   children: [
                     Text(
                       'Age',
-                      style: GoogleFonts.vazirmatn(color: Colors.white,fontSize: 20),
+                      style: GoogleFonts.vazirmatn(
+                          color: Colors.white, fontSize: 20),
                     ),
                   ],
                 ),
@@ -377,7 +377,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   children: [
                     Text(
                       'Goal',
-                      style: GoogleFonts.vazirmatn(color: Colors.white,fontSize: 20),
+                      style: GoogleFonts.vazirmatn(
+                          color: Colors.white, fontSize: 20),
                     ),
                   ],
                 ),
@@ -425,24 +426,19 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 AppButton(
                   text: "Save",
                   onPressed: () async {
-
                     print(heightCm);
                     print(weightKg);
                     if (selectedIndex == 0) {
                       showSnackBar(context, "Please select gender");
-                    }else if (weightKg == 0.0 && weightLb == 0.0 ) {
+                    } else if (weightKg == 0.0 && weightLb == 0.0) {
                       showSnackBar(context, "Please enter Weight");
-                    }else if (heightCm == 0.0 && heightFeet == 0.0 ) {
+                    } else if (heightCm == 0.0 && heightFeet == 0.0) {
                       showSnackBar(context, "Please enter height");
-                    }
-
-                    else if (ageController.text.isEmpty) {
+                    } else if (ageController.text.isEmpty) {
                       showSnackBar(context, "Please enter age");
                     } else if (goal == null) {
                       showSnackBar(context, "Please select goal");
-                    }
-
-                    else {
+                    } else {
                       if (weightUnit == WeightUnits.kg &&
                           heightUnit == HeightUnits.cm &&
                           selectedIndex == 1) {
@@ -536,7 +532,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         controller: controller,
         cursorColor: Colors.black,
         textAlign: TextAlign.center,
-        style:  GoogleFonts.vazirmatn(
+        style: GoogleFonts.vazirmatn(
           fontSize: 14,
         ),
         keyboardType: TextInputType.number,

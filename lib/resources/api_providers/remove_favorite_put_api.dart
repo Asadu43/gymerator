@@ -5,7 +5,8 @@ import '../../models/api_response/RemoveFavoriteProductApiResponse.dart';
 import '../../utils/api_constants/api_constants.dart';
 
 class RemoveFavoritePutApi {
-  Future<RemoveFavoriteProductApiResponse> removeFavoriteRequest(String id) async {
+  Future<RemoveFavoriteProductApiResponse> removeFavoriteRequest(
+      String id) async {
     try {
       final Dio dio = Dio();
       dio.options.headers["x-auth-token"] = GetStorage().read('token');
@@ -24,7 +25,7 @@ class RemoveFavoritePutApi {
         return RemoveFavoriteProductApiResponse.fromJson(response.data);
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         return RemoveFavoriteProductApiResponse.fromJson(e.response?.data);
       } else {
         return RemoveFavoriteProductApiResponse();

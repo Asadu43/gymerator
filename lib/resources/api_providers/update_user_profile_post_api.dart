@@ -5,7 +5,8 @@ import 'package:gymmerator/models/api_response/GetAllFavoriteProductApiResponse.
 import '../../utils/api_constants/api_constants.dart';
 
 class UpdateUserProfilePostApi {
-  Future<GetAllFavoriteProductApiResponse> updateRequest(FormData formData) async {
+  Future<GetAllFavoriteProductApiResponse> updateRequest(
+      FormData formData) async {
     try {
       final Dio dio = Dio();
       dio.options.headers["x-auth-token"] = GetStorage().read('token');

@@ -42,7 +42,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => VerifyOtpCubit(),
         ),
-
         BlocProvider(
           create: (context) => AllFavoriteProductsCubit(),
         )

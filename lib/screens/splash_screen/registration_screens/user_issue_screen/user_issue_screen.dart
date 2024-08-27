@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gymmerator/screens/splash_screen/registration_screens/choose_plan_screen/choose_plan_screen.dart';
-import 'package:gymmerator/screens/splash_screen/registration_screens/complete_setup/complete_setup.dart';
-import 'package:gymmerator/utils/nav/nav.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../ui_component/app_button.dart';
@@ -91,7 +88,8 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                       child: ListTile(
                         onTap: () {
                           setState(() {
-                            if ((checkboxValue == true) && (selectedIndex == 1)) {
+                            if ((checkboxValue == true) &&
+                                (selectedIndex == 1)) {
                               setState(() {
                                 checkboxValue = false;
                                 selectedIndex = 0;
@@ -178,9 +176,10 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                         });
                       },
                       leading: Image.asset("assets/images/impect.png"),
-                      tileColor: ((checkboxValue == true) && (selectedIndex == 2))
-                          ? Colors.blue
-                          : Colors.red,
+                      tileColor:
+                          ((checkboxValue == true) && (selectedIndex == 2))
+                              ? Colors.blue
+                              : Colors.red,
                       trailing: Checkbox(
                         checkColor: Colors.white,
                         focusColor: Colors.white,
@@ -251,9 +250,10 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                         });
                       },
                       selectedTileColor: Colors.red,
-                      tileColor: ((checkboxValue == true) && (selectedIndex == 3))
-                          ? Colors.blue
-                          : Colors.red,
+                      tileColor:
+                          ((checkboxValue == true) && (selectedIndex == 3))
+                              ? Colors.blue
+                              : Colors.red,
                       leading: Image.asset("assets/images/jumpping.png"),
                       trailing: Checkbox(
                         checkColor: Colors.white,
@@ -286,7 +286,9 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                     // Nav.push(context, const ChoosePlanScreen());
                   },
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
               ],
             ),
           ),

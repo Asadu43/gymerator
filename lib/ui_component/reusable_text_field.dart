@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ReusableTextField extends StatefulWidget {
-  const ReusableTextField({super.key, required this.title, required this.hint, this.isNumber, required this.controller, required this.formkey});
+  const ReusableTextField(
+      {super.key,
+      required this.title,
+      required this.hint,
+      this.isNumber,
+      required this.controller,
+      required this.formkey});
   final String title, hint;
   final bool? isNumber;
   final TextEditingController controller;
@@ -15,10 +21,13 @@ class _ReusableTextFieldState extends State<ReusableTextField> {
   Widget build(BuildContext context) {
     return Form(
       key: widget.formkey,
-      child: TextFormField(keyboardType: widget.isNumber == null
-          ? TextInputType.text
-          : TextInputType.number,
-        decoration: InputDecoration(label: Text(widget.title),hintText: widget.hint,),
+      child: TextFormField(
+        keyboardType:
+            widget.isNumber == null ? TextInputType.text : TextInputType.number,
+        decoration: InputDecoration(
+          label: Text(widget.title),
+          hintText: widget.hint,
+        ),
         validator: (value) => value!.isEmpty ? "Cannot be empty" : null,
         controller: widget.controller,
       ),

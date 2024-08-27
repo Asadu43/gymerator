@@ -28,11 +28,16 @@ class _FavoriteProductsScreenState extends State<FavoriteProductsScreen> {
           }
           if (state is AllFavoriteProductGetSuccessfully) {
             response = state.response;
-          }if(state is FailedToRemoveProduct){
-            showSnackBar(context, state.response.message ?? "Failed To Remove Favorite Product");
-          }if(state is RemoveFavoriteProductGetSuccessfully){
-            showSnackBar(context, state.response.message ?? "Remove Product Successfully",type: SnackBarType.success);
-             context.read<AllFavoriteProductsCubit>().featuredRequest();
+          }
+          if (state is FailedToRemoveProduct) {
+            showSnackBar(context,
+                state.response.message ?? "Failed To Remove Favorite Product");
+          }
+          if (state is RemoveFavoriteProductGetSuccessfully) {
+            showSnackBar(context,
+                state.response.message ?? "Remove Product Successfully",
+                type: SnackBarType.success);
+            context.read<AllFavoriteProductsCubit>().featuredRequest();
           }
         },
         builder: (context, state) {
@@ -54,18 +59,21 @@ class _FavoriteProductsScreenState extends State<FavoriteProductsScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    (response?.data?.favoriteProducts?.length == 0) ? const SizedBox()  : const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: AppTextField(
-                          prefixIconColor: Colors.grey,
-                          hintText: 'Search products',
-                          icon: Icon(Icons.search),
-                          color: Colors.grey,
-                        )),
+                    (response?.data?.favoriteProducts?.length == 0)
+                        ? const SizedBox()
+                        : const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: AppTextField(
+                              prefixIconColor: Colors.grey,
+                              hintText: 'Search products',
+                              icon: Icon(Icons.search),
+                              color: Colors.grey,
+                            )),
                     const SizedBox(height: 16.0),
                     Expanded(
                       child: GridView.builder(
-                        itemCount: response?.data?.favoriteProducts?.length ?? 0,
+                        itemCount:
+                            response?.data?.favoriteProducts?.length ?? 0,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return FavoriteProductItemCard(

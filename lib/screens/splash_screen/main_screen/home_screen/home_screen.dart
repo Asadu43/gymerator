@@ -119,8 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black)),
-                                Text(
-                                    "Includes circuits to work \nevery muscle",
+                                Text("Includes circuits to work \nevery muscle",
                                     style: GoogleFonts.vazirmatn(
                                         fontSize: 11.sp, color: Colors.grey)),
                                 SizedBox(
