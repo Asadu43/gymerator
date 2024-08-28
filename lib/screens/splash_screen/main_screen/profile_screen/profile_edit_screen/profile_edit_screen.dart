@@ -113,6 +113,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
             child: Scaffold(
               resizeToAvoidBottomInset: false,
               appBar: AppBar(
+                centerTitle: true,
                 title: const Text('Profile Edit'),
               ),
               body: Padding(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
-import 'package:gymmerator/ui_component/app_textfield.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
 
@@ -45,9 +45,10 @@ class _FavoriteProductsScreenState extends State<FavoriteProductsScreen> {
             isLoading: state is LoadingState,
             child: Scaffold(
               appBar: AppBar(
-                  title: const Text('Favorite Products',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  centerTitle: true,
+                  title: Text('Favorite Products',
+                      style: GoogleFonts.vazirmatn(
+                          fontSize: 20, fontWeight: FontWeight.bold)),
                   leading: IconButton(
                     icon: const Icon(Icons.arrow_back_ios),
                     onPressed: () {
@@ -59,36 +60,33 @@ class _FavoriteProductsScreenState extends State<FavoriteProductsScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    (response?.data?.favoriteProducts?.length == 0)
-                        ? const SizedBox()
-                        : const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: AppTextField(
-                              prefixIconColor: Colors.grey,
-                              hintText: 'Search products',
-                              icon: Icon(Icons.search),
-                              color: Colors.grey,
-                            )),
                     const SizedBox(height: 16.0),
-                    Expanded(
-                      child: GridView.builder(
-                        itemCount:
-                            response?.data?.favoriteProducts?.length ?? 0,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return FavoriteProductItemCard(
-                            product: response!.data!.favoriteProducts![index],
-                          );
-                        },
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 8.0,
-                          mainAxisSpacing: 8.0,
-                          childAspectRatio: 0.7,
-                        ),
-                      ),
-                    ),
+                    (response?.data?.favoriteProducts?.length == 0)
+                        ? Center(
+                            child: Text(
+                            "No Item Found",
+                            style: GoogleFonts.vazirmatn(),
+                          ))
+                        : Expanded(
+                            child: GridView.builder(
+                              itemCount:
+                                  response?.data?.favoriteProducts?.length ?? 0,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return FavoriteProductItemCard(
+                                  product:
+                                      response!.data!.favoriteProducts![index],
+                                );
+                              },
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 8.0,
+                                mainAxisSpacing: 8.0,
+                                childAspectRatio: 0.7,
+                              ),
+                            ),
+                          ),
                   ],
                 ),
               ),

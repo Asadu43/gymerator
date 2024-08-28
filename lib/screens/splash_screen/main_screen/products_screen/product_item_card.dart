@@ -11,9 +11,10 @@ import '../../../../utils/api_constants/api_constants.dart';
 class ProductItemCard extends StatefulWidget {
   const ProductItemCard({
     super.key,
-    required this.product,
+    required this.product, this.show,
   });
   final Product product;
+  final bool? show;
 
   @override
   State<ProductItemCard> createState() => _ProductItemCardState();
@@ -46,18 +47,18 @@ class _ProductItemCardState extends State<ProductItemCard> {
                     image: DecorationImage(
                       image: NetworkImage(
                           "${ApiConstants.baseUrl}/product/image/${widget.product.images?.first}"),
-                      fit: BoxFit.fitHeight,
+                      fit: BoxFit.cover,
                     ),
                     boxShadow: const [
                       BoxShadow(
                         color: Colors.grey,
                         blurRadius: 2.0,
                         spreadRadius: 0.0,
-                        offset: Offset(2.0, 2.0),
+                        offset: Offset(0.5, 0.5),
                       )
                     ],
                   )),
-              Positioned(
+              widget.show == false ? const SizedBox() :Positioned(
                   right: 8.0,
                   top: 8.0,
                   child: widget.product.isFavorite == true

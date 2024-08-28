@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart';
-import 'package:gymmerator/ui_component/app_textfield.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 
 import '../../../../../models/api_response/FeaturedProductApiResponse.dart';
@@ -58,9 +57,10 @@ class _PopularProductsScreenState extends State<PopularProductsScreen> {
           isLoading: state is LoadingState,
           child: Scaffold(
             appBar: AppBar(
-                title: const Text('Popular Products',
+              centerTitle: true,
+                title:  Text('Popular Products',
                     style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        GoogleFonts.vazirmatn(fontSize: 20, fontWeight: FontWeight.bold)),
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back_ios),
                   onPressed: () {
@@ -72,17 +72,18 @@ class _PopularProductsScreenState extends State<PopularProductsScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: AppTextField(
-                        hintText: 'Search products',
-                        icon: const Icon(Icons.search),
-                        color: Colors.grey,
-                        prefixIconColor: Colors.grey,
-                        fieldTextStyle:
-                            GoogleFonts.vazirmatn(color: Colors.black),
-                      )),
-                  const SizedBox(height: 16.0),
+                  // Padding(
+                  //     padding: const EdgeInsets.all(8.0),
+                  //     child: AppTextField(
+                  //       hintText: 'Search products',
+                  //       icon: const Icon(Icons.search),
+                  //       color: Colors.grey,
+                  //       prefixIconColor: Colors.grey,
+                  //       fieldTextStyle:
+                  //           GoogleFonts.vazirmatn(color: Colors.black),
+                  //     )),
+                  // const SizedBox(height: 16.0),
+                  const SizedBox(height: 4.0),
                   Expanded(
                     child: GridView.builder(
                       itemCount:

@@ -8,7 +8,6 @@ import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/fea
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/popular_products_screen/popular_products_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/product_item_card.dart';
 import 'package:gymmerator/ui_component/app_drawer.dart';
-import 'package:gymmerator/ui_component/app_textfield.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/featured_product_item_card.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
@@ -80,33 +79,23 @@ class _ProductsScreenState extends State<ProductsScreen> {
             child: Scaffold(
               drawer: const AppDrawer(),
               appBar: AppBar(
-                title: const Text('Gymerator Store'),
+                centerTitle: true,
+                title:  Text('Gymerator Store',style: GoogleFonts.vazirmatn(),),
               ),
               body: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListView(
                   shrinkWrap: true,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: AppTextField(
-                        hintText: 'Search products',
-                        icon: const Icon(Icons.search),
-                        color: Colors.grey,
-                        prefixIconColor: Colors.grey,
-                        fieldTextStyle:
-                            GoogleFonts.vazirmatn(color: Colors.black),
-                      ),
-                    ),
-                    const SizedBox(height: 16.0),
+                    const SizedBox(height: 8.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
+                         Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: Text(
                             'Featured Products',
-                            style: TextStyle(
+                            style: GoogleFonts.vazirmatn(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -119,12 +108,12 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                       const FeaturedProductsScreen()),
                             );
                           },
-                          child: const Padding(
-                            padding: EdgeInsets.all(8.0),
+                          child:  Padding(
+                            padding: const EdgeInsets.all(8.0),
                             child: Text(
                               'View All',
                               style:
-                                  TextStyle(fontSize: 14, color: Colors.grey),
+                              GoogleFonts.vazirmatn(fontSize: 14, color: Colors.grey),
                             ),
                           ),
                         ),
@@ -152,11 +141,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
+                         Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: Text(
                             'Most Popular Products',
-                            style: TextStyle(
+                            style: GoogleFonts.vazirmatn(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -169,12 +158,12 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                       const PopularProductsScreen()),
                             );
                           },
-                          child: const Padding(
-                            padding: EdgeInsets.all(8.0),
+                          child:  Padding(
+                            padding: const EdgeInsets.all(8.0),
                             child: Text(
                               'View All',
                               style:
-                                  TextStyle(fontSize: 14, color: Colors.grey),
+                              GoogleFonts.vazirmatn(fontSize: 14, color: Colors.grey),
                             ),
                           ),
                         ),
@@ -204,11 +193,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
+                         Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: Text(
                             'All Products',
-                            style: TextStyle(
+                            style: GoogleFonts.vazirmatn(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -216,19 +205,19 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           onTap: () {
                             Nav.push(context, const AllProductScreen());
                           },
-                          child: const Padding(
-                            padding: EdgeInsets.all(8.0),
+                          child:  Padding(
+                            padding: const EdgeInsets.all(8.0),
                             child: Text(
                               'View All',
                               style:
-                                  TextStyle(fontSize: 14, color: Colors.grey),
+                              GoogleFonts.vazirmatn(fontSize: 14, color: Colors.grey),
                             ),
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 8.0),
-                    GridView.builder(
+                    (allProduct == null) ? const SizedBox() :GridView.builder(
                       physics:
                           const NeverScrollableScrollPhysics(), // Allow scrolling
                       gridDelegate:
@@ -238,8 +227,10 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         mainAxisSpacing: 5.0,
                         childAspectRatio: 0.7,
                       ),
-                      itemCount: allProduct?.data?.length ?? 0,
-                      // itemCount: 10,
+                      // itemCount: allProduct?.data?.length ?? 0,
+                      itemCount: allProduct!.data!.length > 10
+                          ? 10
+                          : allProduct!.data!.length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         return Padding(

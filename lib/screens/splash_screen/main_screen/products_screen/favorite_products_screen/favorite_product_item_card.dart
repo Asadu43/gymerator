@@ -46,15 +46,15 @@ class _ProductItemCardState extends State<FavoriteProductItemCard> {
                       color: Colors.grey,
                       blurRadius: 2.0,
                       spreadRadius: 0.0,
-                      offset: Offset(2.0, 2.0),
-                    ),
+                      offset: Offset(0.5, 0.5),
+                    )
                   ],
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.network(
                     "${ApiConstants.baseUrl}/product/image/${widget.product.images?.first}",
-                    fit: BoxFit.fitHeight,
+                    fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return const Center(
                         child: Text('Please Wait'),

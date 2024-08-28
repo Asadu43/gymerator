@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:gymmerator/models/api_response/FeaturedProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllProductApiResponse.dart';
+import 'package:gymmerator/models/api_response/SearchProductApiResponse.dart';
 
 import '../../../models/api_response/AddFavoriteProductApiResponse.dart';
 import '../../../models/api_response/RemoveFavoriteProductApiResponse.dart';
@@ -58,6 +59,16 @@ class FeaturedProductCubit extends Cubit<FeaturedProductState> {
       emit(GetAllProductSuccessfully(model));
     } else {
       emit(FailedToGetAllProduct(model.message ?? "Failed To Get Product"));
+    }
+  }
+
+  Future searchRequest({required String id}) async {
+    emit(LoadingState());
+    final SearchProductApiResponse model = await _repository.searchRequest(id);
+    if (model.error == null) {
+      emit(SearchProductSuccessfully(model));
+    } else {
+      emit(FailedToSearchProduct(model));
     }
   }
 }

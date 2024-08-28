@@ -14,6 +14,7 @@ import '../../../../models/api_response/GetAllFavoriteProductApiResponse.dart';
 import '../../../../ui_component/show_snackbar.dart';
 import '../../../../utils/api_constants/api_constants.dart';
 import '../../../../utils/nav/nav.dart';
+import 'orders_screen/orders_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -191,6 +192,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             response?.data?.address?.country ??
                                                 " ",
                                         response?.data?.profile));
+                              },
+                            ),
+                            const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 24.0),
+                                child: Divider()),
+                            ListTile(
+                              leading: Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: const BoxDecoration(
+                                    color: AppColors.profileEditIconsBackground,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    'assets/icons/profile_terms_conditions.png',
+                                    width: 24,
+                                    height: 24,
+                                  )),
+                              trailing: const Icon(
+                                Icons.arrow_forward_ios,
+                                size: 18,
+                              ),
+                              title: const Text('Orders',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500)),
+                              onTap: () {
+                                Nav.push(context, const OrdersScreen());
                               },
                             ),
                             const Padding(

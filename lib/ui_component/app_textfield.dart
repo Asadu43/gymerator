@@ -9,6 +9,7 @@ class AppTextField extends StatelessWidget {
   final Color? prefixIconColor;
   final TextStyle? fieldTextStyle;
   final TextInputType? textInputType;
+  final Function(String?)? onChanged;
   const AppTextField(
       {super.key,
       required this.hintText,
@@ -17,7 +18,7 @@ class AppTextField extends StatelessWidget {
       this.prefixIconColor,
       this.fieldTextStyle,
       this.textInputType,
-      this.color});
+      this.color, this.onChanged,});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +36,7 @@ class AppTextField extends StatelessWidget {
         controller: controller,
         style: fieldTextStyle ?? const TextStyle(color: Colors.white),
         keyboardType: textInputType ?? TextInputType.text,
+        onChanged: onChanged,
         decoration: InputDecoration(
             prefixIcon: icon,
             prefixIconColor: prefixIconColor ?? Colors.white,

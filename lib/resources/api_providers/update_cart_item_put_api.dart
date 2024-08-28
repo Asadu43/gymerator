@@ -15,8 +15,6 @@ class UpdateCartItemPutApi {
           options: Options(validateStatus: (status) {
         return status! <= 500;
       }));
-
-      print(response.statusCode);
       if (response.statusCode == 200) {
         return UpdateCartItemApiResponse.fromJson(response.data);
       } else if (response.statusCode == 404) {
