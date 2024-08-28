@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../../bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
 import '../../../../../models/api_response/Product.dart';
 import '../../../../../utils/api_constants/api_constants.dart';
@@ -87,7 +88,7 @@ class _ProductItemCardState extends State<FavoriteProductItemCard> {
                 widget.product.name!,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style:  GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -99,7 +100,7 @@ class _ProductItemCardState extends State<FavoriteProductItemCard> {
                 "\$${widget.product.price.toString()}",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -108,7 +109,7 @@ class _ProductItemCardState extends State<FavoriteProductItemCard> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(widget.product.description!,
-                  maxLines: 2, overflow: TextOverflow.ellipsis),
+                  maxLines: 2, overflow: TextOverflow.ellipsis,style: GoogleFonts.vazirmatn(),),
             ),
           ),
         ],

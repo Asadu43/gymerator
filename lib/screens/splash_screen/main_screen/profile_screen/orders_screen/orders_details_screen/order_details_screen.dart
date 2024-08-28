@@ -61,107 +61,108 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   shrinkWrap: true,
                   itemCount: response?.data?.products?.length ?? 0,
                   itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        // Nav.push(context, Order)
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 10),
-                        decoration: BoxDecoration(
-                          color: AppColors.whiteGrey,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                        response?.data?.products![index].product
-                                                ?.name ??
-                                            "",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.vazirmatn(
-                                          fontSize: 20,
-                                        )),
-                                    const SizedBox(
-                                      height: 20,
+                    return Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: AppColors.whiteGrey,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      response?.data?.products![index].product
+                                              ?.name ??
+                                          "",
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.vazirmatn(
+                                        fontSize: 20,
+                                      )),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                      "Quantity  ${response?.data?.products![index].quantity ?? ""}",
+                                      style:
+                                          GoogleFonts.vazirmatn(fontSize: 14)),
+                                ],
+                              ),
+                              Container(
+                                  height: 150,
+                                  width: 150,
+                                  margin: const EdgeInsets.all(8.0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                          "${ApiConstants.baseUrl}/product/image/${response?.data?.products![index].product?.images?.first}"),
+                                      fit: BoxFit.cover,
                                     ),
-                                    Text(
-                                        "Quantity  ${response?.data?.products![index].quantity ?? ""}",
-                                        style: GoogleFonts.vazirmatn(
-                                            fontSize: 14)),
-                                  ],
-                                ),
-                                Container(
-                                    height: 150,
-                                    width: 150,
-                                    margin: const EdgeInsets.all(8.0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                            "${ApiConstants.baseUrl}/product/image/${response?.data?.products![index].product?.images?.first}"),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    )),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text("Payment Method"),
-                                Text(response?.data?.paymentMethod ?? ""),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Delivery Status",
-                                    style: GoogleFonts.vazirmatn()),
-                                Text(
-                                  response?.data?.status ?? "",
-                                  style: GoogleFonts.vazirmatn(
-                                      fontSize: 16,
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Order Price",
-                                    style: GoogleFonts.vazirmatn()),
-                                Text(
-                                  "\$ ${response?.data?.totalAmount ?? ""}",
-                                  style: GoogleFonts.vazirmatn(
-                                      fontSize: 16,
-                                      color: AppColors.background,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        ),
+                                  )),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Payment Method",
+                                style: GoogleFonts.vazirmatn(),
+                              ),
+                              Text(
+                                response?.data?.paymentMethod ?? "",
+                                style: GoogleFonts.vazirmatn(),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Delivery Status",
+                                  style: GoogleFonts.vazirmatn()),
+                              Text(
+                                response?.data?.status ?? "",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 16,
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Order Price",
+                                  style: GoogleFonts.vazirmatn()),
+                              Text(
+                                "\$ ${response?.data?.totalAmount ?? ""}",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 16,
+                                    color: AppColors.background,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                        ],
                       ),
                     );
                   },

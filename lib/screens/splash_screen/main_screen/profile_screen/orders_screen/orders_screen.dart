@@ -75,8 +75,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text("Order ID"),
-                                Text(response?.data![index].id ?? ""),
+                                 Text("Order ID",style: GoogleFonts.vazirmatn(),),
+                                Text(response?.data![index].id ?? "",style: GoogleFonts.vazirmatn(),),
                               ],
                             ),
                             const SizedBox(
@@ -85,8 +85,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text("Payment Method"),
-                                Text(response?.data![index].paymentMethod ?? ""),
+                                 Text("Payment Method",style: GoogleFonts.vazirmatn(),),
+                                Text(response?.data![index].paymentMethod ?? "",style: GoogleFonts.vazirmatn(),),
                               ],
                             ),
                             const SizedBox(

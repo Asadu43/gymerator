@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/profile_screen/account_edit_screen/account_edit_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/profile_screen/profile_edit_screen/profile_edit_screen.dart';
@@ -81,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     response?.data?.firstName?[0]
                                             .toUpperCase() ??
                                         "",
-                                    style: const TextStyle(
+                                    style: GoogleFonts.vazirmatn(
                                         fontSize: 40, color: Colors.white),
                                   )
                                 : null,
@@ -89,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           const SizedBox(height: 10),
                           Text(
                             "${response?.data?.firstName ?? " "} ${response?.data?.lastName ?? " "}",
-                            style: const TextStyle(
+                            style: GoogleFonts.vazirmatn(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
@@ -130,8 +131,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Icons.arrow_forward_ios,
                                 size: 18,
                               ),
-                              title: const Text('Profile Edit',
-                                  style: TextStyle(
+                              title: Text('Profile Edit',
+                                  style: GoogleFonts.vazirmatn(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
@@ -166,8 +167,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Icons.arrow_forward_ios,
                                 size: 18,
                               ),
-                              title: const Text('Account Edit',
-                                  style: TextStyle(
+                              title: Text('Account Edit',
+                                  style: GoogleFonts.vazirmatn(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
@@ -213,8 +214,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Icons.arrow_forward_ios,
                                 size: 18,
                               ),
-                              title: const Text('Orders',
-                                  style: TextStyle(
+                              title: Text('Orders',
+                                  style: GoogleFonts.vazirmatn(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
@@ -240,8 +241,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Icons.arrow_forward_ios,
                                 size: 18,
                               ),
-                              title: const Text('Terms & Conditions',
-                                  style: TextStyle(
+                              title: Text('Terms & Conditions',
+                                  style: GoogleFonts.vazirmatn(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {},
@@ -265,8 +266,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Icons.arrow_forward_ios,
                                 size: 18,
                               ),
-                              title: const Text('Privacy Policy',
-                                  style: TextStyle(
+                              title: Text('Privacy Policy',
+                                  style: GoogleFonts.vazirmatn(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {},
@@ -291,8 +292,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Icons.arrow_forward_ios,
                                 size: 18,
                               ),
-                              title: const Text('Delete Account',
-                                  style: TextStyle(
+                              title: Text('Delete Account',
+                                  style: GoogleFonts.vazirmatn(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
@@ -330,11 +331,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
-                                                    child: const Text(
+                                                    child: Text(
                                                       'Cancel',
-                                                      style: TextStyle(
-                                                          color: Colors.grey,
-                                                          fontSize: 16),
+                                                      style:
+                                                          GoogleFonts.vazirmatn(
+                                                              color:
+                                                                  Colors.grey,
+                                                              fontSize: 16),
                                                     )),
                                               ],
                                             ),
@@ -361,8 +364,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Icons.arrow_forward_ios,
                                 size: 18,
                               ),
-                              title: const Text('Share the app',
-                                  style: TextStyle(
+                              title: Text('Share the app',
+                                  style: GoogleFonts.vazirmatn(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {},
@@ -386,8 +389,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Icons.arrow_forward_ios,
                                 size: 18,
                               ),
-                              title: const Text('Logout',
-                                  style: TextStyle(
+                              title: Text('Logout',
+                                  style: GoogleFonts.vazirmatn(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
@@ -428,11 +431,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
-                                                    child: const Text(
+                                                    child: Text(
                                                       'Cancel',
-                                                      style: TextStyle(
-                                                          color: Colors.grey,
-                                                          fontSize: 16),
+                                                      style:
+                                                          GoogleFonts.vazirmatn(
+                                                              color:
+                                                                  Colors.grey,
+                                                              fontSize: 16),
                                                     )),
                                               ],
                                             ),

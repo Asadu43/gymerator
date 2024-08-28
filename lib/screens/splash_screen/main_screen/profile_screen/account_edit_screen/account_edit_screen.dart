@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/update_user_info_cubit/update_user_info_cubit.dart';
 import 'package:gymmerator/ui_component/app_button.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
@@ -107,7 +108,7 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
                     Navigator.of(context).pop();
                   },
                 ),
-                title: const Text('Account Edit'),
+                title:  Text('Account Edit',style: GoogleFonts.vazirmatn(),),
                 centerTitle: true,
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.black,
