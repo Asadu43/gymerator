@@ -11,7 +11,8 @@ import '../../../../utils/api_constants/api_constants.dart';
 class ProductItemCard extends StatefulWidget {
   const ProductItemCard({
     super.key,
-    required this.product, this.show,
+    required this.product,
+    this.show,
   });
   final Product product;
   final bool? show;
@@ -58,24 +59,28 @@ class _ProductItemCardState extends State<ProductItemCard> {
                       )
                     ],
                   )),
-              widget.show == false ? const SizedBox() :Positioned(
-                  right: 8.0,
-                  top: 8.0,
-                  child: widget.product.isFavorite == true
-                      ? IconButton(
-                          onPressed: () {
-                            context
-                                .read<FeaturedProductCubit>()
-                                .removeRequest(id: widget.product.id!);
-                          },
-                          icon: const Icon(Icons.favorite, color: Colors.red))
-                      : IconButton(
-                          onPressed: () {
-                            context
-                                .read<FeaturedProductCubit>()
-                                .addToFavoriteRequest(id: widget.product.id!);
-                          },
-                          icon: const Icon(Icons.favorite_border)))
+              widget.show == false
+                  ? const SizedBox()
+                  : Positioned(
+                      right: 8.0,
+                      top: 8.0,
+                      child: widget.product.isFavorite == true
+                          ? IconButton(
+                              onPressed: () {
+                                context
+                                    .read<FeaturedProductCubit>()
+                                    .removeRequest(id: widget.product.id!);
+                              },
+                              icon:
+                                  const Icon(Icons.favorite, color: Colors.red))
+                          : IconButton(
+                              onPressed: () {
+                                context
+                                    .read<FeaturedProductCubit>()
+                                    .addToFavoriteRequest(
+                                        id: widget.product.id!);
+                              },
+                              icon: const Icon(Icons.favorite_border)))
             ],
           ),
           const SizedBox(height: 8.0),
