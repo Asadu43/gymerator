@@ -161,9 +161,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ),
                                             child: ElevatedButton(
                                               style: ButtonStyle(
-                                                shape:
-                                                    WidgetStateProperty.all<
-                                                        RoundedRectangleBorder>(
+                                                shape: WidgetStateProperty.all<
+                                                    RoundedRectangleBorder>(
                                                   RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
