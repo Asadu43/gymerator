@@ -67,10 +67,13 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 10),
                         decoration: BoxDecoration(
-                          color: AppColors.whiteGrey,
+                          border: Border.all(color: Colors.grey),
+                          // color: AppColors.whiteGrey,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,9 +124,6 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
                           ],
                         ),
                       ),
@@ -131,7 +131,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                   },
                   separatorBuilder: (context, index) {
                     return const SizedBox(
-                      height: 10,
+                      height: 16,
                     );
                   },
                 ),

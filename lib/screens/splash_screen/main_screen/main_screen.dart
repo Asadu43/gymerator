@@ -37,9 +37,9 @@ class _MainScreenState extends State<MainScreen> {
         items: [
           /// Home
           SalomonBottomBarItem(
-            icon: Image.asset('assets/icons/main_screen_home_icon.png',
-                width: 24,
-                height: 24,
+            icon: Image.asset('assets/icons/home.png',
+                width: 20,
+                height: 20,
                 color: _currentIndex == 0 ? Colors.white : Colors.black),
             title: Text("Home", style: GoogleFonts.vazirmatn()),
             selectedColor: Colors.white,
@@ -48,8 +48,8 @@ class _MainScreenState extends State<MainScreen> {
           /// Likes
           SalomonBottomBarItem(
             icon: Image.asset('assets/icons/main_screen_chat_icon.png',
-                width: 24,
-                height: 24,
+                width: 20,
+                height: 20,
                 color: _currentIndex == 1 ? Colors.white : Colors.black),
             title: Text("Chat Ai", style: GoogleFonts.vazirmatn()),
             selectedColor: Colors.white,
@@ -58,8 +58,8 @@ class _MainScreenState extends State<MainScreen> {
           /// Search
           SalomonBottomBarItem(
             icon: Image.asset('assets/icons/main_screen_products_icon.png',
-                width: 24,
-                height: 24,
+                width: 20,
+                height: 20,
                 color: _currentIndex == 2 ? Colors.white : Colors.black),
             title: Text("Products", style: GoogleFonts.vazirmatn()),
             selectedColor: Colors.white,
@@ -68,8 +68,8 @@ class _MainScreenState extends State<MainScreen> {
           /// Profile
           SalomonBottomBarItem(
             icon: Image.asset('assets/icons/main_screen_profile_icon.png',
-                width: 24,
-                height: 24,
+                width: 20,
+                height: 20,
                 color: _currentIndex == 3 ? Colors.white : Colors.black),
             title: Text("Profile", style: GoogleFonts.vazirmatn()),
             selectedColor: Colors.white,

@@ -36,10 +36,17 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   bool checkboxValue = true;
   int selectedIndex = 0;
 
+
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+
+    setState(() {
+
+      print(goal);
+    });
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -383,43 +390,130 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   ],
                 ),
                 const SizedBox(height: 10),
-                Container(
-                  width: double.infinity,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: DropdownButton<String>(
-                    underline: Container(),
-                    isExpanded: true,
-                    hint: Text(
-                      'Select your goal',
-                      style: GoogleFonts.vazirmatn(color: Colors.white),
-                    ),
-                    value: goal,
-                    style: const TextStyle(color: Colors.white),
-                    dropdownColor: const Color(0xff3F710D),
-                    items: <String>[
-                      'Lose Weight',
-                      'Keep Fit',
-                      'Get Stronger',
-                      'Gain Muscle Mass'
-                    ].map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: GoogleFonts.vazirmatn(color: Colors.white),
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (newGoal) {
+                InkWell(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        String? tempSelectedGoal = goal;
+
+                        return StatefulBuilder(
+                          builder: (context, setState) {
+                            return AlertDialog(
+                              title:  Text('Select Goal',style: GoogleFonts.vazirmatn()),
+                              content: SizedBox(
+                                width: screenWidth,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    RadioListTile<String>(
+                                      activeColor: const Color(0xff3F710D),
+                                      title:  Text('Lose Weight',style: GoogleFonts.vazirmatn()),
+                                      value: 'Lose Weight',
+                                      groupValue: tempSelectedGoal,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          tempSelectedGoal = value!;
+                                        });
+                                      },
+                                    ),
+                                    RadioListTile<String>(
+                                      activeColor: const Color(0xff3F710D),
+                                      title:  Text('Keep Fit',style: GoogleFonts.vazirmatn()),
+                                      value: 'Keep Fit',
+                                      groupValue: tempSelectedGoal,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          tempSelectedGoal = value!;
+                                        });
+                                      },
+                                    ),
+                                    RadioListTile<String>(
+                                      activeColor: const Color(0xff3F710D),
+                                      title:  Text('Get Stronger',style: GoogleFonts.vazirmatn()),
+                                      value: 'Get Stronger',
+                                      groupValue: tempSelectedGoal,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          tempSelectedGoal = value!;
+                                        });
+                                      },
+                                    ),
+                                    RadioListTile<String>(
+                                      activeColor: const Color(0xff3F710D),
+                                      title:  Text('Gain Muscle Mass',style: GoogleFonts.vazirmatn()),
+                                      value: 'Gain Muscle Mass',
+                                      groupValue: tempSelectedGoal,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          tempSelectedGoal = value!;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              contentTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
+                              actions: [
+                                TextButton(
+                                  child:  Text('CANCEL',style: GoogleFonts.vazirmatn(color: Colors.black),),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                                TextButton(
+                                  child:  Text('OK',style: GoogleFonts.vazirmatn(color: Colors.black),),
+                                  onPressed: () {
+                                    setState(() {
+                                      goal = tempSelectedGoal;
+                                    });
+                                    // Call the main setState to update the UI after dialog is closed
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ).then((value) {
                       setState(() {
-                        goal = newGoal!;
+                        goal;
                       });
-                    },
+                    },);
+
+
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.07,
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        goal == null
+                            ? Text(
+                                "Select your goal",
+                                style:
+                                    GoogleFonts.vazirmatn(color: Colors.white),
+                              )
+                            : Text(
+                                "$goal",
+                                style:
+                                    GoogleFonts.vazirmatn(color: Colors.white),
+                              ),
+                        const Icon(
+                          Icons.keyboard_arrow_down_sharp,
+                          color: Colors.grey,
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 const Spacer(),

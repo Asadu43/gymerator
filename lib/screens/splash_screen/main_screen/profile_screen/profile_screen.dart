@@ -206,7 +206,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.asset(
-                                    'assets/icons/profile_terms_conditions.png',
+                                    'assets/icons/order.png',
                                     width: 24,
                                     height: 24,
                                   )),

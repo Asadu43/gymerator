@@ -168,7 +168,7 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                       ),
                       Card(
                         color: Colors.white,
-                        elevation: 10,
+                        elevation: 2,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
@@ -223,14 +223,16 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                           ),
                         ),
                       ),
-                      const Spacer(),
+                      SizedBox(
+                        height: screenHeight * 0.02,
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: RadioListTile(
                           value: 1,
                           activeColor: const Color(0xff3F710D),
                           fillColor: WidgetStateProperty.resolveWith(
-                            (states) {
+                                (states) {
                               if (states.contains(WidgetState.selected)) {
                                 return const Color(0xff3F710D);
                               }
@@ -251,6 +253,7 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                           ),
                         ),
                       ),
+                      const Spacer(),
                       SizedBox(
                         height: screenHeight * 0.01,
                       ),

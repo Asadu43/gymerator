@@ -58,7 +58,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
           }
           if (state is CartItemUpdateSuccessfully) {
             showSnackBar(context,
-                state.response.message ?? "Cart Item Update Successfully",
+                state.response.message ?? "Cart Item Updated Successfully",
                 type: SnackBarType.success);
             context.read<UserCartProductsCubit>().cartRequest();
           }

@@ -87,6 +87,7 @@ class _ProductItemCardState extends State<FavoriteProductItemCard> {
               child: Text(
                 widget.product.name!,
                 maxLines: 1,
+
                 overflow: TextOverflow.ellipsis,
                 style:  GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
               ),

@@ -170,6 +170,6 @@ class _CompleteSetupState extends State<CompleteSetup> {
         weightValue: widget.weightValue,
         age: widget.age,
         goal: widget.goal,
-        workoutLevel: 0);
+        workoutLevel: widget.plan -1);
   }
 }

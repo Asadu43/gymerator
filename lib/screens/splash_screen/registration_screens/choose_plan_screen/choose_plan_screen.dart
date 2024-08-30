@@ -351,13 +351,6 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                     if (selectedIndex == 0) {
                       showSnackBar(context, "Please select plan");
                     } else {
-                      print("Value... ${widget.weightValue}");
-                      print("Value... ${widget.heightValue}");
-                      print("Value... ${widget.goal}");
-                      print("Value... ${widget.gender}");
-                      print("Value... ${widget.weightUnit}");
-                      print("Value... ${widget.heightUnit}");
-                      print("age... ${widget.age}");
                       if (widget.goal == "Lose Weight") {
                         Nav.push(
                             context,

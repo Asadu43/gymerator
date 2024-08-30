@@ -94,105 +94,125 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     ],
                   ),
-                  SizedBox(
-                    height: screenHeight * 0.04,
-                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: 12.0, right: 12.0),
-                    child: Container(
-                      height: screenHeight * 0.25,
-                      width: screenWidth,
-                      decoration: BoxDecoration(
-                        color: const Color(0xffFF6300).withOpacity(0.15),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Full Body Training\nWorkout",
-                                    style: GoogleFonts.vazirmatn(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black)),
-                                Text("Includes circuits to work \nevery muscle",
-                                    style: GoogleFonts.vazirmatn(
-                                        fontSize: 11.sp, color: Colors.grey)),
-                                SizedBox(
-                                  height: screenHeight * 0.02,
-                                ),
-                                Container(
-                                  height: screenHeight * 0.07,
-                                  width: screenHeight * 0.18,
-                                  decoration: BoxDecoration(
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color: Colors.black26,
-                                          offset: Offset(0, 5),
-                                          blurRadius: 5.0)
-                                    ],
-                                    gradient: const LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      // stops: const [0.0, 1.0],
-                                      colors: [
-                                        Color(0xffB14501),
-                                        Color(0xff3F710D),
-                                      ],
-                                    ),
-                                    // color: Colors.deepPurple.shade300,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: ElevatedButton(
-                                    style: ButtonStyle(
-                                      shape: WidgetStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        ),
+                    child: Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          child: Card(
+                            elevation: 0,
+                            color: const Color(0xffFF6300).withOpacity(0.15),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 5),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.25,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Full Body Training\nWorkout",
+                                            style: GoogleFonts.vazirmatn(
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                          Text(
+                                            "Includes circuits to work \nevery muscle",
+                                            style: GoogleFonts.vazirmatn(
+                                              fontSize: 11.sp,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: screenHeight * 0.025,
+                                          ),
+                                          Container(
+                                            height: screenHeight * 0.07,
+                                            width: screenHeight * 0.18,
+                                            decoration: BoxDecoration(
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  color: Colors.black26,
+                                                  offset: Offset(0, 5),
+                                                  blurRadius: 5.0,
+                                                ),
+                                              ],
+                                              gradient: const LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                                colors: [
+                                                  Color(0xffB14501),
+                                                  Color(0xff3F710D),
+                                                ],
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: ElevatedButton(
+                                              style: ButtonStyle(
+                                                shape:
+                                                    WidgetStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                  RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                  ),
+                                                ),
+                                                backgroundColor:
+                                                    WidgetStateProperty.all(
+                                                        Colors.transparent),
+                                                shadowColor:
+                                                    WidgetStateProperty.all(
+                                                        Colors.transparent),
+                                              ),
+                                              onPressed: () {
+                                                // Navigation action goes here
+                                                Nav.push(context,
+                                                    const ScheduleWorkoutScreen());
+                                              },
+                                              child: Text(
+                                                "Start Training",
+                                                style: GoogleFonts.vazirmatn(
+                                                  fontSize: 14,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      backgroundColor: WidgetStateProperty.all(
-                                          Colors.transparent),
-                                      // elevation: MaterialStateProperty.all(3),
-                                      shadowColor: WidgetStateProperty.all(
-                                          Colors.transparent),
-                                    ),
-                                    onPressed: () {
-                                      Nav.push(context,
-                                          const ScheduleWorkoutScreen());
-                                    },
-                                    child: Text(
-                                      "Start Training",
-                                      style: GoogleFonts.vazirmatn(
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                  const Spacer(),
+                                ],
+                              ),
                             ),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Image.asset(
-                                "assets/images/traning.png",
-                                height: screenHeight * 0.25,
-                                fit: BoxFit.fill,
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
+                        ),
+                        Positioned(
+                          left: MediaQuery.of(context).size.width * 0.52,
+                          top: 10,
+                          bottom: 20,
+                          child: Image.asset(
+                            "assets/images/traning.png",
+                            fit: BoxFit.contain,
+                          ), // replace your image with Image.assets here
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(height: screenHeight * 0.02),
                   Padding(
                     padding: const EdgeInsets.only(left: 12.0),
                     child: Text(
@@ -209,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            height: screenHeight * 0.15,
+                            height: screenHeight * 0.16,
                             width: screenWidth * 0.35,
                             decoration: BoxDecoration(
                               // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
@@ -236,23 +256,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               border: Border.all(color: Colors.grey),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: InkWell(
-                              onTap: () {
-                                // setState(() {
-                                //   if ((checkboxValue == true) &&
-                                //       (selectedIndex == 1)) {
-                                //     setState(() {
-                                //       checkboxValue = false;
-                                //       selectedIndex = 0;
-                                //     });
-                                //   } else {
-                                //     setState(() {
-                                //       checkboxValue = true;
-                                //       selectedIndex = 1;
-                                //     });
-                                //   }
-                                // });
-                              },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
                               child: Image.asset("assets/images/begginer.png"),
                             ),
                           ),
@@ -273,7 +278,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            height: screenHeight * 0.15,
+                            height: screenHeight * 0.16,
                             width: screenWidth * 0.35,
                             decoration: BoxDecoration(
                               // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
@@ -300,23 +305,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               border: Border.all(color: Colors.grey),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  // if ((checkboxValue == true) &&
-                                  //     (selectedIndex == 2)) {
-                                  //   setState(() {
-                                  //     checkboxValue = false;
-                                  //     selectedIndex = 0;
-                                  //   });
-                                  // } else {
-                                  //   setState(() {
-                                  //     checkboxValue = true;
-                                  //     selectedIndex = 2;
-                                  //   });
-                                  // }
-                                });
-                              },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
                               child:
                                   Image.asset("assets/images/intermedate.png"),
                             ),
@@ -336,6 +326,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
+                  SizedBox(height: screenHeight * 0.01),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -343,7 +334,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            height: screenHeight * 0.15,
+                            height: screenHeight * 0.16,
                             width: screenWidth * 0.35,
                             decoration: BoxDecoration(
                               // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
@@ -370,23 +361,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               border: Border.all(color: Colors.grey),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: InkWell(
-                              onTap: () {
-                                // setState(() {
-                                //   if ((checkboxValue == true) &&
-                                //       (selectedIndex == 3)) {
-                                //     setState(() {
-                                //       checkboxValue = false;
-                                //       selectedIndex = 0;
-                                //     });
-                                //   } else {
-                                //     setState(() {
-                                //       checkboxValue = true;
-                                //       selectedIndex = 3;
-                                //     });
-                                //   }
-                                // });
-                              },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
                               child: Image.asset("assets/images/advance.png"),
                             ),
                           ),
@@ -407,7 +383,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            height: screenHeight * 0.15,
+                            height: screenHeight * 0.16,
                             width: screenWidth * 0.35,
                             decoration: BoxDecoration(
                               // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
@@ -434,24 +410,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               border: Border.all(color: Colors.grey),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: InkWell(
-                              onTap: () {
-                                // setState(() {
-                                //   if ((checkboxValue == true) &&
-                                //       (selectedIndex == 4)) {
-                                //     setState(() {
-                                //       checkboxValue = false;
-                                //       selectedIndex = 0;
-                                //     });
-                                //   } else {
-                                //     setState(() {
-                                //       checkboxValue = true;
-                                //       selectedIndex = 4;
-                                //     });
-                                //   }
-                                // });
-                              },
-                              child: Image.asset("assets/images/expert.png"),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.asset(
+                                "assets/images/expert.png",
+                              ),
                             ),
                           ),
                           const SizedBox(
