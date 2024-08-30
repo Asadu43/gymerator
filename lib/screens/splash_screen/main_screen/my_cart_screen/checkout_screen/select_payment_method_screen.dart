@@ -1,3 +1,4 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart' hide Card;
@@ -17,23 +18,15 @@ class SelectPaymentMethodScreen extends StatefulWidget {
   final double totalAmount;
   final String deliveryAddress;
   final String billingAddress;
-  final String name;
-  final String currency;
-  final String city;
-  final String state;
-  final String country;
-  final String postalCode;
+  final String payment;
+  final double totalDiscount;
+  final int totalProducts;
+  final double totalPayingPrice;
   const SelectPaymentMethodScreen(
       {super.key,
       required this.totalAmount,
       required this.deliveryAddress,
-      required this.billingAddress,
-      required this.name,
-      required this.currency,
-      required this.city,
-      required this.state,
-      required this.country,
-      required this.postalCode});
+      required this.billingAddress, required this.payment, required this.totalDiscount, required this.totalProducts, required this.totalPayingPrice});
 
   @override
   State<SelectPaymentMethodScreen> createState() =>
@@ -41,8 +34,6 @@ class SelectPaymentMethodScreen extends StatefulWidget {
 }
 
 class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
-  int _paymentMethodValue = -1;
-  int _termAndConditionValue = -1;
   var data;
 
   Future<void> initPaymentSheet() async {
@@ -50,15 +41,16 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
       // 1. create payment intent on the client side by calling stripe api
       data = await createPaymentIntent(
           // convert string to double
-          amount: (int.parse(widget.totalAmount.round().toString()) * 100)
+          amount: (int.parse(widget.totalPayingPrice.round().toString()) * 100)
               .toString(),
-          currency: widget.currency,
-          name: widget.name,
+          currency: "USD",
+          name: "ASD",
           address: widget.deliveryAddress,
-          postalCode: widget.postalCode,
-          city: widget.city,
-          state: widget.state,
-          country: widget.country);
+          postalCode: "",
+          city: "",
+          state: "",
+          country: ""
+      );
 
       // 2. initialize the payment sheet
       await Stripe.instance.initPaymentSheet(
@@ -145,113 +137,134 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                               },
                               icon: const Icon(Icons.arrow_back_ios)),
                           SizedBox(width: screenWidth * 0.2),
-                          Text("Select Payment",
+                          Text("Order Summary",
                               style: GoogleFonts.vazirmatn(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black)),
                         ],
                       ),
-                      SizedBox(
-                        height: screenHeight * 0.05,
-                      ),
+                      SizedBox(width: screenWidth * 0.2),
                       Padding(
-                        padding: const EdgeInsets.only(left: 12.0),
-                        child: Text("Payment method",
-                            style: GoogleFonts.vazirmatn(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black)),
-                      ),
-                      SizedBox(
-                        height: screenHeight * 0.02,
-                      ),
-                      Card(
-                        color: Colors.white,
-                        elevation: 2,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              RadioListTile(
-                                value: 1,
-                                activeColor: const Color(0xff3F710D),
-                                groupValue: _paymentMethodValue,
-                                fillColor: WidgetStateProperty.resolveWith(
-                                  (states) {
-                                    if (states.contains(WidgetState.selected)) {
-                                      return const Color(0xff3F710D);
-                                    }
-                                    return const Color(0xff3F710D);
-                                  },
-                                ),
-                                onChanged: (value) {
-                                  setState(() {
-                                    _paymentMethodValue = value!;
-                                  });
-                                },
-                                title: const Text("Card"),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(
-                                    left: 24, right: 24, top: 8, bottom: 8),
-                                child: Divider(
-                                  color: Colors.grey,
-                                  thickness: 2,
-                                ),
-                              ),
-                              RadioListTile(
-                                value: 2,
-                                activeColor: const Color(0xff3F710D),
-                                groupValue: _paymentMethodValue,
-                                fillColor: WidgetStateProperty.resolveWith(
-                                  (states) {
-                                    if (states.contains(WidgetState.selected)) {
-                                      return const Color(0xff3F710D);
-                                    }
-                                    return const Color(0xff3F710D);
-                                  },
-                                ),
-                                onChanged: (value) {
-                                  setState(() {
-                                    _paymentMethodValue = value!;
-                                  });
-                                },
-                                title: const Text("Cash on Delivery"),
-                              ),
-                            ],
-                          ),
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Delivery Address",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black)),
+                            Text(widget.deliveryAddress,
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 12.sp, color: Colors.grey)),
+                            const Divider(thickness: 2)
+                          ],
                         ),
                       ),
-                      SizedBox(
-                        height: screenHeight * 0.02,
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Billing Address",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black)),
+                            Text(widget.billingAddress,
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 12.sp, color: Colors.grey)),
+                            const Divider(thickness: 2)
+                          ],
+                        ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: RadioListTile(
-                          value: 1,
-                          activeColor: const Color(0xff3F710D),
-                          fillColor: WidgetStateProperty.resolveWith(
-                                (states) {
-                              if (states.contains(WidgetState.selected)) {
-                                return const Color(0xff3F710D);
-                              }
-                              return const Color(0xff3F710D);
-                            },
-                          ),
-                          groupValue: _termAndConditionValue,
-                          onChanged: (value) {
-                            setState(() {
-                              _termAndConditionValue = value!;
-                            });
-                          },
-                          title: Text(
-                            "I Agree Terms & Conditions",
-                            style: GoogleFonts.vazirmatn(
-                              color: const Color(0xff3F710D),
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Payment",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black)),
+                            SizedBox(height: screenHeight * 0.02),
+                            Text(widget.payment,
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 12.sp, color: Colors.black)),
+                            SizedBox(height: screenHeight * 0.01),
+                            const Divider(thickness: 2)
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Subtotal",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black)),
+                            SizedBox(height: screenHeight * 0.02),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("${widget.totalProducts} Items Product",
+                                    style: GoogleFonts.vazirmatn(
+                                        fontSize: 12.sp, color: Colors.grey)),
+                                Text("\$ ${widget.totalAmount}",
+                                    style: GoogleFonts.vazirmatn(
+                                        fontSize: 12.sp, color: Colors.grey)),
+                              ],
                             ),
-                          ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Discount",
+                                    style: GoogleFonts.vazirmatn(
+                                        fontSize: 12.sp, color: Colors.grey)),
+                                Text("\$ ${widget.totalDiscount}",
+                                    style: GoogleFonts.vazirmatn(
+                                        fontSize: 12.sp, color: Colors.grey)),
+                              ],
+                            ),
+                            SizedBox(height: screenHeight * 0.01),
+                            const DottedLine(
+                              dashLength: 5,
+                              lineThickness: 2,
+                              dashColor: Colors.grey,
+                            ),
+                          ],
                         ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Total",
+                                    style: GoogleFonts.vazirmatn(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black)),
+                                Text("\$ ${widget.totalPayingPrice}",
+                                    style: GoogleFonts.vazirmatn(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black)),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: screenHeight * 0.15,
                       ),
                       const Spacer(),
                       SizedBox(
@@ -260,41 +273,22 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                       AppButton(
                         text: "Place Order",
                         onPressed: () async {
-                          if (_paymentMethodValue == -1) {
-                            showSnackBar(
-                                context, "Please select payment method");
-                          } else if (_termAndConditionValue == -1) {
-                            showSnackBar(
-                                context, "Please select terms and conditions");
-                          } else {
-                            if (_paymentMethodValue == 1) {
                               try {
                                 await initPaymentSheet();
                                 await Stripe.instance.presentPaymentSheet();
                                 context.read<CreateOrderCubit>().createRequest(
                                     shippingAddress: widget.deliveryAddress,
                                     paymentAddress: widget.billingAddress,
-                                    paymentMethod: 'Card',
+                                    paymentMethod: widget.payment,
                                     paymentIntentId: data['id'],
                                     amount: int.parse(
-                                        widget.totalAmount.round().toString()),
-                                    currency: widget.currency);
+                                        widget.totalPayingPrice.round().toString()),
+                                    currency: "USD");
                               } catch (e) {
                                 print(e.toString());
 
                                 showSnackBar(context, "Payment Failed");
                               }
-                            } else {
-                              context.read<CreateOrderCubit>().createRequest(
-                                  shippingAddress: widget.deliveryAddress,
-                                  paymentAddress: widget.billingAddress,
-                                  paymentMethod: "Cash on Delivery",
-                                  paymentIntentId: "",
-                                  amount: int.parse(
-                                      widget.totalAmount.round().toString()),
-                                  currency: widget.currency);
-                            }
-                          }
                         },
                       ),
                     ],

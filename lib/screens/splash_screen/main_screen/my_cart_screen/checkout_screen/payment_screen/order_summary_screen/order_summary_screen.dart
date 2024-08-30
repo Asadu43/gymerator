@@ -8,7 +8,10 @@ import '../../../../../../../ui_component/app_dialog_box.dart';
 import '../../../../../../../utils/nav/nav.dart';
 
 class OrderSummaryScreen extends StatefulWidget {
-  const OrderSummaryScreen({super.key});
+  final double totalAmount;
+  final String deliveryAddress;
+  final String billingAddress;
+  const OrderSummaryScreen({super.key, required this.totalAmount, required this.deliveryAddress, required this.billingAddress});
 
   @override
   State<OrderSummaryScreen> createState() => _OrderSummaryScreenState();

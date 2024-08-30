@@ -10,6 +10,7 @@ class UserOrdersGetApi {
       final Dio dio = Dio();
       dio.options.headers["x-auth-token"] = GetStorage().read('token');
       final Response response = await dio.get(ApiConstants.allOrders);
+      print(response.data);
       if (response.statusCode == 200) {
         return GetAllUserOrdersApiResponse.fromJson(response.data);
       } else if (response.statusCode == 404) {

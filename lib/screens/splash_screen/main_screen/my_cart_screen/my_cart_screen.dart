@@ -298,7 +298,11 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                   Nav.push(
                                       context,
                                       CheckoutScreen(
-                                          totalAmount: response!.data!.total!));
+                                          totalAmount: response!.data!.subTotal!,
+                                        totalDiscount: response!.data!.discount!,
+                                        totalProducts: response!.data!.items!.length,
+                                        totalPayingPrice: response!.data!.total!,
+                                      ));
                                 },
                               ),
                       ],

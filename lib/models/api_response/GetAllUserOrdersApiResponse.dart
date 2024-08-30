@@ -27,15 +27,7 @@ class GetAllUserOrdersApiResponse {
   String? get message => _message;
   dynamic get error => _error;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    if (_data != null) {
-      map['data'] = _data?.map((v) => v.toJson()).toList();
-    }
-    map['message'] = _message;
-    map['error'] = _error;
-    return map;
-  }
+
 }
 
 class Data {
@@ -97,23 +89,6 @@ class Data {
   String? get updatedAt => _updatedAt;
   int? get v => _v;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['_id'] = _id;
-    if (_user != null) {
-      map['user'] = _user?.toJson();
-    }
-    if (_products != null) {
-      map['products'] = _products?.map((v) => v.toJson()).toList();
-    }
-    map['totalAmount'] = _totalAmount;
-    map['status'] = _status;
-    map['paymentMethod'] = _paymentMethod;
-    map['createdAt'] = _createdAt;
-    map['updatedAt'] = _updatedAt;
-    map['__v'] = _v;
-    return map;
-  }
 }
 
 class Products {
@@ -156,18 +131,6 @@ class Products {
   int? get total => _total;
   String? get id => _id;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    if (_product != null) {
-      map['product'] = _product?.toJson();
-    }
-    map['variants'] = _variants;
-    map['quantity'] = _quantity;
-    map['unitPrice'] = _unitPrice;
-    map['total'] = _total;
-    map['_id'] = _id;
-    return map;
-  }
 }
 
 class Product {
@@ -245,11 +208,4 @@ class User {
   String? get firstName => _firstName;
   String? get email => _email;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['_id'] = _id;
-    map['firstName'] = _firstName;
-    map['email'] = _email;
-    return map;
-  }
 }
