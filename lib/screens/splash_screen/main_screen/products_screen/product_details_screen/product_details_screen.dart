@@ -14,6 +14,7 @@ import '../../../../../bloC/auth_cubit/featured_product_cubit/featured_product_c
         AddToFavoriteSuccessfully,
         FailedToRemoveProduct,
         RemoveFavoriteProductGetSuccessfully;
+import '../../../../../models/api_response/GetAllUserProductApiResponse.dart';
 import '../../../../../utils/api_constants/api_constants.dart';
 import '../../../../../utils/nav/nav.dart';
 
@@ -45,6 +46,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   }
 
   ProductDetailApiResponse? response;
+  GetAllUserProductApiResponse? cartResponse;
 
   Future<void> backScreen(BuildContext context) async {
     // context.read<FeaturedProductCubit>().featuredRequest();
@@ -55,7 +57,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return BlocProvider(
-      create: (context) => ProductDetailCubit()..detailRequest(id: widget.id),
+      create: (context) => ProductDetailCubit()
+        ..detailRequest(id: widget.id)
+        ..cartRequest(),
       child: BlocConsumer<ProductDetailCubit, ProductDetailState>(
         listener: (context, state) {
           if (state is FailedToGetProductDetail) {
@@ -69,6 +73,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 context, state.response.message ?? "Failed Add To Cart");
           }
           if (state is AddToCartSuccessfully) {
+            context.read<ProductDetailCubit>().cartRequest();
             showSnackBar(
                 context, state.response.message ?? "Add To Cart Successfully",
                 type: SnackBarType.success);
@@ -97,6 +102,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             context.read<FeaturedProductCubit>().featuredRequest();
             context.read<ProductDetailCubit>().detailRequest(id: widget.id);
           }
+
+          if (state is CartProductGetSuccessfully) {
+            cartResponse = state.response;
+          }
         },
         builder: (context, state) {
           return LoadingScreenAnimation(
@@ -116,13 +125,47 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               backScreen(context);
                             },
                           ),
-                          IconButton(
-                            icon: const Icon(Icons.shopping_cart),
-                            onPressed: () {
-                              Nav.push(context, const MyCartScreen());
-                              // Handle cart button press
+                          GestureDetector(
+                            onTap: () {
+                              Nav.pushReplace(context, const MyCartScreen());
                             },
-                          ),
+                            child: Stack(
+                              children: <Widget>[
+                                const IconButton(
+                                  icon: Icon(Icons.shopping_cart),
+                                  onPressed: null,
+                                ),
+                                (cartResponse?.data == null ||
+                                        cartResponse?.data?.items?.isEmpty ==
+                                            true)
+                                    ? const SizedBox()
+                                    : Positioned(
+                                        right: 5,
+                                        top: 5,
+                                        child: Container(
+                                          width: 20,
+                                          height: 20,
+                                          decoration: BoxDecoration(
+                                              color: const Color(0xff3F710D),
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: Center(
+                                            child: Text(
+                                              cartResponse!.data!.items!.length
+                                                  .toString(),
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 11.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                       (response?.data?.images != null)

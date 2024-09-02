@@ -16,10 +16,6 @@ class AllFavoriteProductsCubit extends Cubit<AllFavoriteProductsState> {
     emit(LoadingState());
     final GetAllFavoriteProductApiResponse model =
         await _repository.getFavoriteProductRequest();
-
-    print(model.error);
-    print("name");
-    print(model.data?.firstName);
     if (model.error == null) {
       emit(AllFavoriteProductGetSuccessfully(model));
     } else {

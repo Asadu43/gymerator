@@ -22,3 +22,15 @@ class FailedToOrderCreate extends CreateOrderState {
 
   const FailedToOrderCreate(this.response);
 }
+
+class AllFavoriteProductGetSuccessfully extends CreateOrderState {
+  final GetAllFavoriteProductApiResponse response;
+
+  const AllFavoriteProductGetSuccessfully(this.response);
+}
+
+class FailedToGetProduct extends CreateOrderState {
+  final GetAllFavoriteProductApiResponse response;
+
+  const FailedToGetProduct(this.response);
+}

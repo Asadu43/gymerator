@@ -38,7 +38,7 @@ class _ProductItemCardState extends State<FeaturedProductItemCard> {
           Stack(
             children: [
               Container(
-                  height: screenHeight * 0.2,
+                  height: screenHeight * 0.19,
                   width: screenWidth * 0.33,
                   margin: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
@@ -78,7 +78,7 @@ class _ProductItemCardState extends State<FeaturedProductItemCard> {
                           icon: const Icon(Icons.favorite_border)))
             ],
           ),
-          const SizedBox(height: 8.0),
+           SizedBox(height: screenHeight *  0.01),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.4,
             child: Padding(

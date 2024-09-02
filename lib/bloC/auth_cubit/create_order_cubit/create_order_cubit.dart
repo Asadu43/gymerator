@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:gymmerator/models/api_response/CreateOrderApiResponse.dart';
 
+import '../../../models/api_response/GetAllFavoriteProductApiResponse.dart';
 import '../../../resources/repository.dart';
 
 part 'create_order_state.dart';
@@ -41,4 +42,17 @@ class CreateOrderCubit extends Cubit<CreateOrderState> {
       emit(FailedToOrderCreate(model));
     }
   }
+
+  Future featuredRequest() async {
+    emit(LoadingState());
+    final GetAllFavoriteProductApiResponse model =
+    await _repository.getFavoriteProductRequest();
+    if (model.error == null) {
+      emit(AllFavoriteProductGetSuccessfully(model));
+    } else {
+      emit(FailedToGetProduct(model));
+    }
+  }
+
+
 }

@@ -58,3 +58,15 @@ class FailedToRemoveProduct extends ProductDetailState {
 
   const FailedToRemoveProduct(this.response);
 }
+
+class CartProductGetSuccessfully extends ProductDetailState {
+  final GetAllUserProductApiResponse response;
+
+  const CartProductGetSuccessfully(this.response);
+}
+
+class FailedToGetProduct extends ProductDetailState {
+  final GetAllUserProductApiResponse response;
+
+  const FailedToGetProduct(this.response);
+}

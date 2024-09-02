@@ -7,6 +7,7 @@ import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../bloC/auth_cubit/create_order_cubit/create_order_cubit.dart';
+import '../../../../../models/api_response/GetAllFavoriteProductApiResponse.dart';
 import '../../../../../ui_component/app_button.dart';
 import '../../../../../ui_component/app_dialog_box.dart';
 import '../../../../../ui_component/payment.dart';
@@ -26,7 +27,11 @@ class SelectPaymentMethodScreen extends StatefulWidget {
       {super.key,
       required this.totalAmount,
       required this.deliveryAddress,
-      required this.billingAddress, required this.payment, required this.totalDiscount, required this.totalProducts, required this.totalPayingPrice});
+      required this.billingAddress,
+      required this.payment,
+      required this.totalDiscount,
+      required this.totalProducts,
+      required this.totalPayingPrice});
 
   @override
   State<SelectPaymentMethodScreen> createState() =>
@@ -34,6 +39,7 @@ class SelectPaymentMethodScreen extends StatefulWidget {
 }
 
 class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
+  GetAllFavoriteProductApiResponse? response;
   var data;
 
   Future<void> initPaymentSheet() async {
@@ -44,13 +50,12 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
           amount: (int.parse(widget.totalPayingPrice.round().toString()) * 100)
               .toString(),
           currency: "USD",
-          name: "ASD",
+          name: response?.data?.firstName ?? "",
           address: widget.deliveryAddress,
-          postalCode: "",
-          city: "",
-          state: "",
-          country: ""
-      );
+          postalCode: response?.data?.address?.postalCode ?? "",
+          city: response?.data?.address?.city ?? "",
+          state: response?.data?.address?.state ?? "",
+          country: response?.data?.address?.country ?? "");
 
       // 2. initialize the payment sheet
       await Stripe.instance.initPaymentSheet(
@@ -79,7 +84,7 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return BlocProvider(
-      create: (context) => CreateOrderCubit(),
+      create: (context) => CreateOrderCubit()..featuredRequest(),
       child: BlocConsumer<CreateOrderCubit, CreateOrderState>(
         listener: (context, state) {
           if (state is FailedToOrderCreate) {
@@ -115,6 +120,9 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
             Future.delayed(const Duration(seconds: 5), () {
               Nav.pushAndRemoveAllRoute(context, const MainScreen());
             });
+          }
+          if (state is AllFavoriteProductGetSuccessfully) {
+            response = state.response;
           }
         },
         builder: (context, state) {
@@ -267,28 +275,44 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                         height: screenHeight * 0.15,
                       ),
                       const Spacer(),
-                      SizedBox(
-                        height: screenHeight * 0.01,
-                      ),
                       AppButton(
                         text: "Place Order",
                         onPressed: () async {
-                              try {
-                                await initPaymentSheet();
-                                await Stripe.instance.presentPaymentSheet();
-                                context.read<CreateOrderCubit>().createRequest(
-                                    shippingAddress: widget.deliveryAddress,
-                                    paymentAddress: widget.billingAddress,
-                                    paymentMethod: widget.payment,
-                                    paymentIntentId: data['id'],
-                                    amount: int.parse(
-                                        widget.totalPayingPrice.round().toString()),
-                                    currency: "USD");
-                              } catch (e) {
-                                print(e.toString());
+                          if (widget.payment == "Cash on Delivery") {
+                            try {
+                              await initPaymentSheet();
+                              context.read<CreateOrderCubit>().createRequest(
+                                  shippingAddress: widget.deliveryAddress,
+                                  paymentAddress: widget.billingAddress,
+                                  paymentMethod: widget.payment,
+                                  paymentIntentId: data['id'],
+                                  amount: int.parse(widget.totalPayingPrice
+                                      .round()
+                                      .toString()),
+                                  currency: "USD");
+                            } catch (e) {
+                              print(e.toString());
+                              showSnackBar(context, "Payment Failed");
+                            }
+                          } else {
+                            try {
+                              await initPaymentSheet();
+                              await Stripe.instance.presentPaymentSheet();
+                              context.read<CreateOrderCubit>().createRequest(
+                                  shippingAddress: widget.deliveryAddress,
+                                  paymentAddress: widget.billingAddress,
+                                  paymentMethod: widget.payment,
+                                  paymentIntentId: data['id'],
+                                  amount: int.parse(widget.totalPayingPrice
+                                      .round()
+                                      .toString()),
+                                  currency: "USD");
+                            } catch (e) {
+                              print(e.toString());
 
-                                showSnackBar(context, "Payment Failed");
-                              }
+                              showSnackBar(context, "Payment Failed");
+                            }
+                          }
                         },
                       ),
                     ],

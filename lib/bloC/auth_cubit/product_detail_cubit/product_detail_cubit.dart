@@ -4,6 +4,7 @@ import 'package:gymmerator/models/api_response/AddFavoriteProductApiResponse.dar
 import 'package:gymmerator/models/api_response/AddToCartProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/ProductDetailApiResponse.dart';
 
+import '../../../models/api_response/GetAllUserProductApiResponse.dart';
 import '../../../models/api_response/RemoveFavoriteProductApiResponse.dart';
 import '../../../resources/repository.dart';
 
@@ -67,6 +68,17 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
       emit(RemoveFavoriteProductGetSuccessfully(model));
     } else {
       emit(FailedToRemoveProduct(model));
+    }
+  }
+
+  Future cartRequest() async {
+    emit(LoadingState());
+    final GetAllUserProductApiResponse model =
+    await _repository.getCartProductRequest();
+    if (model.error == null) {
+      emit(CartProductGetSuccessfully(model));
+    } else {
+      emit(FailedToGetProduct(model));
     }
   }
 }
