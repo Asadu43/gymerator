@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/product_detail_cubit/product_detail_cubit.dart';
 import 'package:gymmerator/models/api_response/ProductDetailApiResponse.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/my_cart_screen/my_cart_screen.dart';
+import 'package:gymmerator/ui_component/app_button.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
 
@@ -55,7 +56,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (context) => ProductDetailCubit()
         ..detailRequest(id: widget.id)
@@ -391,69 +391,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       ),
                       const SizedBox(height: 50),
                       (response?.data?.isAvailable == true)
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // Container(
-                                //   padding: EdgeInsets.symmetric(
-                                //     vertical: 14,
-                                //     horizontal: screenWidth * 0.04,
-                                //   ),
-                                //   decoration: BoxDecoration(
-                                //     border: Border.all(
-                                //         color:
-                                //             AppColors.prductBuyNowButtonColor,
-                                //         width: 2),
-                                //     borderRadius: BorderRadius.circular(9),
-                                //   ),
-                                //   child: const Text(
-                                //     "Buy Now",
-                                //     style: TextStyle(
-                                //       fontSize: 18,
-                                //       color: AppColors.prductBuyNowButtonColor,
-                                //       fontWeight: FontWeight.bold,
-                                //     ),
-                                //   ),
-                                // ),
-                                // const SizedBox(width: 16),
-                                InkWell(
-                                  onTap: () {
-                                    _onButtonPressed(context);
-                                  },
-                                  child: Container(
-                                    width: screenWidth * 0.9,
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16),
-                                    decoration: BoxDecoration(
-                                      boxShadow: const [
-                                        BoxShadow(
-                                            color: Colors.black26,
-                                            offset: Offset(0, 5),
-                                            blurRadius: 5.0)
-                                      ],
-                                      gradient: const LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        // stops: const [0.0, 1.0],
-                                        colors: [
-                                          Color(0xffB14501),
-                                          Color(0xff3F710D),
-                                        ],
-                                      ),
-                                      // color: Colors.deepPurple.shade300,
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    child: Center(
-                                      child: Text("Add to Cart",
-                                          style: GoogleFonts.vazirmatn(
-                                            fontSize: 18,
-                                            color: Colors.white,
-                                          )),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 20),
-                              ],
+                          ? AppButton(
+                              text: "Add to Cart",
+                              onPressed: () {
+                                _onButtonPressed(context);
+                              },
                             )
                           : const SizedBox(),
                       const SizedBox(height: 20),

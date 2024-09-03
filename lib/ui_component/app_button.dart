@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 
 class AppButton extends StatelessWidget {
   final String text;
@@ -46,19 +47,13 @@ class AppButton extends StatelessWidget {
           shadowColor: WidgetStateProperty.all(Colors.transparent),
         ),
         onPressed: onPressed,
-        child: Padding(
-          padding: const EdgeInsets.only(
-            top: 10,
-            bottom: 10,
-          ),
-          child: Text(
-            text,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.vazirmatn(
-              fontSize: 18,
-              // fontWeight: FontWeight.w700,
-              color: Colors.white,
-            ),
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: GoogleFonts.vazirmatn(
+            fontSize: 14.sp,
+            // fontWeight: FontWeight.w700,
+            color: Colors.white,
           ),
         ),
       ),

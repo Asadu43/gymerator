@@ -51,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
                 width: 20,
                 height: 20,
                 color: _currentIndex == 1 ? Colors.white : Colors.black),
-            title: Text("Chat Ai", style: GoogleFonts.vazirmatn()),
+            title: Text("GYMI", style: GoogleFonts.vazirmatn()),
             selectedColor: Colors.white,
           ),
 

@@ -10,6 +10,7 @@ import 'package:gymmerator/ui_component/app_button.dart';
 import 'package:gymmerator/ui_component/app_dialog_box.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/utils/app_colors/app_colors.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../../models/api_response/GetAllFavoriteProductApiResponse.dart';
 import '../../../../ui_component/show_snackbar.dart';
@@ -83,7 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             .toUpperCase() ??
                                         "",
                                     style: GoogleFonts.vazirmatn(
-                                        fontSize: 40, color: Colors.white),
+                                        fontSize: 30.sp, color: Colors.white),
                                   )
                                 : null,
                           ),
@@ -91,7 +92,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Text(
                             "${response?.data?.firstName ?? " "} ${response?.data?.lastName ?? " "}",
                             style: GoogleFonts.vazirmatn(
-                              fontSize: 24,
+                              fontSize: 18.sp,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
@@ -124,8 +125,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   child: Image.asset(
                                     'assets/icons/profile_edit.png',
-                                    width: 24,
-                                    height: 24,
+                                    width: 22,
+                                    height: 22,
                                   )),
                               trailing: const Icon(
                                 Icons.arrow_forward_ios,
@@ -133,7 +134,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               title: Text('Profile Edit',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 16,
+                                      fontSize: 13.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
                                 Nav.push(
@@ -169,7 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               title: Text('Account Edit',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 16,
+                                      fontSize: 13.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
                                 Nav.push(
@@ -207,8 +208,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   child: Image.asset(
                                     'assets/icons/order.png',
-                                    width: 24,
-                                    height: 24,
+                                    width: 22,
+                                    height: 22,
                                   )),
                               trailing: const Icon(
                                 Icons.arrow_forward_ios,
@@ -216,7 +217,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               title: Text('Orders',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 16,
+                                      fontSize: 13.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
                                 Nav.push(context, const OrdersScreen());
@@ -234,8 +235,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   child: Image.asset(
                                     'assets/icons/profile_terms_conditions.png',
-                                    width: 24,
-                                    height: 24,
+                                    width: 22,
+                                    height: 22,
                                   )),
                               trailing: const Icon(
                                 Icons.arrow_forward_ios,
@@ -243,7 +244,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               title: Text('Terms & Conditions',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 16,
+                                      fontSize: 13.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {},
                             ),
@@ -259,8 +260,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   child: Image.asset(
                                     'assets/icons/profile_privacy_policy.png',
-                                    width: 24,
-                                    height: 24,
+                                    width: 22,
+                                    height: 22,
                                   )),
                               trailing: const Icon(
                                 Icons.arrow_forward_ios,
@@ -268,7 +269,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               title: Text('Privacy Policy',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 16,
+                                      fontSize: 13.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {},
                             ),
@@ -294,7 +295,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               title: Text('Delete Account',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 16,
+                                      fontSize: 13.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
                                 showDialog(
@@ -357,8 +358,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   child: Image.asset(
                                     'assets/icons/profile_share_app.png',
-                                    width: 24,
-                                    height: 24,
+                                    width: 22,
+                                    height: 22,
                                   )),
                               trailing: const Icon(
                                 Icons.arrow_forward_ios,
@@ -366,7 +367,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               title: Text('Share the app',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 16,
+                                      fontSize: 13.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {},
                             ),
@@ -382,8 +383,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   child: Image.asset(
                                     'assets/icons/profile_logout.png',
-                                    width: 24,
-                                    height: 24,
+                                    width: 22,
+                                    height: 22,
                                   )),
                               trailing: const Icon(
                                 Icons.arrow_forward_ios,
@@ -391,7 +392,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               title: Text('Logout',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 16,
+                                      fontSize: 13.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
                                 showDialog(

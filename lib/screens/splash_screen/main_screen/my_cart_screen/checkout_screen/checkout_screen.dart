@@ -13,7 +13,12 @@ class CheckoutScreen extends StatefulWidget {
   final double totalDiscount;
   final int totalProducts;
   final double totalPayingPrice;
-  const CheckoutScreen({super.key, required this.totalAmount, required this.totalDiscount, required this.totalProducts, required  this.totalPayingPrice});
+  const CheckoutScreen(
+      {super.key,
+      required this.totalAmount,
+      required this.totalDiscount,
+      required this.totalProducts,
+      required this.totalPayingPrice});
 
   @override
   State<CheckoutScreen> createState() => _CheckoutScreenState();
@@ -125,7 +130,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             _paymentMethodValue = value!;
                           });
                         },
-                        title: const Text("Card"),
+                        title: Text(
+                          "Card",
+                          style: GoogleFonts.vazirmatn(
+                            fontSize: 12.sp,
+                          ),
+                        ),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(
@@ -152,7 +162,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             _paymentMethodValue = value!;
                           });
                         },
-                        title: const Text("Cash on Delivery"),
+                        title: Text(
+                          "Cash on Delivery",
+                          style: GoogleFonts.vazirmatn(fontSize: 12.sp),
+                        ),
                       ),
                     ],
                   ),
@@ -183,6 +196,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   title: Text(
                     "I Agree Terms & Conditions",
                     style: GoogleFonts.vazirmatn(
+                      fontSize: 12.sp,
                       color: const Color(0xff3F710D),
                     ),
                   ),
@@ -196,8 +210,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     showSnackBar(context, "Please enter Delivery Address");
                   } else if (billingAddressController.text.isEmpty) {
                     showSnackBar(context, "Please enter Billing Address");
-                  }
-                  if (_paymentMethodValue == -1) {
+                  } else if (_paymentMethodValue == -1) {
                     showSnackBar(context, "Please select payment method");
                   } else if (_termAndConditionValue == -1) {
                     showSnackBar(context, "Please select terms and conditions");

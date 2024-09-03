@@ -47,8 +47,9 @@ class NetworkController extends GetxController {
       //   actions: [],
       // ));
       Get.rawSnackbar(
-          messageText: const Text('PLEASE CONNECT TO THE INTERNET',
-              style: TextStyle(color: Colors.white, fontSize: 14)),
+          messageText: Text('PLEASE CONNECT TO THE INTERNET',
+              style:
+                  GoogleFonts.vazirmatn(color: Colors.white, fontSize: 12.sp)),
           isDismissible: false,
           duration: const Duration(days: 1),
           backgroundColor: Colors.red[400]!,

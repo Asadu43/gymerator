@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/ui_component/app_drawer.dart';
 import 'package:gymmerator/utils/app_colors/app_colors.dart';
+import 'package:sizer/sizer.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -15,11 +17,11 @@ class ChatScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Image.asset('assets/icons/chat_ai_title_icon.png',
-                width: 40, height: 40),
-            const Text('ChatAi',
-                style: TextStyle(
+                width: 35, height: 35),
+             Text('GYMI',
+                style: GoogleFonts.vazirmatn(
                     color: AppColors.prductBuyNowButtonColor,
-                    fontSize: 24.0,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w600)),
           ],
         ),
@@ -43,27 +45,28 @@ class ChatScreen extends StatelessWidget {
           FeatureButton(title: 'Write a poem about flower and love'),
         ],
       ),
-      bottomNavigationBar: const Material(
+      bottomNavigationBar:  Material(
         color: AppColors.chatScreenBackgroundColor,
         child: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
               Expanded(
                 child: Material(
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(30.0))),
                   shadowColor: AppColors.borderColor,
                   elevation: 2.0,
                   child: TextField(
                     decoration: InputDecoration(
                         fillColor: Colors.white,
-                        hintText: 'Hello ChatAi, how are you today?',
-                        border: OutlineInputBorder(
+                        hintText: 'Hello GYMI, how are you today?',
+                        hintStyle: GoogleFonts.vazirmatn(),
+                        border: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius:
                                 BorderRadius.all(Radius.circular(30.0))),
-                        suffixIcon: Icon(Icons.send)),
+                        suffixIcon: const Icon(Icons.send)),
                   ),
                 ),
               ),
@@ -89,8 +92,8 @@ class SectionTitle extends StatelessWidget {
         const SizedBox(height: 16.0),
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 18.0,
+          style: GoogleFonts.vazirmatn(
+            fontSize: 14.sp,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -119,8 +122,8 @@ class FeatureButton extends StatelessWidget {
         ),
         child: Center(
             child: Text(title,
-                style: const TextStyle(
-                    fontSize: 16.0, fontWeight: FontWeight.w400))),
+                style: GoogleFonts.vazirmatn(
+                    fontSize: 12.sp, fontWeight: FontWeight.w400))),
       ),
     );
   }

@@ -34,7 +34,7 @@ class AppTextField extends StatelessWidget {
       child: TextField(
         textAlign: TextAlign.start,
         controller: controller,
-        style: fieldTextStyle ?? const TextStyle(color: Colors.white),
+        style: fieldTextStyle ?? GoogleFonts.vazirmatn(color: Colors.white),
         keyboardType: textInputType ?? TextInputType.text,
         onChanged: onChanged,
         decoration: InputDecoration(
