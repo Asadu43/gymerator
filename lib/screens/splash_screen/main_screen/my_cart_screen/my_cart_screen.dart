@@ -165,9 +165,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                     fit: BoxFit.fitHeight,
                                                     errorBuilder: (context,
                                                         error, stackTrace) {
-                                                      return const Center(
+                                                      return  Center(
                                                         child:
-                                                            Text('Please Wait'),
+                                                            Text('Please Wait',style: GoogleFonts.vazirmatn(),),
                                                       );
                                                     },
                                                   ),

@@ -7,7 +7,7 @@ import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/nav/nav.dart';
 
 class AccountSetup extends StatefulWidget {
-  const AccountSetup({Key? key}) : super(key: key);
+  const AccountSetup({super.key});
 
   @override
   State<AccountSetup> createState() => _AccountSetupState();
@@ -39,7 +39,7 @@ class _AccountSetupState extends State<AccountSetup> {
                   height: screenHeight / 8,
                 ),
                 Text("Account Setup",
-                    style: GoogleFonts.barlow(
+                    style: GoogleFonts.vazirmatn(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: AppColors.white)),
@@ -77,14 +77,14 @@ class _AccountSetupState extends State<AccountSetup> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Do you have an account? ",
-                        style: GoogleFonts.barlow(
+                        style: GoogleFonts.vazirmatn(
                             fontSize: 14, color: AppColors.white)),
                     InkWell(
                       onTap: () {
                         Nav.pop(context);
                       },
                       child: Text("Login",
-                          style: GoogleFonts.barlow(
+                          style: GoogleFonts.vazirmatn(
                               fontSize: 14,
                               color: AppColors.contentColorPurple)),
                     ),

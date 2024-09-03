@@ -61,10 +61,10 @@ class _AllProductScreenState extends State<AllProductScreen> {
           isLoading: state is LoadingState,
           child: Scaffold(
             appBar: AppBar(
-              centerTitle: true,
-                title: const Text('All Products',
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                centerTitle: true,
+                title: Text('All Products',
+                    style: GoogleFonts.vazirmatn(
+                        fontSize: 20, fontWeight: FontWeight.bold)),
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back_ios),
                   onPressed: () {
@@ -101,8 +101,9 @@ class _AllProductScreenState extends State<AllProductScreen> {
                   const SizedBox(height: 16.0),
                   (searchController.text.isNotEmpty &&
                           searchResponse?.data == null)
-                      ? const Center(
-                          child: Text("Product Not found"),
+                      ? Center(
+                          child: Text("Product Not found",
+                              style: GoogleFonts.vazirmatn()),
                         )
                       : (searchResponse != null)
                           ? Expanded(

@@ -13,7 +13,7 @@ import '../../../ui_component/app_button.dart';
 import '../../../utils/app_colors/app_colors.dart';
 
 class MetaMaskScreen extends StatefulWidget {
-  const MetaMaskScreen({Key? key}) : super(key: key);
+  const MetaMaskScreen({super.key});
 
   @override
   State<MetaMaskScreen> createState() => _MetaMaskScreenState();
