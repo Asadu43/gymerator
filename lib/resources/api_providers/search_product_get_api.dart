@@ -6,10 +6,6 @@ import '../../utils/api_constants/api_constants.dart';
 
 class SearchProductGetApi {
   Future<SearchProductApiResponse> searchRequest(String id) async {
-
-    print("id\n\n\n\n");
-    print(id);
-    print("id\n\n\n\n");
     try {
       final Dio dio = Dio();
       dio.options.headers["x-auth-token"] = GetStorage().read('token');
@@ -19,8 +15,6 @@ class SearchProductGetApi {
       }, options: Options(validateStatus: (status) {
         return status! <= 500;
       }));
-
-      print(response.data);
       if (response.statusCode == 200) {
         return SearchProductApiResponse.fromJson(response.data);
       } else if (response.statusCode == 404) {
