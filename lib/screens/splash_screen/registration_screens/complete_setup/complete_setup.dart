@@ -95,7 +95,7 @@ class _CompleteSetupState extends State<CompleteSetup> {
                       height: screenHeight * 0.1,
                     ),
                     Text(
-                      "We Create Your \nTraining Plan",
+                      "We Creating Your \nWorkout Plan",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.vazirmatn(
                           fontWeight: FontWeight.bold,
