@@ -1,7 +1,7 @@
 class ApiConstants {
   ApiConstants._();
 
-  static const String baseUrl = "http://3.64.190.185:5100";
+  static const String baseUrl = "https://api.gymerator.fit";
   static const String signUp = "$baseUrl/api/user/signup";
   static const String signIn = "$baseUrl/api/user/login";
   static const String loginWithGoogle = "$baseUrl/api/user/auth/google";

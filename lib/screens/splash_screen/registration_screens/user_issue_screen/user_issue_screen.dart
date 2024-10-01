@@ -13,8 +13,9 @@ class UserIssueScreen extends StatefulWidget {
 }
 
 class _UserIssueScreenState extends State<UserIssueScreen> {
-  bool checkboxValue = false;
-  int selectedIndex = 0;
+
+
+  String? selectMedical;
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +44,9 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                 SizedBox(
                   height: screenHeight * 0.030,
                 ),
-                Text("Do you have knee issue?",
+                Text("Do you have Medical issue?",
                     style: GoogleFonts.vazirmatn(
-                        fontSize: 24,
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.bold,
                         color: AppColors.white)),
                 Text(
@@ -56,229 +57,207 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                 SizedBox(
                   height: screenHeight * 0.030,
                 ),
+
+                SizedBox(
+                  height: screenHeight * 0.02,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Diet Plan',
+                      style: GoogleFonts.vazirmatn(
+                          color: Colors.white, fontSize: 14.sp),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: screenHeight * 0.01,
+                ),
                 InkWell(
-                  onTap: () {},
-                  child: Container(
-                    height: screenHeight * 0.09,
-                    decoration: BoxDecoration(
-                      // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
-                      gradient: (checkboxValue == true && selectedIndex == 1)
-                          ? const LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              // stops: const [0.0, 1.0],
-                              colors: [
-                                Color(0xffB14501),
-                                Color(0xff3F710D),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        String? tempSelectedGoal = selectMedical;
+
+                        return StatefulBuilder(
+                          builder: (context, setState) {
+                            return AlertDialog(
+                              title: Text('Select Diet Plan',
+                                  style:
+                                  GoogleFonts.vazirmatn(fontSize: 14.sp)),
+                              content: SizedBox(
+                                width: screenWidth,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    RadioListTile<String>(
+                                      activeColor: const Color(0xff3F710D),
+                                      title: Text('Balanced Diet',
+                                          style: GoogleFonts.vazirmatn(
+                                              fontSize: 10.sp)),
+                                      value: 'Balanced Diet',
+                                      groupValue: tempSelectedGoal,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          tempSelectedGoal = value!;
+                                        });
+                                      },
+                                    ),
+                                    RadioListTile<String>(
+                                      activeColor: const Color(0xff3F710D),
+                                      title: Text('Low-Carb/Keto Diet',
+                                          style: GoogleFonts.vazirmatn(
+                                              fontSize: 10.sp)),
+                                      value: 'Low-Carb/Keto Diet',
+                                      groupValue: tempSelectedGoal,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          tempSelectedGoal = value!;
+                                        });
+                                      },
+                                    ),
+                                    RadioListTile<String>(
+                                      activeColor: const Color(0xff3F710D),
+                                      title: Text('High-Protein Diet',
+                                          style: GoogleFonts.vazirmatn(
+                                              fontSize: 10.sp)),
+                                      value: 'High-Protein Diet',
+                                      groupValue: tempSelectedGoal,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          tempSelectedGoal = value!;
+                                        });
+                                      },
+                                    ),
+                                    RadioListTile<String>(
+                                      activeColor: const Color(0xff3F710D),
+                                      title: Text('Vegan/Vegetarian Diet',
+                                          style: GoogleFonts.vazirmatn(
+                                              fontSize: 10.sp)),
+                                      value: 'Vegan/Vegetarian Diet',
+                                      groupValue: tempSelectedGoal,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          tempSelectedGoal = value!;
+                                        });
+                                      },
+                                    ),
+                                    RadioListTile<String>(
+                                      activeColor: const Color(0xff3F710D),
+                                      title: Text('Mediterranean Diet',
+                                          style: GoogleFonts.vazirmatn(
+                                              fontSize: 10.sp)),
+                                      value: 'Mediterranean Diet',
+                                      groupValue: tempSelectedGoal,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          tempSelectedGoal = value!;
+                                        });
+                                      },
+                                    ),
+                                    RadioListTile<String>(
+                                      activeColor: const Color(0xff3F710D),
+                                      title: Text('Intermittent Fasting',
+                                          style: GoogleFonts.vazirmatn(
+                                              fontSize: 10.sp)),
+                                      value: 'Intermittent Fasting',
+                                      groupValue: tempSelectedGoal,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          tempSelectedGoal = value!;
+                                        });
+                                      },
+                                    ),
+                                    RadioListTile<String>(
+                                      activeColor: const Color(0xff3F710D),
+                                      title: Text('Paleo Diet',
+                                          style: GoogleFonts.vazirmatn(
+                                              fontSize: 10.sp)),
+                                      value: 'Paleo Diet',
+                                      groupValue: tempSelectedGoal,
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          tempSelectedGoal = value!;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              contentTextStyle:
+                              GoogleFonts.vazirmatn(color: Colors.black),
+                              actions: [
+                                TextButton(
+                                  child: Text(
+                                    'CANCEL',
+                                    style: GoogleFonts.vazirmatn(
+                                        color: Colors.black),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                                TextButton(
+                                  child: Text(
+                                    'OK',
+                                    style: GoogleFonts.vazirmatn(
+                                        color: Colors.black),
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      selectMedical = tempSelectedGoal;
+                                    });
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
                               ],
-                            )
-                          : const LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              // stops: const [0.0, 1.0],
-                              colors: [
-                                Colors.transparent,
-                                Colors.transparent,
-                              ],
-                            ),
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: ListTile(
-                        onTap: () {
-                          setState(() {
-                            if ((checkboxValue == true) &&
-                                (selectedIndex == 1)) {
-                              setState(() {
-                                checkboxValue = false;
-                                selectedIndex = 0;
-                              });
-                            } else {
-                              setState(() {
-                                checkboxValue = true;
-                                selectedIndex = 1;
-                              });
-                            }
-                          });
-                        },
-                        leading: Image.asset("assets/images/fine.png"),
-                        tileColor:
-                            ((checkboxValue == true) && (selectedIndex == 1))
-                                ? Colors.blue
-                                : Colors.red,
-                        trailing: Checkbox(
-                          checkColor: Colors.white,
-                          focusColor: Colors.white,
-                          activeColor: Colors.orange,
-                          // fillColor: Colors.orange,
-                          value: (checkboxValue == true && selectedIndex == 1),
-                          shape: const CircleBorder(),
-                          side: const BorderSide(color: Colors.white),
-                          onChanged: (bool? value) {
-                            setState(() {
-                              checkboxValue = value!;
-                              selectedIndex = 1;
-                            });
+                            );
                           },
+                        );
+                      },
+                    ).then(
+                          (value) {
+                        setState(() {
+                          selectMedical;
+                        });
+                      },
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.07,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 4, horizontal: 16),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        selectMedical == null
+                            ? Text(
+                          "Select Diet Plan",
+                          style:
+                          GoogleFonts.vazirmatn(color: Colors.grey),
+                        )
+                            : Text(
+                          "$selectMedical",
+                          style: GoogleFonts.vazirmatn(
+                              color: Colors.white),
                         ),
-                        title: Text("No,I’m fine",
-                            style: GoogleFonts.vazirmatn(
-                                fontSize: 11.sp, color: Colors.white)),
-                      ),
+                        const Icon(
+                          Icons.keyboard_arrow_down_sharp,
+                          color: Colors.grey,
+                        )
+                      ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: screenHeight * 0.030,
-                ),
-                Container(
-                  height: screenHeight * 0.09,
-                  decoration: BoxDecoration(
-                    // color: (checkboxValue == true && selectedIndex == 2) ? Colors.blue : Colors.red,
-                    gradient: (checkboxValue == true && selectedIndex == 2)
-                        ? const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            // stops: const [0.0, 1.0],
-                            colors: [
-                              Color(0xffB14501),
-                              Color(0xff3F710D),
-                            ],
-                          )
-                        : const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            // stops: const [0.0, 1.0],
-                            colors: [
-                              Colors.transparent,
-                              Colors.transparent,
-                            ],
-                          ),
-                    border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: ListTile(
-                      onTap: () {
-                        setState(() {
-                          if ((checkboxValue == true) && (selectedIndex == 2)) {
-                            setState(() {
-                              checkboxValue = false;
-                              selectedIndex = 0;
-                            });
-                          } else {
-                            setState(() {
-                              checkboxValue = true;
-                              selectedIndex = 2;
-                            });
-                          }
-                        });
-                      },
-                      leading: Image.asset("assets/images/impect.png"),
-                      tileColor:
-                          ((checkboxValue == true) && (selectedIndex == 2))
-                              ? Colors.blue
-                              : Colors.red,
-                      trailing: Checkbox(
-                        checkColor: Colors.white,
-                        focusColor: Colors.white,
-                        activeColor: Colors.orange,
-                        // fillColor: Colors.orange,
-                        value: (checkboxValue == true && selectedIndex == 2),
-                        shape: const CircleBorder(),
-                        side: const BorderSide(color: Colors.white),
-                        onChanged: (bool? value) {
-                          setState(() {
-                            checkboxValue = value!;
-                          });
-                        },
-                      ),
-                      title: Text("No,I’m fine",
-                          style: GoogleFonts.vazirmatn(
-                              fontSize: 11.sp, color: Colors.white)),
-                      subtitle: Text("Friendly to over weight people",
-                          style: GoogleFonts.vazirmatn(
-                              fontSize: 7.sp, color: Colors.grey)),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: screenHeight * 0.030,
-                ),
-                Container(
-                  height: screenHeight * 0.09,
-                  decoration: BoxDecoration(
-                    // color:(checkboxValue == true && selectedIndex == 3) ? Colors.blue : Colors.red,
-                    gradient: (checkboxValue == true && selectedIndex == 3)
-                        ? const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            // stops: const [0.0, 1.0],
-                            colors: [
-                              Color(0xffB14501),
-                              Color(0xff3F710D),
-                            ],
-                          )
-                        : const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            // stops: const [0.0, 1.0],
-                            colors: [
-                              Colors.transparent,
-                              Colors.transparent,
-                            ],
-                          ),
-                    border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: ListTile(
-                      onTap: () {
-                        setState(() {
-                          if ((checkboxValue == true) && (selectedIndex == 3)) {
-                            setState(() {
-                              checkboxValue = false;
-                              selectedIndex = 0;
-                            });
-                          } else {
-                            setState(() {
-                              checkboxValue = true;
-                              selectedIndex = 3;
-                            });
-                          }
-                        });
-                      },
-                      selectedTileColor: Colors.red,
-                      tileColor:
-                          ((checkboxValue == true) && (selectedIndex == 3))
-                              ? Colors.blue
-                              : Colors.red,
-                      leading: Image.asset("assets/images/jumpping.png"),
-                      trailing: Checkbox(
-                        checkColor: Colors.white,
-                        focusColor: Colors.white,
-                        activeColor: Colors.orange,
-                        // fillColor: Colors.orange,
-                        value: (checkboxValue == true && selectedIndex == 3),
-                        shape: const CircleBorder(),
-                        side: const BorderSide(color: Colors.white),
-                        onChanged: (bool? value) {
-                          setState(() {
-                            checkboxValue = value!;
-                            print(checkboxValue);
-                          });
-                        },
-                      ),
-                      title: Text("No Jumping",
-                          style: GoogleFonts.vazirmatn(
-                              fontSize: 11.sp, color: Colors.white)),
-                      subtitle: Text("No noies, apartment friendly",
-                          style: GoogleFonts.vazirmatn(
-                              fontSize: 7.sp, color: Colors.grey)),
-                    ),
-                  ),
-                ),
+
                 const Spacer(),
                 AppButton(
                   text: "Submit",

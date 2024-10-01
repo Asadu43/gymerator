@@ -27,29 +27,41 @@ class Data {
   Data({
     Address? address,
     Location? location,
-    bool? isRequiredInfoAdded,
     String? id,
     String? firstName,
     String? lastName,
     String? email,
     String? password,
+    String? activityLevel,
+    String? dietType,
+    int? mealFrequency,
     String? goal,
+    String? workoutLevel,
     String? type,
+    bool? isRequiredInfoAdded,
+    List<dynamic>? favoriteProducts,
+    String? createdAt,
+    String? updatedAt,
     int? v,
-    int? otp,
   }) {
     _address = address;
     _location = location;
-    _isRequiredInfoAdded = isRequiredInfoAdded;
     _id = id;
     _firstName = firstName;
     _lastName = lastName;
     _email = email;
     _password = password;
+    _activityLevel = activityLevel;
+    _dietType = dietType;
+    _mealFrequency = mealFrequency;
     _goal = goal;
+    _workoutLevel = workoutLevel;
     _type = type;
+    _isRequiredInfoAdded = isRequiredInfoAdded;
+    _favoriteProducts = favoriteProducts;
+    _createdAt = createdAt;
+    _updatedAt = updatedAt;
     _v = v;
-    _otp = otp;
   }
 
   Data.fromJson(dynamic json) {
@@ -57,42 +69,65 @@ class Data {
         json['address'] != null ? Address.fromJson(json['address']) : null;
     _location =
         json['location'] != null ? Location.fromJson(json['location']) : null;
-    _isRequiredInfoAdded = json['isRequiredInfoAdded'];
     _id = json['_id'];
     _firstName = json['firstName'];
     _lastName = json['lastName'];
     _email = json['email'];
     _password = json['password'];
+    _activityLevel = json['activityLevel'];
+    _dietType = json['dietType'];
+    _mealFrequency = json['mealFrequency'];
     _goal = json['goal'];
+    _workoutLevel = json['workoutLevel'];
     _type = json['type'];
+    _isRequiredInfoAdded = json['isRequiredInfoAdded'];
+    if (json['favoriteProducts'] != null) {
+      _favoriteProducts = [];
+      json['favoriteProducts'].forEach((v) {
+        _favoriteProducts?.add(v);
+      });
+    }
+    _createdAt = json['createdAt'];
+    _updatedAt = json['updatedAt'];
     _v = json['__v'];
-    _otp = json['otp'];
   }
   Address? _address;
   Location? _location;
-  bool? _isRequiredInfoAdded;
   String? _id;
   String? _firstName;
   String? _lastName;
   String? _email;
   String? _password;
+  String? _activityLevel;
+  String? _dietType;
+  int? _mealFrequency;
   String? _goal;
+  String? _workoutLevel;
   String? _type;
+  bool? _isRequiredInfoAdded;
+  List<dynamic>? _favoriteProducts;
+  String? _createdAt;
+  String? _updatedAt;
   int? _v;
-  int? _otp;
 
   Address? get address => _address;
   Location? get location => _location;
-  bool? get isRequiredInfoAdded => _isRequiredInfoAdded;
   String? get id => _id;
   String? get firstName => _firstName;
   String? get lastName => _lastName;
   String? get email => _email;
   String? get password => _password;
+  String? get activityLevel => _activityLevel;
+  String? get dietType => _dietType;
+  int? get mealFrequency => _mealFrequency;
   String? get goal => _goal;
+  String? get workoutLevel => _workoutLevel;
   String? get type => _type;
+  bool? get isRequiredInfoAdded => _isRequiredInfoAdded;
+  List<dynamic>? get favoriteProducts => _favoriteProducts;
+  String? get createdAt => _createdAt;
+  String? get updatedAt => _updatedAt;
   int? get v => _v;
-  int? get otp => _otp;
 }
 
 class Location {

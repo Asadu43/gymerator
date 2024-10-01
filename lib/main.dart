@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gymmerator/screens/splash_screen/registration_screens/user_issue_screen/user_issue_screen.dart';
 import 'package:gymmerator/screens/splash_screen/splash_screen.dart';
 import 'package:gymmerator/utils/internet_connection/dependency_injection.dart';
 import 'package:sizer/sizer.dart';
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
-            home: const SplashScreen(),
+            home: const UserIssueScreen(),
           );
         },
       ),

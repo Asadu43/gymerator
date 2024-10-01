@@ -10,7 +10,7 @@ class SignupApiResponse {
   }
 
   SignupApiResponse.fromJson(dynamic json) {
-    // _data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    _data = json['data'] != null ? Data.fromJson(json['data']) : null;
     _message = json['message'];
     _error = json['error'];
   }
@@ -31,9 +31,17 @@ class Data {
     String? password,
     Address? address,
     Location? location,
+    String? activityLevel,
+    String? dietType,
+    int? mealFrequency,
     String? goal,
+    String? workoutLevel,
     String? type,
+    bool? isRequiredInfoAdded,
+    List<dynamic>? favoriteProducts,
     String? id,
+    String? createdAt,
+    String? updatedAt,
     int? v,
   }) {
     _firstName = firstName;
@@ -42,9 +50,17 @@ class Data {
     _password = password;
     _address = address;
     _location = location;
+    _activityLevel = activityLevel;
+    _dietType = dietType;
+    _mealFrequency = mealFrequency;
     _goal = goal;
+    _workoutLevel = workoutLevel;
     _type = type;
+    _isRequiredInfoAdded = isRequiredInfoAdded;
+    _favoriteProducts = favoriteProducts;
     _id = id;
+    _createdAt = createdAt;
+    _updatedAt = updatedAt;
     _v = v;
   }
 
@@ -57,9 +73,22 @@ class Data {
         json['address'] != null ? Address.fromJson(json['address']) : null;
     _location =
         json['location'] != null ? Location.fromJson(json['location']) : null;
+    _activityLevel = json['activityLevel'];
+    _dietType = json['dietType'];
+    _mealFrequency = json['mealFrequency'];
     _goal = json['goal'];
+    _workoutLevel = json['workoutLevel'];
     _type = json['type'];
+    _isRequiredInfoAdded = json['isRequiredInfoAdded'];
+    if (json['favoriteProducts'] != null) {
+      _favoriteProducts = [];
+      json['favoriteProducts'].forEach((v) {
+        _favoriteProducts?.add(v);
+      });
+    }
     _id = json['_id'];
+    _createdAt = json['createdAt'];
+    _updatedAt = json['updatedAt'];
     _v = json['__v'];
   }
   String? _firstName;
@@ -68,9 +97,17 @@ class Data {
   String? _password;
   Address? _address;
   Location? _location;
+  String? _activityLevel;
+  String? _dietType;
+  int? _mealFrequency;
   String? _goal;
+  String? _workoutLevel;
   String? _type;
+  bool? _isRequiredInfoAdded;
+  List<dynamic>? _favoriteProducts;
   String? _id;
+  String? _createdAt;
+  String? _updatedAt;
   int? _v;
 
   String? get firstName => _firstName;
@@ -79,9 +116,17 @@ class Data {
   String? get password => _password;
   Address? get address => _address;
   Location? get location => _location;
+  String? get activityLevel => _activityLevel;
+  String? get dietType => _dietType;
+  int? get mealFrequency => _mealFrequency;
   String? get goal => _goal;
+  String? get workoutLevel => _workoutLevel;
   String? get type => _type;
+  bool? get isRequiredInfoAdded => _isRequiredInfoAdded;
+  List<dynamic>? get favoriteProducts => _favoriteProducts;
   String? get id => _id;
+  String? get createdAt => _createdAt;
+  String? get updatedAt => _updatedAt;
   int? get v => _v;
 }
 
@@ -100,6 +145,7 @@ class Location {
   }
   String? _latitude;
   String? _longitude;
+
   String? get latitude => _latitude;
   String? get longitude => _longitude;
 }
@@ -129,7 +175,6 @@ class Address {
     _country = json['country'];
     _postalCode = json['postalCode'];
   }
-
   String? _address1;
   String? _address2;
   String? _city;

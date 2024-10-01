@@ -32,585 +32,873 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   double heightCm = 0;
   int age = 20;
   String? goal;
+  String? dietPlan;
 
   bool checkboxValue = true;
   int selectedIndex = 0;
-
-
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-
-    setState(() {
-
-      print(goal);
-    });
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage(
-                'assets/images/background.png'), // Replace with your image asset path
-            fit: BoxFit.cover, // You can adjust the fit property as needed
-          )),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: screenHeight * 0.02,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: screenHeight * 0.18,
-                          width: screenWidth * 0.4,
-                          decoration: BoxDecoration(
-                            // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
-                            gradient:
-                                (checkboxValue == true && selectedIndex == 1)
-                                    ? const LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        // stops: const [0.0, 1.0],
-                                        colors: [
-                                          Color(0xffB14501),
-                                          Color(0xff3F710D),
-                                        ],
-                                      )
-                                    : const LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        // stops: const [0.0, 1.0],
-                                        colors: [
-                                          Colors.transparent,
-                                          Colors.transparent,
-                                        ],
-                                      ),
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                              setState(() {
-                                if ((checkboxValue == true) &&
-                                    (selectedIndex == 1)) {
-                                  setState(() {
-                                    checkboxValue = false;
-                                    selectedIndex = 0;
-                                  });
-                                } else {
-                                  setState(() {
-                                    checkboxValue = true;
-                                    selectedIndex = 1;
-                                  });
-                                }
-                              });
-                            },
-                            child: Image.asset("assets/icons/male.png"),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: screenHeight * 0.18,
-                          width: screenWidth * 0.4,
-                          decoration: BoxDecoration(
-                            // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
-                            gradient:
-                                (checkboxValue == true && selectedIndex == 2)
-                                    ? const LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        // stops: const [0.0, 1.0],
-                                        colors: [
-                                          Color(0xffB14501),
-                                          Color(0xff3F710D),
-                                        ],
-                                      )
-                                    : const LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        // stops: const [0.0, 1.0],
-                                        colors: [
-                                          Colors.transparent,
-                                          Colors.transparent,
-                                        ],
-                                      ),
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                              setState(() {
-                                if ((checkboxValue == true) &&
-                                    (selectedIndex == 2)) {
-                                  setState(() {
-                                    checkboxValue = false;
-                                    selectedIndex = 0;
-                                  });
-                                } else {
-                                  setState(() {
-                                    checkboxValue = true;
-                                    selectedIndex = 2;
-                                  });
-                                }
-                              });
-                            },
-                            child: Image.asset("assets/icons/female.png"),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Weight",
-                          style: GoogleFonts.vazirmatn(
-                              color: Colors.white, fontSize: 14.sp),
-                        ),
-                        SizedBox(
-                          height: screenHeight * 0.02,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          width: screenWidth * 0.4,
-                          decoration: BoxDecoration(
-                            color: Colors.white70.withOpacity(0.80),
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(8),
-                            shape: BoxShape.rectangle,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ToggleSwitch(
-                                initialLabelIndex:
-                                    weightUnit == WeightUnits.kg ? 0 : 1,
-                                totalSwitches: 2,
-                                activeBgColor: const [
-                                  Color(0xffB14501),
-                                  Color(0xff3F710D)
-                                ],
-                                labels: const ['Kg', 'Lb'],
-                                onToggle: (index) {
-                                  setState(() {
-                                    weightUnit = index == 0
-                                        ? WeightUnits.kg
-                                        : WeightUnits.lb;
-                                  });
-                                },
-                              ),
-                              SizedBox(
-                                width: 70,
-                                child: TextField(
-                                  cursorColor: Colors.black,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                  ),
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                    border: const UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
-                                    ),
-                                    enabledBorder: const UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
-                                    ),
-                                    focusedBorder: const UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
-                                    ),
-                                    contentPadding: const EdgeInsets.all(0),
-                                    suffixText: weightUnit == WeightUnits.kg
-                                        ? 'Kg'
-                                        : 'Lb',
-                                    suffixStyle: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  onChanged: (value) {
-                                    if (value.isEmpty) {
-                                      return;
-                                    }
-                                    setState(() {
-                                      if (weightUnit == WeightUnits.kg) {
-                                        weightKg = double.parse(value);
-                                      } else {
-                                        weightLb = double.parse(value);
-                                      }
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(width: 20),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Height",
-                          style: GoogleFonts.vazirmatn(
-                              color: Colors.white, fontSize: 14.sp),
-                        ),
-                        SizedBox(
-                          height: screenHeight * 0.02,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          width: screenWidth * 0.4,
-                          decoration: BoxDecoration(
-                            color: Colors.white70.withOpacity(0.80),
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(8),
-                            shape: BoxShape.rectangle,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ToggleSwitch(
-                                initialLabelIndex:
-                                    heightUnit == HeightUnits.cm ? 0 : 1,
-                                totalSwitches: 2,
-                                activeBgColor: const [
-                                  Color(0xffB14501),
-                                  Color(0xff3F710D)
-                                ],
-                                labels: const ['Cm', 'Ft-In'],
-                                onToggle: (index) {
-                                  setState(() {
-                                    heightUnit = index == 0
-                                        ? HeightUnits.cm
-                                        : HeightUnits.ftIn;
-                                  });
-                                },
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: heightUnit == HeightUnits.cm
-                                    ? [
-                                        buildTextField(heightCmController,
-                                            (value) {
-                                          if (value.isEmpty) {
-                                            return;
-                                          }
-                                          setState(() {
-                                            heightCm = double.parse(value);
-                                          });
-                                        }, 'Cm')
-                                      ]
-                                    : [
-                                        buildTextField(heightFeetController,
-                                            (value) {
-                                          if (value.isEmpty) {
-                                            return;
-                                          }
-                                          setState(() {
-                                            heightFeet = double.parse(value);
-                                          });
-                                        }, 'Ft'),
-                                        buildTextField(heightInchesController,
-                                            (value) {
-                                          if (value.isEmpty) {
-                                            return;
-                                          }
-                                          setState(() {
-                                            heightInches = double.parse(value);
-                                          });
-                                        }, 'In'),
-                                      ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Age',
-                      style: GoogleFonts.vazirmatn(
-                          color: Colors.white, fontSize: 20),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                TextFormField(
-                  controller: ageController,
-                  style: GoogleFonts.vazirmatn(color: Colors.white),
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: 'Enter your age',
-                    hintStyle: GoogleFonts.vazirmatn(color: Colors.white),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage(
+              'assets/images/background.png'), // Replace with your image asset path
+          fit: BoxFit.cover, // You can adjust the fit property as needed
+        )),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: screenHeight * 0.02,
                   ),
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Goal',
-                      style: GoogleFonts.vazirmatn(
-                          color: Colors.white, fontSize: 20),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                InkWell(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        String? tempSelectedGoal = goal;
-
-                        return StatefulBuilder(
-                          builder: (context, setState) {
-                            return AlertDialog(
-                              title:  Text('Select Goal',style: GoogleFonts.vazirmatn()),
-                              content: SizedBox(
-                                width: screenWidth,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title:  Text('Lose Weight',style: GoogleFonts.vazirmatn()),
-                                      value: 'Lose Weight',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title:  Text('Keep Fit',style: GoogleFonts.vazirmatn()),
-                                      value: 'Keep Fit',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title:  Text('Get Stronger',style: GoogleFonts.vazirmatn()),
-                                      value: 'Get Stronger',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title:  Text('Gain Muscle Mass',style: GoogleFonts.vazirmatn()),
-                                      value: 'Gain Muscle Mass',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              contentTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
-                              actions: [
-                                TextButton(
-                                  child:  Text('CANCEL',style: GoogleFonts.vazirmatn(color: Colors.black),),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                                TextButton(
-                                  child:  Text('OK',style: GoogleFonts.vazirmatn(color: Colors.black),),
-                                  onPressed: () {
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: screenHeight * 0.18,
+                            width: screenWidth * 0.4,
+                            decoration: BoxDecoration(
+                              // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
+                              gradient:
+                                  (checkboxValue == true && selectedIndex == 1)
+                                      ? const LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          // stops: const [0.0, 1.0],
+                                          colors: [
+                                            Color(0xffB14501),
+                                            Color(0xff3F710D),
+                                          ],
+                                        )
+                                      : const LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          // stops: const [0.0, 1.0],
+                                          colors: [
+                                            Colors.transparent,
+                                            Colors.transparent,
+                                          ],
+                                        ),
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  if ((checkboxValue == true) &&
+                                      (selectedIndex == 1)) {
                                     setState(() {
-                                      goal = tempSelectedGoal;
+                                      checkboxValue = false;
+                                      selectedIndex = 0;
                                     });
-                                    // Call the main setState to update the UI after dialog is closed
-                                    Navigator.of(context).pop();
+                                  } else {
+                                    setState(() {
+                                      checkboxValue = true;
+                                      selectedIndex = 1;
+                                    });
+                                  }
+                                });
+                              },
+                              child: Image.asset("assets/icons/male.png"),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: screenHeight * 0.18,
+                            width: screenWidth * 0.4,
+                            decoration: BoxDecoration(
+                              // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
+                              gradient:
+                                  (checkboxValue == true && selectedIndex == 2)
+                                      ? const LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          // stops: const [0.0, 1.0],
+                                          colors: [
+                                            Color(0xffB14501),
+                                            Color(0xff3F710D),
+                                          ],
+                                        )
+                                      : const LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          // stops: const [0.0, 1.0],
+                                          colors: [
+                                            Colors.transparent,
+                                            Colors.transparent,
+                                          ],
+                                        ),
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  if ((checkboxValue == true) &&
+                                      (selectedIndex == 2)) {
+                                    setState(() {
+                                      checkboxValue = false;
+                                      selectedIndex = 0;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      checkboxValue = true;
+                                      selectedIndex = 2;
+                                    });
+                                  }
+                                });
+                              },
+                              child: Image.asset("assets/icons/female.png"),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Weight",
+                            style: GoogleFonts.vazirmatn(
+                                color: Colors.white, fontSize: 14.sp),
+                          ),
+                          SizedBox(
+                            height: screenHeight * 0.01,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            width: screenWidth * 0.4,
+                            decoration: BoxDecoration(
+                              color: Colors.white70.withOpacity(0.80),
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(8),
+                              shape: BoxShape.rectangle,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ToggleSwitch(
+                                  initialLabelIndex:
+                                      weightUnit == WeightUnits.kg ? 0 : 1,
+                                  totalSwitches: 2,
+                                  activeBgColor: const [
+                                    Color(0xffB14501),
+                                    Color(0xff3F710D)
+                                  ],
+                                  labels: const ['Kg', 'Lb'],
+                                  onToggle: (index) {
+                                    setState(() {
+                                      weightUnit = index == 0
+                                          ? WeightUnits.kg
+                                          : WeightUnits.lb;
+                                    });
                                   },
+                                ),
+                                SizedBox(
+                                  width: 70,
+                                  child: TextField(
+                                    cursorColor: Colors.black,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(
+                                      border: const UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.black),
+                                      ),
+                                      enabledBorder: const UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.black),
+                                      ),
+                                      focusedBorder: const UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.black),
+                                      ),
+                                      contentPadding: const EdgeInsets.all(0),
+                                      suffixText: weightUnit == WeightUnits.kg
+                                          ? 'Kg'
+                                          : 'Lb',
+                                      suffixStyle: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    onChanged: (value) {
+                                      if (value.isEmpty) {
+                                        return;
+                                      }
+                                      setState(() {
+                                        if (weightUnit == WeightUnits.kg) {
+                                          weightKg = double.parse(value);
+                                        } else {
+                                          weightLb = double.parse(value);
+                                        }
+                                      });
+                                    },
+                                  ),
                                 ),
                               ],
-                            );
-                          },
-                        );
-                      },
-                    ).then((value) {
-                      setState(() {
-                        goal;
-                      });
-                    },);
-
-
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.07,
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        goal == null
-                            ? Text(
-                                "Select your goal",
-                                style:
-                                    GoogleFonts.vazirmatn(color: Colors.white),
-                              )
-                            : Text(
-                                "$goal",
-                                style:
-                                    GoogleFonts.vazirmatn(color: Colors.white),
-                              ),
-                        const Icon(
-                          Icons.keyboard_arrow_down_sharp,
-                          color: Colors.grey,
-                        )
-                      ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(width: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Height",
+                            style: GoogleFonts.vazirmatn(
+                                color: Colors.white, fontSize: 14.sp),
+                          ),
+                          SizedBox(
+                            height: screenHeight * 0.01,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            width: screenWidth * 0.4,
+                            decoration: BoxDecoration(
+                              color: Colors.white70.withOpacity(0.80),
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(8),
+                              shape: BoxShape.rectangle,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ToggleSwitch(
+                                  initialLabelIndex:
+                                      heightUnit == HeightUnits.cm ? 0 : 1,
+                                  totalSwitches: 2,
+                                  activeBgColor: const [
+                                    Color(0xffB14501),
+                                    Color(0xff3F710D)
+                                  ],
+                                  labels: const ['Cm', 'Ft-In'],
+                                  onToggle: (index) {
+                                    setState(() {
+                                      heightUnit = index == 0
+                                          ? HeightUnits.cm
+                                          : HeightUnits.ftIn;
+                                    });
+                                  },
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: heightUnit == HeightUnits.cm
+                                      ? [
+                                          buildTextField(heightCmController,
+                                              (value) {
+                                            if (value.isEmpty) {
+                                              return;
+                                            }
+                                            setState(() {
+                                              heightCm = double.parse(value);
+                                            });
+                                          }, 'Cm')
+                                        ]
+                                      : [
+                                          buildTextField(heightFeetController,
+                                              (value) {
+                                            if (value.isEmpty) {
+                                              return;
+                                            }
+                                            setState(() {
+                                              heightFeet = double.parse(value);
+                                            });
+                                          }, 'Ft'),
+                                          buildTextField(heightInchesController,
+                                              (value) {
+                                            if (value.isEmpty) {
+                                              return;
+                                            }
+                                            setState(() {
+                                              heightInches =
+                                                  double.parse(value);
+                                            });
+                                          }, 'In'),
+                                        ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Age',
+                        style: GoogleFonts.vazirmatn(
+                            color: Colors.white, fontSize: 14.sp),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.01,
+                  ),
+                  TextFormField(
+                    controller: ageController,
+                    style: GoogleFonts.vazirmatn(color: Colors.white),
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: 'Enter your age',
+                      hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                     ),
                   ),
-                ),
-                const Spacer(),
-                AppButton(
-                  text: "Save",
-                  onPressed: () async {
-                    print(heightCm);
-                    print(weightKg);
-                    if (selectedIndex == 0) {
-                      showSnackBar(context, "Please select gender");
-                    } else if (weightKg == 0.0 && weightLb == 0.0) {
-                      showSnackBar(context, "Please enter Weight");
-                    } else if (heightCm == 0.0 && heightFeet == 0.0) {
-                      showSnackBar(context, "Please enter height");
-                    } else if (ageController.text.isEmpty) {
-                      showSnackBar(context, "Please enter age");
-                    } else if (goal == null) {
-                      showSnackBar(context, "Please select goal");
-                    } else {
-                      if (weightUnit == WeightUnits.kg &&
-                          heightUnit == HeightUnits.cm &&
-                          selectedIndex == 1) {
-                        // print("weightKg... $weightKg");
-                        // print("heightCm... $heightCm");
-                        Nav.push(
-                            context,
-                            ChoosePlanScreen(
-                                gender: "Male",
-                                heightUnit: "cm",
-                                heightValue: heightCm,
-                                weightUnit: "Kg",
-                                weightValue: weightKg,
-                                age: ageController.text,
-                                goal: goal!));
-                      }
-                      if (weightUnit == WeightUnits.lb &&
-                          heightUnit == HeightUnits.cm &&
-                          selectedIndex == 2) {
-                        // print("weightLB... $weightLb");
-                        // print("heightCm... $heightCm");
-                        Nav.push(
-                            context,
-                            ChoosePlanScreen(
-                                gender: "Female",
-                                heightUnit: "cm",
-                                heightValue: heightCm,
-                                weightUnit: "lb",
-                                weightValue: weightLb,
-                                age: ageController.text,
-                                goal: goal!));
-                      }
-                      if (weightUnit == WeightUnits.kg &&
-                          heightUnit == HeightUnits.ftIn &&
-                          selectedIndex == 1) {
-                        // print("weightKg... $weightKg");
-                        // print("heightFeet... $heightFeet");
-                        // print("heightInches... $heightInches");
+                  SizedBox(
+                    height: screenHeight * 0.02,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Goal',
+                        style: GoogleFonts.vazirmatn(
+                            color: Colors.white, fontSize: 14.sp),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.01,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          String? tempSelectedGoal = goal;
 
-                        String val =
-                            "${(heightFeet.toInt())}.${heightInches.toInt()}";
+                          return StatefulBuilder(
+                            builder: (context, setState) {
+                              return AlertDialog(
+                                title: Text('Select Goal',
+                                    style: GoogleFonts.vazirmatn()),
+                                content: SizedBox(
+                                  width: screenWidth,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      RadioListTile<String>(
+                                        activeColor: const Color(0xff3F710D),
+                                        title: Text('Lose Weight',
+                                            style: GoogleFonts.vazirmatn()),
+                                        value: 'Lose Weight',
+                                        groupValue: tempSelectedGoal,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            tempSelectedGoal = value!;
+                                          });
+                                        },
+                                      ),
+                                      RadioListTile<String>(
+                                        activeColor: const Color(0xff3F710D),
+                                        title: Text('Keep Fit',
+                                            style: GoogleFonts.vazirmatn()),
+                                        value: 'Keep Fit',
+                                        groupValue: tempSelectedGoal,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            tempSelectedGoal = value!;
+                                          });
+                                        },
+                                      ),
+                                      RadioListTile<String>(
+                                        activeColor: const Color(0xff3F710D),
+                                        title: Text('Get Stronger',
+                                            style: GoogleFonts.vazirmatn()),
+                                        value: 'Get Stronger',
+                                        groupValue: tempSelectedGoal,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            tempSelectedGoal = value!;
+                                          });
+                                        },
+                                      ),
+                                      RadioListTile<String>(
+                                        activeColor: const Color(0xff3F710D),
+                                        title: Text('Gain Muscle Mass',
+                                            style: GoogleFonts.vazirmatn()),
+                                        value: 'Gain Muscle Mass',
+                                        groupValue: tempSelectedGoal,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            tempSelectedGoal = value!;
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                contentTextStyle:
+                                    GoogleFonts.vazirmatn(color: Colors.black),
+                                actions: [
+                                  TextButton(
+                                    child: Text(
+                                      'CANCEL',
+                                      style: GoogleFonts.vazirmatn(
+                                          color: Colors.black),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: Text(
+                                      'OK',
+                                      style: GoogleFonts.vazirmatn(
+                                          color: Colors.black),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        goal = tempSelectedGoal;
+                                      });
+                                      // Call the main setState to update the UI after dialog is closed
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                      ).then(
+                        (value) {
+                          setState(() {
+                            goal;
+                          });
+                        },
+                      );
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: MediaQuery.of(context).size.height * 0.07,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 16),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          goal == null
+                              ? Text(
+                                  "Select your goal",
+                                  style:
+                                      GoogleFonts.vazirmatn(color: Colors.grey),
+                                )
+                              : Text(
+                                  "$goal",
+                                  style: GoogleFonts.vazirmatn(
+                                      color: Colors.white),
+                                ),
+                          const Icon(
+                            Icons.keyboard_arrow_down_sharp,
+                            color: Colors.grey,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.02,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Sleep Hours',
+                        style: GoogleFonts.vazirmatn(
+                            color: Colors.white, fontSize: 14.sp),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.01,
+                  ),
+                  TextFormField(
+                    controller: ageController,
+                    style: GoogleFonts.vazirmatn(color: Colors.white),
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: 'Enter your sleep hours 1 to 24',
+                      hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.02,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Meal Frequency',
+                        style: GoogleFonts.vazirmatn(
+                            color: Colors.white, fontSize: 14.sp),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.01,
+                  ),
+                  TextFormField(
+                    controller: ageController,
+                    style: GoogleFonts.vazirmatn(color: Colors.white),
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: 'Enter your meal frequency 1 to 5',
+                      hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.02,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hydration Per Day',
+                        style: GoogleFonts.vazirmatn(
+                            color: Colors.white, fontSize: 14.sp),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.01,
+                  ),
+                  TextFormField(
+                    controller: ageController,
+                    style: GoogleFonts.vazirmatn(color: Colors.white),
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: '5 Liters',
+                      hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.02,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Diet Plan',
+                        style: GoogleFonts.vazirmatn(
+                            color: Colors.white, fontSize: 14.sp),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.01,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          String? tempSelectedGoal = dietPlan;
 
-                        Nav.push(
-                            context,
-                            ChoosePlanScreen(
-                                gender: "Male",
-                                heightUnit: "Ft-in",
-                                heightValue: double.parse(val),
-                                weightUnit: "Kg",
-                                weightValue: weightKg,
-                                age: ageController.text,
-                                goal: goal!));
-                      }
-                      if (weightUnit == WeightUnits.lb &&
-                          heightUnit == HeightUnits.ftIn &&
-                          selectedIndex == 2) {
-                        // print("weightKg... $weightLb");
-                        // print("heightFeet... $heightFeet");
-                        // print("heightInches... $heightInches");
-                        // print("${(heightFeet.toInt())}.${heightInches.toInt()}");
-                        String val =
-                            "${(heightFeet.toInt())}.${heightInches.toInt()}";
+                          return StatefulBuilder(
+                            builder: (context, setState) {
+                              return AlertDialog(
+                                title: Text('Select Diet Plan',
+                                    style:
+                                        GoogleFonts.vazirmatn(fontSize: 14.sp)),
+                                content: SizedBox(
+                                  width: screenWidth,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      RadioListTile<String>(
+                                        activeColor: const Color(0xff3F710D),
+                                        title: Text('Balanced Diet',
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 10.sp)),
+                                        value: 'Balanced Diet',
+                                        groupValue: tempSelectedGoal,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            tempSelectedGoal = value!;
+                                          });
+                                        },
+                                      ),
+                                      RadioListTile<String>(
+                                        activeColor: const Color(0xff3F710D),
+                                        title: Text('Low-Carb/Keto Diet',
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 10.sp)),
+                                        value: 'Low-Carb/Keto Diet',
+                                        groupValue: tempSelectedGoal,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            tempSelectedGoal = value!;
+                                          });
+                                        },
+                                      ),
+                                      RadioListTile<String>(
+                                        activeColor: const Color(0xff3F710D),
+                                        title: Text('High-Protein Diet',
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 10.sp)),
+                                        value: 'High-Protein Diet',
+                                        groupValue: tempSelectedGoal,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            tempSelectedGoal = value!;
+                                          });
+                                        },
+                                      ),
+                                      RadioListTile<String>(
+                                        activeColor: const Color(0xff3F710D),
+                                        title: Text('Vegan/Vegetarian Diet',
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 10.sp)),
+                                        value: 'Vegan/Vegetarian Diet',
+                                        groupValue: tempSelectedGoal,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            tempSelectedGoal = value!;
+                                          });
+                                        },
+                                      ),
+                                      RadioListTile<String>(
+                                        activeColor: const Color(0xff3F710D),
+                                        title: Text('Mediterranean Diet',
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 10.sp)),
+                                        value: 'Mediterranean Diet',
+                                        groupValue: tempSelectedGoal,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            tempSelectedGoal = value!;
+                                          });
+                                        },
+                                      ),
+                                      RadioListTile<String>(
+                                        activeColor: const Color(0xff3F710D),
+                                        title: Text('Intermittent Fasting',
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 10.sp)),
+                                        value: 'Intermittent Fasting',
+                                        groupValue: tempSelectedGoal,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            tempSelectedGoal = value!;
+                                          });
+                                        },
+                                      ),
+                                      RadioListTile<String>(
+                                        activeColor: const Color(0xff3F710D),
+                                        title: Text('Paleo Diet',
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 10.sp)),
+                                        value: 'Paleo Diet',
+                                        groupValue: tempSelectedGoal,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            tempSelectedGoal = value!;
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                contentTextStyle:
+                                    GoogleFonts.vazirmatn(color: Colors.black),
+                                actions: [
+                                  TextButton(
+                                    child: Text(
+                                      'CANCEL',
+                                      style: GoogleFonts.vazirmatn(
+                                          color: Colors.black),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: Text(
+                                      'OK',
+                                      style: GoogleFonts.vazirmatn(
+                                          color: Colors.black),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        dietPlan = tempSelectedGoal;
+                                      });
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                      ).then(
+                        (value) {
+                          setState(() {
+                            dietPlan;
+                          });
+                        },
+                      );
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: MediaQuery.of(context).size.height * 0.07,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 16),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          dietPlan == null
+                              ? Text(
+                                  "Select Diet Plan",
+                                  style:
+                                      GoogleFonts.vazirmatn(color: Colors.grey),
+                                )
+                              : Text(
+                                  "$dietPlan",
+                                  style: GoogleFonts.vazirmatn(
+                                      color: Colors.white),
+                                ),
+                          const Icon(
+                            Icons.keyboard_arrow_down_sharp,
+                            color: Colors.grey,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.04,
+                  ),
+                  AppButton(
+                    text: "Save",
+                    onPressed: () async {
+                      if (selectedIndex == 0) {
+                        showSnackBar(context, "Please select gender");
+                      } else if (weightKg == 0.0 && weightLb == 0.0) {
+                        showSnackBar(context, "Please enter Weight");
+                      } else if (heightCm == 0.0 && heightFeet == 0.0) {
+                        showSnackBar(context, "Please enter height");
+                      } else if (ageController.text.isEmpty) {
+                        showSnackBar(context, "Please enter age");
+                      } else if (goal == null) {
+                        showSnackBar(context, "Please select goal");
+                      } else {
+                        if (weightUnit == WeightUnits.kg &&
+                            heightUnit == HeightUnits.cm &&
+                            selectedIndex == 1) {
+                          Nav.push(
+                              context,
+                              ChoosePlanScreen(
+                                  gender: "Male",
+                                  heightUnit: "cm",
+                                  heightValue: heightCm,
+                                  weightUnit: "Kg",
+                                  weightValue: weightKg,
+                                  age: ageController.text,
+                                  goal: goal!));
+                        }
+                        if (weightUnit == WeightUnits.lb &&
+                            heightUnit == HeightUnits.cm &&
+                            selectedIndex == 2) {
+                          Nav.push(
+                              context,
+                              ChoosePlanScreen(
+                                  gender: "Female",
+                                  heightUnit: "cm",
+                                  heightValue: heightCm,
+                                  weightUnit: "lb",
+                                  weightValue: weightLb,
+                                  age: ageController.text,
+                                  goal: goal!));
+                        }
+                        if (weightUnit == WeightUnits.kg &&
+                            heightUnit == HeightUnits.ftIn &&
+                            selectedIndex == 1) {
+                          String val =
+                              "${(heightFeet.toInt())}.${heightInches.toInt()}";
 
-                        Nav.push(
-                            context,
-                            ChoosePlanScreen(
-                                gender: "Female",
-                                heightUnit: "Ft-in",
-                                heightValue: double.parse(val),
-                                weightUnit: "lb",
-                                weightValue: weightLb,
-                                age: ageController.text,
-                                goal: goal!));
+                          Nav.push(
+                              context,
+                              ChoosePlanScreen(
+                                  gender: "Male",
+                                  heightUnit: "Ft-in",
+                                  heightValue: double.parse(val),
+                                  weightUnit: "Kg",
+                                  weightValue: weightKg,
+                                  age: ageController.text,
+                                  goal: goal!));
+                        }
+                        if (weightUnit == WeightUnits.lb &&
+                            heightUnit == HeightUnits.ftIn &&
+                            selectedIndex == 2) {
+                          String val =
+                              "${(heightFeet.toInt())}.${heightInches.toInt()}";
+
+                          Nav.push(
+                              context,
+                              ChoosePlanScreen(
+                                  gender: "Female",
+                                  heightUnit: "Ft-in",
+                                  heightValue: double.parse(val),
+                                  weightUnit: "lb",
+                                  weightValue: weightLb,
+                                  age: ageController.text,
+                                  goal: goal!));
+                        }
                       }
-                    }
-                  },
-                ),
-              ],
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
