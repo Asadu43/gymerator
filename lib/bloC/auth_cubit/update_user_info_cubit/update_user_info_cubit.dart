@@ -22,6 +22,13 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
     required int age,
     required int goal,
     required int workoutLevel,
+    required int sleepHours,
+    required int mealFrequency,
+    required int hydrationDaily,
+    required int targetWeight,
+    required int dietPlan,
+    required String selectMedicalName,
+    required String medicalCondition,
   }) async {
     emit(LoadingState());
 
@@ -35,10 +42,17 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
       "goal":
           goal, // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
       "workoutLevel":
-          workoutLevel // 0 = Beginner, 1 = Intermediate, 2 = Advance
+          workoutLevel, // 0 = Beginner, 1 = Intermediate, 2 = Advance
+      "sleepHours": sleepHours,
+      "dietType": dietPlan,
+      "mealFrequency": mealFrequency,
+      "hydrationLitersPerDay": hydrationDaily,
+      "targetWeightInKG": targetWeight,
+      "medicalConditionName": selectMedicalName,
+      "medicalCondition": medicalCondition
     });
 
-    print("Data \n\n\ ${formData} \n\n\n");
+    print("Data \n\n\ ${formData.fields} \n\n\n");
 
     final UpdateUserInfoApiResponse model =
         await _repository.updateUserInfoRequest(formData);

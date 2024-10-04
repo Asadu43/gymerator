@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gymmerator/screens/splash_screen/registration_screens/choose_plan_screen/choose_plan_screen.dart';
+import 'package:gymmerator/utils/nav/nav.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../ui_component/app_button.dart';
@@ -18,7 +20,7 @@ class UserIssueScreen extends StatefulWidget {
   final String mealFrequency;
   final String hydrationDaily;
   final String targetWeight;
-  final String dietPlan;
+  final int dietPlan;
   const UserIssueScreen(
       {super.key,
       required this.gender,
@@ -113,6 +115,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                       onChanged: (String? value) {
                                         setState(() {
                                           tempSelectedGoal = value!;
+                                          medicalCondition = null;
                                         });
                                       },
                                     ),
@@ -2489,20 +2492,58 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                 AppButton(
                   text: "Submit",
                   onPressed: () async {
-
-                    if(selectMedicalName == null){
+                    if (selectMedicalName == null) {
                       showSnackBar(context, "Please select medical");
+                    } else if (selectMedicalName == "No,I’m fine" &&
+                        medicalCondition == null) {
+                      print(selectMedicalName);
+                      print("medicalCondition");
 
-                    }else if (selectMedicalName != null && medicalCondition == null){
+                      Nav.push(
+                          context,
+                          ChoosePlanScreen(
+                              gender: widget.gender,
+                              heightUnit: widget.heightUnit,
+                              heightValue: widget.heightValue,
+                              weightUnit: widget.weightUnit,
+                              weightValue: widget.weightValue,
+                              age: widget.age,
+                              goal: widget.goal,
+                              sleepHours: widget.sleepHours,
+                              mealFrequency: widget.mealFrequency,
+                              hydrationDaily: widget.hydrationDaily,
+                              targetWeight: widget.targetWeight,
+                              dietPlan: widget.dietPlan,
+                              selectMedicalName: selectMedicalName!,
+                              medicalCondition: ""));
+                    } else if (selectMedicalName != null &&
+                        medicalCondition == null) {
+                      showSnackBar(context, "Please select condition");
+                    } else {
+                      Nav.push(
+                          context,
+                          ChoosePlanScreen(
+                              gender: widget.gender,
+                              heightUnit: widget.heightUnit,
+                              heightValue: widget.heightValue,
+                              weightUnit: widget.weightUnit,
+                              weightValue: widget.weightValue,
+                              age: widget.age,
+                              goal: widget.goal,
+                              sleepHours: widget.sleepHours,
+                              mealFrequency: widget.mealFrequency,
+                              hydrationDaily: widget.hydrationDaily,
+                              targetWeight: widget.targetWeight,
+                              dietPlan: widget.dietPlan,
+                              selectMedicalName: selectMedicalName!,
+                              medicalCondition: medicalCondition!));
 
-                      showSnackBar(context, "Please select medical");
-                    }else {
-
-
+                      print(selectMedicalName);
+                      print(medicalCondition);
                     }
 
-                    print(selectMedicalName);
-                    print(medicalCondition);
+                    // print(selectMedicalName);
+                    // print(medicalCondition);
                     // Nav.push(context, const ChoosePlanScreen());
                   },
                 ),

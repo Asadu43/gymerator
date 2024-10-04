@@ -20,7 +20,7 @@ class ChoosePlanScreen extends StatefulWidget {
   final String mealFrequency;
   final String hydrationDaily;
   final String targetWeight;
-  final String dietPlan;
+  final int dietPlan;
   final String selectMedicalName;
   final String medicalCondition;
 
@@ -37,7 +37,9 @@ class ChoosePlanScreen extends StatefulWidget {
       required this.mealFrequency,
       required this.hydrationDaily,
       required this.targetWeight,
-      required this.dietPlan, required this.selectMedicalName, required this.medicalCondition});
+      required this.dietPlan,
+      required this.selectMedicalName,
+      required this.medicalCondition});
 
   @override
   State<ChoosePlanScreen> createState() => _ChoosePlanScreenState();
@@ -367,54 +369,78 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                         Nav.push(
                             context,
                             CompleteSetup(
-                              gender: "Male",
-                              heightUnit: "cm",
-                              heightValue: widget.heightValue,
-                              weightUnit: "Kg",
-                              weightValue: widget.weightValue,
-                              age: int.parse(widget.age),
-                              goal: 0,
-                              plan: selectedIndex,
-                            ));
+                                gender: "Male",
+                                heightUnit: "cm",
+                                heightValue: widget.heightValue,
+                                weightUnit: "Kg",
+                                weightValue: widget.weightValue,
+                                age: int.parse(widget.age),
+                                goal: 0,
+                                plan: selectedIndex,
+                                sleepHours: widget.sleepHours,
+                                mealFrequency: widget.mealFrequency,
+                                hydrationDaily: widget.hydrationDaily,
+                                targetWeight: widget.targetWeight,
+                                dietPlan: widget.dietPlan,
+                                selectMedicalName: widget.selectMedicalName,
+                                medicalCondition: widget.medicalCondition));
                       } else if (widget.goal == "Keep Fit") {
                         Nav.push(
                             context,
                             CompleteSetup(
-                              gender: "Male",
-                              heightUnit: "cm",
-                              heightValue: widget.heightValue,
-                              weightUnit: "Kg",
-                              weightValue: widget.weightValue,
-                              age: int.parse(widget.age),
-                              goal: 1,
-                              plan: selectedIndex,
-                            ));
+                                gender: "Male",
+                                heightUnit: "cm",
+                                heightValue: widget.heightValue,
+                                weightUnit: "Kg",
+                                weightValue: widget.weightValue,
+                                age: int.parse(widget.age),
+                                goal: 1,
+                                plan: selectedIndex,
+                                sleepHours: widget.sleepHours,
+                                mealFrequency: widget.mealFrequency,
+                                hydrationDaily: widget.hydrationDaily,
+                                targetWeight: widget.targetWeight,
+                                dietPlan: widget.dietPlan,
+                                selectMedicalName: widget.selectMedicalName,
+                                medicalCondition: widget.medicalCondition));
                       } else if (widget.goal == "Get Stronger") {
                         Nav.push(
                             context,
                             CompleteSetup(
-                              gender: "Male",
-                              heightUnit: "cm",
-                              heightValue: widget.heightValue,
-                              weightUnit: "Kg",
-                              weightValue: widget.weightValue,
-                              age: int.parse(widget.age),
-                              goal: 2,
-                              plan: selectedIndex,
-                            ));
+                                gender: "Male",
+                                heightUnit: "cm",
+                                heightValue: widget.heightValue,
+                                weightUnit: "Kg",
+                                weightValue: widget.weightValue,
+                                age: int.parse(widget.age),
+                                goal: 2,
+                                plan: selectedIndex,
+                                sleepHours: widget.sleepHours,
+                                mealFrequency: widget.mealFrequency,
+                                hydrationDaily: widget.hydrationDaily,
+                                targetWeight: widget.targetWeight,
+                                dietPlan: widget.dietPlan,
+                                selectMedicalName: widget.selectMedicalName,
+                                medicalCondition: widget.medicalCondition));
                       } else if (widget.goal == "Gain Muscle Mass") {
                         Nav.push(
                             context,
                             CompleteSetup(
-                              gender: "Male",
-                              heightUnit: "cm",
-                              heightValue: widget.heightValue,
-                              weightUnit: "Kg",
-                              weightValue: widget.weightValue,
-                              age: int.parse(widget.age),
-                              goal: 3,
-                              plan: selectedIndex,
-                            ));
+                                gender: "Male",
+                                heightUnit: "cm",
+                                heightValue: widget.heightValue,
+                                weightUnit: "Kg",
+                                weightValue: widget.weightValue,
+                                age: int.parse(widget.age),
+                                goal: 3,
+                                plan: selectedIndex,
+                                sleepHours: widget.sleepHours,
+                                mealFrequency: widget.mealFrequency,
+                                hydrationDaily: widget.hydrationDaily,
+                                targetWeight: widget.targetWeight,
+                                dietPlan: widget.dietPlan,
+                                selectMedicalName: widget.selectMedicalName,
+                                medicalCondition: widget.medicalCondition));
                       }
                     }
                   },

@@ -8,7 +8,6 @@ import '../../../../ui_component/app_button.dart';
 import '../../../../ui_component/show_snackbar.dart';
 import '../../../../utils/nav/nav.dart';
 import '../../main_screen/profile_screen/profile_edit_screen/profile_edit_screen.dart';
-import '../choose_plan_screen/choose_plan_screen.dart';
 
 class UserInfoScreen extends StatefulWidget {
   const UserInfoScreen({super.key});
@@ -39,6 +38,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   int age = 20;
   String? goal;
   String? dietPlan;
+  int? dietType;
 
   bool checkboxValue = true;
   int selectedIndex = 0;
@@ -694,6 +694,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         onChanged: (String? value) {
                                           setState(() {
                                             tempSelectedGoal = value!;
+                                            dietType = 0;
                                           });
                                         },
                                       ),
@@ -707,6 +708,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         onChanged: (String? value) {
                                           setState(() {
                                             tempSelectedGoal = value!;
+                                            dietType = 1;
                                           });
                                         },
                                       ),
@@ -720,6 +722,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         onChanged: (String? value) {
                                           setState(() {
                                             tempSelectedGoal = value!;
+                                            dietType = 2;
                                           });
                                         },
                                       ),
@@ -733,6 +736,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         onChanged: (String? value) {
                                           setState(() {
                                             tempSelectedGoal = value!;
+                                            dietType = 3;
                                           });
                                         },
                                       ),
@@ -746,6 +750,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         onChanged: (String? value) {
                                           setState(() {
                                             tempSelectedGoal = value!;
+                                            dietType = 4;
                                           });
                                         },
                                       ),
@@ -759,6 +764,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         onChanged: (String? value) {
                                           setState(() {
                                             tempSelectedGoal = value!;
+                                            dietType = 5;
                                           });
                                         },
                                       ),
@@ -772,6 +778,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         onChanged: (String? value) {
                                           setState(() {
                                             tempSelectedGoal = value!;
+                                            dietType = 6;
                                           });
                                         },
                                       ),
@@ -800,6 +807,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                     onPressed: () {
                                       setState(() {
                                         dietPlan = tempSelectedGoal;
+
                                       });
                                       Navigator.of(context).pop();
                                     },
@@ -893,7 +901,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                 mealFrequency: mealFrequentlyController.text,
                                 hydrationDaily: hydrationController.text,
                                 targetWeight: targetWeightController.text,
-                                dietPlan: dietPlan!,
+                                dietPlan: dietType!,
                               ));
                         }
                         if (weightUnit == WeightUnits.lb &&
@@ -913,7 +921,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                 mealFrequency: mealFrequentlyController.text,
                                 hydrationDaily: hydrationController.text,
                                 targetWeight: targetWeightController.text,
-                                dietPlan: dietPlan!,
+                                dietPlan: dietType!,
                               ));
                         }
                         if (weightUnit == WeightUnits.kg &&
@@ -936,7 +944,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                 mealFrequency: mealFrequentlyController.text,
                                 hydrationDaily: hydrationController.text,
                                 targetWeight: targetWeightController.text,
-                                dietPlan: dietPlan!,
+                                dietPlan: dietType!,
                               ));
                         }
                         if (weightUnit == WeightUnits.lb &&
@@ -959,7 +967,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                 mealFrequency: mealFrequentlyController.text,
                                 hydrationDaily: hydrationController.text,
                                 targetWeight: targetWeightController.text,
-                                dietPlan: dietPlan!,
+                                dietPlan: dietType!,
                               ));
                         }
                       }

@@ -21,6 +21,13 @@ class CompleteSetup extends StatefulWidget {
   final int age;
   final int goal;
   final int plan;
+  final String sleepHours;
+  final String mealFrequency;
+  final String hydrationDaily;
+  final String targetWeight;
+  final int dietPlan;
+  final String selectMedicalName;
+  final String medicalCondition;
 
   const CompleteSetup(
       {super.key,
@@ -31,7 +38,14 @@ class CompleteSetup extends StatefulWidget {
       required this.weightValue,
       required this.age,
       required this.goal,
-      required this.plan});
+      required this.plan,
+      required this.sleepHours,
+      required this.mealFrequency,
+      required this.hydrationDaily,
+      required this.targetWeight,
+      required this.dietPlan,
+      required this.selectMedicalName,
+      required this.medicalCondition});
 
   @override
   State<CompleteSetup> createState() => _CompleteSetupState();
@@ -170,6 +184,13 @@ class _CompleteSetupState extends State<CompleteSetup> {
         weightValue: widget.weightValue,
         age: widget.age,
         goal: widget.goal,
-        workoutLevel: widget.plan -1);
+        workoutLevel: widget.plan - 1,
+        sleepHours: int.parse(widget.sleepHours),
+        mealFrequency: int.parse(widget.mealFrequency),
+        hydrationDaily: int.parse(widget.hydrationDaily),
+        targetWeight: int.parse(widget.targetWeight),
+        dietPlan: widget.dietPlan,
+        selectMedicalName: widget.selectMedicalName,
+        medicalCondition: widget.medicalCondition);
   }
 }
