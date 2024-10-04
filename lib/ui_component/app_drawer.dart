@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/models/api_response/GetAllFavoriteProductApiResponse.dart';
+import 'package:gymmerator/screens/splash_screen/main_screen/bettery_screen/bettery_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/my_cart_screen/my_cart_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/favorite_products_screen/favorite_products_screen.dart';
 import 'package:gymmerator/screens/splash_screen/metamask_screen/metamask_screen.dart';
@@ -88,23 +89,6 @@ class _AppDrawerState extends State<AppDrawer> {
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Divider(),
             ),
-            // ListTile(
-            //     onTap: () {
-            //       Nav.push(context, const WalletScreen());
-            //     },
-            //     leading: CircleAvatar(
-            //       backgroundColor: Colors.grey.shade400,
-            //       radius: 25,
-            //       child: Image.asset("assets/icons/wallet.png"),
-            //     ),
-            //     title: Text("Wallet",
-            //         style: GoogleFonts.vazirmatn(
-            //             fontSize: 14, color: Colors.black)),
-            //     trailing: const Icon(
-            //       Icons.arrow_forward_ios,
-            //       color: Colors.black,
-            //       size: 15,
-            //     )),
             ListTile(
                 onTap: () {
                   Nav.push(context, const MyCartScreen());
@@ -138,6 +122,27 @@ class _AppDrawerState extends State<AppDrawer> {
                 title: Text("Favorite product",
                     style: GoogleFonts.vazirmatn(
                         fontSize: 12, color: Colors.black)),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.black,
+                  size: 15,
+                )),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Divider(),
+            ),
+            ListTile(
+                onTap: () {
+                  Nav.push(context, const BatteryScreen());
+                },
+                leading: CircleAvatar(
+                  backgroundColor: Colors.grey.shade400,
+                  radius: 25,
+                  child: const Icon(Icons.battery_charging_full),
+                ),
+                title: Text("Energize life",
+                    style: GoogleFonts.vazirmatn(
+                        fontSize: 14, color: Colors.black)),
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
                   color: Colors.black,

@@ -29,31 +29,41 @@ class Data {
     Location? location,
     Height? height,
     Weight? weight,
+    MedicalCondition? medicalCondition,
     String? id,
     String? firstName,
     String? lastName,
     String? email,
-    String? password,
+    String? activityLevel,
+    String? dietType,
+    int? mealFrequency,
     String? goal,
     String? workoutLevel,
     String? type,
     bool? isRequiredInfoAdded,
-    List<String>? favoriteProducts,
+    List<dynamic>? favoriteProducts,
     String? createdAt,
     String? updatedAt,
     int? v,
     int? age,
     String? gender,
+    int? hydrationLitersPerDay,
+    int? sleepHours,
+    int? targetWeightInKG,
+    dynamic timelineMonths,
   }) {
     _address = address;
     _location = location;
     _height = height;
     _weight = weight;
+    _medicalCondition = medicalCondition;
     _id = id;
     _firstName = firstName;
     _lastName = lastName;
     _email = email;
-    _password = password;
+    _activityLevel = activityLevel;
+    _dietType = dietType;
+    _mealFrequency = mealFrequency;
     _goal = goal;
     _workoutLevel = workoutLevel;
     _type = type;
@@ -64,68 +74,122 @@ class Data {
     _v = v;
     _age = age;
     _gender = gender;
+    _hydrationLitersPerDay = hydrationLitersPerDay;
+    _sleepHours = sleepHours;
+    _targetWeightInKG = targetWeightInKG;
+    _timelineMonths = timelineMonths;
   }
 
   Data.fromJson(dynamic json) {
-    // _address = json['address'] != null ? Address.fromJson(json['address']) : null;
-    // _location = json['location'] != null ? Location.fromJson(json['location']) : null;
-    // _height = json['height'] != null ? Height.fromJson(json['height']) : null;
-    // _weight = json['weight'] != null ? Weight.fromJson(json['weight']) : null;
+    _address =
+        json['address'] != null ? Address.fromJson(json['address']) : null;
+    _location =
+        json['location'] != null ? Location.fromJson(json['location']) : null;
+    _height = json['height'] != null ? Height.fromJson(json['height']) : null;
+    _weight = json['weight'] != null ? Weight.fromJson(json['weight']) : null;
+    _medicalCondition = json['medicalCondition'] != null
+        ? MedicalCondition.fromJson(json['medicalCondition'])
+        : null;
     _id = json['_id'];
     _firstName = json['firstName'];
     _lastName = json['lastName'];
     _email = json['email'];
-    _password = json['password'];
+    _activityLevel = json['activityLevel'];
+    _dietType = json['dietType'];
+    _mealFrequency = json['mealFrequency'];
     _goal = json['goal'];
-    // _workoutLevel = json['workoutLevel'];
+    _workoutLevel = json['workoutLevel'];
     _type = json['type'];
     _isRequiredInfoAdded = json['isRequiredInfoAdded'];
-    // _favoriteProducts = json['favoriteProducts'] != null ? json['favoriteProducts'].cast<String>() : [];
-    // _createdAt = json['createdAt'];
-    // _updatedAt = json['updatedAt'];
-    // _v = json['__v'];
-    // _age = json['age'];
-    // _gender = json['gender'];
+    if (json['favoriteProducts'] != null) {
+      _favoriteProducts = [];
+      json['favoriteProducts'].forEach((v) {
+        _favoriteProducts?.add(v);
+      });
+    }
+    _createdAt = json['createdAt'];
+    _updatedAt = json['updatedAt'];
+    _v = json['__v'];
+    _age = json['age'];
+    _gender = json['gender'];
+    _hydrationLitersPerDay = json['hydrationLitersPerDay'];
+    _sleepHours = json['sleepHours'];
+    _targetWeightInKG = json['targetWeightInKG'];
+    _timelineMonths = json['timelineMonths'];
   }
   Address? _address;
   Location? _location;
   Height? _height;
   Weight? _weight;
+  MedicalCondition? _medicalCondition;
   String? _id;
   String? _firstName;
   String? _lastName;
   String? _email;
-  String? _password;
+  String? _activityLevel;
+  String? _dietType;
+  int? _mealFrequency;
   String? _goal;
   String? _workoutLevel;
   String? _type;
   bool? _isRequiredInfoAdded;
-  List<String>? _favoriteProducts;
+  List<dynamic>? _favoriteProducts;
   String? _createdAt;
   String? _updatedAt;
   int? _v;
   int? _age;
   String? _gender;
+  int? _hydrationLitersPerDay;
+  int? _sleepHours;
+  int? _targetWeightInKG;
+  dynamic _timelineMonths;
 
   Address? get address => _address;
   Location? get location => _location;
   Height? get height => _height;
   Weight? get weight => _weight;
+  MedicalCondition? get medicalCondition => _medicalCondition;
   String? get id => _id;
   String? get firstName => _firstName;
   String? get lastName => _lastName;
   String? get email => _email;
-  String? get password => _password;
+  String? get activityLevel => _activityLevel;
+  String? get dietType => _dietType;
+  int? get mealFrequency => _mealFrequency;
   String? get goal => _goal;
   String? get workoutLevel => _workoutLevel;
   String? get type => _type;
   bool? get isRequiredInfoAdded => _isRequiredInfoAdded;
-  List<String>? get favoriteProducts => _favoriteProducts;
+  List<dynamic>? get favoriteProducts => _favoriteProducts;
   String? get createdAt => _createdAt;
   String? get updatedAt => _updatedAt;
   int? get v => _v;
   int? get age => _age;
   String? get gender => _gender;
+  int? get hydrationLitersPerDay => _hydrationLitersPerDay;
+  int? get sleepHours => _sleepHours;
+  int? get targetWeightInKG => _targetWeightInKG;
+  dynamic get timelineMonths => _timelineMonths;
+}
+
+class MedicalCondition {
+  MedicalCondition({
+    String? condition,
+    String? name,
+  }) {
+    _condition = condition;
+    _name = name;
+  }
+
+  MedicalCondition.fromJson(dynamic json) {
+    _condition = json['condition'];
+    _name = json['name'];
+  }
+  String? _condition;
+  String? _name;
+
+  String? get condition => _condition;
+  String? get name => _name;
 }
 
 class Weight {
@@ -139,25 +203,8 @@ class Weight {
 
   Weight.fromJson(dynamic json) {
     _unit = json['unit'];
-    _value = _convertToDouble(json['value']);
+    _value = json['value'];
   }
-
-  // Method to convert a dynamic value to a double
-  static double? _convertToDouble(dynamic val) {
-    if (val == null) {
-      return null;
-    }
-    if (val is int) {
-      return val.toDouble();
-    } else if (val is double) {
-      return val;
-    } else if (val is String) {
-      return double.tryParse(val);
-    } else {
-      throw ArgumentError('Unsupported type: ${val.runtimeType}');
-    }
-  }
-
   String? _unit;
   double? _value;
 
@@ -176,37 +223,13 @@ class Height {
 
   Height.fromJson(dynamic json) {
     _unit = json['unit'];
-    _value = _convertToDouble(json['value']);
+    _value = json['value'];
   }
-
-  // Method to convert a dynamic value to a double
-  static double? _convertToDouble(dynamic val) {
-    if (val == null) {
-      return null;
-    }
-    if (val is int) {
-      return val.toDouble();
-    } else if (val is double) {
-      return val;
-    } else if (val is String) {
-      return double.tryParse(val);
-    } else {
-      throw ArgumentError('Unsupported type: ${val.runtimeType}');
-    }
-  }
-
   String? _unit;
   double? _value;
 
   String? get unit => _unit;
   double? get value => _value;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['unit'] = _unit;
-    map['value'] = _value;
-    return map;
-  }
 }
 
 class Location {
@@ -227,13 +250,6 @@ class Location {
 
   String? get latitude => _latitude;
   String? get longitude => _longitude;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['latitude'] = _latitude;
-    map['longitude'] = _longitude;
-    return map;
-  }
 }
 
 class Address {
@@ -274,15 +290,4 @@ class Address {
   String? get state => _state;
   String? get country => _country;
   String? get postalCode => _postalCode;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['address1'] = _address1;
-    map['address2'] = _address2;
-    map['city'] = _city;
-    map['state'] = _state;
-    map['country'] = _country;
-    map['postalCode'] = _postalCode;
-    return map;
-  }
 }

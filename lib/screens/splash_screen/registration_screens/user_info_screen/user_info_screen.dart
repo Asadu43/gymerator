@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gymmerator/screens/splash_screen/registration_screens/user_issue_screen/user_issue_screen.dart';
 import 'package:sizer/sizer.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -23,6 +24,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   final TextEditingController heightFeetController = TextEditingController();
   final TextEditingController heightInchesController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
+  final TextEditingController sleepingHoursController = TextEditingController();
+  final TextEditingController mealFrequentlyController =
+      TextEditingController();
+  final TextEditingController hydrationController = TextEditingController();
+  final TextEditingController targetWeightController = TextEditingController();
   WeightUnits weightUnit = WeightUnits.kg;
   HeightUnits heightUnit = HeightUnits.cm;
   double weightLb = 0;
@@ -549,7 +555,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     height: screenHeight * 0.01,
                   ),
                   TextFormField(
-                    controller: ageController,
+                    controller: sleepingHoursController,
                     style: GoogleFonts.vazirmatn(color: Colors.white),
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
@@ -577,7 +583,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     height: screenHeight * 0.01,
                   ),
                   TextFormField(
-                    controller: ageController,
+                    controller: mealFrequentlyController,
                     style: GoogleFonts.vazirmatn(color: Colors.white),
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
@@ -605,11 +611,39 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     height: screenHeight * 0.01,
                   ),
                   TextFormField(
-                    controller: ageController,
+                    controller: hydrationController,
                     style: GoogleFonts.vazirmatn(color: Colors.white),
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: '5 Liters',
+                      hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.02,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Target Weight',
+                        style: GoogleFonts.vazirmatn(
+                            color: Colors.white, fontSize: 14.sp),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.01,
+                  ),
+                  TextFormField(
+                    controller: targetWeightController,
+                    style: GoogleFonts.vazirmatn(color: Colors.white),
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: 'please enter your target weight',
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
@@ -831,34 +865,56 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         showSnackBar(context, "Please enter age");
                       } else if (goal == null) {
                         showSnackBar(context, "Please select goal");
+                      } else if (sleepingHoursController.text.isEmpty) {
+                        showSnackBar(context, "Please enter sleep hour");
+                      } else if (mealFrequentlyController.text.isEmpty) {
+                        showSnackBar(context, "Please enter meal frequently");
+                      } else if (hydrationController.text.isEmpty) {
+                        showSnackBar(context, "Please enter daily hydration");
+                      } else if (targetWeightController.text.isEmpty) {
+                        showSnackBar(context, "Please enter target weight");
+                      } else if (dietPlan == null) {
+                        showSnackBar(context, "Please select diet plan");
                       } else {
                         if (weightUnit == WeightUnits.kg &&
                             heightUnit == HeightUnits.cm &&
                             selectedIndex == 1) {
                           Nav.push(
                               context,
-                              ChoosePlanScreen(
-                                  gender: "Male",
-                                  heightUnit: "cm",
-                                  heightValue: heightCm,
-                                  weightUnit: "Kg",
-                                  weightValue: weightKg,
-                                  age: ageController.text,
-                                  goal: goal!));
+                              UserIssueScreen(
+                                gender: "Male",
+                                heightUnit: "cm",
+                                heightValue: heightCm,
+                                weightUnit: "Kg",
+                                weightValue: weightKg,
+                                age: ageController.text,
+                                goal: goal!,
+                                sleepHours: sleepingHoursController.text,
+                                mealFrequency: mealFrequentlyController.text,
+                                hydrationDaily: hydrationController.text,
+                                targetWeight: targetWeightController.text,
+                                dietPlan: dietPlan!,
+                              ));
                         }
                         if (weightUnit == WeightUnits.lb &&
                             heightUnit == HeightUnits.cm &&
                             selectedIndex == 2) {
                           Nav.push(
                               context,
-                              ChoosePlanScreen(
-                                  gender: "Female",
-                                  heightUnit: "cm",
-                                  heightValue: heightCm,
-                                  weightUnit: "lb",
-                                  weightValue: weightLb,
-                                  age: ageController.text,
-                                  goal: goal!));
+                              UserIssueScreen(
+                                gender: "Female",
+                                heightUnit: "cm",
+                                heightValue: heightCm,
+                                weightUnit: "lb",
+                                weightValue: weightLb,
+                                age: ageController.text,
+                                goal: goal!,
+                                sleepHours: sleepingHoursController.text,
+                                mealFrequency: mealFrequentlyController.text,
+                                hydrationDaily: hydrationController.text,
+                                targetWeight: targetWeightController.text,
+                                dietPlan: dietPlan!,
+                              ));
                         }
                         if (weightUnit == WeightUnits.kg &&
                             heightUnit == HeightUnits.ftIn &&
@@ -868,14 +924,20 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
                           Nav.push(
                               context,
-                              ChoosePlanScreen(
-                                  gender: "Male",
-                                  heightUnit: "Ft-in",
-                                  heightValue: double.parse(val),
-                                  weightUnit: "Kg",
-                                  weightValue: weightKg,
-                                  age: ageController.text,
-                                  goal: goal!));
+                              UserIssueScreen(
+                                gender: "Male",
+                                heightUnit: "Ft-in",
+                                heightValue: double.parse(val),
+                                weightUnit: "Kg",
+                                weightValue: weightKg,
+                                age: ageController.text,
+                                goal: goal!,
+                                sleepHours: sleepingHoursController.text,
+                                mealFrequency: mealFrequentlyController.text,
+                                hydrationDaily: hydrationController.text,
+                                targetWeight: targetWeightController.text,
+                                dietPlan: dietPlan!,
+                              ));
                         }
                         if (weightUnit == WeightUnits.lb &&
                             heightUnit == HeightUnits.ftIn &&
@@ -885,14 +947,20 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
                           Nav.push(
                               context,
-                              ChoosePlanScreen(
-                                  gender: "Female",
-                                  heightUnit: "Ft-in",
-                                  heightValue: double.parse(val),
-                                  weightUnit: "lb",
-                                  weightValue: weightLb,
-                                  age: ageController.text,
-                                  goal: goal!));
+                              UserIssueScreen(
+                                gender: "Female",
+                                heightUnit: "Ft-in",
+                                heightValue: double.parse(val),
+                                weightUnit: "lb",
+                                weightValue: weightLb,
+                                age: ageController.text,
+                                goal: goal!,
+                                sleepHours: sleepingHoursController.text,
+                                mealFrequency: mealFrequentlyController.text,
+                                hydrationDaily: hydrationController.text,
+                                targetWeight: targetWeightController.text,
+                                dietPlan: dietPlan!,
+                              ));
                         }
                       }
                     },

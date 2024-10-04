@@ -14,6 +14,7 @@ import 'bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart';
 import 'bloC/auth_cubit/update_user_info_cubit/update_user_info_cubit.dart';
 import 'bloC/auth_cubit/verify_otp_cubit/verify_otp_cubit.dart';
 import 'firebase_options.dart';
+import 'screens/splash_screen/main_screen/bettery_screen/bettery_screen.dart';
 
 void main() async {
   Stripe.publishableKey =
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
-            home: const UserIssueScreen(),
+            home: const SplashScreen(),
           );
         },
       ),

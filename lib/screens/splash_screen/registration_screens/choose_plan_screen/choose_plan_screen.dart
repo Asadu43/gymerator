@@ -16,6 +16,13 @@ class ChoosePlanScreen extends StatefulWidget {
   final double weightValue;
   final String age;
   final String goal;
+  final String sleepHours;
+  final String mealFrequency;
+  final String hydrationDaily;
+  final String targetWeight;
+  final String dietPlan;
+  final String selectMedicalName;
+  final String medicalCondition;
 
   const ChoosePlanScreen(
       {super.key,
@@ -25,7 +32,12 @@ class ChoosePlanScreen extends StatefulWidget {
       required this.weightUnit,
       required this.weightValue,
       required this.age,
-      required this.goal});
+      required this.goal,
+      required this.sleepHours,
+      required this.mealFrequency,
+      required this.hydrationDaily,
+      required this.targetWeight,
+      required this.dietPlan, required this.selectMedicalName, required this.medicalCondition});
 
   @override
   State<ChoosePlanScreen> createState() => _ChoosePlanScreenState();
