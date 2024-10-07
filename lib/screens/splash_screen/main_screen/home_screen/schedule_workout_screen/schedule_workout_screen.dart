@@ -38,8 +38,7 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -98,94 +97,117 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                         color: Colors.black)),
               ),
               SizedBox(
-                height: screenHeight * 0.02,
+                height: screenHeight * 0.01,
               ),
-              InkWell(
-                onTap: () {
-                  Nav.push(context, const ExerciseScreen());
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: screenHeight * 0.12,
-                    decoration: BoxDecoration(
-                      // color: Colors.red,
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 12.0),
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            "assets/images/dumbbells.png",
-                            fit: BoxFit.cover,
+              GridView.builder(
+                physics:
+                    const NeverScrollableScrollPhysics(), // Allow scrolling
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 1.0,
+                    mainAxisSpacing: 1.0,
+                    childAspectRatio: 1.2),
+                // itemCount: allProduct?.data?.length ?? 0,
+                itemCount: 7,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: Container(
+                            padding: const EdgeInsets.all(12.0),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(color: Colors.black12),
+                            ),
+                            child: const Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                // Exercise information rows
+                                ExerciseDetailRow(
+                                  icon: Icons.fitness_center,
+                                  label: 'Sets',
+                                  value: '4',
+                                ),
+                                ExerciseDetailRow(
+                                  icon: Icons.access_time,
+                                  label: 'Rest Period',
+                                  value: '1 min',
+                                ),
+                                ExerciseDetailRow(
+                                  icon: Icons.timer,
+                                  label: 'Duration',
+                                  value: '30 mins',
+                                ),
+                              ],
+                            ),
                           ),
-                          SizedBox(width: screenWidth * 0.2),
-                          Text("2 Dumbbells'",
-                              style: GoogleFonts.vazirmatn(
-                                  fontSize: 14.sp, color: Colors.black)),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: screenHeight * 0.12,
-                  decoration: BoxDecoration(
-                    // color: Colors.red,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 12.0),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          "assets/images/cals.png",
-                          fit: BoxFit.cover,
                         ),
-                        SizedBox(width: screenWidth * 0.2),
-                        Text("340 Kal",
-                            style: GoogleFonts.vazirmatn(
-                                fontSize: 14.sp, color: Colors.black)),
+                        Positioned(
+                            top: 1,
+                            left: 50,
+                            child: Container(
+                              padding: const EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: Colors.black12),
+                              ),
+                              child: Text(
+                                'Monday',
+                                style: GoogleFonts.vazirmatn(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )),
                       ],
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: screenHeight * 0.12,
-                  decoration: BoxDecoration(
-                    // color: Colors.red,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 12.0),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          "assets/images/achieved.png",
-                          fit: BoxFit.cover,
-                        ),
-                        SizedBox(width: screenWidth * 0.2),
-                        Text("Achieved",
-                            style: GoogleFonts.vazirmatn(
-                                fontSize: 14.sp, color: Colors.black)),
-                      ],
-                    ),
-                  ),
-                ),
+                  );
+                },
               )
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ExerciseDetailRow extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String value;
+
+  const ExerciseDetailRow({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        children: [
+          Icon(icon, size: 10, color: Colors.black87),
+          const SizedBox(width: 10),
+          Text(
+            '$label : ',
+            style: GoogleFonts.vazirmatn(fontSize: 8.sp),
+          ),
+          Text(
+            value,
+            style: GoogleFonts.vazirmatn(fontSize: 8.sp),
+          ),
+        ],
       ),
     );
   }

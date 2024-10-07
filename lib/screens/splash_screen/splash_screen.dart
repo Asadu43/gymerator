@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/main_screen.dart';
 import 'package:gymmerator/screens/splash_screen/registration_screens/login_screen/login_screen.dart';
+import 'package:gymmerator/screens/splash_screen/registration_screens/workout_plan_screen/workout_plan_screen.dart';
 
 import '../../utils/nav/nav.dart';
 
@@ -22,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
       print(GetStorage().read('isRequiredInfoAdded'));
       if ((GetStorage().read('token') != null) &&
           (GetStorage().read('isRequiredInfoAdded') == true)) {
-        Nav.push(context, const MainScreen());
+        Nav.push(context, const WorkoutPlanScreen());
       } else {
         Nav.pushReplace(context, const LoginScreen());
       }
