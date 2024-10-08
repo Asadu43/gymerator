@@ -15,6 +15,9 @@ class WorkoutPlanCubit extends Cubit<WorkoutPlanState> {
     emit(LoadingState());
     final GetWorkoutPlanApiResponse model =
         await _repository.getWorkoutRequest();
+
+    print(model.data?.workoutPlan?[0].day);
+
     if (model.error == null) {
       emit(GetWorkoutSuccessfully(model));
     } else {

@@ -17,6 +17,7 @@ import '../../../../utils/nav/nav.dart';
 import '../../main_screen/main_screen.dart';
 import '../forget_password_screen/forget_password_screen.dart';
 import '../signup_screen/signup_screen.dart';
+import '../workout_plan_screen/workout_plan_screen.dart';
 import 'auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -54,8 +55,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 type: SnackBarType.success);
 
             print(response?.data?.isRequiredInfoAdded);
-            if (response?.data?.isRequiredInfoAdded == true) {
+            if (response?.data?.isRequiredInfoAdded == true &&
+                response?.data?.isAccepted == true) {
               Nav.pushAndRemoveAllRoute(context, const MainScreen());
+            } else if (response?.data?.isRequiredInfoAdded == true &&
+                response?.data?.isAccepted == false) {
+              Nav.pushAndRemoveAllRoute(context, const WorkoutPlanScreen());
             } else {
               Nav.push(context, const UserInfoScreen());
             }
@@ -72,9 +77,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 context, googleResponse?.message ?? "Sign In Successfully",
                 type: SnackBarType.success);
 
-            if (googleResponse?.data?.isRequiredInfoAdded == true) {
+            if (googleResponse?.data?.isRequiredInfoAdded == true &&
+                response?.data?.isAccepted == true) {
               Nav.pushAndRemoveAllRoute(context, const MainScreen());
-            } else {
+            } else if (response?.data?.isRequiredInfoAdded == true &&
+                response?.data?.isAccepted == false) {
+              Nav.pushAndRemoveAllRoute(context, const WorkoutPlanScreen());
+            }
+
+
+            else {
               Nav.push(context, const UserInfoScreen());
             }
           }
@@ -133,6 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           AppTextField(
                             controller: passwordController,
                             hintText: "password",
+                            obscureText: true,
                             icon: const Icon(Icons.lock_open_outlined),
                           ),
                           SizedBox(

@@ -25,15 +25,12 @@ class GenerateWorkOutPlanCubit extends Cubit<GenerateWorkOutPlanState> {
     }
   }
 
-  Future acceptWorkoutRequest({required var exercisePlan}) async {
+  Future acceptWorkoutRequest() async {
     emit(LoadingState());
 
-    var data = {"workoutPlan": exercisePlan};
-
-    print(data);
-
     final AcceptWorkoutPlanApiResponse model =
-        await _repository.acceptWorkoutRequest(data);
+        await _repository.acceptWorkoutRequest();
+
     if (model.error == null) {
       emit(AcceptWorkoutPlanSuccessfully(model));
     } else {

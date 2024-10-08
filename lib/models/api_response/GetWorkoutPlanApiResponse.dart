@@ -27,7 +27,8 @@ class Data {
   Data({
     String? id,
     String? user,
-    WorkoutPlan? workoutPlan,
+    List<WorkoutPlan>? workoutPlan,
+    bool? isAccepted,
     String? createdAt,
     String? updatedAt,
     int? v,
@@ -35,6 +36,7 @@ class Data {
     _id = id;
     _user = user;
     _workoutPlan = workoutPlan;
+    _isAccepted = isAccepted;
     _createdAt = createdAt;
     _updatedAt = updatedAt;
     _v = v;
@@ -43,23 +45,29 @@ class Data {
   Data.fromJson(dynamic json) {
     _id = json['_id'];
     _user = json['user'];
-    _workoutPlan = json['workoutPlan'] != null
-        ? WorkoutPlan.fromJson(json['workoutPlan'])
-        : null;
+    if (json['workoutPlan'] != null) {
+      _workoutPlan = [];
+      json['workoutPlan'].forEach((v) {
+        _workoutPlan?.add(WorkoutPlan.fromJson(v));
+      });
+    }
+    _isAccepted = json['isAccepted'];
     _createdAt = json['createdAt'];
     _updatedAt = json['updatedAt'];
     _v = json['__v'];
   }
   String? _id;
   String? _user;
-  WorkoutPlan? _workoutPlan;
+  List<WorkoutPlan>? _workoutPlan;
+  bool? _isAccepted;
   String? _createdAt;
   String? _updatedAt;
   int? _v;
 
   String? get id => _id;
   String? get user => _user;
-  WorkoutPlan? get workoutPlan => _workoutPlan;
+  List<WorkoutPlan>? get workoutPlan => _workoutPlan;
+  bool? get isAccepted => _isAccepted;
   String? get createdAt => _createdAt;
   String? get updatedAt => _updatedAt;
   int? get v => _v;
@@ -67,71 +75,19 @@ class Data {
 
 class WorkoutPlan {
   WorkoutPlan({
+    String? day,
+    List<Exercises>? exercises,
+    bool? restDay,
     String? id,
-    Monday? monday,
-    Tuesday? tuesday,
-    Wednesday? wednesday,
-    Thursday? thursday,
-    Friday? friday,
-    Saturday? saturday,
-    Sunday? sunday,
   }) {
+    _day = day;
+    _exercises = exercises;
+    _restDay = restDay;
     _id = id;
-    _monday = monday;
-    _tuesday = tuesday;
-    _wednesday = wednesday;
-    _thursday = thursday;
-    _friday = friday;
-    _saturday = saturday;
-    _sunday = sunday;
   }
 
   WorkoutPlan.fromJson(dynamic json) {
-    _id = json['_id'];
-    _monday = json['monday'] != null ? Monday.fromJson(json['monday']) : null;
-    _tuesday =
-        json['tuesday'] != null ? Tuesday.fromJson(json['tuesday']) : null;
-    _wednesday = json['wednesday'] != null
-        ? Wednesday.fromJson(json['wednesday'])
-        : null;
-    _thursday =
-        json['thursday'] != null ? Thursday.fromJson(json['thursday']) : null;
-    _friday = json['friday'] != null ? Friday.fromJson(json['friday']) : null;
-    _saturday =
-        json['saturday'] != null ? Saturday.fromJson(json['saturday']) : null;
-    _sunday = json['sunday'] != null ? Sunday.fromJson(json['sunday']) : null;
-  }
-  String? _id;
-  Monday? _monday;
-  Tuesday? _tuesday;
-  Wednesday? _wednesday;
-  Thursday? _thursday;
-  Friday? _friday;
-  Saturday? _saturday;
-  Sunday? _sunday;
-
-  String? get id => _id;
-  Monday? get monday => _monday;
-  Tuesday? get tuesday => _tuesday;
-  Wednesday? get wednesday => _wednesday;
-  Thursday? get thursday => _thursday;
-  Friday? get friday => _friday;
-  Saturday? get saturday => _saturday;
-  Sunday? get sunday => _sunday;
-}
-
-class Sunday {
-  Sunday({
-    List<Exercises>? exercises,
-    bool? restDay,
-    String? id,
-  }) {
-    _exercises = exercises;
-    _restDay = restDay;
-    _id = id;
-  }
-
-  Sunday.fromJson(dynamic json) {
+    _day = json['day'];
     if (json['exercises'] != null) {
       _exercises = [];
       json['exercises'].forEach((v) {
@@ -141,190 +97,12 @@ class Sunday {
     _restDay = json['rest_day'];
     _id = json['_id'];
   }
+  String? _day;
   List<Exercises>? _exercises;
   bool? _restDay;
   String? _id;
 
-  List<Exercises>? get exercises => _exercises;
-  bool? get restDay => _restDay;
-  String? get id => _id;
-}
-
-class Saturday {
-  Saturday({
-    List<Exercises>? exercises,
-    bool? restDay,
-    String? id,
-  }) {
-    _exercises = exercises;
-    _restDay = restDay;
-    _id = id;
-  }
-
-  Saturday.fromJson(dynamic json) {
-    if (json['exercises'] != null) {
-      _exercises = [];
-      json['exercises'].forEach((v) {
-        _exercises?.add(Exercises.fromJson(v));
-      });
-    }
-    _restDay = json['rest_day'];
-    _id = json['_id'];
-  }
-  List<Exercises>? _exercises;
-  bool? _restDay;
-  String? _id;
-
-  List<Exercises>? get exercises => _exercises;
-  bool? get restDay => _restDay;
-  String? get id => _id;
-}
-
-class Friday {
-  Friday({
-    List<Exercises>? exercises,
-    bool? restDay,
-    String? id,
-  }) {
-    _exercises = exercises;
-    _restDay = restDay;
-    _id = id;
-  }
-
-  Friday.fromJson(dynamic json) {
-    if (json['exercises'] != null) {
-      _exercises = [];
-      json['exercises'].forEach((v) {
-        _exercises?.add(Exercises.fromJson(v));
-      });
-    }
-    _restDay = json['rest_day'];
-    _id = json['_id'];
-  }
-  List<Exercises>? _exercises;
-  bool? _restDay;
-  String? _id;
-
-  List<Exercises>? get exercises => _exercises;
-  bool? get restDay => _restDay;
-  String? get id => _id;
-}
-
-class Thursday {
-  Thursday({
-    List<Exercises>? exercises,
-    bool? restDay,
-    String? id,
-  }) {
-    _exercises = exercises;
-    _restDay = restDay;
-    _id = id;
-  }
-
-  Thursday.fromJson(dynamic json) {
-    if (json['exercises'] != null) {
-      _exercises = [];
-      json['exercises'].forEach((v) {
-        _exercises?.add(Exercises.fromJson(v));
-      });
-    }
-    _restDay = json['rest_day'];
-    _id = json['_id'];
-  }
-  List<Exercises>? _exercises;
-  bool? _restDay;
-  String? _id;
-
-  List<Exercises>? get exercises => _exercises;
-  bool? get restDay => _restDay;
-  String? get id => _id;
-}
-
-class Wednesday {
-  Wednesday({
-    List<Exercises>? exercises,
-    bool? restDay,
-    String? id,
-  }) {
-    _exercises = exercises;
-    _restDay = restDay;
-    _id = id;
-  }
-
-  Wednesday.fromJson(dynamic json) {
-    if (json['exercises'] != null) {
-      _exercises = [];
-      json['exercises'].forEach((v) {
-        _exercises?.add(Exercises.fromJson(v));
-      });
-    }
-    _restDay = json['rest_day'];
-    _id = json['_id'];
-  }
-  List<Exercises>? _exercises;
-  bool? _restDay;
-  String? _id;
-
-  List<Exercises>? get exercises => _exercises;
-  bool? get restDay => _restDay;
-  String? get id => _id;
-}
-
-class Tuesday {
-  Tuesday({
-    List<Exercises>? exercises,
-    bool? restDay,
-    String? id,
-  }) {
-    _exercises = exercises;
-    _restDay = restDay;
-    _id = id;
-  }
-
-  Tuesday.fromJson(dynamic json) {
-    if (json['exercises'] != null) {
-      _exercises = [];
-      json['exercises'].forEach((v) {
-        _exercises?.add(Exercises.fromJson(v));
-      });
-    }
-    _restDay = json['rest_day'];
-    _id = json['_id'];
-  }
-  List<Exercises>? _exercises;
-  bool? _restDay;
-  String? _id;
-
-  List<Exercises>? get exercises => _exercises;
-  bool? get restDay => _restDay;
-  String? get id => _id;
-}
-
-class Monday {
-  Monday({
-    List<Exercises>? exercises,
-    bool? restDay,
-    String? id,
-  }) {
-    _exercises = exercises;
-    _restDay = restDay;
-    _id = id;
-  }
-
-  Monday.fromJson(dynamic json) {
-    if (json['exercises'] != null) {
-      _exercises = [];
-      json['exercises'].forEach((v) {
-        _exercises?.add(Exercises.fromJson(v));
-      });
-    }
-    _restDay = json['rest_day'];
-    _id = json['_id'];
-  }
-  List<Exercises>? _exercises;
-  bool? _restDay;
-  String? _id;
-
+  String? get day => _day;
   List<Exercises>? get exercises => _exercises;
   bool? get restDay => _restDay;
   String? get id => _id;

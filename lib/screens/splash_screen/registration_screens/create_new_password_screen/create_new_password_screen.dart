@@ -78,7 +78,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.white)),
                           Text(
-                              "Your New Password Must Be Differnt from Previously Used Password.",
+                              "Your New Password Must Be Different from Previously Used Password.",
                               style: GoogleFonts.vazirmatn(
                                   fontSize: 12.sp, color: Colors.grey)),
                           const SizedBox(
@@ -87,6 +87,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                           AppTextField(
                             controller: password1Controller,
                             hintText: "New Password",
+                            obscureText: true,
                             icon: const Icon(Icons.lock_outline_sharp),
                           ),
                           const SizedBox(
@@ -95,6 +96,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                           AppTextField(
                             controller: password2Controller,
                             hintText: "Confirm Password",
+                            obscureText: true,
                             icon: const Icon(Icons.lock_outline_sharp),
                           ),
                           SizedBox(

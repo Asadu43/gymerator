@@ -21,7 +21,6 @@ import 'package:gymmerator/models/api_response/UpdatePasswordApiResponse.dart';
 import 'package:gymmerator/models/api_response/UpdateUserInfoApiResponse.dart';
 import 'package:gymmerator/models/api_response/UserOrderDetailsApiResponse.dart';
 import 'package:gymmerator/models/api_response/VerifyOTPApiResponse.dart';
-import 'package:gymmerator/resources/api_providers/accept_workout_post_api.dart';
 import 'package:gymmerator/resources/api_providers/add_favorite_product_post_api.dart';
 import 'package:gymmerator/resources/api_providers/add_to_cart_post_api.dart';
 import 'package:gymmerator/resources/api_providers/all_favorite_product_get_api.dart';
@@ -170,8 +169,8 @@ class Repository {
     return request.getPlanRequest();
   }
 
-  Future<AcceptWorkoutPlanApiResponse> acceptWorkoutRequest(var data) {
-    final request = AcceptWorkoutPostApi();
-    return request.acceptRequest(data);
+  Future<AcceptWorkoutPlanApiResponse> acceptWorkoutRequest() {
+    final request = GenerateWorkPlanGetApi();
+    return request.acceptRequest();
   }
 }

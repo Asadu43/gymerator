@@ -19,10 +19,12 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     // Delay for 5 seconds and then navigate to the next screen
     Future.delayed(const Duration(seconds: 5), () {
-      print(GetStorage().read('token'));
-      print(GetStorage().read('isRequiredInfoAdded'));
       if ((GetStorage().read('token') != null) &&
           (GetStorage().read('isRequiredInfoAdded') == true)) {
+        Nav.push(context, const MainScreen());
+      } else if ((GetStorage().read('token') != null) &&
+          (GetStorage().read('isRequiredInfoAdded') == true) &&
+          (GetStorage().read('isAccepted') == false)) {
         Nav.push(context, const WorkoutPlanScreen());
       } else {
         Nav.pushReplace(context, const LoginScreen());

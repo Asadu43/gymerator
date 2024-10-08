@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gymmerator/screens/splash_screen/main_screen/main_screen.dart';
+import 'package:gymmerator/screens/splash_screen/registration_screens/workout_plan_screen/workout_plan_screen.dart';
 import 'package:gymmerator/ui_component/app_button.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
@@ -85,7 +85,7 @@ class _CompleteSetupState extends State<CompleteSetup> {
           }
           if (state is UpdateUserSuccessfully) {
             showSnackBar(context, state.message, type: SnackBarType.success);
-            Nav.pushAndRemoveAllRoute(context, const MainScreen());
+            Nav.pushAndRemoveAllRoute(context, const WorkoutPlanScreen());
           }
         },
         builder: (context, state) {

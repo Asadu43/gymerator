@@ -38,6 +38,7 @@ class Data {
     String? workoutLevel,
     String? type,
     bool? isRequiredInfoAdded,
+    bool? isAccepted,
     List<dynamic>? favoriteProducts,
     String? createdAt,
     String? updatedAt,
@@ -60,6 +61,7 @@ class Data {
     _workoutLevel = workoutLevel;
     _type = type;
     _isRequiredInfoAdded = isRequiredInfoAdded;
+    _isAccepted = isAccepted;
     _favoriteProducts = favoriteProducts;
     _createdAt = createdAt;
     _updatedAt = updatedAt;
@@ -86,6 +88,7 @@ class Data {
     _workoutLevel = json['workoutLevel'];
     _type = json['type'];
     _isRequiredInfoAdded = json['isRequiredInfoAdded'];
+    _isAccepted = json['isAccepted'];
     if (json['favoriteProducts'] != null) {
       _favoriteProducts = [];
       json['favoriteProducts'].forEach((v) {
@@ -113,6 +116,7 @@ class Data {
   String? _workoutLevel;
   String? _type;
   bool? _isRequiredInfoAdded;
+  bool? _isAccepted;
   List<dynamic>? _favoriteProducts;
   String? _createdAt;
   String? _updatedAt;
@@ -135,6 +139,7 @@ class Data {
   String? get workoutLevel => _workoutLevel;
   String? get type => _type;
   bool? get isRequiredInfoAdded => _isRequiredInfoAdded;
+  bool? get isAccepted => _isAccepted;
   List<dynamic>? get favoriteProducts => _favoriteProducts;
   String? get createdAt => _createdAt;
   String? get updatedAt => _updatedAt;

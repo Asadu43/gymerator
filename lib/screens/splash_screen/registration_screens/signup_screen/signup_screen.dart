@@ -335,6 +335,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           AppTextField(
                             controller: passwordController,
                             hintText: "password",
+                            obscureText: true,
                             icon: const Icon(Icons.lock_open_outlined),
                           ),
                           const SizedBox(

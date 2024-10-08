@@ -40,6 +40,8 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                 context, state.response.message ?? "Failed to Accept Workout");
           }
           if (state is AcceptWorkoutPlanSuccessfully) {
+            showSnackBar(
+                context, state.response.message ?? "Your Workout plan create successfully",type: SnackBarType.success);
             Nav.pushAndRemoveAllRoute(context, const MainScreen());
           }
         },
@@ -193,49 +195,12 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
   }
 
   Future<void> _onAcceptButtonPressed(BuildContext context) async {
-    var exercise = [];
 
-    var ex = [];
-
-    for(int i= 0; i< response!.data!.length; i++){
-
-      // if(response!.data![i].exercises?.length == 0){
-
-
-        print("Helllllllllllllllllll");
-        for(int j= 0; j < (response?.data?[i].exercises?.length ?? 0); j++){
-
-          Map dailyExercise = {
-            "exercise": response?.data![i].exercises?[j].exercise,
-            "sets": response?.data![i].exercises?[j].sets,
-            "reps": response?.data![i].exercises?[j].reps,
-            "rest": response?.data![i].exercises?[j].rest
-          };
-          ex.add(dailyExercise);
-
-        // }
-      }
-
-      Map data = {
-        "day": response?.data?[i].day,
-        "exercises":ex,
-        "rest_day": response?.data?[i].restDay
-      };
-      exercise.add(data);
+    if (response!.data!.isEmpty) {
+      showSnackBar(context, "Please generate again workout");
+    } else {
+      context.read<GenerateWorkOutPlanCubit>().acceptWorkoutRequest();
     }
-
-
-
-    print("exercise\n\n\n");
-    print(exercise);
-    print("\n\n\nexercise");
-    // if (response!.data!.isEmpty) {
-    //   showSnackBar(context, "Please generate again workout");
-    // } else {
-    //   context.read<GenerateWorkOutPlanCubit>().acceptWorkoutRequest(
-    //     exercisePlan: response!.data!
-    //       );
-    // }
   }
 
   String capitalizeFirstLetter(String text) {

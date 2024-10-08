@@ -22,6 +22,7 @@ class SignInCubit extends Cubit<SignInState> {
     final SignInApiResponse signInModel = await _repository.signIn(data);
     if (signInModel.error == null) {
       storeToken(signInModel.data!.isRequiredInfoAdded!);
+      storeAccept(signInModel.data!.isAccepted!);
       emit(SignInSuccessful(signInModel));
     } else {
       emit(SignInFailed(signInModel.message ?? "Incorrect email or password."));
@@ -49,6 +50,7 @@ class SignInCubit extends Cubit<SignInState> {
     print(signInModel.error);
     if (signInModel.error == null) {
       storeToken(signInModel.data!.isRequiredInfoAdded!);
+      storeAccept(signInModel.data!.isAccepted!);
       emit(LoginWithGoogleSuccessfully(signInModel));
     } else {
       emit(LoginWithGoogleFailed(
@@ -58,5 +60,9 @@ class SignInCubit extends Cubit<SignInState> {
 
   storeToken(bool result) {
     GetStorage().write('isRequiredInfoAdded', result);
+  }
+
+  storeAccept(bool result) {
+    GetStorage().write('isAccepted', result);
   }
 }

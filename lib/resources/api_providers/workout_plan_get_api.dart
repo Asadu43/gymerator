@@ -12,7 +12,7 @@ class WorkoutPlanGetApi {
     try {
       final Dio dio = Dio();
       dio.options.headers["x-auth-token"] = GetStorage().read('token');
-      final Response response = await dio.get(ApiConstants.generatePlan);
+      final Response response = await dio.get(ApiConstants.getWorkoutPlan);
 
       print(response.data);
       print(response.statusCode);
