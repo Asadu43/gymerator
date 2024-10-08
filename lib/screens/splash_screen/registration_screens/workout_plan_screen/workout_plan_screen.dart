@@ -9,6 +9,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../models/api_response/GenerateWorkoutPlanApiResponse.dart';
 import '../../../../ui_component/app_button.dart';
+import '../../../../ui_component/exercise_detail_row.dart';
 import '../../../../utils/nav/nav.dart';
 
 class WorkoutPlanScreen extends StatefulWidget {
@@ -95,6 +96,7 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     width: screenWidth * 0.4,
@@ -105,7 +107,7 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                                     child: Text(
                                       capitalizeFirstLetter(
                                           response?.data?[index].day ?? ""),
-                                      style: TextStyle(
+                                      style: GoogleFonts.vazirmatn(
                                         fontSize: 12.sp,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -119,7 +121,10 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                             ),
-                                            child: ListView.builder(
+                                            child: ListView.separated(
+                                              separatorBuilder: (context, index) {
+                                                return const Divider();
+                                              },
                                               shrinkWrap: true,
                                               physics:
                                                   const NeverScrollableScrollPhysics(),
@@ -127,22 +132,29 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                                                       .exercises?.length ??
                                                   0,
                                               itemBuilder: (context, ind) {
-                                                return Column(
-                                                  children: [
-                                                    ExerciseTile(
-                                                      exerciseName: response
-                                                              ?.data?[index]
-                                                              .exercises?[ind]
-                                                              .exercise ??
-                                                          "",
-                                                      sets: response
-                                                              ?.data?[index]
-                                                              .exercises?[ind]
-                                                              .sets ??
-                                                          "" "",
-                                                    ),
-                                                    const Divider(),
-                                                  ],
+                                                return Padding(
+                                                  padding: const EdgeInsets.only(left: 16.0,right: 16.0,top: 8.0),
+                                                  child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    children: [
+                                                      Center(child: Text(response?.data?[index].exercises?[ind].exercise ?? "",maxLines: 1,overflow: TextOverflow.ellipsis,style: GoogleFonts.vazirmatn(),),),
+                                                      ExerciseDetailRow(
+                                                        icon: Icons.fitness_center,
+                                                        label: 'Sets',
+                                                        value: response?.data?[index].exercises?[ind].sets ?? "",
+                                                      ),
+                                                      ExerciseDetailRow(
+                                                        icon: Icons.repeat,
+                                                        label: 'Reps',
+                                                        value: response?.data?[index].exercises?[ind].reps ?? "",
+                                                      ),
+                                                      ExerciseDetailRow(
+                                                        icon: Icons.access_time,
+                                                        label: 'Rest Period',
+                                                        value: response?.data?[index].exercises?[ind].rest ?? "",
+                                                      ),
+                                                    ],
+                                                  ),
                                                 );
                                               },
                                             ),
