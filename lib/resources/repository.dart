@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:gymmerator/models/api_response/AcceptWorkoutPlanApiResponse.dart';
 import 'package:gymmerator/models/api_response/AddFavoriteProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/AddToCartProductApiResponse.dart';
+import 'package:gymmerator/models/api_response/ChatAiApiResponse.dart';
 import 'package:gymmerator/models/api_response/CreateOrderApiResponse.dart';
 import 'package:gymmerator/models/api_response/FeaturedProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/ForgetPasswordApiResponse.dart';
@@ -25,6 +26,7 @@ import 'package:gymmerator/resources/api_providers/add_favorite_product_post_api
 import 'package:gymmerator/resources/api_providers/add_to_cart_post_api.dart';
 import 'package:gymmerator/resources/api_providers/all_favorite_product_get_api.dart';
 import 'package:gymmerator/resources/api_providers/all_product_get_api.dart';
+import 'package:gymmerator/resources/api_providers/chat_bot_post_api.dart';
 import 'package:gymmerator/resources/api_providers/create_order_post_api.dart';
 import 'package:gymmerator/resources/api_providers/featured_product_get_api.dart';
 import 'package:gymmerator/resources/api_providers/forget_password_post_api.dart';
@@ -172,5 +174,10 @@ class Repository {
   Future<AcceptWorkoutPlanApiResponse> acceptWorkoutRequest() {
     final request = GenerateWorkPlanGetApi();
     return request.acceptRequest();
+  }
+
+  Future<ChatAiApiResponse> chatRequest(Map data) {
+    final request = ChatBotPostApi();
+    return request.chatRequest(data);
   }
 }

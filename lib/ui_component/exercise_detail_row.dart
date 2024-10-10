@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 class ExerciseDetailRow extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final String label;
   final String value;
 
@@ -20,7 +20,7 @@ class ExerciseDetailRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
         children: [
-          Icon(icon, size: 14, color: Colors.black87),
+          Image.asset(icon),
           const SizedBox(width: 10),
           Text(
             '$label : ',

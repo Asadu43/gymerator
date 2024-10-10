@@ -90,17 +90,17 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                             children: [
                               Center(child: Text(widget.exercises[index].exercise ?? "",maxLines: 1,overflow: TextOverflow.ellipsis,style: GoogleFonts.vazirmatn(),),),
                               ExerciseDetailRow(
-                                icon: Icons.fitness_center,
+                                icon: "assets/icons/sets.png",
                                 label: 'Sets',
                                 value: widget.exercises[index].sets ?? "",
                               ),
                               ExerciseDetailRow(
-                                icon: Icons.access_time,
+                                icon: "assets/icons/time.png",
                                 label: 'Rest Period',
                                 value: widget.exercises[index].rest ?? "",
                               ),
                               ExerciseDetailRow(
-                                icon: Icons.repeat,
+                                icon: "assets/icons/rep.png",
                                 label: 'Reps',
                                 value: widget.exercises[index].reps ?? "",
                               ),

@@ -139,17 +139,17 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                                                     children: [
                                                       Center(child: Text(response?.data?[index].exercises?[ind].exercise ?? "",maxLines: 1,overflow: TextOverflow.ellipsis,style: GoogleFonts.vazirmatn(),),),
                                                       ExerciseDetailRow(
-                                                        icon: Icons.fitness_center,
+                                                        icon: "assets/icons/sets.png",
                                                         label: 'Sets',
                                                         value: response?.data?[index].exercises?[ind].sets ?? "",
                                                       ),
                                                       ExerciseDetailRow(
-                                                        icon: Icons.repeat,
+                                                        icon: "assets/icons/rep.png",
                                                         label: 'Reps',
                                                         value: response?.data?[index].exercises?[ind].reps ?? "",
                                                       ),
                                                       ExerciseDetailRow(
-                                                        icon: Icons.access_time,
+                                                        icon: "assets/icons/time.png",
                                                         label: 'Rest Period',
                                                         value: response?.data?[index].exercises?[ind].rest ?? "",
                                                       ),

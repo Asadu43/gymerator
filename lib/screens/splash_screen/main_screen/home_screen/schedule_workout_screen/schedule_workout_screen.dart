@@ -128,7 +128,7 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 1.0,
                                 mainAxisSpacing: 1.0,
-                                childAspectRatio: 1.2),
+                                childAspectRatio: 1.0),
                         // itemCount: allProduct?.data?.length ?? 0,
                         itemCount: 7,
                         shrinkWrap: true,
@@ -180,27 +180,63 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                                         .day ??
                                                     "")
                                             ? const Color(0xff599918)
+                                                .withOpacity(0.5)
                                             : Colors.white,
                                         borderRadius: BorderRadius.circular(20),
                                         border:
                                             Border.all(color: Colors.black12),
                                       ),
                                       child: Center(
-                                        child: response?.data?.workoutPlan?[index].restDay == true
-                                            ? Text("Rest Day",
-                                                style: GoogleFonts.vazirmatn(
-                                                    color: weekdayName[DateTime.now().weekday] ==
-                                                            capitalizeFirstLetter(
-                                                                response?.data?.workoutPlan?[index].day ??
-                                                                    "")
-                                                        ? Colors.white
-                                                        : Colors.black))
-                                            : Text("Exercise Day",
-                                                style: GoogleFonts.vazirmatn(
-                                                    color: weekdayName[DateTime.now().weekday] ==
-                                                            capitalizeFirstLetter(response?.data?.workoutPlan?[index].day ?? "")
-                                                        ? Colors.white
-                                                        : Colors.black)),
+                                        child:
+                                            response?.data?.workoutPlan?[index]
+                                                        .restDay ==
+                                                    true
+                                                ? Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      const SizedBox(height: 10),
+                                                      Image.asset(
+                                                          "assets/images/rest_day.png"),
+                                                      const SizedBox(height: 5),
+                                                      Text("Rest Day",
+                                                          style: GoogleFonts.vazirmatn(
+                                                            fontSize: 9.sp,
+                                                              color: weekdayName[
+                                                                          DateTime.now()
+                                                                              .weekday] ==
+                                                                      capitalizeFirstLetter(
+                                                                          response?.data?.workoutPlan?[index].day ??
+                                                                              "")
+                                                                  ? Colors.white
+                                                                  : Colors
+                                                                      .black)),
+                                                    ],
+                                                  )
+                                                : Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      const SizedBox(height: 10),
+                                                      Image.asset(
+                                                          "assets/images/exersise.png"),
+                                                      const SizedBox(height: 5),
+                                                      Text("Exercise Day",
+                                                          style: GoogleFonts.vazirmatn(
+                                                              fontSize: 9.sp,
+                                                              color: weekdayName[
+                                                                          DateTime.now()
+                                                                              .weekday] ==
+                                                                      capitalizeFirstLetter(
+                                                                          response?.data?.workoutPlan?[index].day ??
+                                                                              "")
+                                                                  ? Colors.white
+                                                                  : Colors
+                                                                      .black)),
+                                                    ],
+                                                  ),
                                       ),
                                     ),
                                   ),
@@ -210,17 +246,7 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                       child: Container(
                                           padding: const EdgeInsets.all(10.0),
                                           decoration: BoxDecoration(
-                                            color: weekdayName[DateTime.now()
-                                                        .weekday] ==
-                                                    capitalizeFirstLetter(
-                                                        response
-                                                                ?.data
-                                                                ?.workoutPlan?[
-                                                                    index]
-                                                                .day ??
-                                                            "")
-                                                ? const Color(0xff599918)
-                                                : Colors.white,
+                                            color: Colors.white,
                                             borderRadius:
                                                 BorderRadius.circular(12),
                                             border: Border.all(
@@ -235,18 +261,7 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                               style: GoogleFonts.vazirmatn(
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.bold,
-                                                  color: weekdayName[
-                                                              DateTime.now()
-                                                                  .weekday] ==
-                                                          capitalizeFirstLetter(
-                                                              response
-                                                                      ?.data
-                                                                      ?.workoutPlan?[
-                                                                          index]
-                                                                      .day ??
-                                                                  "")
-                                                      ? Colors.white
-                                                      : Colors.black))))
+                                                  color: Colors.black))))
                                 ],
                               ),
                             ),
