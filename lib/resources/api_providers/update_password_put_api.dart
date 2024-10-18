@@ -19,7 +19,7 @@ class UpdatePasswordPutApi {
         return UpdatePasswordApiResponse.fromJson(response.data);
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         return UpdatePasswordApiResponse.fromJson(e.response?.data);
       } else {
         return UpdatePasswordApiResponse();

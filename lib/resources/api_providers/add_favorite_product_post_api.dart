@@ -23,7 +23,7 @@ class AddFavoriteProductPostApi {
         return AddFavoriteProductApiResponse.fromJson(response.data);
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         return AddFavoriteProductApiResponse.fromJson(e.response?.data);
       } else {
         return AddFavoriteProductApiResponse();

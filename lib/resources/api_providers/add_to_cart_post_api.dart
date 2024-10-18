@@ -21,7 +21,7 @@ class AddToCartPostApi {
         return AddToCartProductApiResponse.fromJson(response.data);
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         return AddToCartProductApiResponse.fromJson(e.response?.data);
       } else {
         return AddToCartProductApiResponse();

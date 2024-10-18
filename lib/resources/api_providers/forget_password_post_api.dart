@@ -19,7 +19,7 @@ class ForgetPasswordPostApi {
         return ForgetPasswordApiResponse.fromJson(response.data);
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         return ForgetPasswordApiResponse.fromJson(e.response?.data);
       } else {
         return ForgetPasswordApiResponse();
