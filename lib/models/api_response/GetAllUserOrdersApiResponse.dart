@@ -1,8 +1,9 @@
 class GetAllUserOrdersApiResponse {
   GetAllUserOrdersApiResponse({
-      this.data, 
-      this.message, 
-      this.error,});
+    this.data,
+    this.message,
+    this.error,
+  });
 
   GetAllUserOrdersApiResponse.fromJson(dynamic json) {
     if (json['data'] != null) {
@@ -14,23 +15,24 @@ class GetAllUserOrdersApiResponse {
     message = json['message'];
     error = json['error'];
   }
+
   List<Data>? data;
   String? message;
   dynamic error;
-
 }
 
 class Data {
   Data({
-      this.id, 
-      this.user, 
-      this.products, 
-      this.totalAmount, 
-      this.status, 
-      this.paymentMethod, 
-      this.createdAt, 
-      this.updatedAt, 
-      this.v,});
+    this.id,
+    this.user,
+    this.products,
+    this.totalAmount,
+    this.status,
+    this.paymentMethod,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
+  });
 
   Data.fromJson(dynamic json) {
     id = json['_id'];
@@ -48,6 +50,7 @@ class Data {
     updatedAt = json['updatedAt'];
     v = json['__v'];
   }
+
   String? id;
   User? user;
   List<Products>? products;
@@ -57,20 +60,21 @@ class Data {
   String? createdAt;
   String? updatedAt;
   num? v;
-
 }
 
 class Products {
   Products({
-      this.product, 
-      this.variants, 
-      this.quantity, 
-      this.unitPrice, 
-      this.total, 
-      this.id,});
+    this.product,
+    this.variants,
+    this.quantity,
+    this.unitPrice,
+    this.total,
+    this.id,
+  });
 
   Products.fromJson(dynamic json) {
-    product = json['product'] != null ? Product.fromJson(json['product']) : null;
+    product =
+        json['product'] != null ? Product.fromJson(json['product']) : null;
     variants = json['variants'] != null ? json['variants'].cast<String>() : [];
     quantity = json['quantity'];
     unitPrice = _convertToDouble(json['unitPrice']);
@@ -93,6 +97,7 @@ class Products {
       throw ArgumentError('Unsupported type: ${val.runtimeType}');
     }
   }
+
   Product? product;
   List<String>? variants;
   num? quantity;
@@ -103,12 +108,13 @@ class Products {
 
 class Product {
   Product({
-      this.id, 
-      this.name, 
-      this.description, 
-      this.price, 
-      this.stock, 
-      this.images,});
+    this.id,
+    this.name,
+    this.description,
+    this.price,
+    this.stock,
+    this.images,
+  });
 
   Product.fromJson(dynamic json) {
     id = json['_id'];
@@ -118,22 +124,23 @@ class Product {
     stock = json['stock'];
     images = json['images'] != null ? json['images'].cast<String>() : [];
   }
+
   String? id;
   String? name;
   String? description;
   num? price;
   num? stock;
   List<String>? images;
-
 }
 
 class User {
   User({
-      this.id, 
-      this.firstName, 
-      this.lastName, 
-      this.email, 
-      this.profile,});
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.profile,
+  });
 
   User.fromJson(dynamic json) {
     id = json['_id'];
@@ -142,10 +149,10 @@ class User {
     email = json['email'];
     profile = json['profile'];
   }
+
   String? id;
   String? firstName;
   String? lastName;
   String? email;
   String? profile;
-
 }

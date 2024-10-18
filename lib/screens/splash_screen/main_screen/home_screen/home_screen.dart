@@ -226,10 +226,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          if(checkboxValue == true && selectedIndex == 1){
-                            Nav.push(context,
-                                const ScheduleWorkoutScreen());
-
+                          if (checkboxValue == true && selectedIndex == 1) {
+                            Nav.push(context, const ScheduleWorkoutScreen());
                           }
                         },
                         child: Column(
@@ -240,32 +238,33 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: screenWidth * 0.35,
                               decoration: BoxDecoration(
                                 // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
-                                gradient:
-                                    (checkboxValue == true && selectedIndex == 1)
-                                        ? const LinearGradient(
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
-                                            // stops: const [0.0, 1.0],
-                                            colors: [
-                                              Color(0xffB14501),
-                                              Color(0xff3F710D),
-                                            ],
-                                          )
-                                        : const LinearGradient(
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
-                                            // stops: const [0.0, 1.0],
-                                            colors: [
-                                              Colors.transparent,
-                                              Colors.transparent,
-                                            ],
-                                          ),
+                                gradient: (checkboxValue == true &&
+                                        selectedIndex == 1)
+                                    ? const LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        // stops: const [0.0, 1.0],
+                                        colors: [
+                                          Color(0xffB14501),
+                                          Color(0xff3F710D),
+                                        ],
+                                      )
+                                    : const LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        // stops: const [0.0, 1.0],
+                                        colors: [
+                                          Colors.transparent,
+                                          Colors.transparent,
+                                        ],
+                                      ),
                                 border: Border.all(color: Colors.grey),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Image.asset("assets/images/begginer.png"),
+                                child:
+                                    Image.asset("assets/images/begginer.png"),
                               ),
                             ),
                             SizedBox(
@@ -284,10 +283,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(checkboxValue == true && selectedIndex == 2){
-                            Nav.push(context,
-                                const ScheduleWorkoutScreen());
-
+                          if (checkboxValue == true && selectedIndex == 2) {
+                            Nav.push(context, const ScheduleWorkoutScreen());
                           }
                         },
                         child: Column(
@@ -298,33 +295,33 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: screenWidth * 0.35,
                               decoration: BoxDecoration(
                                 // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
-                                gradient:
-                                    (checkboxValue == true && selectedIndex == 2)
-                                        ? const LinearGradient(
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
-                                            // stops: const [0.0, 1.0],
-                                            colors: [
-                                              Color(0xffB14501),
-                                              Color(0xff3F710D),
-                                            ],
-                                          )
-                                        : const LinearGradient(
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
-                                            // stops: const [0.0, 1.0],
-                                            colors: [
-                                              Colors.transparent,
-                                              Colors.transparent,
-                                            ],
-                                          ),
+                                gradient: (checkboxValue == true &&
+                                        selectedIndex == 2)
+                                    ? const LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        // stops: const [0.0, 1.0],
+                                        colors: [
+                                          Color(0xffB14501),
+                                          Color(0xff3F710D),
+                                        ],
+                                      )
+                                    : const LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        // stops: const [0.0, 1.0],
+                                        colors: [
+                                          Colors.transparent,
+                                          Colors.transparent,
+                                        ],
+                                      ),
                                 border: Border.all(color: Colors.grey),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child:
-                                    Image.asset("assets/images/intermedate.png"),
+                                child: Image.asset(
+                                    "assets/images/intermedate.png"),
                               ),
                             ),
                             const SizedBox(
@@ -349,10 +346,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          if(checkboxValue == true && selectedIndex == 3){
-                            Nav.push(context,
-                                const ScheduleWorkoutScreen());
-
+                          if (checkboxValue == true && selectedIndex == 3) {
+                            Nav.push(context, const ScheduleWorkoutScreen());
                           }
                         },
                         child: Column(
@@ -363,26 +358,26 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: screenWidth * 0.35,
                               decoration: BoxDecoration(
                                 // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
-                                gradient:
-                                    (checkboxValue == true && selectedIndex == 3)
-                                        ? const LinearGradient(
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
-                                            // stops: const [0.0, 1.0],
-                                            colors: [
-                                              Color(0xffB14501),
-                                              Color(0xff3F710D),
-                                            ],
-                                          )
-                                        : const LinearGradient(
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
-                                            // stops: const [0.0, 1.0],
-                                            colors: [
-                                              Colors.transparent,
-                                              Colors.transparent,
-                                            ],
-                                          ),
+                                gradient: (checkboxValue == true &&
+                                        selectedIndex == 3)
+                                    ? const LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        // stops: const [0.0, 1.0],
+                                        colors: [
+                                          Color(0xffB14501),
+                                          Color(0xff3F710D),
+                                        ],
+                                      )
+                                    : const LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        // stops: const [0.0, 1.0],
+                                        colors: [
+                                          Colors.transparent,
+                                          Colors.transparent,
+                                        ],
+                                      ),
                                 border: Border.all(color: Colors.grey),
                                 borderRadius: BorderRadius.circular(10),
                               ),
@@ -407,10 +402,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(checkboxValue == true && selectedIndex == 4){
-                            Nav.push(context,
-                                const ScheduleWorkoutScreen());
-
+                          if (checkboxValue == true && selectedIndex == 4) {
+                            Nav.push(context, const ScheduleWorkoutScreen());
                           }
                         },
                         child: Column(
@@ -421,26 +414,26 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: screenWidth * 0.35,
                               decoration: BoxDecoration(
                                 // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
-                                gradient:
-                                    (checkboxValue == true && selectedIndex == 4)
-                                        ? const LinearGradient(
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
-                                            // stops: const [0.0, 1.0],
-                                            colors: [
-                                              Color(0xffB14501),
-                                              Color(0xff3F710D),
-                                            ],
-                                          )
-                                        : const LinearGradient(
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
-                                            // stops: const [0.0, 1.0],
-                                            colors: [
-                                              Colors.transparent,
-                                              Colors.transparent,
-                                            ],
-                                          ),
+                                gradient: (checkboxValue == true &&
+                                        selectedIndex == 4)
+                                    ? const LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        // stops: const [0.0, 1.0],
+                                        colors: [
+                                          Color(0xffB14501),
+                                          Color(0xff3F710D),
+                                        ],
+                                      )
+                                    : const LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        // stops: const [0.0, 1.0],
+                                        colors: [
+                                          Colors.transparent,
+                                          Colors.transparent,
+                                        ],
+                                      ),
                                 border: Border.all(color: Colors.grey),
                                 borderRadius: BorderRadius.circular(10),
                               ),

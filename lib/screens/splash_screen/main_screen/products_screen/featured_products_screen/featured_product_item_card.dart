@@ -10,6 +10,7 @@ class FeaturedProductItemCard extends StatefulWidget {
     super.key,
     required this.product,
   });
+
   final Product product;
 
   @override

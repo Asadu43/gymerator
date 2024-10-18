@@ -14,12 +14,15 @@ class CreateOrderApiResponse {
     _message = json['message'];
     _error = json['error'];
   }
+
   Data? _data;
   String? _message;
   dynamic _error;
 
   Data? get data => _data;
+
   String? get message => _message;
+
   dynamic get error => _error;
 }
 
@@ -62,6 +65,7 @@ class Data {
     _updatedAt = json['updatedAt'];
     _v = json['__v'];
   }
+
   String? _user;
   List<Products>? _products;
   double? _totalAmount;
@@ -73,13 +77,21 @@ class Data {
   int? _v;
 
   String? get user => _user;
+
   List<Products>? get products => _products;
+
   double? get totalAmount => _totalAmount;
+
   String? get status => _status;
+
   String? get paymentMethod => _paymentMethod;
+
   String? get id => _id;
+
   String? get createdAt => _createdAt;
+
   String? get updatedAt => _updatedAt;
+
   int? get v => _v;
 }
 
@@ -113,6 +125,7 @@ class Products {
     _total = json['total'];
     _id = json['_id'];
   }
+
   String? _product;
   List<dynamic>? _variants;
   int? _quantity;
@@ -121,9 +134,14 @@ class Products {
   String? _id;
 
   String? get product => _product;
+
   List<dynamic>? get variants => _variants;
+
   int? get quantity => _quantity;
+
   int? get unitPrice => _unitPrice;
+
   int? get total => _total;
+
   String? get id => _id;
 }

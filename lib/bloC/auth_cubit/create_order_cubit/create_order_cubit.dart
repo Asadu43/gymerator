@@ -25,10 +25,11 @@ class CreateOrderCubit extends Cubit<CreateOrderState> {
     Map data = {
       "shippingAddress": shippingAddress,
       "paymentAddress": paymentAddress,
-      "paymentMethod":
-          paymentMethod, //Possible methods =  "Card", "Cash on Delivery", "Gymerator Token"
+      "paymentMethod": paymentMethod,
+      //Possible methods =  "Card", "Cash on Delivery", "Gymerator Token"
       "paymentIntentId": paymentIntentId,
-      "amount": amount, // Paid by cusotmer
+      "amount": amount,
+      // Paid by cusotmer
       "currency": currency
     };
 
@@ -46,13 +47,11 @@ class CreateOrderCubit extends Cubit<CreateOrderState> {
   Future featuredRequest() async {
     emit(LoadingState());
     final GetAllFavoriteProductApiResponse model =
-    await _repository.getFavoriteProductRequest();
+        await _repository.getFavoriteProductRequest();
     if (model.error == null) {
       emit(AllFavoriteProductGetSuccessfully(model));
     } else {
       emit(FailedToGetProduct(model));
     }
   }
-
-
 }

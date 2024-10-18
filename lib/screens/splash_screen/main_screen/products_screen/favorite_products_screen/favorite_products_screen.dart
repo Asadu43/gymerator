@@ -17,6 +17,7 @@ class FavoriteProductsScreen extends StatefulWidget {
 
 class _FavoriteProductsScreenState extends State<FavoriteProductsScreen> {
   GetAllFavoriteProductApiResponse? response;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

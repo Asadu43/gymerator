@@ -8,8 +8,8 @@ import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/fea
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/popular_products_screen/popular_products_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/product_item_card.dart';
 import 'package:gymmerator/ui_component/app_drawer.dart';
-import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/featured_product_item_card.dart';
+import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
 
 import '../../../../utils/nav/nav.dart';
@@ -80,7 +80,10 @@ class _ProductsScreenState extends State<ProductsScreen> {
               drawer: const AppDrawer(),
               appBar: AppBar(
                 centerTitle: true,
-                title:  Text('Gymerator Store',style: GoogleFonts.vazirmatn(),),
+                title: Text(
+                  'Gymerator Store',
+                  style: GoogleFonts.vazirmatn(),
+                ),
               ),
               body: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -91,7 +94,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                         Padding(
+                        Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             'Featured Products',
@@ -108,12 +111,12 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                       const FeaturedProductsScreen()),
                             );
                           },
-                          child:  Padding(
+                          child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               'View All',
-                              style:
-                              GoogleFonts.vazirmatn(fontSize: 14, color: Colors.grey),
+                              style: GoogleFonts.vazirmatn(
+                                  fontSize: 14, color: Colors.grey),
                             ),
                           ),
                         ),
@@ -141,7 +144,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                         Padding(
+                        Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             'Most Popular Products',
@@ -158,12 +161,12 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                       const PopularProductsScreen()),
                             );
                           },
-                          child:  Padding(
+                          child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               'View All',
-                              style:
-                              GoogleFonts.vazirmatn(fontSize: 14, color: Colors.grey),
+                              style: GoogleFonts.vazirmatn(
+                                  fontSize: 14, color: Colors.grey),
                             ),
                           ),
                         ),
@@ -193,7 +196,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                         Padding(
+                        Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             'All Products',
@@ -205,42 +208,44 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           onTap: () {
                             Nav.push(context, const AllProductScreen());
                           },
-                          child:  Padding(
+                          child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               'View All',
-                              style:
-                              GoogleFonts.vazirmatn(fontSize: 14, color: Colors.grey),
+                              style: GoogleFonts.vazirmatn(
+                                  fontSize: 14, color: Colors.grey),
                             ),
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 8.0),
-                    (allProduct == null) ? const SizedBox() :GridView.builder(
-                      physics:
-                          const NeverScrollableScrollPhysics(), // Allow scrolling
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 5.0,
-                        mainAxisSpacing: 5.0,
-                        childAspectRatio: 0.7,
-                      ),
-                      // itemCount: allProduct?.data?.length ?? 0,
-                      itemCount: allProduct!.data!.length > 10
-                          ? 10
-                          : allProduct!.data!.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: ProductItemCard(
-                            product: allProduct!.data![index],
+                    (allProduct == null)
+                        ? const SizedBox()
+                        : GridView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            // Allow scrolling
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 5.0,
+                              mainAxisSpacing: 5.0,
+                              childAspectRatio: 0.7,
+                            ),
+                            // itemCount: allProduct?.data?.length ?? 0,
+                            itemCount: allProduct!.data!.length > 10
+                                ? 10
+                                : allProduct!.data!.length,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: ProductItemCard(
+                                  product: allProduct!.data![index],
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                    ),
                   ],
                 ),
               ),

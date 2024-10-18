@@ -57,10 +57,10 @@ class _PopularProductsScreenState extends State<PopularProductsScreen> {
           isLoading: state is LoadingState,
           child: Scaffold(
             appBar: AppBar(
-              centerTitle: true,
-                title:  Text('Popular Products',
-                    style:
-                        GoogleFonts.vazirmatn(fontSize: 20, fontWeight: FontWeight.bold)),
+                centerTitle: true,
+                title: Text('Popular Products',
+                    style: GoogleFonts.vazirmatn(
+                        fontSize: 20, fontWeight: FontWeight.bold)),
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back_ios),
                   onPressed: () {

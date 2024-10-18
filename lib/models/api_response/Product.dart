@@ -89,6 +89,7 @@ class Product {
     _v = json['__v'];
     _isFavorite = json['isFavorite'];
   }
+
   Specifications? _specifications;
   Discount? _discount;
   String? _id;
@@ -113,26 +114,47 @@ class Product {
   bool? _isFavorite;
 
   Specifications? get specifications => _specifications;
+
   Discount? get discount => _discount;
+
   String? get id => _id;
+
   String? get name => _name;
+
   String? get description => _description;
+
   int? get price => _price;
+
   String? get sku => _sku;
+
   int? get stock => _stock;
+
   bool? get isAvailable => _isAvailable;
+
   String? get category => _category;
+
   List<String>? get tags => _tags;
+
   List<String>? get images => _images;
+
   List<Variants>? get variants => _variants;
+
   int? get averageRating => _averageRating;
+
   List<dynamic>? get relatedProducts => _relatedProducts;
+
   String? get metaTitle => _metaTitle;
+
   String? get metaDescription => _metaDescription;
+
   List<dynamic>? get reviews => _reviews;
+
   String? get createdAt => _createdAt;
+
   String? get updatedAt => _updatedAt;
+
   int? get v => _v;
+
   bool? get isFavorite => _isFavorite;
 }
 
@@ -152,12 +174,15 @@ class Variants {
     _variantType = json['variantType'];
     _variant = json['variant'];
   }
+
   String? _id;
   String? _variantType;
   String? _variant;
 
   String? get id => _id;
+
   String? get variantType => _variantType;
+
   String? get variant => _variant;
 }
 
@@ -174,10 +199,12 @@ class Discount {
     _percentage = json['percentage'];
     _valid = json['valid'];
   }
+
   int? _percentage;
   bool? _valid;
 
   int? get percentage => _percentage;
+
   bool? get valid => _valid;
 }
 
@@ -194,10 +221,12 @@ class Specifications {
     _brand = json['brand'];
     _modelNumber = json['modelNumber'];
   }
+
   String? _brand;
   String? _modelNumber;
 
   String? get brand => _brand;
+
   String? get modelNumber => _modelNumber;
 }
 
@@ -226,6 +255,7 @@ class RelatedProducts {
     _category = json['category'];
     _images = json['images'] != null ? json['images'].cast<String>() : [];
   }
+
   String? _id;
   String? _name;
   String? _description;
@@ -234,9 +264,14 @@ class RelatedProducts {
   List<String>? _images;
 
   String? get id => _id;
+
   String? get name => _name;
+
   String? get description => _description;
+
   int? get stock => _stock;
+
   String? get category => _category;
+
   List<String>? get images => _images;
 }

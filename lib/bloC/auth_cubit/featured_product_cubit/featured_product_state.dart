@@ -49,6 +49,7 @@ class FailedAddToFavoriteProduct extends FeaturedProductState {
 
 class GetAllProductSuccessfully extends FeaturedProductState {
   final GetAllProductApiResponse response;
+
   const GetAllProductSuccessfully(this.response);
 }
 
@@ -60,6 +61,7 @@ class FailedToGetAllProduct extends FeaturedProductState {
 
 class SearchProductSuccessfully extends FeaturedProductState {
   final SearchProductApiResponse response;
+
   const SearchProductSuccessfully(this.response);
 }
 

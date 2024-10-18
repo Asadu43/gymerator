@@ -5,7 +5,6 @@ import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/pro
 import 'package:gymmerator/utils/api_constants/api_constants.dart';
 
 import '../../../../models/api_response/Product.dart';
-import '../../../../ui_component/show_snackbar.dart';
 import '../../../../utils/nav/nav.dart';
 
 class HotProductItemCard extends StatefulWidget {
@@ -13,6 +12,7 @@ class HotProductItemCard extends StatefulWidget {
     super.key,
     required this.product,
   });
+
   final Product product;
 
   @override
@@ -22,7 +22,6 @@ class HotProductItemCard extends StatefulWidget {
 class _HotProductItemCardState extends State<HotProductItemCard> {
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {

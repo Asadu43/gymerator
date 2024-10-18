@@ -1,5 +1,3 @@
-
-
 import 'package:dio/dio.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gymmerator/models/api_response/AcceptWorkoutPlanApiResponse.dart';
@@ -11,11 +9,10 @@ class AcceptWorkoutPostApi {
     try {
       final Dio dio = Dio();
       dio.options.headers["x-auth-token"] = GetStorage().read('token');
-      final Response response =
-      await dio.post(ApiConstants.acceptPlan,
+      final Response response = await dio.post(ApiConstants.acceptPlan,
           data: data, options: Options(validateStatus: (status) {
-            return status! <= 500;
-          }));
+        return status! <= 500;
+      }));
       if (response.statusCode == 200) {
         return AcceptWorkoutPlanApiResponse.fromJson(response.data);
       } else if (response.statusCode == 404) {

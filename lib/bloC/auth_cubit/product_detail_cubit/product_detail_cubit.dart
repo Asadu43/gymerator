@@ -74,7 +74,7 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
   Future cartRequest() async {
     emit(LoadingState());
     final GetAllUserProductApiResponse model =
-    await _repository.getCartProductRequest();
+        await _repository.getCartProductRequest();
     if (model.error == null) {
       emit(CartProductGetSuccessfully(model));
     } else {

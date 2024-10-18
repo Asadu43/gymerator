@@ -58,10 +58,10 @@ class _FeaturedProductsScreenState extends State<FeaturedProductsScreen> {
           isLoading: state is LoadingState,
           child: Scaffold(
             appBar: AppBar(
-              centerTitle: true,
-                title:  Text('Featured Products',
-                    style:
-                    GoogleFonts.vazirmatn(fontSize: 20, fontWeight: FontWeight.bold)),
+                centerTitle: true,
+                title: Text('Featured Products',
+                    style: GoogleFonts.vazirmatn(
+                        fontSize: 20, fontWeight: FontWeight.bold)),
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back_ios),
                   onPressed: () {

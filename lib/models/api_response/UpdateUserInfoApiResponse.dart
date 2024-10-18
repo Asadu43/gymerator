@@ -14,12 +14,15 @@ class UpdateUserInfoApiResponse {
     _message = json['message'];
     _error = json['error'];
   }
+
   Data? _data;
   String? _message;
   dynamic _error;
 
   Data? get data => _data;
+
   String? get message => _message;
+
   dynamic get error => _error;
 }
 
@@ -117,6 +120,7 @@ class Data {
     _targetWeightInKG = json['targetWeightInKG'];
     _timelineMonths = json['timelineMonths'];
   }
+
   Address? _address;
   Location? _location;
   Height? _height;
@@ -145,30 +149,55 @@ class Data {
   dynamic _timelineMonths;
 
   Address? get address => _address;
+
   Location? get location => _location;
+
   Height? get height => _height;
+
   Weight? get weight => _weight;
+
   MedicalCondition? get medicalCondition => _medicalCondition;
+
   String? get id => _id;
+
   String? get firstName => _firstName;
+
   String? get lastName => _lastName;
+
   String? get email => _email;
+
   String? get activityLevel => _activityLevel;
+
   String? get dietType => _dietType;
+
   int? get mealFrequency => _mealFrequency;
+
   String? get goal => _goal;
+
   String? get workoutLevel => _workoutLevel;
+
   String? get type => _type;
+
   bool? get isRequiredInfoAdded => _isRequiredInfoAdded;
+
   List<dynamic>? get favoriteProducts => _favoriteProducts;
+
   String? get createdAt => _createdAt;
+
   String? get updatedAt => _updatedAt;
+
   int? get v => _v;
+
   int? get age => _age;
+
   String? get gender => _gender;
+
   int? get hydrationLitersPerDay => _hydrationLitersPerDay;
+
   int? get sleepHours => _sleepHours;
+
   int? get targetWeightInKG => _targetWeightInKG;
+
   dynamic get timelineMonths => _timelineMonths;
 }
 
@@ -185,10 +214,12 @@ class MedicalCondition {
     _condition = json['condition'];
     _name = json['name'];
   }
+
   String? _condition;
   String? _name;
 
   String? get condition => _condition;
+
   String? get name => _name;
 }
 
@@ -205,10 +236,12 @@ class Weight {
     _unit = json['unit'];
     _value = json['value'];
   }
+
   String? _unit;
   double? _value;
 
   String? get unit => _unit;
+
   double? get value => _value;
 }
 
@@ -225,10 +258,12 @@ class Height {
     _unit = json['unit'];
     _value = json['value'];
   }
+
   String? _unit;
   double? _value;
 
   String? get unit => _unit;
+
   double? get value => _value;
 }
 
@@ -245,10 +280,12 @@ class Location {
     _latitude = json['latitude'];
     _longitude = json['longitude'];
   }
+
   String? _latitude;
   String? _longitude;
 
   String? get latitude => _latitude;
+
   String? get longitude => _longitude;
 }
 
@@ -277,6 +314,7 @@ class Address {
     _country = json['country'];
     _postalCode = json['postalCode'];
   }
+
   String? _address1;
   String? _address2;
   String? _city;
@@ -285,9 +323,14 @@ class Address {
   String? _postalCode;
 
   String? get address1 => _address1;
+
   String? get address2 => _address2;
+
   String? get city => _city;
+
   String? get state => _state;
+
   String? get country => _country;
+
   String? get postalCode => _postalCode;
 }

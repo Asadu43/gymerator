@@ -9,6 +9,7 @@ import '../../../../../../utils/nav/nav.dart';
 
 class ExerciseScreen extends StatefulWidget {
   final List<Exercises> exercises;
+
   const ExerciseScreen({super.key, required this.exercises});
 
   @override
@@ -49,7 +50,8 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 12.0),
-                  child: Text("Exercises (${widget.exercises.length.toString()})",
+                  child: Text(
+                      "Exercises (${widget.exercises.length.toString()})",
                       style: GoogleFonts.vazirmatn(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.bold,
@@ -59,10 +61,9 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                   height: screenHeight * 0.02,
                 ),
                 GridView.builder(
-                  physics:
-                  const NeverScrollableScrollPhysics(), // Allow scrolling
-                  gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(
+                  physics: const NeverScrollableScrollPhysics(),
+                  // Allow scrolling
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10.0,
                       mainAxisSpacing: 1.0,
@@ -73,7 +74,10 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        Nav.push(context,  ExerciseDetailsScreen(exercise: widget.exercises[index]));
+                        Nav.push(
+                            context,
+                            ExerciseDetailsScreen(
+                                exercise: widget.exercises[index]));
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20),
@@ -84,11 +88,18 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(color: Colors.black12),
                           ),
-                          child:  Column(
+                          child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Center(child: Text(widget.exercises[index].exercise ?? "",maxLines: 1,overflow: TextOverflow.ellipsis,style: GoogleFonts.vazirmatn(),),),
+                              Center(
+                                child: Text(
+                                  widget.exercises[index].exercise ?? "",
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.vazirmatn(),
+                                ),
+                              ),
                               ExerciseDetailRow(
                                 icon: "assets/icons/sets.png",
                                 label: 'Sets',

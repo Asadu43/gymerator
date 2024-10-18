@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AllFavoriteProductsCubit(),
         ),
-
         BlocProvider(
           create: (context) => WorkoutPlanCubit(),
         )

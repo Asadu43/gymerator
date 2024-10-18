@@ -14,12 +14,15 @@ class GetWorkoutPlanApiResponse {
     _message = json['message'];
     _error = json['error'];
   }
+
   Data? _data;
   String? _message;
   dynamic _error;
 
   Data? get data => _data;
+
   String? get message => _message;
+
   dynamic get error => _error;
 }
 
@@ -56,6 +59,7 @@ class Data {
     _updatedAt = json['updatedAt'];
     _v = json['__v'];
   }
+
   String? _id;
   String? _user;
   List<WorkoutPlan>? _workoutPlan;
@@ -65,11 +69,17 @@ class Data {
   int? _v;
 
   String? get id => _id;
+
   String? get user => _user;
+
   List<WorkoutPlan>? get workoutPlan => _workoutPlan;
+
   bool? get isAccepted => _isAccepted;
+
   String? get createdAt => _createdAt;
+
   String? get updatedAt => _updatedAt;
+
   int? get v => _v;
 }
 
@@ -97,14 +107,18 @@ class WorkoutPlan {
     _restDay = json['rest_day'];
     _id = json['_id'];
   }
+
   String? _day;
   List<Exercises>? _exercises;
   bool? _restDay;
   String? _id;
 
   String? get day => _day;
+
   List<Exercises>? get exercises => _exercises;
+
   bool? get restDay => _restDay;
+
   String? get id => _id;
 }
 
@@ -130,6 +144,7 @@ class Exercises {
     _rest = json['rest'];
     _id = json['_id'];
   }
+
   String? _exercise;
   String? _sets;
   String? _reps;
@@ -137,8 +152,12 @@ class Exercises {
   String? _id;
 
   String? get exercise => _exercise;
+
   String? get sets => _sets;
+
   String? get reps => _reps;
+
   String? get rest => _rest;
+
   String? get id => _id;
 }

@@ -13,6 +13,7 @@ class CheckoutScreen extends StatefulWidget {
   final double totalDiscount;
   final int totalProducts;
   final double totalPayingPrice;
+
   const CheckoutScreen(
       {super.key,
       required this.totalAmount,

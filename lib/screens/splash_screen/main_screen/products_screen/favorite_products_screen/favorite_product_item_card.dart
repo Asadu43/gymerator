@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../../../../../bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
 import '../../../../../models/api_response/Product.dart';
 import '../../../../../utils/api_constants/api_constants.dart';
@@ -12,6 +13,7 @@ class FavoriteProductItemCard extends StatefulWidget {
     super.key,
     required this.product,
   });
+
   final Product product;
 
   @override
@@ -87,9 +89,8 @@ class _ProductItemCardState extends State<FavoriteProductItemCard> {
               child: Text(
                 widget.product.name!,
                 maxLines: 1,
-
                 overflow: TextOverflow.ellipsis,
-                style:  GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
+                style: GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -109,8 +110,12 @@ class _ProductItemCardState extends State<FavoriteProductItemCard> {
             width: MediaQuery.of(context).size.width * 0.4,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(widget.product.description!,
-                  maxLines: 2, overflow: TextOverflow.ellipsis,style: GoogleFonts.vazirmatn(),),
+              child: Text(
+                widget.product.description!,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.vazirmatn(),
+              ),
             ),
           ),
         ],

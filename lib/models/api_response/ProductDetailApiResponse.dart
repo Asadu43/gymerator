@@ -12,6 +12,7 @@ class ProductDetailApiResponse {
     message = json['message'];
     error = json['error'];
   }
+
   Product? data;
   String? message;
   dynamic error;

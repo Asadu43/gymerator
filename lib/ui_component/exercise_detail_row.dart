@@ -24,13 +24,15 @@ class ExerciseDetailRow extends StatelessWidget {
           const SizedBox(width: 10),
           Text(
             '$label : ',
-            maxLines: 1,overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: GoogleFonts.vazirmatn(fontSize: 8.sp),
           ),
           Flexible(
             child: Text(
               value,
-              maxLines: 1,overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: GoogleFonts.vazirmatn(fontSize: 8.sp),
             ),
           ),

@@ -13,6 +13,7 @@ class LoadingState extends ChatBotState {}
 
 class ChatResponseSuccessfully extends ChatBotState {
   final ChatAiApiResponse response;
+
   const ChatResponseSuccessfully(this.response);
 }
 

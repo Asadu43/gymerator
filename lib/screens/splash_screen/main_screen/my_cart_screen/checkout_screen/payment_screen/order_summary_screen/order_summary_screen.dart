@@ -11,7 +11,12 @@ class OrderSummaryScreen extends StatefulWidget {
   final double totalAmount;
   final String deliveryAddress;
   final String billingAddress;
-  const OrderSummaryScreen({super.key, required this.totalAmount, required this.deliveryAddress, required this.billingAddress});
+
+  const OrderSummaryScreen(
+      {super.key,
+      required this.totalAmount,
+      required this.deliveryAddress,
+      required this.billingAddress});
 
   @override
   State<OrderSummaryScreen> createState() => _OrderSummaryScreenState();

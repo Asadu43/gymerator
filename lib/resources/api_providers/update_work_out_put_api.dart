@@ -11,7 +11,8 @@ class UpdateWorkOutPutApi {
       final Dio dio = Dio();
       dio.options.headers["x-auth-token"] = GetStorage().read('token');
       final Response response = await dio.put(ApiConstants.updateWorkoutPlan,
-          data: {"workoutPlan": workout_plan}, options: Options(validateStatus: (status) {
+          data: {"workoutPlan": workout_plan},
+          options: Options(validateStatus: (status) {
         return status! <= 500;
       }));
       if (response.statusCode == 200) {

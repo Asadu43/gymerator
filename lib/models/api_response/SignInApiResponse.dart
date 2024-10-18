@@ -14,12 +14,15 @@ class SignInApiResponse {
     _message = json['message'];
     _error = json['error'];
   }
+
   Data? _data;
   String? _message;
   dynamic _error;
 
   Data? get data => _data;
+
   String? get message => _message;
+
   dynamic get error => _error;
 }
 
@@ -94,6 +97,7 @@ class Data {
     _updatedAt = json['updatedAt'];
     _v = json['__v'];
   }
+
   Address? _address;
   Location? _location;
   String? _id;
@@ -115,23 +119,41 @@ class Data {
   int? _v;
 
   Address? get address => _address;
+
   Location? get location => _location;
+
   String? get id => _id;
+
   String? get firstName => _firstName;
+
   String? get lastName => _lastName;
+
   String? get email => _email;
+
   String? get password => _password;
+
   String? get activityLevel => _activityLevel;
+
   String? get dietType => _dietType;
+
   int? get mealFrequency => _mealFrequency;
+
   String? get goal => _goal;
+
   String? get workoutLevel => _workoutLevel;
+
   String? get type => _type;
+
   bool? get isRequiredInfoAdded => _isRequiredInfoAdded;
+
   bool? get isAccepted => _isAccepted;
+
   List<dynamic>? get favoriteProducts => _favoriteProducts;
+
   String? get createdAt => _createdAt;
+
   String? get updatedAt => _updatedAt;
+
   int? get v => _v;
 }
 
@@ -148,10 +170,12 @@ class Location {
     _latitude = json['latitude'];
     _longitude = json['longitude'];
   }
+
   String? _latitude;
   String? _longitude;
 
   String? get latitude => _latitude;
+
   String? get longitude => _longitude;
 }
 
@@ -180,6 +204,7 @@ class Address {
     _country = json['country'];
     _postalCode = json['postalCode'];
   }
+
   String? _address1;
   String? _address2;
   String? _city;
@@ -188,9 +213,14 @@ class Address {
   String? _postalCode;
 
   String? get address1 => _address1;
+
   String? get address2 => _address2;
+
   String? get city => _city;
+
   String? get state => _state;
+
   String? get country => _country;
+
   String? get postalCode => _postalCode;
 }

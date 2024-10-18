@@ -9,6 +9,7 @@ import '../../../../../../utils/nav/nav.dart';
 class DetailsScreen extends StatefulWidget {
   final String name;
   final String image;
+
   const DetailsScreen({super.key, required this.name, required this.image});
 
   @override

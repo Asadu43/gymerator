@@ -16,12 +16,15 @@ class FeaturedProductApiResponse {
     _message = json['message'];
     _error = json['error'];
   }
+
   Data? _data;
   String? _message;
   dynamic _error;
 
   Data? get data => _data;
+
   String? get message => _message;
+
   dynamic get error => _error;
 }
 
@@ -48,9 +51,11 @@ class Data {
       });
     }
   }
+
   List<Product>? _updatedHotProducts;
   List<Product>? _updatedFeaturedProducts;
 
   List<Product>? get updatedHotProducts => _updatedHotProducts;
+
   List<Product>? get updatedFeaturedProducts => _updatedFeaturedProducts;
 }

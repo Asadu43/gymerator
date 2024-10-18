@@ -14,12 +14,15 @@ class AddToCartProductApiResponse {
     _message = json['message'];
     _error = json['error'];
   }
+
   Data? _data;
   String? _message;
   dynamic _error;
 
   Data? get data => _data;
+
   String? get message => _message;
+
   dynamic get error => _error;
 }
 
@@ -65,6 +68,7 @@ class Data {
     _total = json['total'];
     _updatedAt = json['updatedAt'];
   }
+
   String? _id;
   String? _user;
   int? _v;
@@ -77,14 +81,23 @@ class Data {
   String? _updatedAt;
 
   String? get id => _id;
+
   String? get user => _user;
+
   int? get v => _v;
+
   String? get createdAt => _createdAt;
+
   int? get discount => _discount;
+
   List<Items>? get items => _items;
+
   int? get subTotal => _subTotal;
+
   int? get tax => _tax;
+
   int? get total => _total;
+
   String? get updatedAt => _updatedAt;
 }
 
@@ -110,6 +123,7 @@ class Items {
     _total = json['total'];
     _id = json['_id'];
   }
+
   String? _product;
   int? _quantity;
   int? _unitPrice;
@@ -117,8 +131,12 @@ class Items {
   String? _id;
 
   String? get product => _product;
+
   int? get quantity => _quantity;
+
   int? get unitPrice => _unitPrice;
+
   int? get total => _total;
+
   String? get id => _id;
 }

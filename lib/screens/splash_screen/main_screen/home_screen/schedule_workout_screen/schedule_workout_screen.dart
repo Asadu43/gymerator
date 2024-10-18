@@ -1,5 +1,5 @@
-import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -149,8 +149,8 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                       height: screenHeight * 0.01,
                     ),
                     GridView.builder(
-                      physics:
-                          const NeverScrollableScrollPhysics(), // Allow scrolling
+                      physics: const NeverScrollableScrollPhysics(),
+                      // Allow scrolling
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,

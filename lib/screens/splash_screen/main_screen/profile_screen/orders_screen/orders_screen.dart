@@ -19,6 +19,7 @@ class OrdersScreen extends StatefulWidget {
 
 class _OrdersScreenState extends State<OrdersScreen> {
   GetAllUserOrdersApiResponse? response;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -54,16 +55,18 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 elevation: 0,
               ),
               body:
-              // (response?.data == null)  ? const Center(child: Text("No Order found"),) :
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4.0,horizontal: 16.0),
+                  // (response?.data == null)  ? const Center(child: Text("No Order found"),) :
+                  Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
                 child: ListView.separated(
                   shrinkWrap: true,
                   itemCount: response?.data?.length ?? 0,
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        Nav.push(context, OrderDetailsScreen(id: response!.data![index].id!));
+                        Nav.push(context,
+                            OrderDetailsScreen(id: response!.data![index].id!));
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
@@ -80,8 +83,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                 Text("Order ID",style: GoogleFonts.vazirmatn(),),
-                                Text(response?.data![index].id ?? "",style: GoogleFonts.vazirmatn(),),
+                                Text(
+                                  "Order ID",
+                                  style: GoogleFonts.vazirmatn(),
+                                ),
+                                Text(
+                                  response?.data![index].id ?? "",
+                                  style: GoogleFonts.vazirmatn(),
+                                ),
                               ],
                             ),
                             const SizedBox(
@@ -90,8 +99,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                 Text("Payment Method",style: GoogleFonts.vazirmatn(),),
-                                Text(response?.data![index].paymentMethod ?? "",style: GoogleFonts.vazirmatn(),),
+                                Text(
+                                  "Payment Method",
+                                  style: GoogleFonts.vazirmatn(),
+                                ),
+                                Text(
+                                  response?.data![index].paymentMethod ?? "",
+                                  style: GoogleFonts.vazirmatn(),
+                                ),
                               ],
                             ),
                             const SizedBox(
@@ -100,7 +115,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Delivery Status",style: GoogleFonts.vazirmatn()),
+                                Text("Delivery Status",
+                                    style: GoogleFonts.vazirmatn()),
                                 Text(
                                   response?.data![index].status ?? "",
                                   style: GoogleFonts.vazirmatn(
@@ -113,10 +129,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             const SizedBox(
                               height: 10,
                             ),
-                             Row(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Order Price",style: GoogleFonts.vazirmatn()),
+                                Text("Order Price",
+                                    style: GoogleFonts.vazirmatn()),
                                 Text(
                                   "\$ ${response?.data![index].totalAmount ?? ""}",
                                   style: GoogleFonts.vazirmatn(

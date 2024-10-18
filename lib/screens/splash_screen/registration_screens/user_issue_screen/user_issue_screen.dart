@@ -21,6 +21,7 @@ class UserIssueScreen extends StatefulWidget {
   final String hydrationDaily;
   final String targetWeight;
   final int dietPlan;
+
   const UserIssueScreen(
       {super.key,
       required this.gender,
@@ -56,8 +57,8 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
           width: screenWidth,
           decoration: const BoxDecoration(
               image: DecorationImage(
-            image: AssetImage(
-                'assets/images/background.png'), // Replace with your image asset path
+            image: AssetImage('assets/images/background.png'),
+            // Replace with your image asset path
             fit: BoxFit.cover, // You can adjust the fit property as needed
           )),
           child: Padding(

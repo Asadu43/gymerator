@@ -7,6 +7,7 @@ class PopularProductItemCard extends StatefulWidget {
     super.key,
     required this.product,
   });
+
   final Product product;
 
   @override
@@ -16,7 +17,6 @@ class PopularProductItemCard extends StatefulWidget {
 class _ProductItemCardState extends State<PopularProductItemCard> {
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,

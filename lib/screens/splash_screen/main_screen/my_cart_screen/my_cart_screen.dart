@@ -23,6 +23,7 @@ class MyCartScreen extends StatefulWidget {
 
 class _MyCartScreenState extends State<MyCartScreen> {
   int count = 0;
+
   void increment() async {
     setState(() {
       count++;
@@ -165,9 +166,12 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                     fit: BoxFit.fitHeight,
                                                     errorBuilder: (context,
                                                         error, stackTrace) {
-                                                      return  Center(
-                                                        child:
-                                                            Text('Please Wait',style: GoogleFonts.vazirmatn(),),
+                                                      return Center(
+                                                        child: Text(
+                                                          'Please Wait',
+                                                          style: GoogleFonts
+                                                              .vazirmatn(),
+                                                        ),
                                                       );
                                                     },
                                                   ),

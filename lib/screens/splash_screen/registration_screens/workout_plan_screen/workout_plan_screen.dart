@@ -21,6 +21,7 @@ class WorkoutPlanScreen extends StatefulWidget {
 
 class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
   GenerateWorkoutPlanApiResponse? response;
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -42,7 +43,10 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
           }
           if (state is AcceptWorkoutPlanSuccessfully) {
             showSnackBar(
-                context, state.response.message ?? "Your Workout plan create successfully",type: SnackBarType.success);
+                context,
+                state.response.message ??
+                    "Your Workout plan create successfully",
+                type: SnackBarType.success);
             Nav.pushAndRemoveAllRoute(context, const MainScreen());
           }
         },
@@ -122,7 +126,8 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                                                   BorderRadius.circular(10),
                                             ),
                                             child: ListView.separated(
-                                              separatorBuilder: (context, index) {
+                                              separatorBuilder:
+                                                  (context, index) {
                                                 return const Divider();
                                               },
                                               shrinkWrap: true,
@@ -133,25 +138,60 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                                                   0,
                                               itemBuilder: (context, ind) {
                                                 return Padding(
-                                                  padding: const EdgeInsets.only(left: 16.0,right: 16.0,top: 8.0),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 16.0,
+                                                          right: 16.0,
+                                                          top: 8.0),
                                                   child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
                                                     children: [
-                                                      Center(child: Text(response?.data?[index].exercises?[ind].exercise ?? "",maxLines: 1,overflow: TextOverflow.ellipsis,style: GoogleFonts.vazirmatn(),),),
+                                                      Center(
+                                                        child: Text(
+                                                          response
+                                                                  ?.data?[index]
+                                                                  .exercises?[
+                                                                      ind]
+                                                                  .exercise ??
+                                                              "",
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          style: GoogleFonts
+                                                              .vazirmatn(),
+                                                        ),
+                                                      ),
                                                       ExerciseDetailRow(
-                                                        icon: "assets/icons/sets.png",
+                                                        icon:
+                                                            "assets/icons/sets.png",
                                                         label: 'Sets',
-                                                        value: response?.data?[index].exercises?[ind].sets ?? "",
+                                                        value: response
+                                                                ?.data?[index]
+                                                                .exercises?[ind]
+                                                                .sets ??
+                                                            "",
                                                       ),
                                                       ExerciseDetailRow(
-                                                        icon: "assets/icons/rep.png",
+                                                        icon:
+                                                            "assets/icons/rep.png",
                                                         label: 'Reps',
-                                                        value: response?.data?[index].exercises?[ind].reps ?? "",
+                                                        value: response
+                                                                ?.data?[index]
+                                                                .exercises?[ind]
+                                                                .reps ??
+                                                            "",
                                                       ),
                                                       ExerciseDetailRow(
-                                                        icon: "assets/icons/time.png",
+                                                        icon:
+                                                            "assets/icons/time.png",
                                                         label: 'Rest Period',
-                                                        value: response?.data?[index].exercises?[ind].rest ?? "",
+                                                        value: response
+                                                                ?.data?[index]
+                                                                .exercises?[ind]
+                                                                .rest ??
+                                                            "",
                                                       ),
                                                     ],
                                                   ),
@@ -188,12 +228,14 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                         SizedBox(
                           height: screenHeight * 0.02,
                         ),
-                        state is LoadingState ? const SizedBox():AppButton(
-                          text: "Accept Workout",
-                          onPressed: () async {
-                            await _onAcceptButtonPressed(context);
-                          },
-                        ),
+                        state is LoadingState
+                            ? const SizedBox()
+                            : AppButton(
+                                text: "Accept Workout",
+                                onPressed: () async {
+                                  await _onAcceptButtonPressed(context);
+                                },
+                              ),
                       ],
                     ),
                   ),
@@ -207,7 +249,6 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
   }
 
   Future<void> _onAcceptButtonPressed(BuildContext context) async {
-
     if (response!.data!.isEmpty) {
       showSnackBar(context, "Please generate again workout");
     } else {

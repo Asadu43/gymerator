@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gymmerator/models/api_response/UpdateCartItemApiResponse.dart';
 
 import '../../../../bloC/auth_cubit/user_cart_product_cubit/user_cart_products_cubit.dart';
-import '../../../../ui_component/show_snackbar.dart';
 
 class ItemQuantity extends StatefulWidget {
   const ItemQuantity({
@@ -12,8 +10,10 @@ class ItemQuantity extends StatefulWidget {
     required this.quantity,
     required this.id,
   });
+
   final int quantity;
   final String id;
+
   // final int qLimit;
   // final int uLimit;
 
@@ -23,6 +23,7 @@ class ItemQuantity extends StatefulWidget {
 
 class _ItemQuantityState extends State<ItemQuantity> {
   int count = 0;
+
   void increment() async {
     // if(count < widget.uLimit){
 
@@ -61,9 +62,7 @@ class _ItemQuantityState extends State<ItemQuantity> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return Row(
-      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         InkWell(
           onTap: decrement,

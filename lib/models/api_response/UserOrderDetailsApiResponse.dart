@@ -14,12 +14,15 @@ class UserOrderDetailsApiResponse {
     _message = json['message'];
     _error = json['error'];
   }
+
   Data? _data;
   String? _message;
   dynamic _error;
 
   Data? get data => _data;
+
   String? get message => _message;
+
   dynamic get error => _error;
 }
 
@@ -89,13 +92,21 @@ class Data {
   int? _v;
 
   String? get id => _id;
+
   User? get user => _user;
+
   List<Products>? get products => _products;
+
   num? get totalAmount => _totalAmount;
+
   String? get status => _status;
+
   String? get paymentMethod => _paymentMethod;
+
   String? get createdAt => _createdAt;
+
   String? get updatedAt => _updatedAt;
+
   int? get v => _v;
 }
 
@@ -150,10 +161,15 @@ class Products {
   String? _id;
 
   Product? get product => _product;
+
   List<String>? get variants => _variants;
+
   num? get quantity => _quantity;
+
   num? get unitPrice => _unitPrice;
+
   num? get total => _total;
+
   String? get id => _id;
 }
 
@@ -182,6 +198,7 @@ class Product {
     _stock = json['stock'];
     _images = json['images'] != null ? json['images'].cast<String>() : [];
   }
+
   String? _id;
   String? _name;
   String? _description;
@@ -190,10 +207,15 @@ class Product {
   List<String>? _images;
 
   String? get id => _id;
+
   String? get name => _name;
+
   String? get description => _description;
+
   int? get price => _price;
+
   int? get stock => _stock;
+
   List<String>? get images => _images;
 }
 
@@ -213,11 +235,14 @@ class User {
     _firstName = json['firstName'];
     _email = json['email'];
   }
+
   String? _id;
   String? _firstName;
   String? _email;
 
   String? get id => _id;
+
   String? get firstName => _firstName;
+
   String? get email => _email;
 }

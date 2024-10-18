@@ -1,3 +1,9 @@
+import 'package:country_state_city/models/city.dart';
+import 'package:country_state_city/models/country.dart';
+import 'package:country_state_city/models/state.dart' as cs;
+import 'package:country_state_city/utils/city_utils.dart';
+import 'package:country_state_city/utils/country_utils.dart';
+import 'package:country_state_city/utils/state_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
@@ -8,12 +14,6 @@ import 'package:gymmerator/screens/splash_screen/registration_screens/login_scre
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
 import 'package:sizer/sizer.dart';
-import 'package:country_state_city/models/city.dart';
-import 'package:country_state_city/models/country.dart';
-import 'package:country_state_city/models/state.dart' as cs;
-import 'package:country_state_city/utils/city_utils.dart';
-import 'package:country_state_city/utils/country_utils.dart';
-import 'package:country_state_city/utils/state_utils.dart';
 
 import '../../../../ui_component/app_button.dart';
 import '../../../../ui_component/app_textfield.dart';
@@ -130,8 +130,8 @@ class _SignupScreenState extends State<SignupScreen> {
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
-                    image: AssetImage(
-                        'assets/images/background.png'), // Replace with your image asset path
+                    image: AssetImage('assets/images/background.png'),
+                    // Replace with your image asset path
                     fit: BoxFit
                         .cover, // You can adjust the fit property as needed
                   )),

@@ -13,6 +13,7 @@ class LoadingState extends GenerateWorkOutPlanState {}
 
 class GenerateWorkoutPlanSuccessfully extends GenerateWorkOutPlanState {
   final GenerateWorkoutPlanApiResponse response;
+
   const GenerateWorkoutPlanSuccessfully(this.response);
 }
 
@@ -24,6 +25,7 @@ class FailedToGenerateWorkoutPlan extends GenerateWorkOutPlanState {
 
 class AcceptWorkoutPlanSuccessfully extends GenerateWorkOutPlanState {
   final AcceptWorkoutPlanApiResponse response;
+
   const AcceptWorkoutPlanSuccessfully(this.response);
 }
 
@@ -32,8 +34,10 @@ class FailedToAcceptWorkoutPlan extends GenerateWorkOutPlanState {
 
   const FailedToAcceptWorkoutPlan(this.response);
 }
+
 class UpdateWorkoutPlanSuccessfully extends GenerateWorkOutPlanState {
   final UpdateWorkoutPlanApiResponse response;
+
   const UpdateWorkoutPlanSuccessfully(this.response);
 }
 

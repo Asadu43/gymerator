@@ -13,6 +13,7 @@ class FeaturedProductItemCard extends StatefulWidget {
     super.key,
     required this.product,
   });
+
   final Product product;
 
   @override
@@ -78,7 +79,7 @@ class _ProductItemCardState extends State<FeaturedProductItemCard> {
                           icon: const Icon(Icons.favorite_border)))
             ],
           ),
-           SizedBox(height: screenHeight *  0.01),
+          SizedBox(height: screenHeight * 0.01),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.4,
             child: Padding(

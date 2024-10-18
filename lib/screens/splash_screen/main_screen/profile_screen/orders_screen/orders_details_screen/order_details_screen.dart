@@ -11,6 +11,7 @@ import '../../../../../../utils/app_colors/app_colors.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
   final String id;
+
   const OrderDetailsScreen({super.key, required this.id});
 
   @override
@@ -19,6 +20,7 @@ class OrderDetailsScreen extends StatefulWidget {
 
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   UserOrderDetailsApiResponse? response;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

@@ -59,7 +59,8 @@ class _AppTextFieldState extends State<AppTextField> {
         onChanged: widget.onChanged,
         obscureText: widget.obscureText == true
             ? obscurePassword // Use the flag for obscuring text
-            : false, // If not obscured, always show plain text
+            : false,
+        // If not obscured, always show plain text
         decoration: InputDecoration(
           prefixIcon: widget.icon,
           prefixIconColor: widget.prefixIconColor ?? Colors.white,
@@ -79,7 +80,8 @@ class _AppTextFieldState extends State<AppTextField> {
                     });
                   },
                 )
-              : null, // No suffix icon if not obscured
+              : null,
+          // No suffix icon if not obscured
           hintStyle: GoogleFonts.vazirmatn(fontSize: 14, color: Colors.grey),
         ),
       ),

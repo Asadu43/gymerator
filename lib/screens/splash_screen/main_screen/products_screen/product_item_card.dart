@@ -14,6 +14,7 @@ class ProductItemCard extends StatefulWidget {
     required this.product,
     this.show,
   });
+
   final Product product;
   final bool? show;
 

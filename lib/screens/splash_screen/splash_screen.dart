@@ -43,8 +43,8 @@ class _SplashScreenState extends State<SplashScreen> {
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
           image: DecorationImage(
-        image: AssetImage(
-            'assets/images/splash_background.png'), // Replace with your image asset path
+        image: AssetImage('assets/images/splash_background.png'),
+        // Replace with your image asset path
         fit: BoxFit.cover, // You can adjust the fit property as needed
       )),
       child: Column(

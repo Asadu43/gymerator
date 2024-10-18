@@ -42,12 +42,11 @@ class GenerateWorkOutPlanCubit extends Cubit<GenerateWorkOutPlanState> {
   Future updateWorkoutRequest() async {
     emit(LoadingState());
     final UpdateWorkoutPlanApiResponse model =
-    await _repository.updateWorkoutRequest();
+        await _repository.updateWorkoutRequest();
     if (model.error == null) {
       emit(UpdateWorkoutPlanSuccessfully(model));
     } else {
       emit(FailedToUpdateWorkoutPlan(model));
     }
   }
-
 }

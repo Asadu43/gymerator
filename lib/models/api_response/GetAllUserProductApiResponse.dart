@@ -14,12 +14,15 @@ class GetAllUserProductApiResponse {
     _message = json['message'];
     _error = json['error'];
   }
+
   Data? _data;
   String? _message;
   dynamic _error;
 
   Data? get data => _data;
+
   String? get message => _message;
+
   dynamic get error => _error;
 }
 
@@ -65,6 +68,7 @@ class Data {
     _total = (json['total'] as num).toDouble();
     _updatedAt = json['updatedAt'];
   }
+
   String? _id;
   String? _user;
   int? _v;
@@ -77,14 +81,23 @@ class Data {
   String? _updatedAt;
 
   String? get id => _id;
+
   String? get user => _user;
+
   int? get v => _v;
+
   String? get createdAt => _createdAt;
+
   double? get discount => _discount;
+
   List<Items>? get items => _items;
+
   double? get subTotal => _subTotal;
+
   int? get tax => _tax;
+
   double? get total => _total;
+
   String? get updatedAt => _updatedAt;
 }
 
@@ -119,6 +132,7 @@ class Items {
     _total = json['total'];
     _id = json['_id'];
   }
+
   Product? _product;
   List<Variants>? _variants;
   int? _quantity;
@@ -127,10 +141,15 @@ class Items {
   String? _id;
 
   Product? get product => _product;
+
   List<Variants>? get variants => _variants;
+
   int? get quantity => _quantity;
+
   int? get unitPrice => _unitPrice;
+
   int? get total => _total;
+
   String? get id => _id;
 }
 
@@ -153,14 +172,18 @@ class Variants {
     _variant = json['variant'];
     _v = json['__v'];
   }
+
   String? _id;
   String? _variantType;
   String? _variant;
   int? _v;
 
   String? get id => _id;
+
   String? get variantType => _variantType;
+
   String? get variant => _variant;
+
   int? get v => _v;
 }
 
@@ -189,6 +212,7 @@ class Product {
     _stock = json['stock'];
     _images = json['images'] != null ? json['images'].cast<String>() : [];
   }
+
   String? _id;
   String? _name;
   String? _description;
@@ -197,9 +221,14 @@ class Product {
   List<String>? _images;
 
   String? get id => _id;
+
   String? get name => _name;
+
   String? get description => _description;
+
   int? get price => _price;
+
   int? get stock => _stock;
+
   List<String>? get images => _images;
 }

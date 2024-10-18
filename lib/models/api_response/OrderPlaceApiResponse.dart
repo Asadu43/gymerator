@@ -14,12 +14,15 @@ class OrderPlaceApiResponse {
     _message = json['message'];
     _error = json['error'];
   }
+
   Data? _data;
   String? _message;
   dynamic _error;
 
   Data? get data => _data;
+
   String? get message => _message;
+
   dynamic get error => _error;
 
   Map<String, dynamic> toJson() {
@@ -72,6 +75,7 @@ class Data {
     _updatedAt = json['updatedAt'];
     _v = json['__v'];
   }
+
   String? _user;
   List<Products>? _products;
   int? _totalAmount;
@@ -83,13 +87,21 @@ class Data {
   int? _v;
 
   String? get user => _user;
+
   List<Products>? get products => _products;
+
   int? get totalAmount => _totalAmount;
+
   String? get status => _status;
+
   String? get paymentMethod => _paymentMethod;
+
   String? get id => _id;
+
   String? get createdAt => _createdAt;
+
   String? get updatedAt => _updatedAt;
+
   int? get v => _v;
 
   Map<String, dynamic> toJson() {
@@ -131,6 +143,7 @@ class Products {
     _total = json['total'];
     _id = json['_id'];
   }
+
   String? _product;
   int? _quantity;
   int? _unitPrice;
@@ -138,9 +151,13 @@ class Products {
   String? _id;
 
   String? get product => _product;
+
   int? get quantity => _quantity;
+
   int? get unitPrice => _unitPrice;
+
   int? get total => _total;
+
   String? get id => _id;
 
   Map<String, dynamic> toJson() {

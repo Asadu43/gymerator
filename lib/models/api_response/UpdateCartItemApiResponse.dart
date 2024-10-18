@@ -10,6 +10,7 @@ class UpdateCartItemApiResponse {
     message = json['message'];
     error = json['error'];
   }
+
   Data? data;
   String? message;
   dynamic error;
@@ -56,6 +57,7 @@ class Data {
     total = json['total'];
     updatedAt = json['updatedAt'];
   }
+
   String? id;
   String? user;
   num? v;
@@ -101,6 +103,7 @@ class Items {
     total = json['total'];
     id = json['_id'];
   }
+
   String? product;
   num? quantity;
   num? unitPrice;

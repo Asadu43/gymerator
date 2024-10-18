@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:gymmerator/models/api_response/UpdateUserInfoApiResponse.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
+
 import '../../../resources/repository.dart';
 
 part 'update_user_info_state.dart';
@@ -33,16 +34,19 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
     emit(LoadingState());
 
     FormData formData = FormData.fromMap({
-      "gender": gender, // Male, Female, Prefer Not to Say
-      "heightUnit": heightUnit, // cm, Ft-in
+      "gender": gender,
+      // Male, Female, Prefer Not to Say
+      "heightUnit": heightUnit,
+      // cm, Ft-in
       "heightValue": heightValue,
-      "weightUnit": weightUnit, // Kg, lb
+      "weightUnit": weightUnit,
+      // Kg, lb
       "weightValue": weightValue,
       "age": age,
-      "goal":
-          goal, // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
-      "workoutLevel":
-          workoutLevel, // 0 = Beginner, 1 = Intermediate, 2 = Advance
+      "goal": goal,
+      // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
+      "workoutLevel": workoutLevel,
+      // 0 = Beginner, 1 = Intermediate, 2 = Advance
       "sleepHours": sleepHours,
       "dietType": dietPlan,
       "mealFrequency": mealFrequency,
@@ -182,36 +186,36 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
     }
   }
 
-  // Future updateUserProfile({
-  //   required XFile profileImage,
-  // }) async {
-  //
-  //
-  //    String fileName = path.basename(profileImage.path);
-  //    print(profileImage.path);
-  //    print(fileName);
-  //   // print(await MultipartFile.fromFile(
-  //   //   profileImage.path,
-  //   // ));
-  //   // print(profileImage.path);
-  //   // final formData = FormData.fromMap({
-  //   //   'profile': await MultipartFile.fromFile(
-  //   //     profileImage.path,
-  //   //   ),
-  //   // });
-  //
-  //   Map data = {
-  //     "profile": fileName,
-  //   };
-  //
-  //   print("Profile Image \n\n ${data} \n\n\n");
-  //
-  //   final GetAllFavoriteProductApiResponse model =
-  //   await _repository.updateUserProfile(data);
-  //   if (model.error == null) {
-  //     emit(UpdateUserSuccessfully(model.message ?? "Update User Successfully"));
-  //   } else {
-  //     emit(FailedToUpdateUserInfo(model.message ?? "Failed To Update User Info."));
-  //   }
-  // }
+// Future updateUserProfile({
+//   required XFile profileImage,
+// }) async {
+//
+//
+//    String fileName = path.basename(profileImage.path);
+//    print(profileImage.path);
+//    print(fileName);
+//   // print(await MultipartFile.fromFile(
+//   //   profileImage.path,
+//   // ));
+//   // print(profileImage.path);
+//   // final formData = FormData.fromMap({
+//   //   'profile': await MultipartFile.fromFile(
+//   //     profileImage.path,
+//   //   ),
+//   // });
+//
+//   Map data = {
+//     "profile": fileName,
+//   };
+//
+//   print("Profile Image \n\n ${data} \n\n\n");
+//
+//   final GetAllFavoriteProductApiResponse model =
+//   await _repository.updateUserProfile(data);
+//   if (model.error == null) {
+//     emit(UpdateUserSuccessfully(model.message ?? "Update User Successfully"));
+//   } else {
+//     emit(FailedToUpdateUserInfo(model.message ?? "Failed To Update User Info."));
+//   }
+// }
 }

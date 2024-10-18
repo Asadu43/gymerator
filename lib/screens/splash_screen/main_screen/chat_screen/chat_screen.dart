@@ -20,6 +20,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   TextEditingController messageController = TextEditingController();
   ChatAiApiResponse? response;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -92,14 +93,16 @@ class _ChatScreenState extends State<ChatScreen> {
                           elevation: 2.0,
                           child: TextField(
                             controller: messageController,
-                            maxLines:
-                                null, // Allows the TextField to expand dynamically
-                            minLines: 1, // Starts with one line
-                            keyboardType: TextInputType
-                                .multiline, // Supports multi-line input
+                            maxLines: null,
+                            // Allows the TextField to expand dynamically
+                            minLines: 1,
+                            // Starts with one line
+                            keyboardType: TextInputType.multiline,
+                            // Supports multi-line input
                             decoration: InputDecoration(
                               fillColor: Colors.white,
-                              filled: true, // Fills the background with color
+                              filled: true,
+                              // Fills the background with color
                               hintText: 'Hello GYMI, how are you today?',
                               hintStyle: GoogleFonts.vazirmatn(),
                               contentPadding: const EdgeInsets.symmetric(
@@ -143,6 +146,7 @@ class SectionTitle extends StatelessWidget {
   final String title;
 
   const SectionTitle({super.key, required this.title, required this.icon});
+
   final Widget icon;
 
   @override

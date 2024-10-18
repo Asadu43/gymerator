@@ -23,6 +23,7 @@ class SelectPaymentMethodScreen extends StatefulWidget {
   final double totalDiscount;
   final int totalProducts;
   final double totalPayingPrice;
+
   const SelectPaymentMethodScreen(
       {super.key,
       required this.totalAmount,

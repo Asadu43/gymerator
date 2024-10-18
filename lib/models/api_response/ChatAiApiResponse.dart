@@ -14,12 +14,15 @@ class ChatAiApiResponse {
     _message = json['message'];
     _error = json['error'];
   }
+
   Data? _data;
   String? _message;
   dynamic _error;
 
   Data? get data => _data;
+
   String? get message => _message;
+
   dynamic get error => _error;
 }
 
@@ -36,9 +39,11 @@ class Data {
     _userInput = json['user_input'];
     _response = json['response'];
   }
+
   String? _userInput;
   String? _response;
 
   String? get userInput => _userInput;
+
   String? get response => _response;
 }

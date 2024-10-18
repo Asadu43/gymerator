@@ -17,6 +17,7 @@ import '../../../../../utils/nav/nav.dart';
 class AccountEditScreen extends StatefulWidget {
   final String firstName;
   final String lastName;
+
   // final String phoneNumber;
   final String address1;
   final String address2;
@@ -108,7 +109,10 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
                     Navigator.of(context).pop();
                   },
                 ),
-                title:  Text('Account Edit',style: GoogleFonts.vazirmatn(),),
+                title: Text(
+                  'Account Edit',
+                  style: GoogleFonts.vazirmatn(),
+                ),
                 centerTitle: true,
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.black,
