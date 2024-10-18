@@ -20,6 +20,7 @@ import 'package:gymmerator/models/api_response/SearchProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/UpdateCartItemApiResponse.dart';
 import 'package:gymmerator/models/api_response/UpdatePasswordApiResponse.dart';
 import 'package:gymmerator/models/api_response/UpdateUserInfoApiResponse.dart';
+import 'package:gymmerator/models/api_response/UpdateWorkoutPlanApiResponse.dart';
 import 'package:gymmerator/models/api_response/UserOrderDetailsApiResponse.dart';
 import 'package:gymmerator/models/api_response/VerifyOTPApiResponse.dart';
 import 'package:gymmerator/resources/api_providers/add_favorite_product_post_api.dart';
@@ -40,6 +41,7 @@ import 'package:gymmerator/resources/api_providers/update_cart_item_put_api.dart
 import 'package:gymmerator/resources/api_providers/update_password_put_api.dart';
 import 'package:gymmerator/resources/api_providers/update_user_info_post_api.dart';
 import 'package:gymmerator/resources/api_providers/update_user_profile_post_api.dart';
+import 'package:gymmerator/resources/api_providers/update_work_out_put_api.dart';
 import 'package:gymmerator/resources/api_providers/user_cart_products_get_api.dart';
 import 'package:gymmerator/resources/api_providers/user_orders_get_api.dart';
 import 'package:gymmerator/resources/api_providers/verify_Otp_get_api.dart';
@@ -179,5 +181,10 @@ class Repository {
   Future<ChatAiApiResponse> chatRequest(Map data) {
     final request = ChatBotPostApi();
     return request.chatRequest(data);
+  }
+
+  Future<UpdateWorkoutPlanApiResponse> updateWorkoutRequest() {
+    final request = UpdateWorkOutPutApi();
+    return request.updateRequest();
   }
 }

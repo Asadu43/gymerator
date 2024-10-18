@@ -4,17 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:gymmerator/screens/splash_screen/registration_screens/user_issue_screen/user_issue_screen.dart';
 import 'package:gymmerator/screens/splash_screen/splash_screen.dart';
 import 'package:gymmerator/utils/internet_connection/dependency_injection.dart';
 import 'package:sizer/sizer.dart';
 
 import 'bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
 import 'bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart';
+import 'bloC/auth_cubit/get_workout_plan_cubit/workout_plan_cubit.dart';
 import 'bloC/auth_cubit/update_user_info_cubit/update_user_info_cubit.dart';
 import 'bloC/auth_cubit/verify_otp_cubit/verify_otp_cubit.dart';
 import 'firebase_options.dart';
-import 'screens/splash_screen/main_screen/bettery_screen/bettery_screen.dart';
 
 void main() async {
   Stripe.publishableKey =
@@ -46,6 +45,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AllFavoriteProductsCubit(),
+        ),
+
+        BlocProvider(
+          create: (context) => WorkoutPlanCubit(),
         )
       ],
       child: Sizer(

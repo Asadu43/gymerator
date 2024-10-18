@@ -50,7 +50,8 @@ class _AppTextFieldState extends State<AppTextField> {
         border: Border.all(color: widget.color ?? Colors.white),
       ),
       child: TextField(
-        textAlign: TextAlign.start,
+        // textAlign: TextAlign.start,
+        textAlignVertical: TextAlignVertical.center,
         controller: widget.controller,
         style:
             widget.fieldTextStyle ?? GoogleFonts.vazirmatn(color: Colors.white),
@@ -63,6 +64,7 @@ class _AppTextFieldState extends State<AppTextField> {
           prefixIcon: widget.icon,
           prefixIconColor: widget.prefixIconColor ?? Colors.white,
           hintText: widget.hintText,
+
           border: InputBorder.none,
           // Show the visibility toggle icon only when obscureText is true
           suffixIcon: widget.obscureText == true

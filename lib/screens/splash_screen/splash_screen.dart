@@ -21,13 +21,13 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 5), () {
       if ((GetStorage().read('token') != null) &&
           (GetStorage().read('isRequiredInfoAdded') == true)) {
-        Nav.push(context, const MainScreen());
+        Nav.pushAndRemoveAllRoute(context, const MainScreen());
       } else if ((GetStorage().read('token') != null) &&
           (GetStorage().read('isRequiredInfoAdded') == true) &&
           (GetStorage().read('isAccepted') == false)) {
-        Nav.push(context, const WorkoutPlanScreen());
+        Nav.pushAndRemoveAllRoute(context, const WorkoutPlanScreen());
       } else {
-        Nav.pushReplace(context, const LoginScreen());
+        Nav.pushAndRemoveAllRoute(context, const LoginScreen());
       }
     });
   }

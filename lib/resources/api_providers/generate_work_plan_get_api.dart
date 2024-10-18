@@ -30,9 +30,6 @@ class GenerateWorkPlanGetApi {
   }
 
   Future<AcceptWorkoutPlanApiResponse> acceptRequest() async {
-    print("workout_plan");
-    print(workout_plan);
-    print("workout_plan");
     try {
       final Dio dio = Dio();
       dio.options.headers["x-auth-token"] = GetStorage().read('token');
@@ -42,8 +39,6 @@ class GenerateWorkPlanGetApi {
         return status! <= 500;
       }));
 
-      print(response.data);
-      print(response.statusCode);
       if (response.statusCode == 200) {
         return AcceptWorkoutPlanApiResponse.fromJson(response.data);
       } else if (response.statusCode == 404) {

@@ -32,3 +32,13 @@ class FailedToAcceptWorkoutPlan extends GenerateWorkOutPlanState {
 
   const FailedToAcceptWorkoutPlan(this.response);
 }
+class UpdateWorkoutPlanSuccessfully extends GenerateWorkOutPlanState {
+  final UpdateWorkoutPlanApiResponse response;
+  const UpdateWorkoutPlanSuccessfully(this.response);
+}
+
+class FailedToUpdateWorkoutPlan extends GenerateWorkOutPlanState {
+  final UpdateWorkoutPlanApiResponse response;
+
+  const FailedToUpdateWorkoutPlan(this.response);
+}

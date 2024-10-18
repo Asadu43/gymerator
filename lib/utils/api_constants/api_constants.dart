@@ -30,4 +30,5 @@ class ApiConstants {
   static const String generatePlan = "$baseUrl/api/workout/generateplan";
   static const String acceptPlan = "$baseUrl/api/workout/accept";
   static const String getWorkoutPlan = "$baseUrl/api/workout/";
+  static const String updateWorkoutPlan = "$baseUrl/api/workout";
 }

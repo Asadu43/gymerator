@@ -224,104 +224,122 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: screenHeight * 0.16,
-                            width: screenWidth * 0.35,
-                            decoration: BoxDecoration(
-                              // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
-                              gradient:
-                                  (checkboxValue == true && selectedIndex == 1)
-                                      ? const LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          // stops: const [0.0, 1.0],
-                                          colors: [
-                                            Color(0xffB14501),
-                                            Color(0xff3F710D),
-                                          ],
-                                        )
-                                      : const LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          // stops: const [0.0, 1.0],
-                                          colors: [
-                                            Colors.transparent,
-                                            Colors.transparent,
-                                          ],
-                                        ),
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(10),
+                      GestureDetector(
+                        onTap: () {
+                          if(checkboxValue == true && selectedIndex == 1){
+                            Nav.push(context,
+                                const ScheduleWorkoutScreen());
+
+                          }
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: screenHeight * 0.16,
+                              width: screenWidth * 0.35,
+                              decoration: BoxDecoration(
+                                // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
+                                gradient:
+                                    (checkboxValue == true && selectedIndex == 1)
+                                        ? const LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            // stops: const [0.0, 1.0],
+                                            colors: [
+                                              Color(0xffB14501),
+                                              Color(0xff3F710D),
+                                            ],
+                                          )
+                                        : const LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            // stops: const [0.0, 1.0],
+                                            colors: [
+                                              Colors.transparent,
+                                              Colors.transparent,
+                                            ],
+                                          ),
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.asset("assets/images/begginer.png"),
+                              ),
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset("assets/images/begginer.png"),
+                            SizedBox(
+                              height: screenHeight * 0.005,
                             ),
-                          ),
-                          SizedBox(
-                            height: screenHeight * 0.005,
-                          ),
-                          Text("Beginner",
-                              style: GoogleFonts.vazirmatn(
-                                  fontSize: 11.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black)),
-                          Text("5-10 mins a day",
-                              style: GoogleFonts.vazirmatn(
-                                  fontSize: 8.sp, color: Colors.grey)),
-                        ],
+                            Text("Beginner",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black)),
+                            Text("5-10 mins a day",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 8.sp, color: Colors.grey)),
+                          ],
+                        ),
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: screenHeight * 0.16,
-                            width: screenWidth * 0.35,
-                            decoration: BoxDecoration(
-                              // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
-                              gradient:
-                                  (checkboxValue == true && selectedIndex == 2)
-                                      ? const LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          // stops: const [0.0, 1.0],
-                                          colors: [
-                                            Color(0xffB14501),
-                                            Color(0xff3F710D),
-                                          ],
-                                        )
-                                      : const LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          // stops: const [0.0, 1.0],
-                                          colors: [
-                                            Colors.transparent,
-                                            Colors.transparent,
-                                          ],
-                                        ),
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(10),
+                      GestureDetector(
+                        onTap: () {
+                          if(checkboxValue == true && selectedIndex == 2){
+                            Nav.push(context,
+                                const ScheduleWorkoutScreen());
+
+                          }
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: screenHeight * 0.16,
+                              width: screenWidth * 0.35,
+                              decoration: BoxDecoration(
+                                // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
+                                gradient:
+                                    (checkboxValue == true && selectedIndex == 2)
+                                        ? const LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            // stops: const [0.0, 1.0],
+                                            colors: [
+                                              Color(0xffB14501),
+                                              Color(0xff3F710D),
+                                            ],
+                                          )
+                                        : const LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            // stops: const [0.0, 1.0],
+                                            colors: [
+                                              Colors.transparent,
+                                              Colors.transparent,
+                                            ],
+                                          ),
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child:
+                                    Image.asset("assets/images/intermedate.png"),
+                              ),
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child:
-                                  Image.asset("assets/images/intermedate.png"),
+                            const SizedBox(
+                              height: 10,
                             ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text("Intermediate",
-                              style: GoogleFonts.vazirmatn(
-                                  fontSize: 11.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black)),
-                          Text("10-20 mins a day",
-                              style: GoogleFonts.vazirmatn(
-                                  fontSize: 8.sp, color: Colors.grey)),
-                        ],
+                            Text("Intermediate",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black)),
+                            Text("10-20 mins a day",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 8.sp, color: Colors.grey)),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -329,105 +347,123 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: screenHeight * 0.16,
-                            width: screenWidth * 0.35,
-                            decoration: BoxDecoration(
-                              // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
-                              gradient:
-                                  (checkboxValue == true && selectedIndex == 3)
-                                      ? const LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          // stops: const [0.0, 1.0],
-                                          colors: [
-                                            Color(0xffB14501),
-                                            Color(0xff3F710D),
-                                          ],
-                                        )
-                                      : const LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          // stops: const [0.0, 1.0],
-                                          colors: [
-                                            Colors.transparent,
-                                            Colors.transparent,
-                                          ],
-                                        ),
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset("assets/images/advance.png"),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text("Advance",
-                              style: GoogleFonts.vazirmatn(
-                                  fontSize: 11.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black)),
-                          Text("15-30 mins a day",
-                              style: GoogleFonts.vazirmatn(
-                                  fontSize: 8.sp, color: Colors.grey)),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: screenHeight * 0.16,
-                            width: screenWidth * 0.35,
-                            decoration: BoxDecoration(
-                              // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
-                              gradient:
-                                  (checkboxValue == true && selectedIndex == 4)
-                                      ? const LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          // stops: const [0.0, 1.0],
-                                          colors: [
-                                            Color(0xffB14501),
-                                            Color(0xff3F710D),
-                                          ],
-                                        )
-                                      : const LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          // stops: const [0.0, 1.0],
-                                          colors: [
-                                            Colors.transparent,
-                                            Colors.transparent,
-                                          ],
-                                        ),
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset(
-                                "assets/images/expert.png",
+                      GestureDetector(
+                        onTap: () {
+                          if(checkboxValue == true && selectedIndex == 3){
+                            Nav.push(context,
+                                const ScheduleWorkoutScreen());
+
+                          }
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: screenHeight * 0.16,
+                              width: screenWidth * 0.35,
+                              decoration: BoxDecoration(
+                                // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
+                                gradient:
+                                    (checkboxValue == true && selectedIndex == 3)
+                                        ? const LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            // stops: const [0.0, 1.0],
+                                            colors: [
+                                              Color(0xffB14501),
+                                              Color(0xff3F710D),
+                                            ],
+                                          )
+                                        : const LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            // stops: const [0.0, 1.0],
+                                            colors: [
+                                              Colors.transparent,
+                                              Colors.transparent,
+                                            ],
+                                          ),
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.asset("assets/images/advance.png"),
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text("Expert",
-                              style: GoogleFonts.vazirmatn(
-                                  fontSize: 11.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black)),
-                          Text("20-35 mins a day",
-                              style: GoogleFonts.vazirmatn(
-                                  fontSize: 8.sp, color: Colors.grey)),
-                        ],
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text("Advance",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black)),
+                            Text("15-30 mins a day",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 8.sp, color: Colors.grey)),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          if(checkboxValue == true && selectedIndex == 4){
+                            Nav.push(context,
+                                const ScheduleWorkoutScreen());
+
+                          }
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: screenHeight * 0.16,
+                              width: screenWidth * 0.35,
+                              decoration: BoxDecoration(
+                                // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
+                                gradient:
+                                    (checkboxValue == true && selectedIndex == 4)
+                                        ? const LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            // stops: const [0.0, 1.0],
+                                            colors: [
+                                              Color(0xffB14501),
+                                              Color(0xff3F710D),
+                                            ],
+                                          )
+                                        : const LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            // stops: const [0.0, 1.0],
+                                            colors: [
+                                              Colors.transparent,
+                                              Colors.transparent,
+                                            ],
+                                          ),
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.asset(
+                                  "assets/images/expert.png",
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text("Expert",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black)),
+                            Text("20-35 mins a day",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 8.sp, color: Colors.grey)),
+                          ],
+                        ),
                       ),
                     ],
                   ),

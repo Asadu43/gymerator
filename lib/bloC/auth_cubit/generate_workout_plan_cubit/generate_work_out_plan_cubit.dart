@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:gymmerator/models/api_response/AcceptWorkoutPlanApiResponse.dart';
 import 'package:gymmerator/models/api_response/GenerateWorkoutPlanApiResponse.dart';
 
+import '../../../models/api_response/UpdateWorkoutPlanApiResponse.dart';
 import '../../../resources/repository.dart';
 
 part 'generate_work_out_plan_state.dart';
@@ -37,4 +38,16 @@ class GenerateWorkOutPlanCubit extends Cubit<GenerateWorkOutPlanState> {
       emit(FailedToAcceptWorkoutPlan(model));
     }
   }
+
+  Future updateWorkoutRequest() async {
+    emit(LoadingState());
+    final UpdateWorkoutPlanApiResponse model =
+    await _repository.updateWorkoutRequest();
+    if (model.error == null) {
+      emit(UpdateWorkoutPlanSuccessfully(model));
+    } else {
+      emit(FailedToUpdateWorkoutPlan(model));
+    }
+  }
+
 }
