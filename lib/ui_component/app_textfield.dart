@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 
 class AppTextField extends StatefulWidget {
   final String hintText;
@@ -52,6 +53,7 @@ class _AppTextFieldState extends State<AppTextField> {
       child: TextField(
         // textAlign: TextAlign.start,
         textAlignVertical: TextAlignVertical.center,
+        cursorColor: Colors.white,
         controller: widget.controller,
         style:
             widget.fieldTextStyle ?? GoogleFonts.vazirmatn(color: Colors.white),
@@ -65,7 +67,6 @@ class _AppTextFieldState extends State<AppTextField> {
           prefixIcon: widget.icon,
           prefixIconColor: widget.prefixIconColor ?? Colors.white,
           hintText: widget.hintText,
-
           border: InputBorder.none,
           // Show the visibility toggle icon only when obscureText is true
           suffixIcon: widget.obscureText == true
@@ -82,7 +83,7 @@ class _AppTextFieldState extends State<AppTextField> {
                 )
               : null,
           // No suffix icon if not obscured
-          hintStyle: GoogleFonts.vazirmatn(fontSize: 14, color: Colors.grey),
+          hintStyle: GoogleFonts.vazirmatn(fontSize: 12.sp, color: Colors.grey),
         ),
       ),
     );

@@ -42,6 +42,7 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController passwordController = TextEditingController();
 
   int isCurrentAddress = 0;
+  bool isPasswordValid = false;
 
   getCurrentLocation() async {
     await Geolocator.requestPermission();
@@ -108,6 +109,8 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return BlocProvider(
       create: (context) => SignupCubit(),
       child: BlocConsumer<SignupCubit, SignupState>(
@@ -124,154 +127,171 @@ class _SignupScreenState extends State<SignupScreen> {
           return LoadingScreenAnimation(
             isLoading: state is LoadingState,
             child: Scaffold(
-              body: SafeArea(
-                child: Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                    image: AssetImage('assets/images/background.png'),
-                    // Replace with your image asset path
-                    fit: BoxFit
-                        .cover, // You can adjust the fit property as needed
-                  )),
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: screenHeight / 14,
+              body: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                  image: AssetImage('assets/images/background.png'),
+                  // Replace with your image asset path
+                  fit:
+                      BoxFit.cover, // You can adjust the fit property as needed
+                )),
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: screenHeight / 14,
+                        ),
+                        Image.asset('assets/images/logo_g.png'),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text("Create Account",
+                            style: GoogleFonts.vazirmatn(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.white)),
+                        Text("Please Sign up to get all the features",
+                            style: GoogleFonts.vazirmatn(
+                                fontSize: 11.sp, color: Colors.grey)),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        AppTextField(
+                          controller: firstNameController,
+                          hintText: "Enter your first name",
+                          icon: const Icon(Icons.person_outline_outlined),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        AppTextField(
+                          controller: lastNameController,
+                          hintText: "Enter your last name",
+                          icon: const Icon(Icons.person_outline_outlined),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        AppTextField(
+                          controller: emailController,
+                          hintText: "Enter your email",
+                          icon: const Icon(Icons.email_outlined),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        AppTextField(
+                          controller: phoneNumberController,
+                          textInputType: TextInputType.number,
+                          hintText: "Mobile Number",
+                          icon: const Icon(Icons.phone),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        AppTextField(
+                          controller: addressController,
+                          hintText: "Address 1",
+                          icon: const Icon(Icons.location_on_outlined),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        AppTextField(
+                          controller: address2Controller,
+                          hintText: "Address 2",
+                          icon: const Icon(Icons.location_on_outlined),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: screenHeight * 0.07,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 4, horizontal: 16),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(30),
                           ),
-                          Image.asset('assets/images/logo_g.png'),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Text("Create Account",
-                              style: GoogleFonts.vazirmatn(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.white)),
-                          Text("Please Sign up to get all the features",
-                              style: GoogleFonts.vazirmatn(
-                                  fontSize: 11.sp, color: Colors.grey)),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          AppTextField(
-                            controller: firstNameController,
-                            hintText: "Enter your first name",
-                            icon: const Icon(Icons.person_outline_outlined),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          AppTextField(
-                            controller: lastNameController,
-                            hintText: "Enter your last name",
-                            icon: const Icon(Icons.person_outline_outlined),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          AppTextField(
-                            controller: emailController,
-                            hintText: "Enter your email",
-                            icon: const Icon(Icons.email_outlined),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          AppTextField(
-                            controller: phoneNumberController,
-                            textInputType: TextInputType.number,
-                            hintText: "Mobile Number",
-                            icon: const Icon(Icons.phone),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          AppTextField(
-                            controller: addressController,
-                            hintText: "Address 1",
-                            icon: const Icon(Icons.location_on_outlined),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          AppTextField(
-                            controller: address2Controller,
-                            hintText: "Address 2",
-                            icon: const Icon(Icons.location_on_outlined),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            width: double.infinity,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 4, horizontal: 16),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
+                          child: Center(
                             child: DropdownButton<Country>(
                               underline: const SizedBox(),
                               hint: Text(
                                 'Select Country',
-                                style:
-                                    GoogleFonts.vazirmatn(color: Colors.white),
+                                style: GoogleFonts.vazirmatn(
+                                    color: Colors.white, fontSize: 12.sp),
                               ),
                               value: selectedCountry,
                               isExpanded: true,
-                              dropdownColor: const Color(0xff3F710D),
+                              icon: const Icon(
+                                Icons.keyboard_arrow_down_sharp,
+                                color: Colors.white,
+                              ),
+                              dropdownColor: const Color(0xFF74994F),
                               items: countryList?.map((Country country) {
                                 return DropdownMenuItem<Country>(
                                   value: country,
                                   child: Text(
                                     country.name,
+                                    maxLines: 1,
                                     style: GoogleFonts.vazirmatn(
-                                        color: Colors.white),
+                                        fontSize: 12.sp, color: Colors.white),
                                   ),
                                 );
                               }).toList(),
                               onChanged: (Country? newCountry) {
                                 setState(() {
                                   selectedCountry = newCountry;
-                                  if (newCountry != null)
+                                  if (newCountry != null) {
                                     loadStates(newCountry);
+                                  }
                                 });
                               },
                             ),
                           ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          if (stateList != null && stateList!.isNotEmpty)
-                            Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 4, horizontal: 16),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(30),
-                              ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        if (stateList != null && stateList!.isNotEmpty)
+                          Container(
+                            width: double.infinity,
+                            height: screenHeight * 0.07,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 4, horizontal: 16),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Center(
                               child: DropdownButton<cs.State>(
                                 underline: const SizedBox(),
                                 hint: Text(
                                   'Select State',
                                   style: GoogleFonts.vazirmatn(
-                                      color: Colors.white),
+                                      fontSize: 12.sp, color: Colors.white),
                                 ),
                                 value: selectedState,
                                 isExpanded: true,
-                                dropdownColor: const Color(0xff3F710D),
+                                icon: const Icon(
+                                  Icons.keyboard_arrow_down_sharp,
+                                  color: Colors.white,
+                                ),
+                                dropdownColor: const Color(0xFF74994F),
                                 items: stateList?.map((cs.State state) {
                                   return DropdownMenuItem<cs.State>(
                                     value: state,
                                     child: Text(state.name,
+                                        maxLines: 1,
                                         style: GoogleFonts.vazirmatn(
+                                            fontSize: 12.sp,
                                             color: Colors.white)),
                                   );
                                 }).toList(),
@@ -283,33 +303,42 @@ class _SignupScreenState extends State<SignupScreen> {
                                 },
                               ),
                             ),
-                          const SizedBox(
-                            height: 20,
                           ),
-                          if (cityList.isNotEmpty)
-                            Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 4, horizontal: 16),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(30),
-                              ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        if (cityList.isNotEmpty)
+                          Container(
+                            width: double.infinity,
+                            height: screenHeight * 0.07,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 4, horizontal: 16),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Center(
                               child: DropdownButton<City>(
                                 underline: const SizedBox(),
                                 hint: Text(
                                   'Select City',
                                   style: GoogleFonts.vazirmatn(
-                                      color: Colors.white),
+                                      fontSize: 12.sp, color: Colors.white),
                                 ),
                                 value: selectedCity,
                                 isExpanded: true,
-                                dropdownColor: const Color(0xff3F710D),
+                                icon: const Icon(
+                                  Icons.keyboard_arrow_down_sharp,
+                                  color: Colors.white,
+                                ),
+                                dropdownColor: const Color(0xFF74994F),
                                 items: cityList.map((City city) {
                                   return DropdownMenuItem<City>(
                                     value: city,
                                     child: Text(city.name,
+                                        maxLines: 1,
                                         style: GoogleFonts.vazirmatn(
+                                            fontSize: 12.sp,
                                             color: Colors.white)),
                                   );
                                 }).toList(),
@@ -320,57 +349,59 @@ class _SignupScreenState extends State<SignupScreen> {
                                 },
                               ),
                             ),
-                          const SizedBox(
-                            height: 20,
                           ),
-                          AppTextField(
-                            textInputType: TextInputType.number,
-                            controller: postalCodeController,
-                            hintText: "Enter your postal code",
-                            icon: const Icon(Icons.location_on_outlined),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          AppTextField(
-                            controller: passwordController,
-                            hintText: "password",
-                            obscureText: true,
-                            icon: const Icon(Icons.lock_open_outlined),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          AppButton(
-                            text: "Sign up",
-                            onPressed: () async {
-                              await _onSignUpButtonPressed(context);
-                            },
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("Already have an account? ",
+                        (cityList.isNotEmpty)
+                            ? const SizedBox(
+                                height: 20,
+                              )
+                            : const SizedBox(),
+                        AppTextField(
+                          textInputType: TextInputType.number,
+                          controller: postalCodeController,
+                          hintText: "Enter your postal code",
+                          icon: const Icon(Icons.location_on_outlined),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        AppTextField(
+                          controller: passwordController,
+                          hintText: "password",
+                          obscureText: true,
+                          icon: const Icon(Icons.lock_open_outlined),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        AppButton(
+                          text: "Sign up",
+                          onPressed: () async {
+                            await _onSignUpButtonPressed(context);
+                          },
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Already have an account? ",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 14, color: Colors.grey)),
+                            InkWell(
+                              onTap: () {
+                                Nav.push(context, const LoginScreen());
+                              },
+                              child: Text("Sign In",
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 14, color: Colors.grey)),
-                              InkWell(
-                                onTap: () {
-                                  Nav.push(context, const LoginScreen());
-                                },
-                                child: Text("Sign In",
-                                    style: GoogleFonts.vazirmatn(
-                                        fontSize: 14, color: Colors.white)),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                        ],
-                      ),
+                                      fontSize: 14, color: Colors.white)),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -383,9 +414,6 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   Future<void> _onSignUpButtonPressed(BuildContext context) async {
-    print(selectedCountry!.name);
-    print(selectedState!.name);
-    print(selectedCity!.name);
     if (firstNameController.text.isEmpty) {
       showSnackBar(context, "Please enter first name");
     } else if (lastNameController.text.isEmpty) {
@@ -401,28 +429,43 @@ class _SignupScreenState extends State<SignupScreen> {
       showSnackBar(context, "Please select country");
     } else if (selectedState == null) {
       showSnackBar(context, "Please select state");
-    } else if (selectedCity == null) {
+    } else if (cityList.isNotEmpty && selectedCity == null) {
       showSnackBar(context, "Please select city");
     } else if (postalCodeController.text.isEmpty) {
       showSnackBar(context, "Please enter postal code");
     } else if (passwordController.text.isEmpty) {
       showSnackBar(context, "Please enter password");
     } else {
-      context.read<SignupCubit>().signUp(
-            firstname: firstNameController.text,
-            lastName: lastNameController.text,
-            email: emailController.text,
-            phoneNumber: phoneNumberController.text,
-            address1: addressController.text,
-            address2: address2Controller.text,
-            city: cityController.text,
-            state: stateController.text,
-            country: countryController.text,
-            postalCode: postalCodeController.text,
-            password: passwordController.text,
-            lat: currentLat.toString(),
-            long: currentLong.toString(),
-          );
+      validatePassword(passwordController.text);
+      if (isPasswordValid == false) {
+        showSnackBar(context,
+            "Password must be at least 9 characters and include uppercase, lowercase, number, and special character.");
+      } else {
+        context.read<SignupCubit>().signUp(
+              firstname: firstNameController.text,
+              lastName: lastNameController.text,
+              email: emailController.text,
+              phoneNumber: phoneNumberController.text,
+              address1: addressController.text,
+              address2: address2Controller.text,
+              city: cityList.isNotEmpty ? selectedCity!.name : "",
+              state: selectedState!.name,
+              country: selectedCountry!.name,
+              postalCode: postalCodeController.text,
+              password: passwordController.text,
+              lat: currentLat.toString(),
+              long: currentLong.toString(),
+            );
+      }
     }
+  }
+
+  final passwordRegExp = RegExp(
+      r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{9,}$');
+
+  void validatePassword(String password) {
+    setState(() {
+      isPasswordValid = passwordRegExp.hasMatch(password);
+    });
   }
 }

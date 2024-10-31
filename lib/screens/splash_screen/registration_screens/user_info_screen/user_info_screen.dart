@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/registration_screens/user_issue_screen/user_issue_screen.dart';
 import 'package:sizer/sizer.dart';
@@ -61,7 +62,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         child: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
               child: Column(
                 children: [
                   SizedBox(
@@ -219,17 +220,27 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                       weightUnit = index == 0
                                           ? WeightUnits.kg
                                           : WeightUnits.lb;
+                                      weightKgController
+                                          .clear(); // Clear the text field on toggle
                                     });
                                   },
                                 ),
                                 SizedBox(
-                                  width: 70,
+                                  width: screenWidth * 0.170,
                                   child: TextField(
+                                    controller:
+                                        weightKgController, // Assign the controller here
                                     cursorColor: Colors.black,
-                                    style: const TextStyle(
-                                      fontSize: 16,
+                                    style: GoogleFonts.vazirmatn(
+                                      fontSize: 12,
                                     ),
                                     keyboardType: TextInputType.number,
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter
+                                          .digitsOnly, // Only allow digits
+                                      LengthLimitingTextInputFormatter(
+                                          3), // Limit to 3 characters
+                                    ],
                                     decoration: InputDecoration(
                                       border: const UnderlineInputBorder(
                                         borderSide:
@@ -309,6 +320,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                       heightUnit = index == 0
                                           ? HeightUnits.cm
                                           : HeightUnits.ftIn;
+                                      heightCmController.clear();
+                                      heightFeetController.clear();
+                                      heightInchesController.clear();
                                     });
                                   },
                                 ),
@@ -374,8 +388,13 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     controller: ageController,
                     style: GoogleFonts.vazirmatn(color: Colors.white),
                     keyboardType: TextInputType.number,
+                    cursorColor: Colors.white,
                     decoration: InputDecoration(
-                      hintText: 'Enter your age',
+                      hintText: 'Your age',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
@@ -408,12 +427,19 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                           return StatefulBuilder(
                             builder: (context, setState) {
                               return AlertDialog(
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0))),
                                 title: Text('Select Goal',
-                                    style: GoogleFonts.vazirmatn()),
+                                    style: GoogleFonts.vazirmatn(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.bold)),
                                 content: SizedBox(
-                                  width: screenWidth,
+                                  width: screenWidth * 1,
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       RadioListTile<String>(
                                         activeColor: const Color(0xff3F710D),
@@ -471,9 +497,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                 actions: [
                                   TextButton(
                                     child: Text(
-                                      'CANCEL',
+                                      'Cancel',
                                       style: GoogleFonts.vazirmatn(
-                                          color: Colors.black),
+                                          fontSize: 14.sp, color: Colors.red),
                                     ),
                                     onPressed: () {
                                       Navigator.of(context).pop();
@@ -481,9 +507,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                   ),
                                   TextButton(
                                     child: Text(
-                                      'OK',
+                                      'Ok',
                                       style: GoogleFonts.vazirmatn(
-                                          color: Colors.black),
+                                          fontSize: 14.sp, color: Colors.black),
                                     ),
                                     onPressed: () {
                                       setState(() {
@@ -558,9 +584,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     controller: sleepingHoursController,
                     style: GoogleFonts.vazirmatn(color: Colors.white),
                     keyboardType: TextInputType.number,
+                    cursorColor: Colors.white,
                     decoration: InputDecoration(
-                      hintText: 'Enter your sleep hours 1 to 24',
+                      hintText: 'Sleep hours 1 to 24',
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
@@ -586,9 +617,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     controller: mealFrequentlyController,
                     style: GoogleFonts.vazirmatn(color: Colors.white),
                     keyboardType: TextInputType.number,
+                    cursorColor: Colors.white,
                     decoration: InputDecoration(
-                      hintText: 'Enter your meal frequency 1 to 5',
+                      hintText: 'Meal frequency 1 to 5',
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
@@ -614,9 +650,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     controller: hydrationController,
                     style: GoogleFonts.vazirmatn(color: Colors.white),
                     keyboardType: TextInputType.number,
+                    cursorColor: Colors.white,
                     decoration: InputDecoration(
                       hintText: '5 Liters',
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
@@ -642,9 +683,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     controller: targetWeightController,
                     style: GoogleFonts.vazirmatn(color: Colors.white),
                     keyboardType: TextInputType.number,
+                    cursorColor: Colors.white,
                     decoration: InputDecoration(
-                      hintText: 'please enter your target weight',
+                      hintText: 'Target weight',
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
@@ -676,11 +722,15 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                           return StatefulBuilder(
                             builder: (context, setState) {
                               return AlertDialog(
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0))),
                                 title: Text('Select Diet Plan',
-                                    style:
-                                        GoogleFonts.vazirmatn(fontSize: 14.sp)),
+                                    style: GoogleFonts.vazirmatn(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.bold)),
                                 content: SizedBox(
-                                  width: screenWidth,
+                                  width: screenWidth * 1,
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
@@ -790,9 +840,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                 actions: [
                                   TextButton(
                                     child: Text(
-                                      'CANCEL',
+                                      'Cancel',
                                       style: GoogleFonts.vazirmatn(
-                                          color: Colors.black),
+                                          fontSize: 14.sp, color: Colors.red),
                                     ),
                                     onPressed: () {
                                       Navigator.of(context).pop();
@@ -800,9 +850,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                   ),
                                   TextButton(
                                     child: Text(
-                                      'OK',
+                                      'Ok',
                                       style: GoogleFonts.vazirmatn(
-                                          color: Colors.black),
+                                          fontSize: 14.sp, color: Colors.black),
                                     ),
                                     onPressed: () {
                                       setState(() {
@@ -860,7 +910,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     height: screenHeight * 0.04,
                   ),
                   AppButton(
-                    text: "Save",
+                    text: "Next",
                     onPressed: () async {
                       if (selectedIndex == 0) {
                         showSnackBar(context, "Please select gender");
@@ -883,9 +933,20 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       } else if (dietPlan == null) {
                         showSnackBar(context, "Please select diet plan");
                       } else {
+                        print(selectedIndex);
+                        print(heightUnit);
+                        print(weightKg);
+                        print(heightCm);
+                        print(weightLb);
+                        print(ageController.text);
+                        print(goal);
+                        print(sleepingHoursController.text);
+                        print(hydrationController.text);
+                        print(targetWeightController.text);
+                        print(dietType);
                         if (weightUnit == WeightUnits.kg &&
-                            heightUnit == HeightUnits.cm &&
-                            selectedIndex == 1) {
+                            heightUnit == HeightUnits.cm) {
+                          print("Press 1");
                           Nav.push(
                               context,
                               UserIssueScreen(
@@ -904,12 +965,13 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                               ));
                         }
                         if (weightUnit == WeightUnits.lb &&
-                            heightUnit == HeightUnits.cm &&
-                            selectedIndex == 2) {
+                            heightUnit == HeightUnits.cm) {
+                          print("Press 2");
+
                           Nav.push(
                               context,
                               UserIssueScreen(
-                                gender: "Female",
+                                gender: selectedIndex == 2 ? "Female" : "Male",
                                 heightUnit: "cm",
                                 heightValue: heightCm,
                                 weightUnit: "lb",
@@ -924,15 +986,15 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                               ));
                         }
                         if (weightUnit == WeightUnits.kg &&
-                            heightUnit == HeightUnits.ftIn &&
-                            selectedIndex == 1) {
+                            heightUnit == HeightUnits.ftIn) {
                           String val =
                               "${(heightFeet.toInt())}.${heightInches.toInt()}";
+                          print("Press 3");
 
                           Nav.push(
                               context,
                               UserIssueScreen(
-                                gender: "Male",
+                                gender: selectedIndex == 2 ? "Female" : "Male",
                                 heightUnit: "Ft-in",
                                 heightValue: double.parse(val),
                                 weightUnit: "Kg",
@@ -947,15 +1009,15 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                               ));
                         }
                         if (weightUnit == WeightUnits.lb &&
-                            heightUnit == HeightUnits.ftIn &&
-                            selectedIndex == 2) {
+                            heightUnit == HeightUnits.ftIn) {
                           String val =
                               "${(heightFeet.toInt())}.${heightInches.toInt()}";
+                          print("Press 4");
 
                           Nav.push(
                               context,
                               UserIssueScreen(
-                                gender: "Female",
+                                gender: selectedIndex == 2 ? "Female" : "Male",
                                 heightUnit: "Ft-in",
                                 heightValue: double.parse(val),
                                 weightUnit: "lb",
@@ -972,6 +1034,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       }
                     },
                   ),
+                  SizedBox(
+                    height: screenHeight * 0.02,
+                  ),
                 ],
               ),
             ),
@@ -984,15 +1049,19 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   SizedBox buildTextField(TextEditingController controller,
       Function(String)? onChanged, String suffixText) {
     return SizedBox(
-      width: 60,
+      width: MediaQuery.of(context).size.width * 0.160,
       child: TextField(
         controller: controller,
         cursorColor: Colors.black,
         textAlign: TextAlign.center,
         style: GoogleFonts.vazirmatn(
-          fontSize: 14,
+          fontSize: 12.sp,
         ),
         keyboardType: TextInputType.number,
+        inputFormatters: [
+          FilteringTextInputFormatter.digitsOnly, // Only allow digits
+          LengthLimitingTextInputFormatter(3), // Limit to 3 characters
+        ],
         decoration: InputDecoration(
           border: const UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.black),
@@ -1005,8 +1074,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
           ),
           contentPadding: const EdgeInsets.all(0),
           suffixText: suffixText,
-          suffixStyle: const TextStyle(
-            fontSize: 16,
+          suffixStyle: GoogleFonts.vazirmatn(
+            fontSize: 12.sp,
             fontWeight: FontWeight.w600,
           ),
         ),

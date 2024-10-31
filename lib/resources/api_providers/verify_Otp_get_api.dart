@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:gymmerator/models/api_response/VerifyOTPApiResponse.dart';
+
 import '../../utils/api_constants/api_constants.dart';
 
 class VerifyOtpGetApi {

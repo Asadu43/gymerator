@@ -51,2508 +51,2565 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          height: screenHeight,
-          width: screenWidth,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage('assets/images/background.png'),
-            // Replace with your image asset path
-            fit: BoxFit.cover, // You can adjust the fit property as needed
-          )),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: screenHeight / 14,
-                ),
-                SizedBox(
-                  height: screenHeight * 0.030,
-                ),
-                Text("Do you have Medical issue?",
-                    style: GoogleFonts.vazirmatn(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.white)),
-                Text(
-                    "Your coach will filter and reduce inappropriate exercises for you  Used Password.",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.vazirmatn(
-                        fontSize: 11.sp, color: Colors.grey)),
-                SizedBox(
-                  height: screenHeight * 0.030,
-                ),
-                SizedBox(
-                  height: screenHeight * 0.02,
-                ),
-                InkWell(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        String? tempSelectedGoal = selectMedicalName;
+      body: Container(
+        height: screenHeight,
+        width: screenWidth,
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage('assets/images/background.png'),
+          // Replace with your image asset path
+          fit: BoxFit.cover, // You can adjust the fit property as needed
+        )),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: screenHeight / 12,
+              ),
+              SizedBox(
+                height: screenHeight * 0.030,
+              ),
+              Text("Do you have Medical issue?",
+                  style: GoogleFonts.vazirmatn(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.white)),
+              Text(
+                  "Your coach will filter and reduce inappropriate exercises for you  Used Password.",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.vazirmatn(
+                      fontSize: 11.sp, color: Colors.grey)),
+              SizedBox(
+                height: screenHeight * 0.030,
+              ),
+              SizedBox(
+                height: screenHeight * 0.02,
+              ),
+              InkWell(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      String? tempSelectedGoal = selectMedicalName;
 
-                        return StatefulBuilder(
-                          builder: (context, setState) {
-                            return AlertDialog(
-                              title: Text('Do you have any issue?',
-                                  style:
-                                      GoogleFonts.vazirmatn(fontSize: 14.sp)),
-                              content: SizedBox(
-                                width: screenWidth,
-                                child: ListView(
-                                  shrinkWrap: true,
-                                  children: [
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title: Text('No,I’m fine',
-                                          style: GoogleFonts.vazirmatn(
-                                              fontSize: 10.sp)),
-                                      value: 'No,I’m fine',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                          medicalCondition = null;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title: Text('Cardiovascular',
-                                          style: GoogleFonts.vazirmatn(
-                                              fontSize: 10.sp)),
-                                      value: 'Cardiovascular',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title: Text('Respiratory',
-                                          style: GoogleFonts.vazirmatn(
-                                              fontSize: 10.sp)),
-                                      value: 'Respiratory',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title: Text('Metabolic and Endocrine',
-                                          style: GoogleFonts.vazirmatn(
-                                              fontSize: 10.sp)),
-                                      value: 'Metabolic and Endocrine',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title: Text('Musculoskeletal',
-                                          style: GoogleFonts.vazirmatn(
-                                              fontSize: 10.sp)),
-                                      value: 'Musculoskeletal',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title: Text('Neurological',
-                                          style: GoogleFonts.vazirmatn(
-                                              fontSize: 10.sp)),
-                                      value: 'Neurological',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title: Text('Mental Health',
-                                          style: GoogleFonts.vazirmatn(
-                                              fontSize: 10.sp)),
-                                      value: 'Mental Health',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title: Text('Gastrointestinal',
-                                          style: GoogleFonts.vazirmatn(
-                                              fontSize: 10.sp)),
-                                      value: 'Gastrointestinal',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title: Text('Kidney and Liver',
-                                          style: GoogleFonts.vazirmatn(
-                                              fontSize: 10.sp)),
-                                      value: 'Kidney and Liver',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title: Text('Immune System',
-                                          style: GoogleFonts.vazirmatn(
-                                              fontSize: 10.sp)),
-                                      value: 'Immune System',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title: Text('Cancer',
-                                          style: GoogleFonts.vazirmatn(
-                                              fontSize: 10.sp)),
-                                      value: 'Cancer',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title: Text('Pregnancy and Postpartum',
-                                          style: GoogleFonts.vazirmatn(
-                                              fontSize: 10.sp)),
-                                      value: 'Pregnancy and Postpartum',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                    RadioListTile<String>(
-                                      activeColor: const Color(0xff3F710D),
-                                      title: Text('Other Relevant',
-                                          style: GoogleFonts.vazirmatn(
-                                              fontSize: 10.sp)),
-                                      value: 'Other Relevant',
-                                      groupValue: tempSelectedGoal,
-                                      onChanged: (String? value) {
-                                        setState(() {
-                                          tempSelectedGoal = value!;
-                                        });
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              contentTextStyle:
-                                  GoogleFonts.vazirmatn(color: Colors.black),
-                              actions: [
-                                TextButton(
-                                  child: Text(
-                                    'CANCEL',
-                                    style: GoogleFonts.vazirmatn(
-                                        color: Colors.black),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                                TextButton(
-                                  child: Text(
-                                    'OK',
-                                    style: GoogleFonts.vazirmatn(
-                                        color: Colors.black),
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      selectMedicalName = tempSelectedGoal;
-                                    });
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                    ).then(
-                      (value) {
-                        setState(() {
-                          selectMedicalName;
-                        });
-                      },
-                    );
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.07,
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        selectMedicalName == null
-                            ? Text(
-                                "Do you have any issue?",
-                                style:
-                                    GoogleFonts.vazirmatn(color: Colors.grey),
-                              )
-                            : Text(
-                                "$selectMedicalName",
-                                style:
-                                    GoogleFonts.vazirmatn(color: Colors.white),
-                              ),
-                        const Icon(
-                          Icons.keyboard_arrow_down_sharp,
-                          color: Colors.grey,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: screenHeight * 0.02,
-                ),
-                (selectMedicalName == null ||
-                        selectMedicalName == "No,I’m fine")
-                    ? const SizedBox()
-                    : selectMedicalName == "Cardiovascular"
-                        ? InkWell(
-                            onTap: () {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  String? tempSelectedGoal = medicalCondition;
-
-                                  return StatefulBuilder(
-                                    builder: (context, setState) {
-                                      return AlertDialog(
-                                        title: Text('Cardiovascular Conditions',
-                                            style: GoogleFonts.vazirmatn(
-                                                fontSize: 14.sp)),
-                                        content: SizedBox(
-                                          width: screenWidth,
-                                          child: ListView(
-                                            shrinkWrap: true,
-                                            // mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              RadioListTile<String>(
-                                                activeColor:
-                                                    const Color(0xff3F710D),
-                                                title: Text('Heart Disease',
-                                                    style:
-                                                        GoogleFonts.vazirmatn(
-                                                            fontSize: 10.sp)),
-                                                value: 'Heart Disease',
-                                                groupValue: tempSelectedGoal,
-                                                onChanged: (String? value) {
-                                                  setState(() {
-                                                    tempSelectedGoal = value!;
-                                                  });
-                                                },
-                                              ),
-                                              RadioListTile<String>(
-                                                activeColor:
-                                                    const Color(0xff3F710D),
-                                                title: Text(
-                                                    'High Blood Pressure',
-                                                    style:
-                                                        GoogleFonts.vazirmatn(
-                                                            fontSize: 10.sp)),
-                                                value: 'High Blood Pressure',
-                                                groupValue: tempSelectedGoal,
-                                                onChanged: (String? value) {
-                                                  setState(() {
-                                                    tempSelectedGoal = value!;
-                                                  });
-                                                },
-                                              ),
-                                              RadioListTile<String>(
-                                                activeColor:
-                                                    const Color(0xff3F710D),
-                                                title: Text(
-                                                    'Low Blood Pressure',
-                                                    style:
-                                                        GoogleFonts.vazirmatn(
-                                                            fontSize: 10.sp)),
-                                                value: 'Low Blood Pressure',
-                                                groupValue: tempSelectedGoal,
-                                                onChanged: (String? value) {
-                                                  setState(() {
-                                                    tempSelectedGoal = value!;
-                                                  });
-                                                },
-                                              ),
-                                              RadioListTile<String>(
-                                                activeColor:
-                                                    const Color(0xff3F710D),
-                                                title: Text('Arrhythmias',
-                                                    style:
-                                                        GoogleFonts.vazirmatn(
-                                                            fontSize: 10.sp)),
-                                                value: 'Arrhythmias',
-                                                groupValue: tempSelectedGoal,
-                                                onChanged: (String? value) {
-                                                  setState(() {
-                                                    tempSelectedGoal = value!;
-                                                  });
-                                                },
-                                              ),
-                                              RadioListTile<String>(
-                                                activeColor:
-                                                    const Color(0xff3F710D),
-                                                title: Text(
-                                                    'Peripheral Artery Disease',
-                                                    style:
-                                                        GoogleFonts.vazirmatn(
-                                                            fontSize: 10.sp)),
-                                                value:
-                                                    'Peripheral Artery Disease',
-                                                groupValue: tempSelectedGoal,
-                                                onChanged: (String? value) {
-                                                  setState(() {
-                                                    tempSelectedGoal = value!;
-                                                  });
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        contentTextStyle: GoogleFonts.vazirmatn(
-                                            color: Colors.black),
-                                        actions: [
-                                          TextButton(
-                                            child: Text(
-                                              'CANCEL',
-                                              style: GoogleFonts.vazirmatn(
-                                                  color: Colors.black),
-                                            ),
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                          TextButton(
-                                            child: Text(
-                                              'OK',
-                                              style: GoogleFonts.vazirmatn(
-                                                  color: Colors.black),
-                                            ),
-                                            onPressed: () {
-                                              setState(() {
-                                                medicalCondition =
-                                                    tempSelectedGoal;
-                                              });
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                              ).then(
-                                (value) {
-                                  setState(() {
-                                    medicalCondition;
-                                  });
-                                },
-                              );
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              height: MediaQuery.of(context).size.height * 0.07,
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 4, horizontal: 16),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                      return StatefulBuilder(
+                        builder: (context, setState) {
+                          return AlertDialog(
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                            title: Text('Do you have any issue?',
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold)),
+                            content: SizedBox(
+                              width: screenWidth * 1,
+                              child: ListView(
+                                shrinkWrap: true,
                                 children: [
-                                  medicalCondition == null
-                                      ? Text(
-                                          "Please select condition",
-                                          style: GoogleFonts.vazirmatn(
-                                              color: Colors.grey),
-                                        )
-                                      : Text(
-                                          "$medicalCondition",
-                                          style: GoogleFonts.vazirmatn(
-                                              color: Colors.white),
-                                        ),
-                                  const Icon(
-                                    Icons.keyboard_arrow_down_sharp,
-                                    color: Colors.grey,
-                                  )
+                                  RadioListTile<String>(
+                                    activeColor: const Color(0xff3F710D),
+                                    title: Text('No,I’m fine',
+                                        style: GoogleFonts.vazirmatn(
+                                            fontSize: 10.sp)),
+                                    value: 'No,I’m fine',
+                                    groupValue: tempSelectedGoal,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        tempSelectedGoal = value!;
+                                        medicalCondition = null;
+                                      });
+                                    },
+                                  ),
+                                  RadioListTile<String>(
+                                    activeColor: const Color(0xff3F710D),
+                                    title: Text('Cardiovascular',
+                                        style: GoogleFonts.vazirmatn(
+                                            fontSize: 10.sp)),
+                                    value: 'Cardiovascular',
+                                    groupValue: tempSelectedGoal,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        tempSelectedGoal = value!;
+                                      });
+                                    },
+                                  ),
+                                  RadioListTile<String>(
+                                    activeColor: const Color(0xff3F710D),
+                                    title: Text('Respiratory',
+                                        style: GoogleFonts.vazirmatn(
+                                            fontSize: 10.sp)),
+                                    value: 'Respiratory',
+                                    groupValue: tempSelectedGoal,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        tempSelectedGoal = value!;
+                                      });
+                                    },
+                                  ),
+                                  RadioListTile<String>(
+                                    activeColor: const Color(0xff3F710D),
+                                    title: Text('Metabolic and Endocrine',
+                                        style: GoogleFonts.vazirmatn(
+                                            fontSize: 10.sp)),
+                                    value: 'Metabolic and Endocrine',
+                                    groupValue: tempSelectedGoal,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        tempSelectedGoal = value!;
+                                      });
+                                    },
+                                  ),
+                                  RadioListTile<String>(
+                                    activeColor: const Color(0xff3F710D),
+                                    title: Text('Musculoskeletal',
+                                        style: GoogleFonts.vazirmatn(
+                                            fontSize: 10.sp)),
+                                    value: 'Musculoskeletal',
+                                    groupValue: tempSelectedGoal,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        tempSelectedGoal = value!;
+                                      });
+                                    },
+                                  ),
+                                  RadioListTile<String>(
+                                    activeColor: const Color(0xff3F710D),
+                                    title: Text('Neurological',
+                                        style: GoogleFonts.vazirmatn(
+                                            fontSize: 10.sp)),
+                                    value: 'Neurological',
+                                    groupValue: tempSelectedGoal,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        tempSelectedGoal = value!;
+                                      });
+                                    },
+                                  ),
+                                  RadioListTile<String>(
+                                    activeColor: const Color(0xff3F710D),
+                                    title: Text('Mental Health',
+                                        style: GoogleFonts.vazirmatn(
+                                            fontSize: 10.sp)),
+                                    value: 'Mental Health',
+                                    groupValue: tempSelectedGoal,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        tempSelectedGoal = value!;
+                                      });
+                                    },
+                                  ),
+                                  RadioListTile<String>(
+                                    activeColor: const Color(0xff3F710D),
+                                    title: Text('Gastrointestinal',
+                                        style: GoogleFonts.vazirmatn(
+                                            fontSize: 10.sp)),
+                                    value: 'Gastrointestinal',
+                                    groupValue: tempSelectedGoal,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        tempSelectedGoal = value!;
+                                      });
+                                    },
+                                  ),
+                                  RadioListTile<String>(
+                                    activeColor: const Color(0xff3F710D),
+                                    title: Text('Kidney and Liver',
+                                        style: GoogleFonts.vazirmatn(
+                                            fontSize: 10.sp)),
+                                    value: 'Kidney and Liver',
+                                    groupValue: tempSelectedGoal,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        tempSelectedGoal = value!;
+                                      });
+                                    },
+                                  ),
+                                  RadioListTile<String>(
+                                    activeColor: const Color(0xff3F710D),
+                                    title: Text('Immune System',
+                                        style: GoogleFonts.vazirmatn(
+                                            fontSize: 10.sp)),
+                                    value: 'Immune System',
+                                    groupValue: tempSelectedGoal,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        tempSelectedGoal = value!;
+                                      });
+                                    },
+                                  ),
+                                  RadioListTile<String>(
+                                    activeColor: const Color(0xff3F710D),
+                                    title: Text('Cancer',
+                                        style: GoogleFonts.vazirmatn(
+                                            fontSize: 10.sp)),
+                                    value: 'Cancer',
+                                    groupValue: tempSelectedGoal,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        tempSelectedGoal = value!;
+                                      });
+                                    },
+                                  ),
+                                  RadioListTile<String>(
+                                    activeColor: const Color(0xff3F710D),
+                                    title: Text('Pregnancy and Postpartum',
+                                        style: GoogleFonts.vazirmatn(
+                                            fontSize: 10.sp)),
+                                    value: 'Pregnancy and Postpartum',
+                                    groupValue: tempSelectedGoal,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        tempSelectedGoal = value!;
+                                      });
+                                    },
+                                  ),
+                                  RadioListTile<String>(
+                                    activeColor: const Color(0xff3F710D),
+                                    title: Text('Other Relevant',
+                                        style: GoogleFonts.vazirmatn(
+                                            fontSize: 10.sp)),
+                                    value: 'Other Relevant',
+                                    groupValue: tempSelectedGoal,
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        tempSelectedGoal = value!;
+                                      });
+                                    },
+                                  ),
                                 ],
                               ),
                             ),
-                          )
-                        : selectMedicalName == "Respiratory"
-                            ? InkWell(
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      String? tempSelectedGoal =
-                                          medicalCondition;
-
-                                      return StatefulBuilder(
-                                        builder: (context, setState) {
-                                          return AlertDialog(
-                                            title: Text(
-                                                'Respiratory Conditions',
-                                                style: GoogleFonts.vazirmatn(
-                                                    fontSize: 14.sp)),
-                                            content: SizedBox(
-                                              width: screenWidth,
-                                              child: ListView(
-                                                shrinkWrap: true,
-                                                children: [
-                                                  RadioListTile<String>(
-                                                    activeColor:
-                                                        const Color(0xff3F710D),
-                                                    title: Text('Asthma',
-                                                        style: GoogleFonts
-                                                            .vazirmatn(
-                                                                fontSize:
-                                                                    10.sp)),
-                                                    value: 'Asthma',
-                                                    groupValue:
-                                                        tempSelectedGoal,
-                                                    onChanged: (String? value) {
-                                                      setState(() {
-                                                        tempSelectedGoal =
-                                                            value!;
-                                                      });
-                                                    },
-                                                  ),
-                                                  RadioListTile<String>(
-                                                    activeColor:
-                                                        const Color(0xff3F710D),
-                                                    title: Text(
-                                                        'Chronic Obstructive Pulmonary Disease',
-                                                        style: GoogleFonts
-                                                            .vazirmatn(
-                                                                fontSize:
-                                                                    10.sp)),
-                                                    value:
-                                                        'Chronic Obstructive Pulmonary Disease',
-                                                    groupValue:
-                                                        tempSelectedGoal,
-                                                    onChanged: (String? value) {
-                                                      setState(() {
-                                                        tempSelectedGoal =
-                                                            value!;
-                                                      });
-                                                    },
-                                                  ),
-                                                  RadioListTile<String>(
-                                                    activeColor:
-                                                        const Color(0xff3F710D),
-                                                    title: Text('Sleep Apnea',
-                                                        style: GoogleFonts
-                                                            .vazirmatn(
-                                                                fontSize:
-                                                                    10.sp)),
-                                                    value: 'Sleep Apnea',
-                                                    groupValue:
-                                                        tempSelectedGoal,
-                                                    onChanged: (String? value) {
-                                                      setState(() {
-                                                        tempSelectedGoal =
-                                                            value!;
-                                                      });
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            contentTextStyle:
-                                                GoogleFonts.vazirmatn(
-                                                    color: Colors.black),
-                                            actions: [
-                                              TextButton(
-                                                child: Text(
-                                                  'CANCEL',
-                                                  style: GoogleFonts.vazirmatn(
-                                                      color: Colors.black),
-                                                ),
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                              ),
-                                              TextButton(
-                                                child: Text(
-                                                  'OK',
-                                                  style: GoogleFonts.vazirmatn(
-                                                      color: Colors.black),
-                                                ),
-                                                onPressed: () {
-                                                  setState(() {
-                                                    medicalCondition =
-                                                        tempSelectedGoal;
-                                                  });
-                                                  Navigator.of(context).pop();
-                                                },
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    },
-                                  ).then(
-                                    (value) {
-                                      setState(() {
-                                        medicalCondition;
-                                      });
-                                    },
-                                  );
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.07,
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 4, horizontal: 16),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      medicalCondition == null
-                                          ? Text(
-                                              "Please select condition",
-                                              style: GoogleFonts.vazirmatn(
-                                                  color: Colors.grey),
-                                            )
-                                          : Text(
-                                              "$medicalCondition",
-                                              style: GoogleFonts.vazirmatn(
-                                                  color: Colors.white),
-                                            ),
-                                      const Icon(
-                                        Icons.keyboard_arrow_down_sharp,
-                                        color: Colors.grey,
-                                      )
-                                    ],
-                                  ),
+                            contentTextStyle:
+                                GoogleFonts.vazirmatn(color: Colors.black),
+                            actions: [
+                              TextButton(
+                                child: Text(
+                                  'Cancel',
+                                  style: GoogleFonts.vazirmatn(
+                                      fontSize: 14.sp, color: Colors.red),
                                 ),
-                              )
-                            : selectMedicalName == "Musculoskeletal"
-                                ? InkWell(
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          String? tempSelectedGoal =
-                                              medicalCondition;
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                              TextButton(
+                                child: Text(
+                                  'Ok',
+                                  style: GoogleFonts.vazirmatn(
+                                      fontSize: 14.sp, color: Colors.black),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    selectMedicalName = tempSelectedGoal;
+                                  });
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                  ).then(
+                    (value) {
+                      setState(() {
+                        selectMedicalName;
+                      });
+                    },
+                  );
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.07,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      selectMedicalName == null
+                          ? Text(
+                              "Do you have any issue?",
+                              style: GoogleFonts.vazirmatn(color: Colors.grey),
+                            )
+                          : Text(
+                              "$selectMedicalName",
+                              style: GoogleFonts.vazirmatn(color: Colors.white),
+                            ),
+                      const Icon(
+                        Icons.keyboard_arrow_down_sharp,
+                        color: Colors.grey,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: screenHeight * 0.02,
+              ),
+              (selectMedicalName == null || selectMedicalName == "No,I’m fine")
+                  ? const SizedBox()
+                  : selectMedicalName == "Cardiovascular"
+                      ? InkWell(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                String? tempSelectedGoal = medicalCondition;
 
-                                          return StatefulBuilder(
-                                            builder: (context, setState) {
-                                              return AlertDialog(
-                                                title: Text(
-                                                    'Musculoskeletal Conditions',
+                                return StatefulBuilder(
+                                  builder: (context, setState) {
+                                    return AlertDialog(
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10.0))),
+                                      title: Text('Cardiovascular Conditions',
+                                          style: GoogleFonts.vazirmatn(
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.bold)),
+                                      content: SizedBox(
+                                        width: screenWidth * 1,
+                                        child: ListView(
+                                          shrinkWrap: true,
+                                          // mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            RadioListTile<String>(
+                                              activeColor:
+                                                  const Color(0xff3F710D),
+                                              title: Text('Heart Disease',
+                                                  style: GoogleFonts.vazirmatn(
+                                                      fontSize: 10.sp)),
+                                              value: 'Heart Disease',
+                                              groupValue: tempSelectedGoal,
+                                              onChanged: (String? value) {
+                                                setState(() {
+                                                  tempSelectedGoal = value!;
+                                                });
+                                              },
+                                            ),
+                                            RadioListTile<String>(
+                                              activeColor:
+                                                  const Color(0xff3F710D),
+                                              title: Text('High Blood Pressure',
+                                                  style: GoogleFonts.vazirmatn(
+                                                      fontSize: 10.sp)),
+                                              value: 'High Blood Pressure',
+                                              groupValue: tempSelectedGoal,
+                                              onChanged: (String? value) {
+                                                setState(() {
+                                                  tempSelectedGoal = value!;
+                                                });
+                                              },
+                                            ),
+                                            RadioListTile<String>(
+                                              activeColor:
+                                                  const Color(0xff3F710D),
+                                              title: Text('Low Blood Pressure',
+                                                  style: GoogleFonts.vazirmatn(
+                                                      fontSize: 10.sp)),
+                                              value: 'Low Blood Pressure',
+                                              groupValue: tempSelectedGoal,
+                                              onChanged: (String? value) {
+                                                setState(() {
+                                                  tempSelectedGoal = value!;
+                                                });
+                                              },
+                                            ),
+                                            RadioListTile<String>(
+                                              activeColor:
+                                                  const Color(0xff3F710D),
+                                              title: Text('Arrhythmias',
+                                                  style: GoogleFonts.vazirmatn(
+                                                      fontSize: 10.sp)),
+                                              value: 'Arrhythmias',
+                                              groupValue: tempSelectedGoal,
+                                              onChanged: (String? value) {
+                                                setState(() {
+                                                  tempSelectedGoal = value!;
+                                                });
+                                              },
+                                            ),
+                                            RadioListTile<String>(
+                                              activeColor:
+                                                  const Color(0xff3F710D),
+                                              title: Text(
+                                                  'Peripheral Artery Disease',
+                                                  style: GoogleFonts.vazirmatn(
+                                                      fontSize: 10.sp)),
+                                              value:
+                                                  'Peripheral Artery Disease',
+                                              groupValue: tempSelectedGoal,
+                                              onChanged: (String? value) {
+                                                setState(() {
+                                                  tempSelectedGoal = value!;
+                                                });
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      contentTextStyle: GoogleFonts.vazirmatn(
+                                          color: Colors.black),
+                                      actions: [
+                                        TextButton(
+                                          child: Text(
+                                            'Cancel',
+                                            style: GoogleFonts.vazirmatn(
+                                                color: Colors.red),
+                                          ),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        TextButton(
+                                          child: Text(
+                                            'OK',
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 14.sp,
+                                                color: Colors.black),
+                                          ),
+                                          onPressed: () {
+                                            setState(() {
+                                              medicalCondition =
+                                                  tempSelectedGoal;
+                                            });
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                            ).then(
+                              (value) {
+                                setState(() {
+                                  medicalCondition;
+                                });
+                              },
+                            );
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: MediaQuery.of(context).size.height * 0.07,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 4, horizontal: 16),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                medicalCondition == null
+                                    ? Text(
+                                        "Please select condition",
+                                        style: GoogleFonts.vazirmatn(
+                                            color: Colors.grey),
+                                      )
+                                    : Text(
+                                        "$medicalCondition",
+                                        style: GoogleFonts.vazirmatn(
+                                            color: Colors.white),
+                                      ),
+                                const Icon(
+                                  Icons.keyboard_arrow_down_sharp,
+                                  color: Colors.grey,
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      : selectMedicalName == "Respiratory"
+                          ? InkWell(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    String? tempSelectedGoal = medicalCondition;
+
+                                    return StatefulBuilder(
+                                      builder: (context, setState) {
+                                        return AlertDialog(
+                                          shape: const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10.0))),
+                                          title: Text('Respiratory Conditions',
+                                              style: GoogleFonts.vazirmatn(
+                                                  fontSize: 14.sp,
+                                                  fontWeight: FontWeight.bold)),
+                                          content: SizedBox(
+                                            width: screenWidth * 1,
+                                            child: ListView(
+                                              shrinkWrap: true,
+                                              children: [
+                                                RadioListTile<String>(
+                                                  activeColor:
+                                                      const Color(0xff3F710D),
+                                                  title: Text('Asthma',
+                                                      style:
+                                                          GoogleFonts.vazirmatn(
+                                                              fontSize: 10.sp)),
+                                                  value: 'Asthma',
+                                                  groupValue: tempSelectedGoal,
+                                                  onChanged: (String? value) {
+                                                    setState(() {
+                                                      tempSelectedGoal = value!;
+                                                    });
+                                                  },
+                                                ),
+                                                RadioListTile<String>(
+                                                  activeColor:
+                                                      const Color(0xff3F710D),
+                                                  title: Text(
+                                                      'Chronic Obstructive Pulmonary Disease',
+                                                      style:
+                                                          GoogleFonts.vazirmatn(
+                                                              fontSize: 10.sp)),
+                                                  value:
+                                                      'Chronic Obstructive Pulmonary Disease',
+                                                  groupValue: tempSelectedGoal,
+                                                  onChanged: (String? value) {
+                                                    setState(() {
+                                                      tempSelectedGoal = value!;
+                                                    });
+                                                  },
+                                                ),
+                                                RadioListTile<String>(
+                                                  activeColor:
+                                                      const Color(0xff3F710D),
+                                                  title: Text('Sleep Apnea',
+                                                      style:
+                                                          GoogleFonts.vazirmatn(
+                                                              fontSize: 10.sp)),
+                                                  value: 'Sleep Apnea',
+                                                  groupValue: tempSelectedGoal,
+                                                  onChanged: (String? value) {
+                                                    setState(() {
+                                                      tempSelectedGoal = value!;
+                                                    });
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          contentTextStyle:
+                                              GoogleFonts.vazirmatn(
+                                                  color: Colors.black),
+                                          actions: [
+                                            TextButton(
+                                              child: Text(
+                                                'Cancel',
+                                                style: GoogleFonts.vazirmatn(
+                                                    fontSize: 14.sp,
+                                                    color: Colors.red),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                            TextButton(
+                                              child: Text(
+                                                'OK',
+                                                style: GoogleFonts.vazirmatn(
+                                                    fontSize: 14.sp,
+                                                    color: Colors.black),
+                                              ),
+                                              onPressed: () {
+                                                setState(() {
+                                                  medicalCondition =
+                                                      tempSelectedGoal;
+                                                });
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
+                                ).then(
+                                  (value) {
+                                    setState(() {
+                                      medicalCondition;
+                                    });
+                                  },
+                                );
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.07,
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 4, horizontal: 16),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    medicalCondition == null
+                                        ? Text(
+                                            "Please select condition",
+                                            style: GoogleFonts.vazirmatn(
+                                                color: Colors.grey),
+                                          )
+                                        : Text(
+                                            "$medicalCondition",
+                                            style: GoogleFonts.vazirmatn(
+                                                color: Colors.white),
+                                          ),
+                                    const Icon(
+                                      Icons.keyboard_arrow_down_sharp,
+                                      color: Colors.grey,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            )
+                          : selectMedicalName == "Musculoskeletal"
+                              ? InkWell(
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        String? tempSelectedGoal =
+                                            medicalCondition;
+
+                                        return StatefulBuilder(
+                                          builder: (context, setState) {
+                                            return AlertDialog(
+                                              shape:
+                                                  const RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10.0))),
+                                              title: Text(
+                                                  'Musculoskeletal Conditions',
+                                                  style: GoogleFonts.vazirmatn(
+                                                      fontSize: 14.sp,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              content: SizedBox(
+                                                width: screenWidth * 1,
+                                                child: ListView(
+                                                  shrinkWrap: true,
+                                                  children: [
+                                                    RadioListTile<String>(
+                                                      activeColor: const Color(
+                                                          0xff3F710D),
+                                                      title: Text('Arthritis',
+                                                          style: GoogleFonts
+                                                              .vazirmatn(
+                                                                  fontSize:
+                                                                      10.sp)),
+                                                      value: 'Arthritis',
+                                                      groupValue:
+                                                          tempSelectedGoal,
+                                                      onChanged:
+                                                          (String? value) {
+                                                        setState(() {
+                                                          tempSelectedGoal =
+                                                              value!;
+                                                        });
+                                                      },
+                                                    ),
+                                                    RadioListTile<String>(
+                                                      activeColor: const Color(
+                                                          0xff3F710D),
+                                                      title: Text(
+                                                          'Osteoporosis',
+                                                          style: GoogleFonts
+                                                              .vazirmatn(
+                                                                  fontSize:
+                                                                      10.sp)),
+                                                      value: 'Osteoporosis',
+                                                      groupValue:
+                                                          tempSelectedGoal,
+                                                      onChanged:
+                                                          (String? value) {
+                                                        setState(() {
+                                                          tempSelectedGoal =
+                                                              value!;
+                                                        });
+                                                      },
+                                                    ),
+                                                    RadioListTile<String>(
+                                                      activeColor: const Color(
+                                                          0xff3F710D),
+                                                      title: Text(
+                                                          'Chronic Back Pain',
+                                                          style: GoogleFonts
+                                                              .vazirmatn(
+                                                                  fontSize:
+                                                                      10.sp)),
+                                                      value:
+                                                          'Chronic Back Pain',
+                                                      groupValue:
+                                                          tempSelectedGoal,
+                                                      onChanged:
+                                                          (String? value) {
+                                                        setState(() {
+                                                          tempSelectedGoal =
+                                                              value!;
+                                                        });
+                                                      },
+                                                    ),
+                                                    RadioListTile<String>(
+                                                      activeColor: const Color(
+                                                          0xff3F710D),
+                                                      title: Text(
+                                                          'Joint Injuries',
+                                                          style: GoogleFonts
+                                                              .vazirmatn(
+                                                                  fontSize:
+                                                                      10.sp)),
+                                                      value: 'Joint Injuries',
+                                                      groupValue:
+                                                          tempSelectedGoal,
+                                                      onChanged:
+                                                          (String? value) {
+                                                        setState(() {
+                                                          tempSelectedGoal =
+                                                              value!;
+                                                        });
+                                                      },
+                                                    ),
+                                                    RadioListTile<String>(
+                                                      activeColor: const Color(
+                                                          0xff3F710D),
+                                                      title: Text(
+                                                          'Fibromyalgia',
+                                                          style: GoogleFonts
+                                                              .vazirmatn(
+                                                                  fontSize:
+                                                                      10.sp)),
+                                                      value: 'Fibromyalgia',
+                                                      groupValue:
+                                                          tempSelectedGoal,
+                                                      onChanged:
+                                                          (String? value) {
+                                                        setState(() {
+                                                          tempSelectedGoal =
+                                                              value!;
+                                                        });
+                                                      },
+                                                    ),
+                                                    RadioListTile<String>(
+                                                      activeColor: const Color(
+                                                          0xff3F710D),
+                                                      title: Text('Tendinitis',
+                                                          style: GoogleFonts
+                                                              .vazirmatn(
+                                                                  fontSize:
+                                                                      10.sp)),
+                                                      value: 'Tendinitis',
+                                                      groupValue:
+                                                          tempSelectedGoal,
+                                                      onChanged:
+                                                          (String? value) {
+                                                        setState(() {
+                                                          tempSelectedGoal =
+                                                              value!;
+                                                        });
+                                                      },
+                                                    ),
+                                                    RadioListTile<String>(
+                                                      activeColor: const Color(
+                                                          0xff3F710D),
+                                                      title: Text('Bursitis',
+                                                          style: GoogleFonts
+                                                              .vazirmatn(
+                                                                  fontSize:
+                                                                      10.sp)),
+                                                      value: 'Bursitis',
+                                                      groupValue:
+                                                          tempSelectedGoal,
+                                                      onChanged:
+                                                          (String? value) {
+                                                        setState(() {
+                                                          tempSelectedGoal =
+                                                              value!;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              contentTextStyle:
+                                                  GoogleFonts.vazirmatn(
+                                                      color: Colors.black),
+                                              actions: [
+                                                TextButton(
+                                                  child: Text(
+                                                    'Cancel',
                                                     style:
                                                         GoogleFonts.vazirmatn(
-                                                            fontSize: 14.sp)),
-                                                content: SizedBox(
-                                                  width: screenWidth,
-                                                  child: ListView(
-                                                    shrinkWrap: true,
-                                                    children: [
-                                                      RadioListTile<String>(
-                                                        activeColor:
-                                                            const Color(
-                                                                0xff3F710D),
-                                                        title: Text('Arthritis',
-                                                            style: GoogleFonts
-                                                                .vazirmatn(
-                                                                    fontSize:
-                                                                        10.sp)),
-                                                        value: 'Arthritis',
-                                                        groupValue:
-                                                            tempSelectedGoal,
-                                                        onChanged:
-                                                            (String? value) {
-                                                          setState(() {
-                                                            tempSelectedGoal =
-                                                                value!;
-                                                          });
-                                                        },
-                                                      ),
-                                                      RadioListTile<String>(
-                                                        activeColor:
-                                                            const Color(
-                                                                0xff3F710D),
-                                                        title: Text(
-                                                            'Osteoporosis',
-                                                            style: GoogleFonts
-                                                                .vazirmatn(
-                                                                    fontSize:
-                                                                        10.sp)),
-                                                        value: 'Osteoporosis',
-                                                        groupValue:
-                                                            tempSelectedGoal,
-                                                        onChanged:
-                                                            (String? value) {
-                                                          setState(() {
-                                                            tempSelectedGoal =
-                                                                value!;
-                                                          });
-                                                        },
-                                                      ),
-                                                      RadioListTile<String>(
-                                                        activeColor:
-                                                            const Color(
-                                                                0xff3F710D),
-                                                        title: Text(
-                                                            'Chronic Back Pain',
-                                                            style: GoogleFonts
-                                                                .vazirmatn(
-                                                                    fontSize:
-                                                                        10.sp)),
-                                                        value:
-                                                            'Chronic Back Pain',
-                                                        groupValue:
-                                                            tempSelectedGoal,
-                                                        onChanged:
-                                                            (String? value) {
-                                                          setState(() {
-                                                            tempSelectedGoal =
-                                                                value!;
-                                                          });
-                                                        },
-                                                      ),
-                                                      RadioListTile<String>(
-                                                        activeColor:
-                                                            const Color(
-                                                                0xff3F710D),
-                                                        title: Text(
-                                                            'Joint Injuries',
-                                                            style: GoogleFonts
-                                                                .vazirmatn(
-                                                                    fontSize:
-                                                                        10.sp)),
-                                                        value: 'Joint Injuries',
-                                                        groupValue:
-                                                            tempSelectedGoal,
-                                                        onChanged:
-                                                            (String? value) {
-                                                          setState(() {
-                                                            tempSelectedGoal =
-                                                                value!;
-                                                          });
-                                                        },
-                                                      ),
-                                                      RadioListTile<String>(
-                                                        activeColor:
-                                                            const Color(
-                                                                0xff3F710D),
-                                                        title: Text(
-                                                            'Fibromyalgia',
-                                                            style: GoogleFonts
-                                                                .vazirmatn(
-                                                                    fontSize:
-                                                                        10.sp)),
-                                                        value: 'Fibromyalgia',
-                                                        groupValue:
-                                                            tempSelectedGoal,
-                                                        onChanged:
-                                                            (String? value) {
-                                                          setState(() {
-                                                            tempSelectedGoal =
-                                                                value!;
-                                                          });
-                                                        },
-                                                      ),
-                                                      RadioListTile<String>(
-                                                        activeColor:
-                                                            const Color(
-                                                                0xff3F710D),
-                                                        title: Text(
-                                                            'Tendinitis',
-                                                            style: GoogleFonts
-                                                                .vazirmatn(
-                                                                    fontSize:
-                                                                        10.sp)),
-                                                        value: 'Tendinitis',
-                                                        groupValue:
-                                                            tempSelectedGoal,
-                                                        onChanged:
-                                                            (String? value) {
-                                                          setState(() {
-                                                            tempSelectedGoal =
-                                                                value!;
-                                                          });
-                                                        },
-                                                      ),
-                                                      RadioListTile<String>(
-                                                        activeColor:
-                                                            const Color(
-                                                                0xff3F710D),
-                                                        title: Text('Bursitis',
-                                                            style: GoogleFonts
-                                                                .vazirmatn(
-                                                                    fontSize:
-                                                                        10.sp)),
-                                                        value: 'Bursitis',
-                                                        groupValue:
-                                                            tempSelectedGoal,
-                                                        onChanged:
-                                                            (String? value) {
-                                                          setState(() {
-                                                            tempSelectedGoal =
-                                                                value!;
-                                                          });
-                                                        },
-                                                      ),
-                                                    ],
+                                                            fontSize: 14.sp,
+                                                            color: Colors.red),
                                                   ),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
                                                 ),
-                                                contentTextStyle:
-                                                    GoogleFonts.vazirmatn(
-                                                        color: Colors.black),
-                                                actions: [
-                                                  TextButton(
-                                                    child: Text(
-                                                      'CANCEL',
-                                                      style:
-                                                          GoogleFonts.vazirmatn(
-                                                              color:
-                                                                  Colors.black),
-                                                    ),
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                  ),
-                                                  TextButton(
-                                                    child: Text(
-                                                      'OK',
-                                                      style:
-                                                          GoogleFonts.vazirmatn(
-                                                              color:
-                                                                  Colors.black),
-                                                    ),
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        medicalCondition =
-                                                            tempSelectedGoal;
-                                                      });
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                      ).then(
-                                        (value) {
-                                          setState(() {
-                                            medicalCondition;
-                                          });
-                                        },
-                                      );
-                                    },
-                                    child: Container(
-                                      width: double.infinity,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.07,
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 4, horizontal: 16),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          medicalCondition == null
-                                              ? Text(
-                                                  "Please select condition",
-                                                  style: GoogleFonts.vazirmatn(
-                                                      color: Colors.grey),
-                                                )
-                                              : Text(
-                                                  "$medicalCondition",
-                                                  style: GoogleFonts.vazirmatn(
-                                                      color: Colors.white),
-                                                ),
-                                          const Icon(
-                                            Icons.keyboard_arrow_down_sharp,
-                                            color: Colors.grey,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                : selectMedicalName == "Neurological"
-                                    ? InkWell(
-                                        onTap: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              String? tempSelectedGoal =
-                                                  medicalCondition;
-
-                                              return StatefulBuilder(
-                                                builder: (context, setState) {
-                                                  return AlertDialog(
-                                                    title: Text(
-                                                        'Neurological Conditions',
-                                                        style: GoogleFonts
-                                                            .vazirmatn(
-                                                                fontSize:
-                                                                    14.sp)),
-                                                    content: SizedBox(
-                                                      width: screenWidth,
-                                                      child: ListView(
-                                                        shrinkWrap: true,
-                                                        children: [
-                                                          RadioListTile<String>(
-                                                            activeColor:
-                                                                const Color(
-                                                                    0xff3F710D),
-                                                            title: Text(
-                                                                'Parkinson Disease',
-                                                                style: GoogleFonts
-                                                                    .vazirmatn(
-                                                                        fontSize:
-                                                                            10.sp)),
-                                                            value:
-                                                                'Parkinson Disease',
-                                                            groupValue:
-                                                                tempSelectedGoal,
-                                                            onChanged: (String?
-                                                                value) {
-                                                              setState(() {
-                                                                tempSelectedGoal =
-                                                                    value!;
-                                                              });
-                                                            },
-                                                          ),
-                                                          RadioListTile<String>(
-                                                            activeColor:
-                                                                const Color(
-                                                                    0xff3F710D),
-                                                            title: Text(
-                                                                'Multiple Sclerosis',
-                                                                style: GoogleFonts
-                                                                    .vazirmatn(
-                                                                        fontSize:
-                                                                            10.sp)),
-                                                            value:
-                                                                'Multiple Sclerosis',
-                                                            groupValue:
-                                                                tempSelectedGoal,
-                                                            onChanged: (String?
-                                                                value) {
-                                                              setState(() {
-                                                                tempSelectedGoal =
-                                                                    value!;
-                                                              });
-                                                            },
-                                                          ),
-                                                          RadioListTile<String>(
-                                                            activeColor:
-                                                                const Color(
-                                                                    0xff3F710D),
-                                                            title: Text(
-                                                                'Epilepsy',
-                                                                style: GoogleFonts
-                                                                    .vazirmatn(
-                                                                        fontSize:
-                                                                            10.sp)),
-                                                            value: 'Epilepsy',
-                                                            groupValue:
-                                                                tempSelectedGoal,
-                                                            onChanged: (String?
-                                                                value) {
-                                                              setState(() {
-                                                                tempSelectedGoal =
-                                                                    value!;
-                                                              });
-                                                            },
-                                                          ),
-                                                          RadioListTile<String>(
-                                                            activeColor:
-                                                                const Color(
-                                                                    0xff3F710D),
-                                                            title: Text(
-                                                                'Stroke History',
-                                                                style: GoogleFonts
-                                                                    .vazirmatn(
-                                                                        fontSize:
-                                                                            10.sp)),
-                                                            value:
-                                                                'Stroke History',
-                                                            groupValue:
-                                                                tempSelectedGoal,
-                                                            onChanged: (String?
-                                                                value) {
-                                                              setState(() {
-                                                                tempSelectedGoal =
-                                                                    value!;
-                                                              });
-                                                            },
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    contentTextStyle:
+                                                TextButton(
+                                                  child: Text(
+                                                    'OK',
+                                                    style:
                                                         GoogleFonts.vazirmatn(
+                                                            fontSize: 14.sp,
                                                             color:
                                                                 Colors.black),
-                                                    actions: [
-                                                      TextButton(
-                                                        child: Text(
-                                                          'CANCEL',
-                                                          style: GoogleFonts
-                                                              .vazirmatn(
-                                                                  color: Colors
-                                                                      .black),
-                                                        ),
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                      ),
-                                                      TextButton(
-                                                        child: Text(
-                                                          'OK',
-                                                          style: GoogleFonts
-                                                              .vazirmatn(
-                                                                  color: Colors
-                                                                      .black),
-                                                        ),
-                                                        onPressed: () {
-                                                          setState(() {
-                                                            medicalCondition =
-                                                                tempSelectedGoal;
-                                                          });
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            },
-                                          ).then(
-                                            (value) {
-                                              setState(() {
-                                                medicalCondition;
-                                              });
-                                            },
-                                          );
-                                        },
-                                        child: Container(
-                                          width: double.infinity,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.07,
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 4, horizontal: 16),
-                                          decoration: BoxDecoration(
-                                            border:
-                                                Border.all(color: Colors.grey),
-                                            borderRadius:
-                                                BorderRadius.circular(30),
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              medicalCondition == null
-                                                  ? Text(
-                                                      "Please select condition",
-                                                      style:
-                                                          GoogleFonts.vazirmatn(
-                                                              color:
-                                                                  Colors.grey),
-                                                    )
-                                                  : Text(
-                                                      "$medicalCondition",
-                                                      style:
-                                                          GoogleFonts.vazirmatn(
-                                                              color:
-                                                                  Colors.white),
-                                                    ),
-                                              const Icon(
-                                                Icons.keyboard_arrow_down_sharp,
-                                                color: Colors.grey,
+                                                  ),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      medicalCondition =
+                                                          tempSelectedGoal;
+                                                    });
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ).then(
+                                      (value) {
+                                        setState(() {
+                                          medicalCondition;
+                                        });
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.07,
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 4, horizontal: 16),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        medicalCondition == null
+                                            ? Text(
+                                                "Please select condition",
+                                                style: GoogleFonts.vazirmatn(
+                                                    color: Colors.grey),
                                               )
-                                            ],
-                                          ),
+                                            : Text(
+                                                "$medicalCondition",
+                                                style: GoogleFonts.vazirmatn(
+                                                    color: Colors.white),
+                                              ),
+                                        const Icon(
+                                          Icons.keyboard_arrow_down_sharp,
+                                          color: Colors.grey,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              : selectMedicalName == "Neurological"
+                                  ? InkWell(
+                                      onTap: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            String? tempSelectedGoal =
+                                                medicalCondition;
+                                            return StatefulBuilder(
+                                              builder: (context, setState) {
+                                                return AlertDialog(
+                                                  shape:
+                                                      const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(
+                                                                      10.0))),
+                                                  title: Text(
+                                                      'Neurological Conditions',
+                                                      style:
+                                                          GoogleFonts.vazirmatn(
+                                                              fontSize: 14.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold)),
+                                                  content: SizedBox(
+                                                    width: screenWidth * 1,
+                                                    child: ListView(
+                                                      shrinkWrap: true,
+                                                      children: [
+                                                        RadioListTile<String>(
+                                                          activeColor:
+                                                              const Color(
+                                                                  0xff3F710D),
+                                                          title: Text(
+                                                              'Parkinson Disease',
+                                                              style: GoogleFonts
+                                                                  .vazirmatn(
+                                                                      fontSize:
+                                                                          10.sp)),
+                                                          value:
+                                                              'Parkinson Disease',
+                                                          groupValue:
+                                                              tempSelectedGoal,
+                                                          onChanged:
+                                                              (String? value) {
+                                                            setState(() {
+                                                              tempSelectedGoal =
+                                                                  value!;
+                                                            });
+                                                          },
+                                                        ),
+                                                        RadioListTile<String>(
+                                                          activeColor:
+                                                              const Color(
+                                                                  0xff3F710D),
+                                                          title: Text(
+                                                              'Multiple Sclerosis',
+                                                              style: GoogleFonts
+                                                                  .vazirmatn(
+                                                                      fontSize:
+                                                                          10.sp)),
+                                                          value:
+                                                              'Multiple Sclerosis',
+                                                          groupValue:
+                                                              tempSelectedGoal,
+                                                          onChanged:
+                                                              (String? value) {
+                                                            setState(() {
+                                                              tempSelectedGoal =
+                                                                  value!;
+                                                            });
+                                                          },
+                                                        ),
+                                                        RadioListTile<String>(
+                                                          activeColor:
+                                                              const Color(
+                                                                  0xff3F710D),
+                                                          title: Text(
+                                                              'Epilepsy',
+                                                              style: GoogleFonts
+                                                                  .vazirmatn(
+                                                                      fontSize:
+                                                                          10.sp)),
+                                                          value: 'Epilepsy',
+                                                          groupValue:
+                                                              tempSelectedGoal,
+                                                          onChanged:
+                                                              (String? value) {
+                                                            setState(() {
+                                                              tempSelectedGoal =
+                                                                  value!;
+                                                            });
+                                                          },
+                                                        ),
+                                                        RadioListTile<String>(
+                                                          activeColor:
+                                                              const Color(
+                                                                  0xff3F710D),
+                                                          title: Text(
+                                                              'Stroke History',
+                                                              style: GoogleFonts
+                                                                  .vazirmatn(
+                                                                      fontSize:
+                                                                          10.sp)),
+                                                          value:
+                                                              'Stroke History',
+                                                          groupValue:
+                                                              tempSelectedGoal,
+                                                          onChanged:
+                                                              (String? value) {
+                                                            setState(() {
+                                                              tempSelectedGoal =
+                                                                  value!;
+                                                            });
+                                                          },
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  contentTextStyle:
+                                                      GoogleFonts.vazirmatn(
+                                                          color: Colors.black),
+                                                  actions: [
+                                                    TextButton(
+                                                      child: Text(
+                                                        'Cancel',
+                                                        style: GoogleFonts
+                                                            .vazirmatn(
+                                                                fontSize: 14.sp,
+                                                                color:
+                                                                    Colors.red),
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    ),
+                                                    TextButton(
+                                                      child: Text(
+                                                        'OK',
+                                                        style: GoogleFonts
+                                                            .vazirmatn(
+                                                                fontSize: 14.sp,
+                                                                color: Colors
+                                                                    .black),
+                                                      ),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          medicalCondition =
+                                                              tempSelectedGoal;
+                                                        });
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ).then(
+                                          (value) {
+                                            setState(() {
+                                              medicalCondition;
+                                            });
+                                          },
+                                        );
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.07,
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 4, horizontal: 16),
+                                        decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.grey),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                         ),
-                                      )
-                                    : selectMedicalName == "Mental Health"
-                                        ? InkWell(
-                                            onTap: () {
-                                              showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  String? tempSelectedGoal =
-                                                      medicalCondition;
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            medicalCondition == null
+                                                ? Text(
+                                                    "Please select condition",
+                                                    style:
+                                                        GoogleFonts.vazirmatn(
+                                                            color: Colors.grey),
+                                                  )
+                                                : Text(
+                                                    "$medicalCondition",
+                                                    style:
+                                                        GoogleFonts.vazirmatn(
+                                                            color:
+                                                                Colors.white),
+                                                  ),
+                                            const Icon(
+                                              Icons.keyboard_arrow_down_sharp,
+                                              color: Colors.grey,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  : selectMedicalName == "Mental Health"
+                                      ? InkWell(
+                                          onTap: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                String? tempSelectedGoal =
+                                                    medicalCondition;
 
-                                                  return StatefulBuilder(
-                                                    builder:
-                                                        (context, setState) {
-                                                      return AlertDialog(
-                                                        title: Text(
-                                                            'Mental Health Conditions',
+                                                return StatefulBuilder(
+                                                  builder: (context, setState) {
+                                                    return AlertDialog(
+                                                      shape: const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(
+                                                                      10.0))),
+                                                      title: Text(
+                                                          'Mental Health Conditions',
+                                                          style: GoogleFonts
+                                                              .vazirmatn(
+                                                                  fontSize:
+                                                                      14.sp,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold)),
+                                                      content: SizedBox(
+                                                        width: screenWidth * 1,
+                                                        child: ListView(
+                                                          shrinkWrap: true,
+                                                          children: [
+                                                            RadioListTile<
+                                                                String>(
+                                                              activeColor:
+                                                                  const Color(
+                                                                      0xff3F710D),
+                                                              title: Text(
+                                                                  'Depression',
+                                                                  style: GoogleFonts
+                                                                      .vazirmatn(
+                                                                          fontSize:
+                                                                              10.sp)),
+                                                              value:
+                                                                  'Depression',
+                                                              groupValue:
+                                                                  tempSelectedGoal,
+                                                              onChanged:
+                                                                  (String?
+                                                                      value) {
+                                                                setState(() {
+                                                                  tempSelectedGoal =
+                                                                      value!;
+                                                                });
+                                                              },
+                                                            ),
+                                                            RadioListTile<
+                                                                String>(
+                                                              activeColor:
+                                                                  const Color(
+                                                                      0xff3F710D),
+                                                              title: Text(
+                                                                  'Anxiety Disorders',
+                                                                  style: GoogleFonts
+                                                                      .vazirmatn(
+                                                                          fontSize:
+                                                                              10.sp)),
+                                                              value:
+                                                                  'Anxiety Disorders',
+                                                              groupValue:
+                                                                  tempSelectedGoal,
+                                                              onChanged:
+                                                                  (String?
+                                                                      value) {
+                                                                setState(() {
+                                                                  tempSelectedGoal =
+                                                                      value!;
+                                                                });
+                                                              },
+                                                            ),
+                                                            RadioListTile<
+                                                                String>(
+                                                              activeColor:
+                                                                  const Color(
+                                                                      0xff3F710D),
+                                                              title: Text(
+                                                                  'Bipolar Disorder',
+                                                                  style: GoogleFonts
+                                                                      .vazirmatn(
+                                                                          fontSize:
+                                                                              10.sp)),
+                                                              value:
+                                                                  'Bipolar Disorder',
+                                                              groupValue:
+                                                                  tempSelectedGoal,
+                                                              onChanged:
+                                                                  (String?
+                                                                      value) {
+                                                                setState(() {
+                                                                  tempSelectedGoal =
+                                                                      value!;
+                                                                });
+                                                              },
+                                                            ),
+                                                            RadioListTile<
+                                                                String>(
+                                                              activeColor:
+                                                                  const Color(
+                                                                      0xff3F710D),
+                                                              title: Text(
+                                                                  'Post-Traumatic Stress Disorder',
+                                                                  style: GoogleFonts
+                                                                      .vazirmatn(
+                                                                          fontSize:
+                                                                              10.sp)),
+                                                              value:
+                                                                  'Post-Traumatic Stress Disorder',
+                                                              groupValue:
+                                                                  tempSelectedGoal,
+                                                              onChanged:
+                                                                  (String?
+                                                                      value) {
+                                                                setState(() {
+                                                                  tempSelectedGoal =
+                                                                      value!;
+                                                                });
+                                                              },
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      contentTextStyle:
+                                                          GoogleFonts.vazirmatn(
+                                                              color:
+                                                                  Colors.black),
+                                                      actions: [
+                                                        TextButton(
+                                                          child: Text(
+                                                            'Cancel',
                                                             style: GoogleFonts
                                                                 .vazirmatn(
                                                                     fontSize:
-                                                                        14.sp)),
-                                                        content: SizedBox(
-                                                          width: screenWidth,
-                                                          child: ListView(
-                                                            shrinkWrap: true,
-                                                            children: [
-                                                              RadioListTile<
-                                                                  String>(
-                                                                activeColor:
-                                                                    const Color(
-                                                                        0xff3F710D),
-                                                                title: Text(
-                                                                    'Depression',
-                                                                    style: GoogleFonts.vazirmatn(
-                                                                        fontSize:
-                                                                            10.sp)),
-                                                                value:
-                                                                    'Depression',
-                                                                groupValue:
-                                                                    tempSelectedGoal,
-                                                                onChanged:
-                                                                    (String?
-                                                                        value) {
-                                                                  setState(() {
-                                                                    tempSelectedGoal =
-                                                                        value!;
-                                                                  });
-                                                                },
-                                                              ),
-                                                              RadioListTile<
-                                                                  String>(
-                                                                activeColor:
-                                                                    const Color(
-                                                                        0xff3F710D),
-                                                                title: Text(
-                                                                    'Anxiety Disorders',
-                                                                    style: GoogleFonts.vazirmatn(
-                                                                        fontSize:
-                                                                            10.sp)),
-                                                                value:
-                                                                    'Anxiety Disorders',
-                                                                groupValue:
-                                                                    tempSelectedGoal,
-                                                                onChanged:
-                                                                    (String?
-                                                                        value) {
-                                                                  setState(() {
-                                                                    tempSelectedGoal =
-                                                                        value!;
-                                                                  });
-                                                                },
-                                                              ),
-                                                              RadioListTile<
-                                                                  String>(
-                                                                activeColor:
-                                                                    const Color(
-                                                                        0xff3F710D),
-                                                                title: Text(
-                                                                    'Bipolar Disorder',
-                                                                    style: GoogleFonts.vazirmatn(
-                                                                        fontSize:
-                                                                            10.sp)),
-                                                                value:
-                                                                    'Bipolar Disorder',
-                                                                groupValue:
-                                                                    tempSelectedGoal,
-                                                                onChanged:
-                                                                    (String?
-                                                                        value) {
-                                                                  setState(() {
-                                                                    tempSelectedGoal =
-                                                                        value!;
-                                                                  });
-                                                                },
-                                                              ),
-                                                              RadioListTile<
-                                                                  String>(
-                                                                activeColor:
-                                                                    const Color(
-                                                                        0xff3F710D),
-                                                                title: Text(
-                                                                    'Post-Traumatic Stress Disorder',
-                                                                    style: GoogleFonts.vazirmatn(
-                                                                        fontSize:
-                                                                            10.sp)),
-                                                                value:
-                                                                    'Post-Traumatic Stress Disorder',
-                                                                groupValue:
-                                                                    tempSelectedGoal,
-                                                                onChanged:
-                                                                    (String?
-                                                                        value) {
-                                                                  setState(() {
-                                                                    tempSelectedGoal =
-                                                                        value!;
-                                                                  });
-                                                                },
-                                                              ),
-                                                            ],
+                                                                        14.sp,
+                                                                    color: Colors
+                                                                        .red),
                                                           ),
+                                                          onPressed: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                          },
                                                         ),
-                                                        contentTextStyle:
-                                                            GoogleFonts
+                                                        TextButton(
+                                                          child: Text(
+                                                            'Ok',
+                                                            style: GoogleFonts
                                                                 .vazirmatn(
+                                                                    fontSize:
+                                                                        14.sp,
                                                                     color: Colors
                                                                         .black),
-                                                        actions: [
-                                                          TextButton(
-                                                            child: Text(
-                                                              'CANCEL',
-                                                              style: GoogleFonts
-                                                                  .vazirmatn(
-                                                                      color: Colors
-                                                                          .black),
-                                                            ),
-                                                            onPressed: () {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                            },
                                                           ),
-                                                          TextButton(
-                                                            child: Text(
-                                                              'OK',
-                                                              style: GoogleFonts
-                                                                  .vazirmatn(
-                                                                      color: Colors
-                                                                          .black),
-                                                            ),
-                                                            onPressed: () {
-                                                              setState(() {
-                                                                medicalCondition =
-                                                                    tempSelectedGoal;
-                                                              });
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                            },
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                              ).then(
-                                                (value) {
-                                                  setState(() {
-                                                    medicalCondition;
-                                                  });
-                                                },
-                                              );
-                                            },
-                                            child: Container(
-                                              width: double.infinity,
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.07,
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 4,
-                                                      horizontal: 16),
-                                              decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color: Colors.grey),
-                                                borderRadius:
-                                                    BorderRadius.circular(30),
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  medicalCondition == null
-                                                      ? Text(
-                                                          "Please select condition",
-                                                          style: GoogleFonts
-                                                              .vazirmatn(
-                                                                  color: Colors
-                                                                      .grey),
-                                                        )
-                                                      : Text(
-                                                          "$medicalCondition",
-                                                          style: GoogleFonts
-                                                              .vazirmatn(
-                                                                  color: Colors
-                                                                      .white),
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              medicalCondition =
+                                                                  tempSelectedGoal;
+                                                            });
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                          },
                                                         ),
-                                                  const Icon(
-                                                    Icons
-                                                        .keyboard_arrow_down_sharp,
-                                                    color: Colors.grey,
-                                                  )
-                                                ],
-                                              ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ).then(
+                                              (value) {
+                                                setState(() {
+                                                  medicalCondition;
+                                                });
+                                              },
+                                            );
+                                          },
+                                          child: Container(
+                                            width: double.infinity,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.07,
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 4, horizontal: 16),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
                                             ),
-                                          )
-                                        : selectMedicalName ==
-                                                "Gastrointestinal"
-                                            ? InkWell(
-                                                onTap: () {
-                                                  showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (BuildContext context) {
-                                                      String? tempSelectedGoal =
-                                                          medicalCondition;
-
-                                                      return StatefulBuilder(
-                                                        builder: (context,
-                                                            setState) {
-                                                          return AlertDialog(
-                                                            title: Text(
-                                                                'Gastrointestinal Conditions',
-                                                                style: GoogleFonts
-                                                                    .vazirmatn(
-                                                                        fontSize:
-                                                                            14.sp)),
-                                                            content: SizedBox(
-                                                              width:
-                                                                  screenWidth,
-                                                              child: ListView(
-                                                                shrinkWrap:
-                                                                    true,
-                                                                children: [
-                                                                  RadioListTile<
-                                                                      String>(
-                                                                    activeColor:
-                                                                        const Color(
-                                                                            0xff3F710D),
-                                                                    title: Text(
-                                                                        'Irritable Bowel Syndrome',
-                                                                        style: GoogleFonts.vazirmatn(
-                                                                            fontSize:
-                                                                                10.sp)),
-                                                                    value:
-                                                                        'Irritable Bowel Syndrome',
-                                                                    groupValue:
-                                                                        tempSelectedGoal,
-                                                                    onChanged:
-                                                                        (String?
-                                                                            value) {
-                                                                      setState(
-                                                                          () {
-                                                                        tempSelectedGoal =
-                                                                            value!;
-                                                                      });
-                                                                    },
-                                                                  ),
-                                                                  RadioListTile<
-                                                                      String>(
-                                                                    activeColor:
-                                                                        const Color(
-                                                                            0xff3F710D),
-                                                                    title: Text(
-                                                                        'Gastro esophageal Reflux Disease',
-                                                                        style: GoogleFonts.vazirmatn(
-                                                                            fontSize:
-                                                                                10.sp)),
-                                                                    value:
-                                                                        'Gastro esophageal Reflux Disease',
-                                                                    groupValue:
-                                                                        tempSelectedGoal,
-                                                                    onChanged:
-                                                                        (String?
-                                                                            value) {
-                                                                      setState(
-                                                                          () {
-                                                                        tempSelectedGoal =
-                                                                            value!;
-                                                                      });
-                                                                    },
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            contentTextStyle:
-                                                                GoogleFonts.vazirmatn(
-                                                                    color: Colors
-                                                                        .black),
-                                                            actions: [
-                                                              TextButton(
-                                                                child: Text(
-                                                                  'CANCEL',
-                                                                  style: GoogleFonts
-                                                                      .vazirmatn(
-                                                                          color:
-                                                                              Colors.black),
-                                                                ),
-                                                                onPressed: () {
-                                                                  Navigator.of(
-                                                                          context)
-                                                                      .pop();
-                                                                },
-                                                              ),
-                                                              TextButton(
-                                                                child: Text(
-                                                                  'OK',
-                                                                  style: GoogleFonts
-                                                                      .vazirmatn(
-                                                                          color:
-                                                                              Colors.black),
-                                                                ),
-                                                                onPressed: () {
-                                                                  setState(() {
-                                                                    medicalCondition =
-                                                                        tempSelectedGoal;
-                                                                  });
-                                                                  Navigator.of(
-                                                                          context)
-                                                                      .pop();
-                                                                },
-                                                              ),
-                                                            ],
-                                                          );
-                                                        },
-                                                      );
-                                                    },
-                                                  ).then(
-                                                    (value) {
-                                                      setState(() {
-                                                        medicalCondition;
-                                                      });
-                                                    },
-                                                  );
-                                                },
-                                                child: Container(
-                                                  width: double.infinity,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.07,
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                      vertical: 4,
-                                                      horizontal: 16),
-                                                  decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: Colors.grey),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            30),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      medicalCondition == null
-                                                          ? Text(
-                                                              "Please select condition",
-                                                              style: GoogleFonts
-                                                                  .vazirmatn(
-                                                                      color: Colors
-                                                                          .grey),
-                                                            )
-                                                          : Text(
-                                                              "$medicalCondition",
-                                                              style: GoogleFonts
-                                                                  .vazirmatn(
-                                                                      color: Colors
-                                                                          .white),
-                                                            ),
-                                                      const Icon(
-                                                        Icons
-                                                            .keyboard_arrow_down_sharp,
-                                                        color: Colors.grey,
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              )
-                                            : selectMedicalName ==
-                                                    "Kidney and Liver"
-                                                ? InkWell(
-                                                    onTap: () {
-                                                      showDialog(
-                                                        context: context,
-                                                        builder: (BuildContext
-                                                            context) {
-                                                          String?
-                                                              tempSelectedGoal =
-                                                              medicalCondition;
-
-                                                          return StatefulBuilder(
-                                                            builder: (context,
-                                                                setState) {
-                                                              return AlertDialog(
-                                                                title: Text(
-                                                                    'Kidney and Liver Conditions',
-                                                                    style: GoogleFonts.vazirmatn(
-                                                                        fontSize:
-                                                                            14.sp)),
-                                                                content:
-                                                                    SizedBox(
-                                                                  width:
-                                                                      screenWidth,
-                                                                  child:
-                                                                      ListView(
-                                                                    shrinkWrap:
-                                                                        true,
-                                                                    children: [
-                                                                      RadioListTile<
-                                                                          String>(
-                                                                        activeColor:
-                                                                            const Color(0xff3F710D),
-                                                                        title: Text(
-                                                                            'Chronic Kidney Disease',
-                                                                            style:
-                                                                                GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                        value:
-                                                                            'Chronic Kidney Disease',
-                                                                        groupValue:
-                                                                            tempSelectedGoal,
-                                                                        onChanged:
-                                                                            (String?
-                                                                                value) {
-                                                                          setState(
-                                                                              () {
-                                                                            tempSelectedGoal =
-                                                                                value!;
-                                                                          });
-                                                                        },
-                                                                      ),
-                                                                      RadioListTile<
-                                                                          String>(
-                                                                        activeColor:
-                                                                            const Color(0xff3F710D),
-                                                                        title: Text(
-                                                                            'Liver Disease',
-                                                                            style:
-                                                                                GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                        value:
-                                                                            'Liver Disease',
-                                                                        groupValue:
-                                                                            tempSelectedGoal,
-                                                                        onChanged:
-                                                                            (String?
-                                                                                value) {
-                                                                          setState(
-                                                                              () {
-                                                                            tempSelectedGoal =
-                                                                                value!;
-                                                                          });
-                                                                        },
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                contentTextStyle:
-                                                                    GoogleFonts.vazirmatn(
-                                                                        color: Colors
-                                                                            .black),
-                                                                actions: [
-                                                                  TextButton(
-                                                                    child: Text(
-                                                                      'CANCEL',
-                                                                      style: GoogleFonts.vazirmatn(
-                                                                          color:
-                                                                              Colors.black),
-                                                                    ),
-                                                                    onPressed:
-                                                                        () {
-                                                                      Navigator.of(
-                                                                              context)
-                                                                          .pop();
-                                                                    },
-                                                                  ),
-                                                                  TextButton(
-                                                                    child: Text(
-                                                                      'OK',
-                                                                      style: GoogleFonts.vazirmatn(
-                                                                          color:
-                                                                              Colors.black),
-                                                                    ),
-                                                                    onPressed:
-                                                                        () {
-                                                                      setState(
-                                                                          () {
-                                                                        medicalCondition =
-                                                                            tempSelectedGoal;
-                                                                      });
-                                                                      Navigator.of(
-                                                                              context)
-                                                                          .pop();
-                                                                    },
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            },
-                                                          );
-                                                        },
-                                                      ).then(
-                                                        (value) {
-                                                          setState(() {
-                                                            medicalCondition;
-                                                          });
-                                                        },
-                                                      );
-                                                    },
-                                                    child: Container(
-                                                      width: double.infinity,
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height *
-                                                              0.07,
-                                                      padding: const EdgeInsets
-                                                          .symmetric(
-                                                          vertical: 4,
-                                                          horizontal: 16),
-                                                      decoration: BoxDecoration(
-                                                        border: Border.all(
-                                                            color: Colors.grey),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(30),
-                                                      ),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          medicalCondition ==
-                                                                  null
-                                                              ? Text(
-                                                                  "Please select condition",
-                                                                  style: GoogleFonts
-                                                                      .vazirmatn(
-                                                                          color:
-                                                                              Colors.grey),
-                                                                )
-                                                              : Text(
-                                                                  "$medicalCondition",
-                                                                  style: GoogleFonts
-                                                                      .vazirmatn(
-                                                                          color:
-                                                                              Colors.white),
-                                                                ),
-                                                          const Icon(
-                                                            Icons
-                                                                .keyboard_arrow_down_sharp,
-                                                            color: Colors.grey,
-                                                          )
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  )
-                                                : selectMedicalName ==
-                                                        "Immune System Conditions"
-                                                    ? InkWell(
-                                                        onTap: () {
-                                                          showDialog(
-                                                            context: context,
-                                                            builder:
-                                                                (BuildContext
-                                                                    context) {
-                                                              String?
-                                                                  tempSelectedGoal =
-                                                                  medicalCondition;
-
-                                                              return StatefulBuilder(
-                                                                builder: (context,
-                                                                    setState) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Immune System Conditions',
-                                                                        style: GoogleFonts.vazirmatn(
-                                                                            fontSize:
-                                                                                14.sp)),
-                                                                    content:
-                                                                        SizedBox(
-                                                                      width:
-                                                                          screenWidth,
-                                                                      child:
-                                                                          ListView(
-                                                                        shrinkWrap:
-                                                                            true,
-                                                                        children: [
-                                                                          RadioListTile<
-                                                                              String>(
-                                                                            activeColor:
-                                                                                const Color(0xff3F710D),
-                                                                            title:
-                                                                                Text('Chronic Kidney Disease', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                            value:
-                                                                                'Chronic Kidney Disease',
-                                                                            groupValue:
-                                                                                tempSelectedGoal,
-                                                                            onChanged:
-                                                                                (String? value) {
-                                                                              setState(() {
-                                                                                tempSelectedGoal = value!;
-                                                                              });
-                                                                            },
-                                                                          ),
-                                                                          RadioListTile<
-                                                                              String>(
-                                                                            activeColor:
-                                                                                const Color(0xff3F710D),
-                                                                            title:
-                                                                                Text('HIV/AIDS', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                            value:
-                                                                                'HIV/AIDS',
-                                                                            groupValue:
-                                                                                tempSelectedGoal,
-                                                                            onChanged:
-                                                                                (String? value) {
-                                                                              setState(() {
-                                                                                tempSelectedGoal = value!;
-                                                                              });
-                                                                            },
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    contentTextStyle:
-                                                                        GoogleFonts.vazirmatn(
-                                                                            color:
-                                                                                Colors.black),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        child:
-                                                                            Text(
-                                                                          'CANCEL',
-                                                                          style:
-                                                                              GoogleFonts.vazirmatn(color: Colors.black),
-                                                                        ),
-                                                                        onPressed:
-                                                                            () {
-                                                                          Navigator.of(context)
-                                                                              .pop();
-                                                                        },
-                                                                      ),
-                                                                      TextButton(
-                                                                        child:
-                                                                            Text(
-                                                                          'OK',
-                                                                          style:
-                                                                              GoogleFonts.vazirmatn(color: Colors.black),
-                                                                        ),
-                                                                        onPressed:
-                                                                            () {
-                                                                          setState(
-                                                                              () {
-                                                                            medicalCondition =
-                                                                                tempSelectedGoal;
-                                                                          });
-                                                                          Navigator.of(context)
-                                                                              .pop();
-                                                                        },
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              );
-                                                            },
-                                                          ).then(
-                                                            (value) {
-                                                              setState(() {
-                                                                medicalCondition;
-                                                              });
-                                                            },
-                                                          );
-                                                        },
-                                                        child: Container(
-                                                          width:
-                                                              double.infinity,
-                                                          height: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .height *
-                                                              0.07,
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .symmetric(
-                                                                  vertical: 4,
-                                                                  horizontal:
-                                                                      16),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            border: Border.all(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                medicalCondition == null
+                                                    ? Text(
+                                                        "Please select condition",
+                                                        style: GoogleFonts
+                                                            .vazirmatn(
                                                                 color: Colors
                                                                     .grey),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        30),
-                                                          ),
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              medicalCondition ==
-                                                                      null
-                                                                  ? Text(
-                                                                      "Please select condition",
-                                                                      style: GoogleFonts.vazirmatn(
-                                                                          color:
-                                                                              Colors.grey),
-                                                                    )
-                                                                  : Text(
-                                                                      "$medicalCondition",
-                                                                      style: GoogleFonts.vazirmatn(
-                                                                          color:
-                                                                              Colors.white),
-                                                                    ),
-                                                              const Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_down_sharp,
-                                                                color:
-                                                                    Colors.grey,
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
                                                       )
-                                                    : selectMedicalName ==
-                                                            "Cancer"
-                                                        ? InkWell(
-                                                            onTap: () {
-                                                              showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (BuildContext
-                                                                        context) {
-                                                                  String?
-                                                                      tempSelectedGoal =
-                                                                      medicalCondition;
+                                                    : Text(
+                                                        "$medicalCondition",
+                                                        style: GoogleFonts
+                                                            .vazirmatn(
+                                                                color: Colors
+                                                                    .white),
+                                                      ),
+                                                const Icon(
+                                                  Icons
+                                                      .keyboard_arrow_down_sharp,
+                                                  color: Colors.grey,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                      : selectMedicalName == "Gastrointestinal"
+                                          ? InkWell(
+                                              onTap: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    String? tempSelectedGoal =
+                                                        medicalCondition;
 
-                                                                  return StatefulBuilder(
-                                                                    builder:
-                                                                        (context,
-                                                                            setState) {
-                                                                      return AlertDialog(
-                                                                        title: Text(
-                                                                            'Cancer',
-                                                                            style:
-                                                                                GoogleFonts.vazirmatn(fontSize: 14.sp)),
-                                                                        content:
-                                                                            SizedBox(
-                                                                          width:
-                                                                              screenWidth,
-                                                                          child:
-                                                                              ListView(
-                                                                            shrinkWrap:
-                                                                                true,
-                                                                            children: [
-                                                                              RadioListTile<String>(
-                                                                                activeColor: const Color(0xff3F710D),
-                                                                                title: Text('History of Cancer', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                                value: 'History of Cancer',
-                                                                                groupValue: tempSelectedGoal,
-                                                                                onChanged: (String? value) {
-                                                                                  setState(() {
-                                                                                    tempSelectedGoal = value!;
-                                                                                  });
-                                                                                },
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                        contentTextStyle:
-                                                                            GoogleFonts.vazirmatn(color: Colors.black),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            child:
-                                                                                Text(
-                                                                              'CANCEL',
-                                                                              style: GoogleFonts.vazirmatn(color: Colors.black),
-                                                                            ),
-                                                                            onPressed:
-                                                                                () {
-                                                                              Navigator.of(context).pop();
-                                                                            },
-                                                                          ),
-                                                                          TextButton(
-                                                                            child:
-                                                                                Text(
-                                                                              'OK',
-                                                                              style: GoogleFonts.vazirmatn(color: Colors.black),
-                                                                            ),
-                                                                            onPressed:
-                                                                                () {
-                                                                              setState(() {
-                                                                                medicalCondition = tempSelectedGoal;
-                                                                              });
-                                                                              Navigator.of(context).pop();
-                                                                            },
-                                                                          ),
-                                                                        ],
-                                                                      );
-                                                                    },
-                                                                  );
-                                                                },
-                                                              ).then(
-                                                                (value) {
-                                                                  setState(() {
-                                                                    medicalCondition;
-                                                                  });
-                                                                },
-                                                              );
-                                                            },
-                                                            child: Container(
-                                                              width: double
-                                                                  .infinity,
-                                                              height: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .height *
-                                                                  0.07,
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .symmetric(
-                                                                      vertical:
-                                                                          4,
-                                                                      horizontal:
-                                                                          16),
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                border: Border.all(
+                                                    return StatefulBuilder(
+                                                      builder:
+                                                          (context, setState) {
+                                                        return AlertDialog(
+                                                          shape: const RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
+                                                                      .circular(
+                                                                          10.0))),
+                                                          title: Text(
+                                                              'Gastrointestinal Conditions',
+                                                              style: GoogleFonts
+                                                                  .vazirmatn(
+                                                                      fontSize:
+                                                                          14.sp,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold)),
+                                                          content: SizedBox(
+                                                            width:
+                                                                screenWidth * 1,
+                                                            child: ListView(
+                                                              shrinkWrap: true,
+                                                              children: [
+                                                                RadioListTile<
+                                                                    String>(
+                                                                  activeColor:
+                                                                      const Color(
+                                                                          0xff3F710D),
+                                                                  title: Text(
+                                                                      'Irritable Bowel Syndrome',
+                                                                      style: GoogleFonts.vazirmatn(
+                                                                          fontSize:
+                                                                              10.sp)),
+                                                                  value:
+                                                                      'Irritable Bowel Syndrome',
+                                                                  groupValue:
+                                                                      tempSelectedGoal,
+                                                                  onChanged:
+                                                                      (String?
+                                                                          value) {
+                                                                    setState(
+                                                                        () {
+                                                                      tempSelectedGoal =
+                                                                          value!;
+                                                                    });
+                                                                  },
+                                                                ),
+                                                                RadioListTile<
+                                                                    String>(
+                                                                  activeColor:
+                                                                      const Color(
+                                                                          0xff3F710D),
+                                                                  title: Text(
+                                                                      'Gastro esophageal Reflux Disease',
+                                                                      style: GoogleFonts.vazirmatn(
+                                                                          fontSize:
+                                                                              10.sp)),
+                                                                  value:
+                                                                      'Gastro esophageal Reflux Disease',
+                                                                  groupValue:
+                                                                      tempSelectedGoal,
+                                                                  onChanged:
+                                                                      (String?
+                                                                          value) {
+                                                                    setState(
+                                                                        () {
+                                                                      tempSelectedGoal =
+                                                                          value!;
+                                                                    });
+                                                                  },
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          contentTextStyle:
+                                                              GoogleFonts.vazirmatn(
+                                                                  color: Colors
+                                                                      .black),
+                                                          actions: [
+                                                            TextButton(
+                                                              child: Text(
+                                                                'Cancel',
+                                                                style: GoogleFonts
+                                                                    .vazirmatn(
+                                                                        fontSize: 14
+                                                                            .sp,
+                                                                        color: Colors
+                                                                            .red),
+                                                              ),
+                                                              onPressed: () {
+                                                                Navigator.of(
+                                                                        context)
+                                                                    .pop();
+                                                              },
+                                                            ),
+                                                            TextButton(
+                                                              child: Text(
+                                                                'Ok',
+                                                                style: GoogleFonts.vazirmatn(
+                                                                    fontSize:
+                                                                        14.sp,
+                                                                    color: Colors
+                                                                        .black),
+                                                              ),
+                                                              onPressed: () {
+                                                                setState(() {
+                                                                  medicalCondition =
+                                                                      tempSelectedGoal;
+                                                                });
+                                                                Navigator.of(
+                                                                        context)
+                                                                    .pop();
+                                                              },
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                ).then(
+                                                  (value) {
+                                                    setState(() {
+                                                      medicalCondition;
+                                                    });
+                                                  },
+                                                );
+                                              },
+                                              child: Container(
+                                                width: double.infinity,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.07,
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 4,
+                                                        horizontal: 16),
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.grey),
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    medicalCondition == null
+                                                        ? Text(
+                                                            "Please select condition",
+                                                            style: GoogleFonts
+                                                                .vazirmatn(
                                                                     color: Colors
                                                                         .grey),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            30),
-                                                              ),
-                                                              child: Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .center,
-                                                                children: [
-                                                                  medicalCondition ==
-                                                                          null
-                                                                      ? Text(
-                                                                          "Please select condition",
-                                                                          style:
-                                                                              GoogleFonts.vazirmatn(color: Colors.grey),
-                                                                        )
-                                                                      : Text(
-                                                                          "$medicalCondition",
-                                                                          style:
-                                                                              GoogleFonts.vazirmatn(color: Colors.white),
-                                                                        ),
-                                                                  const Icon(
-                                                                    Icons
-                                                                        .keyboard_arrow_down_sharp,
-                                                                    color: Colors
-                                                                        .grey,
-                                                                  )
-                                                                ],
-                                                              ),
-                                                            ),
                                                           )
-                                                        : selectMedicalName ==
-                                                                "Pregnancy and Postpartum"
-                                                            ? InkWell(
-                                                                onTap: () {
-                                                                  showDialog(
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (BuildContext
-                                                                            context) {
-                                                                      String?
-                                                                          tempSelectedGoal =
-                                                                          medicalCondition;
+                                                        : Text(
+                                                            "$medicalCondition",
+                                                            style: GoogleFonts
+                                                                .vazirmatn(
+                                                                    color: Colors
+                                                                        .white),
+                                                          ),
+                                                    const Icon(
+                                                      Icons
+                                                          .keyboard_arrow_down_sharp,
+                                                      color: Colors.grey,
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                          : selectMedicalName ==
+                                                  "Kidney and Liver"
+                                              ? InkWell(
+                                                  onTap: () {
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        String?
+                                                            tempSelectedGoal =
+                                                            medicalCondition;
 
-                                                                      return StatefulBuilder(
-                                                                        builder:
-                                                                            (context,
-                                                                                setState) {
-                                                                          return AlertDialog(
-                                                                            title:
-                                                                                Text('Pregnancy and Postpartum', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
-                                                                            content:
-                                                                                SizedBox(
-                                                                              width: screenWidth,
-                                                                              child: ListView(
-                                                                                shrinkWrap: true,
-                                                                                children: [
-                                                                                  RadioListTile<String>(
-                                                                                    activeColor: const Color(0xff3F710D),
-                                                                                    title: Text('Currently Pregnant', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                                    value: 'Currently Pregnant',
-                                                                                    groupValue: tempSelectedGoal,
-                                                                                    onChanged: (String? value) {
-                                                                                      setState(() {
-                                                                                        tempSelectedGoal = value!;
-                                                                                      });
-                                                                                    },
-                                                                                  ),
-                                                                                  RadioListTile<String>(
-                                                                                    activeColor: const Color(0xff3F710D),
-                                                                                    title: Text('Postpartum Recovery', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                                    value: 'Postpartum Recovery',
-                                                                                    groupValue: tempSelectedGoal,
-                                                                                    onChanged: (String? value) {
-                                                                                      setState(() {
-                                                                                        tempSelectedGoal = value!;
-                                                                                      });
-                                                                                    },
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ),
-                                                                            contentTextStyle:
-                                                                                GoogleFonts.vazirmatn(color: Colors.black),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                child: Text(
-                                                                                  'CANCEL',
-                                                                                  style: GoogleFonts.vazirmatn(color: Colors.black),
-                                                                                ),
-                                                                                onPressed: () {
-                                                                                  Navigator.of(context).pop();
-                                                                                },
-                                                                              ),
-                                                                              TextButton(
-                                                                                child: Text(
-                                                                                  'OK',
-                                                                                  style: GoogleFonts.vazirmatn(color: Colors.black),
-                                                                                ),
-                                                                                onPressed: () {
-                                                                                  setState(() {
-                                                                                    medicalCondition = tempSelectedGoal;
-                                                                                  });
-                                                                                  Navigator.of(context).pop();
-                                                                                },
-                                                                              ),
-                                                                            ],
-                                                                          );
-                                                                        },
-                                                                      );
-                                                                    },
-                                                                  ).then(
-                                                                    (value) {
-                                                                      setState(
-                                                                          () {
-                                                                        medicalCondition;
-                                                                      });
-                                                                    },
-                                                                  );
-                                                                },
-                                                                child:
-                                                                    Container(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  height: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .height *
-                                                                      0.07,
-                                                                  padding: const EdgeInsets
-                                                                      .symmetric(
-                                                                      vertical:
-                                                                          4,
-                                                                      horizontal:
-                                                                          16),
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    border: Border.all(
+                                                        return StatefulBuilder(
+                                                          builder: (context,
+                                                              setState) {
+                                                            return AlertDialog(
+                                                              shape: const RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius.all(
+                                                                          Radius.circular(
+                                                                              10.0))),
+                                                              title: Text(
+                                                                  'Kidney and Liver Conditions',
+                                                                  style: GoogleFonts.vazirmatn(
+                                                                      fontSize:
+                                                                          14.sp,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold)),
+                                                              content: SizedBox(
+                                                                width:
+                                                                    screenWidth *
+                                                                        1,
+                                                                child: ListView(
+                                                                  shrinkWrap:
+                                                                      true,
+                                                                  children: [
+                                                                    RadioListTile<
+                                                                        String>(
+                                                                      activeColor:
+                                                                          const Color(
+                                                                              0xff3F710D),
+                                                                      title: Text(
+                                                                          'Chronic Kidney Disease',
+                                                                          style:
+                                                                              GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                      value:
+                                                                          'Chronic Kidney Disease',
+                                                                      groupValue:
+                                                                          tempSelectedGoal,
+                                                                      onChanged:
+                                                                          (String?
+                                                                              value) {
+                                                                        setState(
+                                                                            () {
+                                                                          tempSelectedGoal =
+                                                                              value!;
+                                                                        });
+                                                                      },
+                                                                    ),
+                                                                    RadioListTile<
+                                                                        String>(
+                                                                      activeColor:
+                                                                          const Color(
+                                                                              0xff3F710D),
+                                                                      title: Text(
+                                                                          'Liver Disease',
+                                                                          style:
+                                                                              GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                      value:
+                                                                          'Liver Disease',
+                                                                      groupValue:
+                                                                          tempSelectedGoal,
+                                                                      onChanged:
+                                                                          (String?
+                                                                              value) {
+                                                                        setState(
+                                                                            () {
+                                                                          tempSelectedGoal =
+                                                                              value!;
+                                                                        });
+                                                                      },
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              contentTextStyle:
+                                                                  GoogleFonts.vazirmatn(
+                                                                      color: Colors
+                                                                          .black),
+                                                              actions: [
+                                                                TextButton(
+                                                                  child: Text(
+                                                                    'Cancel',
+                                                                    style: GoogleFonts.vazirmatn(
+                                                                        fontSize: 14
+                                                                            .sp,
+                                                                        color: Colors
+                                                                            .red),
+                                                                  ),
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator.of(
+                                                                            context)
+                                                                        .pop();
+                                                                  },
+                                                                ),
+                                                                TextButton(
+                                                                  child: Text(
+                                                                    'Ok',
+                                                                    style: GoogleFonts.vazirmatn(
+                                                                        fontSize: 14
+                                                                            .sp,
+                                                                        color: Colors
+                                                                            .black),
+                                                                  ),
+                                                                  onPressed:
+                                                                      () {
+                                                                    setState(
+                                                                        () {
+                                                                      medicalCondition =
+                                                                          tempSelectedGoal;
+                                                                    });
+                                                                    Navigator.of(
+                                                                            context)
+                                                                        .pop();
+                                                                  },
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                    ).then(
+                                                      (value) {
+                                                        setState(() {
+                                                          medicalCondition;
+                                                        });
+                                                      },
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.07,
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        vertical: 4,
+                                                        horizontal: 16),
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                          color: Colors.grey),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              30),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        medicalCondition == null
+                                                            ? Text(
+                                                                "Please select condition",
+                                                                style: GoogleFonts
+                                                                    .vazirmatn(
                                                                         color: Colors
                                                                             .grey),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            30),
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      medicalCondition ==
-                                                                              null
-                                                                          ? Text(
-                                                                              "Please select condition",
-                                                                              style: GoogleFonts.vazirmatn(color: Colors.grey),
-                                                                            )
-                                                                          : Text(
-                                                                              "$medicalCondition",
-                                                                              style: GoogleFonts.vazirmatn(color: Colors.white),
-                                                                            ),
-                                                                      const Icon(
-                                                                        Icons
-                                                                            .keyboard_arrow_down_sharp,
-                                                                        color: Colors
-                                                                            .grey,
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                ),
                                                               )
-                                                            : selectMedicalName ==
-                                                                    "Other Relevant"
-                                                                ? InkWell(
-                                                                    onTap: () {
-                                                                      showDialog(
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (BuildContext
-                                                                                context) {
-                                                                          String?
-                                                                              tempSelectedGoal =
-                                                                              medicalCondition;
+                                                            : Text(
+                                                                "$medicalCondition",
+                                                                style: GoogleFonts
+                                                                    .vazirmatn(
+                                                                        color: Colors
+                                                                            .white),
+                                                              ),
+                                                        const Icon(
+                                                          Icons
+                                                              .keyboard_arrow_down_sharp,
+                                                          color: Colors.grey,
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                )
+                                              : selectMedicalName ==
+                                                      "Immune System"
+                                                  ? InkWell(
+                                                      onTap: () {
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (BuildContext
+                                                              context) {
+                                                            String?
+                                                                tempSelectedGoal =
+                                                                medicalCondition;
 
-                                                                          return StatefulBuilder(
-                                                                            builder:
-                                                                                (context, setState) {
-                                                                              return AlertDialog(
-                                                                                title: Text('Other Relevant Conditions', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
-                                                                                content: SizedBox(
-                                                                                  width: screenWidth,
-                                                                                  child: ListView(
-                                                                                    shrinkWrap: true,
-                                                                                    children: [
-                                                                                      RadioListTile<String>(
-                                                                                        activeColor: const Color(0xff3F710D),
-                                                                                        title: Text('Obesity', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                                        value: 'Obesity',
-                                                                                        groupValue: tempSelectedGoal,
-                                                                                        onChanged: (String? value) {
-                                                                                          setState(() {
-                                                                                            tempSelectedGoal = value!;
-                                                                                          });
-                                                                                        },
-                                                                                      ),
-                                                                                      RadioListTile<String>(
-                                                                                        activeColor: const Color(0xff3F710D),
-                                                                                        title: Text('Eating Disorders', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                                        value: 'Eating Disorders',
-                                                                                        groupValue: tempSelectedGoal,
-                                                                                        onChanged: (String? value) {
-                                                                                          setState(() {
-                                                                                            tempSelectedGoal = value!;
-                                                                                          });
-                                                                                        },
-                                                                                      ),
-                                                                                      RadioListTile<String>(
-                                                                                        activeColor: const Color(0xff3F710D),
-                                                                                        title: Text('Chronic Fatigue Syndrome', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                                        value: 'Chronic Fatigue Syndrome',
-                                                                                        groupValue: tempSelectedGoal,
-                                                                                        onChanged: (String? value) {
-                                                                                          setState(() {
-                                                                                            tempSelectedGoal = value!;
-                                                                                          });
-                                                                                        },
-                                                                                      ),
-                                                                                      RadioListTile<String>(
-                                                                                        activeColor: const Color(0xff3F710D),
-                                                                                        title: Text('Blood Clotting Disorders', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                                        value: 'Blood Clotting Disorders',
-                                                                                        groupValue: tempSelectedGoal,
-                                                                                        onChanged: (String? value) {
-                                                                                          setState(() {
-                                                                                            tempSelectedGoal = value!;
-                                                                                          });
-                                                                                        },
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                ),
-                                                                                contentTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                    child: Text(
-                                                                                      'CANCEL',
-                                                                                      style: GoogleFonts.vazirmatn(color: Colors.black),
-                                                                                    ),
-                                                                                    onPressed: () {
-                                                                                      Navigator.of(context).pop();
-                                                                                    },
-                                                                                  ),
-                                                                                  TextButton(
-                                                                                    child: Text(
-                                                                                      'OK',
-                                                                                      style: GoogleFonts.vazirmatn(color: Colors.black),
-                                                                                    ),
-                                                                                    onPressed: () {
-                                                                                      setState(() {
-                                                                                        medicalCondition = tempSelectedGoal;
-                                                                                      });
-                                                                                      Navigator.of(context).pop();
-                                                                                    },
-                                                                                  ),
-                                                                                ],
-                                                                              );
-                                                                            },
-                                                                          );
-                                                                        },
-                                                                      ).then(
-                                                                        (value) {
-                                                                          setState(
-                                                                              () {
-                                                                            medicalCondition;
-                                                                          });
-                                                                        },
-                                                                      );
-                                                                    },
+                                                            return StatefulBuilder(
+                                                              builder: (context,
+                                                                  setState) {
+                                                                return AlertDialog(
+                                                                  shape: const RoundedRectangleBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.all(
+                                                                              Radius.circular(10.0))),
+                                                                  title: Text(
+                                                                      'Immune System Conditions',
+                                                                      style: GoogleFonts.vazirmatn(
+                                                                          fontSize: 14
+                                                                              .sp,
+                                                                          fontWeight:
+                                                                              FontWeight.bold)),
+                                                                  content:
+                                                                      SizedBox(
+                                                                    width:
+                                                                        screenWidth *
+                                                                            1,
                                                                     child:
-                                                                        Container(
-                                                                      width: double
-                                                                          .infinity,
-                                                                      height: MediaQuery.of(context)
-                                                                              .size
-                                                                              .height *
-                                                                          0.07,
-                                                                      padding: const EdgeInsets
-                                                                          .symmetric(
-                                                                          vertical:
-                                                                              4,
-                                                                          horizontal:
-                                                                              16),
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        border: Border.all(
+                                                                        ListView(
+                                                                      shrinkWrap:
+                                                                          true,
+                                                                      children: [
+                                                                        RadioListTile<
+                                                                            String>(
+                                                                          activeColor:
+                                                                              const Color(0xff3F710D),
+                                                                          title: Text(
+                                                                              'Chronic Kidney Disease',
+                                                                              style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                          value:
+                                                                              'Chronic Kidney Disease',
+                                                                          groupValue:
+                                                                              tempSelectedGoal,
+                                                                          onChanged:
+                                                                              (String? value) {
+                                                                            setState(() {
+                                                                              tempSelectedGoal = value!;
+                                                                            });
+                                                                          },
+                                                                        ),
+                                                                        RadioListTile<
+                                                                            String>(
+                                                                          activeColor:
+                                                                              const Color(0xff3F710D),
+                                                                          title: Text(
+                                                                              'HIV/AIDS',
+                                                                              style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                          value:
+                                                                              'HIV/AIDS',
+                                                                          groupValue:
+                                                                              tempSelectedGoal,
+                                                                          onChanged:
+                                                                              (String? value) {
+                                                                            setState(() {
+                                                                              tempSelectedGoal = value!;
+                                                                            });
+                                                                          },
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  contentTextStyle:
+                                                                      GoogleFonts.vazirmatn(
+                                                                          color:
+                                                                              Colors.black),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      child:
+                                                                          Text(
+                                                                        'Cancel',
+                                                                        style: GoogleFonts.vazirmatn(
+                                                                            color:
+                                                                                Colors.red,
+                                                                            fontSize: 14.sp),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        Navigator.of(context)
+                                                                            .pop();
+                                                                      },
+                                                                    ),
+                                                                    TextButton(
+                                                                      child:
+                                                                          Text(
+                                                                        'Ok',
+                                                                        style: GoogleFonts.vazirmatn(
+                                                                            color:
+                                                                                Colors.black,
+                                                                            fontSize: 14.sp),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          medicalCondition =
+                                                                              tempSelectedGoal;
+                                                                        });
+                                                                        Navigator.of(context)
+                                                                            .pop();
+                                                                      },
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ).then(
+                                                          (value) {
+                                                            setState(() {
+                                                              medicalCondition;
+                                                            });
+                                                          },
+                                                        );
+                                                      },
+                                                      child: Container(
+                                                        width: double.infinity,
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            0.07,
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                vertical: 4,
+                                                                horizontal: 16),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          border: Border.all(
+                                                              color:
+                                                                  Colors.grey),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(30),
+                                                        ),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            medicalCondition ==
+                                                                    null
+                                                                ? Text(
+                                                                    "Please select condition",
+                                                                    style: GoogleFonts
+                                                                        .vazirmatn(
                                                                             color:
                                                                                 Colors.grey),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(30),
-                                                                      ),
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.center,
-                                                                        children: [
-                                                                          medicalCondition == null
-                                                                              ? Text(
-                                                                                  "Please select condition",
-                                                                                  style: GoogleFonts.vazirmatn(color: Colors.grey),
-                                                                                )
-                                                                              : Text(
-                                                                                  "$medicalCondition",
-                                                                                  style: GoogleFonts.vazirmatn(color: Colors.white),
-                                                                                ),
-                                                                          const Icon(
-                                                                            Icons.keyboard_arrow_down_sharp,
-                                                                            color:
-                                                                                Colors.grey,
-                                                                          )
-                                                                        ],
-                                                                      ),
-                                                                    ),
                                                                   )
-                                                                : selectMedicalName ==
-                                                                        "Metabolic and Endocrine"
-                                                                    ? InkWell(
-                                                                        onTap:
-                                                                            () {
-                                                                          showDialog(
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (BuildContext context) {
-                                                                              String? tempSelectedGoal = medicalCondition;
+                                                                : Text(
+                                                                    "$medicalCondition",
+                                                                    style: GoogleFonts
+                                                                        .vazirmatn(
+                                                                            color:
+                                                                                Colors.white),
+                                                                  ),
+                                                            const Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_down_sharp,
+                                                              color:
+                                                                  Colors.grey,
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    )
+                                                  : selectMedicalName ==
+                                                          "Cancer"
+                                                      ? InkWell(
+                                                          onTap: () {
+                                                            showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (BuildContext
+                                                                      context) {
+                                                                String?
+                                                                    tempSelectedGoal =
+                                                                    medicalCondition;
 
-                                                                              return StatefulBuilder(
-                                                                                builder: (context, setState) {
-                                                                                  return AlertDialog(
-                                                                                    title: Text('Metabolic and Endocrine Conditions', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
-                                                                                    content: SizedBox(
-                                                                                      width: screenWidth,
-                                                                                      child: ListView(
-                                                                                        shrinkWrap: true,
-                                                                                        children: [
-                                                                                          RadioListTile<String>(
-                                                                                            activeColor: const Color(0xff3F710D),
-                                                                                            title: Text('Diabetes', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                                            value: 'Diabetes',
-                                                                                            groupValue: tempSelectedGoal,
-                                                                                            onChanged: (String? value) {
-                                                                                              setState(() {
-                                                                                                tempSelectedGoal = value!;
-                                                                                              });
-                                                                                            },
-                                                                                          ),
-                                                                                          RadioListTile<String>(
-                                                                                            activeColor: const Color(0xff3F710D),
-                                                                                            title: Text('Hypoglycemia', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                                            value: 'Hypoglycemia',
-                                                                                            groupValue: tempSelectedGoal,
-                                                                                            onChanged: (String? value) {
-                                                                                              setState(() {
-                                                                                                tempSelectedGoal = value!;
-                                                                                              });
-                                                                                            },
-                                                                                          ),
-                                                                                          RadioListTile<String>(
-                                                                                            activeColor: const Color(0xff3F710D),
-                                                                                            title: Text('Hyperthyroidism', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                                            value: 'Hyperthyroidism',
-                                                                                            groupValue: tempSelectedGoal,
-                                                                                            onChanged: (String? value) {
-                                                                                              setState(() {
-                                                                                                tempSelectedGoal = value!;
-                                                                                              });
-                                                                                            },
-                                                                                          ),
-                                                                                          RadioListTile<String>(
-                                                                                            activeColor: const Color(0xff3F710D),
-                                                                                            title: Text('Hypothyroidism', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                                            value: 'Hypothyroidism',
-                                                                                            groupValue: tempSelectedGoal,
-                                                                                            onChanged: (String? value) {
-                                                                                              setState(() {
-                                                                                                tempSelectedGoal = value!;
-                                                                                              });
-                                                                                            },
-                                                                                          ),
-                                                                                          RadioListTile<String>(
-                                                                                            activeColor: const Color(0xff3F710D),
-                                                                                            title: Text('Metabolic Syndrome', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
-                                                                                            value: 'Metabolic Syndrome',
-                                                                                            groupValue: tempSelectedGoal,
-                                                                                            onChanged: (String? value) {
-                                                                                              setState(() {
-                                                                                                tempSelectedGoal = value!;
-                                                                                              });
-                                                                                            },
-                                                                                          ),
-                                                                                        ],
-                                                                                      ),
-                                                                                    ),
-                                                                                    contentTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        child: Text(
-                                                                                          'CANCEL',
-                                                                                          style: GoogleFonts.vazirmatn(color: Colors.black),
-                                                                                        ),
-                                                                                        onPressed: () {
-                                                                                          Navigator.of(context).pop();
-                                                                                        },
-                                                                                      ),
-                                                                                      TextButton(
-                                                                                        child: Text(
-                                                                                          'OK',
-                                                                                          style: GoogleFonts.vazirmatn(color: Colors.black),
-                                                                                        ),
-                                                                                        onPressed: () {
-                                                                                          setState(() {
-                                                                                            medicalCondition = tempSelectedGoal;
-                                                                                          });
-                                                                                          Navigator.of(context).pop();
-                                                                                        },
-                                                                                      ),
-                                                                                    ],
-                                                                                  );
-                                                                                },
-                                                                              );
-                                                                            },
-                                                                          ).then(
-                                                                            (value) {
-                                                                              setState(() {
-                                                                                medicalCondition;
-                                                                              });
-                                                                            },
-                                                                          );
-                                                                        },
+                                                                return StatefulBuilder(
+                                                                  builder: (context,
+                                                                      setState) {
+                                                                    return AlertDialog(
+                                                                      shape: const RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.all(Radius.circular(10.0))),
+                                                                      title: Text(
+                                                                          'Cancer',
+                                                                          style: GoogleFonts.vazirmatn(
+                                                                              fontSize: 14.sp,
+                                                                              fontWeight: FontWeight.bold)),
+                                                                      content:
+                                                                          SizedBox(
+                                                                        width:
+                                                                            screenWidth *
+                                                                                1,
                                                                         child:
-                                                                            Container(
-                                                                          width:
-                                                                              double.infinity,
-                                                                          height:
-                                                                              MediaQuery.of(context).size.height * 0.07,
-                                                                          padding: const EdgeInsets
-                                                                              .symmetric(
-                                                                              vertical: 4,
-                                                                              horizontal: 16),
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            border:
-                                                                                Border.all(color: Colors.grey),
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(30),
-                                                                          ),
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.spaceBetween,
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.center,
-                                                                            children: [
-                                                                              medicalCondition == null
-                                                                                  ? Text(
-                                                                                      "Please select condition",
-                                                                                      style: GoogleFonts.vazirmatn(color: Colors.grey),
-                                                                                    )
-                                                                                  : Text(
-                                                                                      "$medicalCondition",
-                                                                                      style: GoogleFonts.vazirmatn(color: Colors.white),
-                                                                                    ),
-                                                                              const Icon(
-                                                                                Icons.keyboard_arrow_down_sharp,
-                                                                                color: Colors.grey,
-                                                                              )
-                                                                            ],
-                                                                          ),
+                                                                            ListView(
+                                                                          shrinkWrap:
+                                                                              true,
+                                                                          children: [
+                                                                            RadioListTile<String>(
+                                                                              activeColor: const Color(0xff3F710D),
+                                                                              title: Text('History of Cancer', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                              value: 'History of Cancer',
+                                                                              groupValue: tempSelectedGoal,
+                                                                              onChanged: (String? value) {
+                                                                                setState(() {
+                                                                                  tempSelectedGoal = value!;
+                                                                                });
+                                                                              },
+                                                                            ),
+                                                                          ],
                                                                         ),
+                                                                      ),
+                                                                      contentTextStyle:
+                                                                          GoogleFonts.vazirmatn(
+                                                                              color: Colors.black),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          child:
+                                                                              Text(
+                                                                            'Cancel',
+                                                                            style:
+                                                                                GoogleFonts.vazirmatn(color: Colors.red, fontSize: 14.sp),
+                                                                          ),
+                                                                          onPressed:
+                                                                              () {
+                                                                            Navigator.of(context).pop();
+                                                                          },
+                                                                        ),
+                                                                        TextButton(
+                                                                          child:
+                                                                              Text(
+                                                                            'Ok',
+                                                                            style:
+                                                                                GoogleFonts.vazirmatn(color: Colors.black, fontSize: 14.sp),
+                                                                          ),
+                                                                          onPressed:
+                                                                              () {
+                                                                            setState(() {
+                                                                              medicalCondition = tempSelectedGoal;
+                                                                            });
+                                                                            Navigator.of(context).pop();
+                                                                          },
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                );
+                                                              },
+                                                            ).then(
+                                                              (value) {
+                                                                setState(() {
+                                                                  medicalCondition;
+                                                                });
+                                                              },
+                                                            );
+                                                          },
+                                                          child: Container(
+                                                            width:
+                                                                double.infinity,
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                0.07,
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .symmetric(
+                                                                    vertical: 4,
+                                                                    horizontal:
+                                                                        16),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                      .grey),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          30),
+                                                            ),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                medicalCondition ==
+                                                                        null
+                                                                    ? Text(
+                                                                        "Please select condition",
+                                                                        style: GoogleFonts.vazirmatn(
+                                                                            color:
+                                                                                Colors.grey),
                                                                       )
-                                                                    : const SizedBox(),
-                const Spacer(),
-                AppButton(
-                  text: "Submit",
-                  onPressed: () async {
-                    if (selectMedicalName == null) {
-                      showSnackBar(context, "Please select medical");
-                    } else if (selectMedicalName == "No,I’m fine" &&
-                        medicalCondition == null) {
-                      print(selectMedicalName);
-                      print("medicalCondition");
+                                                                    : Text(
+                                                                        "$medicalCondition",
+                                                                        style: GoogleFonts.vazirmatn(
+                                                                            color:
+                                                                                Colors.white),
+                                                                      ),
+                                                                const Icon(
+                                                                  Icons
+                                                                      .keyboard_arrow_down_sharp,
+                                                                  color: Colors
+                                                                      .grey,
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        )
+                                                      : selectMedicalName ==
+                                                              "Pregnancy and Postpartum"
+                                                          ? InkWell(
+                                                              onTap: () {
+                                                                showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (BuildContext
+                                                                          context) {
+                                                                    String?
+                                                                        tempSelectedGoal =
+                                                                        medicalCondition;
 
-                      Nav.push(
-                          context,
-                          ChoosePlanScreen(
-                              gender: widget.gender,
-                              heightUnit: widget.heightUnit,
-                              heightValue: widget.heightValue,
-                              weightUnit: widget.weightUnit,
-                              weightValue: widget.weightValue,
-                              age: widget.age,
-                              goal: widget.goal,
-                              sleepHours: widget.sleepHours,
-                              mealFrequency: widget.mealFrequency,
-                              hydrationDaily: widget.hydrationDaily,
-                              targetWeight: widget.targetWeight,
-                              dietPlan: widget.dietPlan,
-                              selectMedicalName: selectMedicalName!,
-                              medicalCondition: ""));
-                    } else if (selectMedicalName != null &&
-                        medicalCondition == null) {
-                      showSnackBar(context, "Please select condition");
-                    } else {
-                      Nav.push(
-                          context,
-                          ChoosePlanScreen(
-                              gender: widget.gender,
-                              heightUnit: widget.heightUnit,
-                              heightValue: widget.heightValue,
-                              weightUnit: widget.weightUnit,
-                              weightValue: widget.weightValue,
-                              age: widget.age,
-                              goal: widget.goal,
-                              sleepHours: widget.sleepHours,
-                              mealFrequency: widget.mealFrequency,
-                              hydrationDaily: widget.hydrationDaily,
-                              targetWeight: widget.targetWeight,
-                              dietPlan: widget.dietPlan,
-                              selectMedicalName: selectMedicalName!,
-                              medicalCondition: medicalCondition!));
+                                                                    return StatefulBuilder(
+                                                                      builder:
+                                                                          (context,
+                                                                              setState) {
+                                                                        return AlertDialog(
+                                                                          shape:
+                                                                              const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                                                                          title: Text(
+                                                                              'Pregnancy and Postpartum',
+                                                                              style: GoogleFonts.vazirmatn(fontSize: 14.sp, fontWeight: FontWeight.bold)),
+                                                                          content:
+                                                                              SizedBox(
+                                                                            width:
+                                                                                screenWidth * 1,
+                                                                            child:
+                                                                                ListView(
+                                                                              shrinkWrap: true,
+                                                                              children: [
+                                                                                RadioListTile<String>(
+                                                                                  activeColor: const Color(0xff3F710D),
+                                                                                  title: Text('Currently Pregnant', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                  value: 'Currently Pregnant',
+                                                                                  groupValue: tempSelectedGoal,
+                                                                                  onChanged: (String? value) {
+                                                                                    setState(() {
+                                                                                      tempSelectedGoal = value!;
+                                                                                    });
+                                                                                  },
+                                                                                ),
+                                                                                RadioListTile<String>(
+                                                                                  activeColor: const Color(0xff3F710D),
+                                                                                  title: Text('Postpartum Recovery', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                  value: 'Postpartum Recovery',
+                                                                                  groupValue: tempSelectedGoal,
+                                                                                  onChanged: (String? value) {
+                                                                                    setState(() {
+                                                                                      tempSelectedGoal = value!;
+                                                                                    });
+                                                                                  },
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                          contentTextStyle:
+                                                                              GoogleFonts.vazirmatn(color: Colors.black),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              child: Text(
+                                                                                'Cancel',
+                                                                                style: GoogleFonts.vazirmatn(color: Colors.red, fontSize: 14.sp),
+                                                                              ),
+                                                                              onPressed: () {
+                                                                                Navigator.of(context).pop();
+                                                                              },
+                                                                            ),
+                                                                            TextButton(
+                                                                              child: Text(
+                                                                                'Ok',
+                                                                                style: GoogleFonts.vazirmatn(color: Colors.black, fontSize: 14.sp),
+                                                                              ),
+                                                                              onPressed: () {
+                                                                                setState(() {
+                                                                                  medicalCondition = tempSelectedGoal;
+                                                                                });
+                                                                                Navigator.of(context).pop();
+                                                                              },
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    );
+                                                                  },
+                                                                ).then(
+                                                                  (value) {
+                                                                    setState(
+                                                                        () {
+                                                                      medicalCondition;
+                                                                    });
+                                                                  },
+                                                                );
+                                                              },
+                                                              child: Container(
+                                                                width: double
+                                                                    .infinity,
+                                                                height: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .height *
+                                                                    0.07,
+                                                                padding: const EdgeInsets
+                                                                    .symmetric(
+                                                                    vertical: 4,
+                                                                    horizontal:
+                                                                        16),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  border: Border.all(
+                                                                      color: Colors
+                                                                          .grey),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              30),
+                                                                ),
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    medicalCondition ==
+                                                                            null
+                                                                        ? Text(
+                                                                            "Please select condition",
+                                                                            style:
+                                                                                GoogleFonts.vazirmatn(color: Colors.grey),
+                                                                          )
+                                                                        : Text(
+                                                                            "$medicalCondition",
+                                                                            style:
+                                                                                GoogleFonts.vazirmatn(color: Colors.white),
+                                                                          ),
+                                                                    const Icon(
+                                                                      Icons
+                                                                          .keyboard_arrow_down_sharp,
+                                                                      color: Colors
+                                                                          .grey,
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            )
+                                                          : selectMedicalName ==
+                                                                  "Other Relevant"
+                                                              ? InkWell(
+                                                                  onTap: () {
+                                                                    showDialog(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (BuildContext
+                                                                              context) {
+                                                                        String?
+                                                                            tempSelectedGoal =
+                                                                            medicalCondition;
 
-                      print(selectMedicalName);
-                      print(medicalCondition);
-                    }
+                                                                        return StatefulBuilder(
+                                                                          builder:
+                                                                              (context, setState) {
+                                                                            return AlertDialog(
+                                                                              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                                                                              title: Text('Other Relevant Conditions', style: GoogleFonts.vazirmatn(fontSize: 14.sp, fontWeight: FontWeight.bold)),
+                                                                              content: SizedBox(
+                                                                                width: screenWidth * 1,
+                                                                                child: ListView(
+                                                                                  shrinkWrap: true,
+                                                                                  children: [
+                                                                                    RadioListTile<String>(
+                                                                                      activeColor: const Color(0xff3F710D),
+                                                                                      title: Text('Obesity', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                      value: 'Obesity',
+                                                                                      groupValue: tempSelectedGoal,
+                                                                                      onChanged: (String? value) {
+                                                                                        setState(() {
+                                                                                          tempSelectedGoal = value!;
+                                                                                        });
+                                                                                      },
+                                                                                    ),
+                                                                                    RadioListTile<String>(
+                                                                                      activeColor: const Color(0xff3F710D),
+                                                                                      title: Text('Eating Disorders', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                      value: 'Eating Disorders',
+                                                                                      groupValue: tempSelectedGoal,
+                                                                                      onChanged: (String? value) {
+                                                                                        setState(() {
+                                                                                          tempSelectedGoal = value!;
+                                                                                        });
+                                                                                      },
+                                                                                    ),
+                                                                                    RadioListTile<String>(
+                                                                                      activeColor: const Color(0xff3F710D),
+                                                                                      title: Text('Chronic Fatigue Syndrome', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                      value: 'Chronic Fatigue Syndrome',
+                                                                                      groupValue: tempSelectedGoal,
+                                                                                      onChanged: (String? value) {
+                                                                                        setState(() {
+                                                                                          tempSelectedGoal = value!;
+                                                                                        });
+                                                                                      },
+                                                                                    ),
+                                                                                    RadioListTile<String>(
+                                                                                      activeColor: const Color(0xff3F710D),
+                                                                                      title: Text('Blood Clotting Disorders', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                      value: 'Blood Clotting Disorders',
+                                                                                      groupValue: tempSelectedGoal,
+                                                                                      onChanged: (String? value) {
+                                                                                        setState(() {
+                                                                                          tempSelectedGoal = value!;
+                                                                                        });
+                                                                                      },
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              contentTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
+                                                                              actions: [
+                                                                                TextButton(
+                                                                                  child: Text(
+                                                                                    'Cancel',
+                                                                                    style: GoogleFonts.vazirmatn(color: Colors.red, fontSize: 14.sp),
+                                                                                  ),
+                                                                                  onPressed: () {
+                                                                                    Navigator.of(context).pop();
+                                                                                  },
+                                                                                ),
+                                                                                TextButton(
+                                                                                  child: Text(
+                                                                                    'Ok',
+                                                                                    style: GoogleFonts.vazirmatn(color: Colors.black, fontSize: 14.sp),
+                                                                                  ),
+                                                                                  onPressed: () {
+                                                                                    setState(() {
+                                                                                      medicalCondition = tempSelectedGoal;
+                                                                                    });
+                                                                                    Navigator.of(context).pop();
+                                                                                  },
+                                                                                ),
+                                                                              ],
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      },
+                                                                    ).then(
+                                                                      (value) {
+                                                                        setState(
+                                                                            () {
+                                                                          medicalCondition;
+                                                                        });
+                                                                      },
+                                                                    );
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    width: double
+                                                                        .infinity,
+                                                                    height: MediaQuery.of(context)
+                                                                            .size
+                                                                            .height *
+                                                                        0.07,
+                                                                    padding: const EdgeInsets
+                                                                        .symmetric(
+                                                                        vertical:
+                                                                            4,
+                                                                        horizontal:
+                                                                            16),
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      border: Border.all(
+                                                                          color:
+                                                                              Colors.grey),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              30),
+                                                                    ),
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        medicalCondition ==
+                                                                                null
+                                                                            ? Text(
+                                                                                "Please select condition",
+                                                                                style: GoogleFonts.vazirmatn(color: Colors.grey),
+                                                                              )
+                                                                            : Text(
+                                                                                "$medicalCondition",
+                                                                                style: GoogleFonts.vazirmatn(color: Colors.white),
+                                                                              ),
+                                                                        const Icon(
+                                                                          Icons
+                                                                              .keyboard_arrow_down_sharp,
+                                                                          color:
+                                                                              Colors.grey,
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              : selectMedicalName ==
+                                                                      "Metabolic and Endocrine"
+                                                                  ? InkWell(
+                                                                      onTap:
+                                                                          () {
+                                                                        showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (BuildContext context) {
+                                                                            String?
+                                                                                tempSelectedGoal =
+                                                                                medicalCondition;
 
-                    // print(selectMedicalName);
-                    // print(medicalCondition);
-                    // Nav.push(context, const ChoosePlanScreen());
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
-            ),
+                                                                            return StatefulBuilder(
+                                                                              builder: (context, setState) {
+                                                                                return AlertDialog(
+                                                                                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                                                                                  title: Text('Metabolic and Endocrine Conditions', style: GoogleFonts.vazirmatn(fontSize: 14.sp, fontWeight: FontWeight.bold)),
+                                                                                  content: SizedBox(
+                                                                                    width: screenWidth * 1,
+                                                                                    child: ListView(
+                                                                                      shrinkWrap: true,
+                                                                                      children: [
+                                                                                        RadioListTile<String>(
+                                                                                          activeColor: const Color(0xff3F710D),
+                                                                                          title: Text('Diabetes', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                          value: 'Diabetes',
+                                                                                          groupValue: tempSelectedGoal,
+                                                                                          onChanged: (String? value) {
+                                                                                            setState(() {
+                                                                                              tempSelectedGoal = value!;
+                                                                                            });
+                                                                                          },
+                                                                                        ),
+                                                                                        RadioListTile<String>(
+                                                                                          activeColor: const Color(0xff3F710D),
+                                                                                          title: Text('Hypoglycemia', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                          value: 'Hypoglycemia',
+                                                                                          groupValue: tempSelectedGoal,
+                                                                                          onChanged: (String? value) {
+                                                                                            setState(() {
+                                                                                              tempSelectedGoal = value!;
+                                                                                            });
+                                                                                          },
+                                                                                        ),
+                                                                                        RadioListTile<String>(
+                                                                                          activeColor: const Color(0xff3F710D),
+                                                                                          title: Text('Hyperthyroidism', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                          value: 'Hyperthyroidism',
+                                                                                          groupValue: tempSelectedGoal,
+                                                                                          onChanged: (String? value) {
+                                                                                            setState(() {
+                                                                                              tempSelectedGoal = value!;
+                                                                                            });
+                                                                                          },
+                                                                                        ),
+                                                                                        RadioListTile<String>(
+                                                                                          activeColor: const Color(0xff3F710D),
+                                                                                          title: Text('Hypothyroidism', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                          value: 'Hypothyroidism',
+                                                                                          groupValue: tempSelectedGoal,
+                                                                                          onChanged: (String? value) {
+                                                                                            setState(() {
+                                                                                              tempSelectedGoal = value!;
+                                                                                            });
+                                                                                          },
+                                                                                        ),
+                                                                                        RadioListTile<String>(
+                                                                                          activeColor: const Color(0xff3F710D),
+                                                                                          title: Text('Metabolic Syndrome', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                          value: 'Metabolic Syndrome',
+                                                                                          groupValue: tempSelectedGoal,
+                                                                                          onChanged: (String? value) {
+                                                                                            setState(() {
+                                                                                              tempSelectedGoal = value!;
+                                                                                            });
+                                                                                          },
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                  ),
+                                                                                  contentTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
+                                                                                  actions: [
+                                                                                    TextButton(
+                                                                                      child: Text(
+                                                                                        'Cancel',
+                                                                                        style: GoogleFonts.vazirmatn(color: Colors.red, fontSize: 14.sp),
+                                                                                      ),
+                                                                                      onPressed: () {
+                                                                                        Navigator.of(context).pop();
+                                                                                      },
+                                                                                    ),
+                                                                                    TextButton(
+                                                                                      child: Text(
+                                                                                        'Ok',
+                                                                                        style: GoogleFonts.vazirmatn(color: Colors.black, fontSize: 14.sp),
+                                                                                      ),
+                                                                                      onPressed: () {
+                                                                                        setState(() {
+                                                                                          medicalCondition = tempSelectedGoal;
+                                                                                        });
+                                                                                        Navigator.of(context).pop();
+                                                                                      },
+                                                                                    ),
+                                                                                  ],
+                                                                                );
+                                                                              },
+                                                                            );
+                                                                          },
+                                                                        ).then(
+                                                                          (value) {
+                                                                            setState(() {
+                                                                              medicalCondition;
+                                                                            });
+                                                                          },
+                                                                        );
+                                                                      },
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height: MediaQuery.of(context).size.height *
+                                                                            0.07,
+                                                                        padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                            vertical:
+                                                                                4,
+                                                                            horizontal:
+                                                                                16),
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          border:
+                                                                              Border.all(color: Colors.grey),
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(30),
+                                                                        ),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.spaceBetween,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.center,
+                                                                          children: [
+                                                                            medicalCondition == null
+                                                                                ? Text(
+                                                                                    "Please select condition",
+                                                                                    style: GoogleFonts.vazirmatn(color: Colors.grey),
+                                                                                  )
+                                                                                : Text(
+                                                                                    "$medicalCondition",
+                                                                                    style: GoogleFonts.vazirmatn(color: Colors.white),
+                                                                                  ),
+                                                                            const Icon(
+                                                                              Icons.keyboard_arrow_down_sharp,
+                                                                              color: Colors.grey,
+                                                                            )
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    )
+                                                                  : const SizedBox(),
+              const Spacer(),
+              AppButton(
+                text: "Next",
+                onPressed: () async {
+                  if (selectMedicalName == null) {
+                    showSnackBar(context, "Please select medical");
+                  } else if (selectMedicalName == "No,I’m fine" &&
+                      medicalCondition == null) {
+                    print(widget.weightUnit);
+                    print("medicalCondition");
+
+                    Nav.push(
+                        context,
+                        ChoosePlanScreen(
+                            gender: widget.gender,
+                            heightUnit: widget.heightUnit,
+                            heightValue: widget.heightValue,
+                            weightUnit: widget.weightUnit,
+                            weightValue: widget.weightValue,
+                            age: widget.age,
+                            goal: widget.goal,
+                            sleepHours: widget.sleepHours,
+                            mealFrequency: widget.mealFrequency,
+                            hydrationDaily: widget.hydrationDaily,
+                            targetWeight: widget.targetWeight,
+                            dietPlan: widget.dietPlan,
+                            selectMedicalName: selectMedicalName!,
+                            medicalCondition: ""));
+                  } else if (selectMedicalName != null &&
+                      medicalCondition == null) {
+                    showSnackBar(context, "Please select condition");
+                  } else {
+                    Nav.push(
+                        context,
+                        ChoosePlanScreen(
+                            gender: widget.gender,
+                            heightUnit: widget.heightUnit,
+                            heightValue: widget.heightValue,
+                            weightUnit: widget.weightUnit,
+                            weightValue: widget.weightValue,
+                            age: widget.age,
+                            goal: widget.goal,
+                            sleepHours: widget.sleepHours,
+                            mealFrequency: widget.mealFrequency,
+                            hydrationDaily: widget.hydrationDaily,
+                            targetWeight: widget.targetWeight,
+                            dietPlan: widget.dietPlan,
+                            selectMedicalName: selectMedicalName!,
+                            medicalCondition: medicalCondition!));
+
+                    print(widget.weightUnit);
+                    print(medicalCondition);
+                  }
+
+                  // print(selectMedicalName);
+                  // print(medicalCondition);
+                  // Nav.push(context, const ChoosePlanScreen());
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+            ],
           ),
         ),
       ),

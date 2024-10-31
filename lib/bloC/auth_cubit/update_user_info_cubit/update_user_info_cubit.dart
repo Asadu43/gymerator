@@ -31,7 +31,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
     required String selectMedicalName,
     required String medicalCondition,
   }) async {
-    emit(LoadingState());
+    // emit(LoadingState());
 
     FormData formData = FormData.fromMap({
       "gender": gender,

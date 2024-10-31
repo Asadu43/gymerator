@@ -64,6 +64,7 @@ dependencies:
   url_launcher: ^6.2.1
   external_app_launcher: ^3.1.0
   country_state_city: ^0.1.6
+  device_preview: ^1.2.0
 
 
 dev_dependencies:

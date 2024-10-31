@@ -14,8 +14,10 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Container(
-      height: 53,
+      height: screenHeight * 0.07,
       decoration: BoxDecoration(
         boxShadow: const [
           BoxShadow(

@@ -13,6 +13,7 @@ class AllFavoriteProductGetApi {
 
       print(response.data);
       print(response.statusCode);
+
       if (response.statusCode == 200) {
         return GetAllFavoriteProductApiResponse.fromJson(response.data);
       } else if (response.statusCode == 404) {
@@ -21,7 +22,7 @@ class AllFavoriteProductGetApi {
         return GetAllFavoriteProductApiResponse.fromJson(response.data);
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         return GetAllFavoriteProductApiResponse.fromJson(e.response?.data);
       } else {
         return GetAllFavoriteProductApiResponse();

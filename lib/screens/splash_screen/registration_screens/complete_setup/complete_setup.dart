@@ -110,7 +110,7 @@ class _CompleteSetupState extends State<CompleteSetup> {
                       height: screenHeight * 0.1,
                     ),
                     Text(
-                      "We Creating Your \nWorkout Plan",
+                      "We are gathering \nYour Info",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.vazirmatn(
                           fontWeight: FontWeight.bold,
@@ -158,7 +158,7 @@ class _CompleteSetupState extends State<CompleteSetup> {
                     const Spacer(),
                     (percentage == 1)
                         ? AppButton(
-                            text: "Start Training",
+                            text: "Generate Plan",
                             onPressed: () async {
                               await _savePressButtonPressed(context);
                               // Nav.push(context, const MainScreen());
