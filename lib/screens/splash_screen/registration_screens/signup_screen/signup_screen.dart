@@ -226,13 +226,14 @@ class _SignupScreenState extends State<SignupScreen> {
                               hint: Text(
                                 'Select Country',
                                 style: GoogleFonts.vazirmatn(
-                                    color: Colors.white, fontSize: 12.sp),
+                                    color: Colors.grey, fontSize: 12.sp),
                               ),
                               value: selectedCountry,
                               isExpanded: true,
+
                               icon: const Icon(
                                 Icons.keyboard_arrow_down_sharp,
-                                color: Colors.white,
+                                color: Colors.grey,
                               ),
                               dropdownColor: const Color(0xFF74994F),
                               items: countryList?.map((Country country) {
@@ -276,13 +277,13 @@ class _SignupScreenState extends State<SignupScreen> {
                                 hint: Text(
                                   'Select State',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 12.sp, color: Colors.white),
+                                      fontSize: 12.sp, color: Colors.grey),
                                 ),
                                 value: selectedState,
                                 isExpanded: true,
                                 icon: const Icon(
                                   Icons.keyboard_arrow_down_sharp,
-                                  color: Colors.white,
+                                  color: Colors.grey,
                                 ),
                                 dropdownColor: const Color(0xFF74994F),
                                 items: stateList?.map((cs.State state) {
@@ -323,13 +324,13 @@ class _SignupScreenState extends State<SignupScreen> {
                                 hint: Text(
                                   'Select City',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 12.sp, color: Colors.white),
+                                      fontSize: 12.sp, color: Colors.grey),
                                 ),
                                 value: selectedCity,
                                 isExpanded: true,
                                 icon: const Icon(
                                   Icons.keyboard_arrow_down_sharp,
-                                  color: Colors.white,
+                                  color: Colors.grey,
                                 ),
                                 dropdownColor: const Color(0xFF74994F),
                                 items: cityList.map((City city) {
@@ -358,7 +359,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         AppTextField(
                           textInputType: TextInputType.number,
                           controller: postalCodeController,
-                          hintText: "Enter your postal code",
+                          hintText: "Postal code",
                           icon: const Icon(Icons.location_on_outlined),
                         ),
                         const SizedBox(

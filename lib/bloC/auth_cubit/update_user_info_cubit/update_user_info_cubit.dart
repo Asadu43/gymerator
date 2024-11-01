@@ -31,7 +31,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
     required String selectMedicalName,
     required String medicalCondition,
   }) async {
-    // emit(LoadingState());
+    emit(LoadingState());
 
     FormData formData = FormData.fromMap({
       "gender": gender,
@@ -101,7 +101,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
         // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
       });
     }
-    if (goal == "Get Stronger") {
+    if (goal == "Improve Endurance") {
       data = FormData.fromMap({
         "heightUnit": heightUnit,
         "heightValue": heightValue,
@@ -111,7 +111,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
         "goal": 2
       });
     }
-    if (goal == "Gain Muscle Mass") {
+    if (goal == "increase strength") {
       data = FormData.fromMap({
         "heightUnit": heightUnit,
         "heightValue": heightValue,
@@ -121,8 +121,38 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
         "goal": 3
       });
     }
+    if (goal == "Enhance Flexibility") {
+      data = FormData.fromMap({
+        "heightUnit": heightUnit,
+        "heightValue": heightValue,
+        "weightUnit": weightUnit,
+        "weightValue": weightValue,
+        "age": age,
+        "goal": 4
+      });
+    }
+    if (goal == "Muscle Gain") {
+      data = FormData.fromMap({
+        "heightUnit": heightUnit,
+        "heightValue": heightValue,
+        "weightUnit": weightUnit,
+        "weightValue": weightValue,
+        "age": age,
+        "goal": 5
+      });
+    }
+    if (goal == "Improve Cardio Health") {
+      data = FormData.fromMap({
+        "heightUnit": heightUnit,
+        "heightValue": heightValue,
+        "weightUnit": weightUnit,
+        "weightValue": weightValue,
+        "age": age,
+        "goal": 6
+      });
+    }
 
-    print("Data \n\n\ ${data} \n\n\n");
+    print("Data \n\n\ ${data.fields} \n\n\n");
 
     final UpdateUserInfoApiResponse model =
         await _repository.updateUserInfoRequest(data);

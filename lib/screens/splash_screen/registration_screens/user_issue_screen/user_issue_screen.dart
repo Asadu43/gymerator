@@ -90,6 +90,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
               InkWell(
                 onTap: () {
                   showDialog(
+                    barrierDismissible: false,
                     context: context,
                     builder: (BuildContext context) {
                       String? tempSelectedGoal = selectMedicalName;
@@ -360,6 +361,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                       ? InkWell(
                           onTap: () {
                             showDialog(
+                              barrierDismissible: false,
                               context: context,
                               builder: (BuildContext context) {
                                 String? tempSelectedGoal = medicalCondition;
@@ -532,6 +534,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                           ? InkWell(
                               onTap: () {
                                 showDialog(
+                                  barrierDismissible: false,
                                   context: context,
                                   builder: (BuildContext context) {
                                     String? tempSelectedGoal = medicalCondition;
@@ -682,6 +685,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                               ? InkWell(
                                   onTap: () {
                                     showDialog(
+                                      barrierDismissible: false,
                                       context: context,
                                       builder: (BuildContext context) {
                                         String? tempSelectedGoal =
@@ -933,6 +937,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                   ? InkWell(
                                       onTap: () {
                                         showDialog(
+                                          barrierDismissible: false,
                                           context: context,
                                           builder: (BuildContext context) {
                                             String? tempSelectedGoal =
@@ -1143,6 +1148,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                       ? InkWell(
                                           onTap: () {
                                             showDialog(
+                                              barrierDismissible: false,
                                               context: context,
                                               builder: (BuildContext context) {
                                                 String? tempSelectedGoal =
@@ -1372,6 +1378,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                           ? InkWell(
                                               onTap: () {
                                                 showDialog(
+                                                  barrierDismissible: false,
                                                   context: context,
                                                   builder:
                                                       (BuildContext context) {
@@ -1558,6 +1565,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                               ? InkWell(
                                                   onTap: () {
                                                     showDialog(
+                                                      barrierDismissible: false,
                                                       context: context,
                                                       builder: (BuildContext
                                                           context) {
@@ -1749,6 +1757,8 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                   ? InkWell(
                                                       onTap: () {
                                                         showDialog(
+                                                          barrierDismissible:
+                                                              false,
                                                           context: context,
                                                           builder: (BuildContext
                                                               context) {
@@ -1933,6 +1943,8 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                       ? InkWell(
                                                           onTap: () {
                                                             showDialog(
+                                                              barrierDismissible:
+                                                                  false,
                                                               context: context,
                                                               builder:
                                                                   (BuildContext
@@ -2082,6 +2094,8 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                           ? InkWell(
                                                               onTap: () {
                                                                 showDialog(
+                                                                  barrierDismissible:
+                                                                      false,
                                                                   context:
                                                                       context,
                                                                   builder:
@@ -2230,6 +2244,8 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                               ? InkWell(
                                                                   onTap: () {
                                                                     showDialog(
+                                                                      barrierDismissible:
+                                                                          false,
                                                                       context:
                                                                           context,
                                                                       builder:
@@ -2391,6 +2407,8 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                       onTap:
                                                                           () {
                                                                         showDialog(
+                                                                          barrierDismissible:
+                                                                              false,
                                                                           context:
                                                                               context,
                                                                           builder:
@@ -2597,8 +2615,6 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                             selectMedicalName: selectMedicalName!,
                             medicalCondition: medicalCondition!));
 
-                    print(widget.weightUnit);
-                    print(medicalCondition);
                   }
 
                   // print(selectMedicalName);

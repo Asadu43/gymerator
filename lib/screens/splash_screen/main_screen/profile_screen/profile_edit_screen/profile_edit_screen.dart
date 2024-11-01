@@ -94,6 +94,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print("-------> $goal");
     final screenWidth = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (context) => UpdateUserInfoCubit(),
@@ -323,8 +324,11 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         items: <String>[
                           'Lose Weight',
                           'Keep Fit',
-                          'Get Stronger',
-                          'Gain Muscle Mass'
+                          'improve endurance',
+                          'increase strength',
+                          'Enhance Flexibility',
+                          'Muscle Gain',
+                          'Improve Cardio Health',
                         ].map((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -342,8 +346,9 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                     AppButton(
                       text: "Save",
                       onPressed: () {
+
                         if (weightUnit == WeightUnits.kg &&
-                            heightUnit == HeightUnits.cm) {
+                            heightUnit == HeightUnits.cm && heightCm !=0.0 && weightKg != 0.0) {
                           context
                               .read<UpdateUserInfoCubit>()
                               .editProfileRequest(
@@ -355,7 +360,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                   goal: goal!);
                         }
                         if (weightUnit == WeightUnits.lb &&
-                            heightUnit == HeightUnits.cm) {
+                            heightUnit == HeightUnits.cm && heightCm != 0.0 && weightLb != 0.0) {
                           context
                               .read<UpdateUserInfoCubit>()
                               .editProfileRequest(
@@ -367,9 +372,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                   goal: goal!);
                         }
                         if (weightUnit == WeightUnits.kg &&
-                            heightUnit == HeightUnits.ftIn) {
-                          String val =
-                              "${(heightFeet.toInt())}.${heightInches.toInt()}";
+                            heightUnit == HeightUnits.ftIn && heightFeet != 0.0  && weightKg != 0.0) {
+                          String val = "${(heightFeet.toInt())}.${heightInches.toInt()}";
 
                           context
                               .read<UpdateUserInfoCubit>()
@@ -382,7 +386,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                   goal: goal!);
                         }
                         if (weightUnit == WeightUnits.lb &&
-                            heightUnit == HeightUnits.ftIn) {
+                            heightUnit == HeightUnits.ftIn && heightFeet != 0.0  && weightLb != 0.0) {
                           String val =
                               "${(heightFeet.toInt())}.${heightInches.toInt()}";
 

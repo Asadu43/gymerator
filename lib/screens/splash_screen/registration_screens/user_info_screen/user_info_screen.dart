@@ -44,6 +44,51 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   bool checkboxValue = true;
   int selectedIndex = 0;
 
+  void _validateInput(TextEditingController controller, String value) {
+    if (value.isNotEmpty) {
+      int number = int.parse(value);
+      if (number < 1) {
+        controller.text = '1';
+        controller.selection = TextSelection.fromPosition(
+            TextPosition(offset: controller.text.length));
+      } else if (number > 24) {
+        controller.text = '24';
+        controller.selection = TextSelection.fromPosition(
+            TextPosition(offset: controller.text.length));
+      }
+    }
+  }
+
+  void _validateMeal(TextEditingController controller, String value) {
+    if (value.isNotEmpty) {
+      int number = int.parse(value);
+      if (number < 1) {
+        controller.text = '1';
+        controller.selection = TextSelection.fromPosition(
+            TextPosition(offset: controller.text.length));
+      } else if (number > 5) {
+        controller.text = '5';
+        controller.selection = TextSelection.fromPosition(
+            TextPosition(offset: controller.text.length));
+      }
+    }
+  }
+
+  void _validateHydration(TextEditingController controller, String value) {
+    if (value.isNotEmpty) {
+      int number = int.parse(value);
+      if (number < 1) {
+        controller.text = '1';
+        controller.selection = TextSelection.fromPosition(
+            TextPosition(offset: controller.text.length));
+      } else if (number > 10) {
+        controller.text = '10';
+        controller.selection = TextSelection.fromPosition(
+            TextPosition(offset: controller.text.length));
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -232,7 +277,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         weightKgController, // Assign the controller here
                                     cursorColor: Colors.black,
                                     style: GoogleFonts.vazirmatn(
-                                      fontSize: 12,
+                                      fontSize: 14.sp,
                                     ),
                                     keyboardType: TextInputType.number,
                                     inputFormatters: [
@@ -258,8 +303,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                       suffixText: weightUnit == WeightUnits.kg
                                           ? 'Kg'
                                           : 'Lb',
-                                      suffixStyle: const TextStyle(
-                                        fontSize: 16,
+                                      suffixStyle: GoogleFonts.vazirmatn(
+                                        fontSize: 10.sp,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -331,7 +376,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                       MainAxisAlignment.spaceAround,
                                   children: heightUnit == HeightUnits.cm
                                       ? [
-                                          buildTextField(heightCmController,
+                                          buildTextField(heightCmController, 1,
                                               (value) {
                                             if (value.isEmpty) {
                                               return;
@@ -342,8 +387,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                           }, 'Cm')
                                         ]
                                       : [
-                                          buildTextField(heightFeetController,
-                                              (value) {
+                                          buildTextField(
+                                              heightFeetController, 2, (value) {
                                             if (value.isEmpty) {
                                               return;
                                             }
@@ -351,7 +396,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                               heightFeet = double.parse(value);
                                             });
                                           }, 'Ft'),
-                                          buildTextField(heightInchesController,
+                                          buildTextField(
+                                              heightInchesController, 2,
                                               (value) {
                                             if (value.isEmpty) {
                                               return;
@@ -389,6 +435,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     style: GoogleFonts.vazirmatn(color: Colors.white),
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.white,
+                    inputFormatters: [
+                      FilteringTextInputFormatter
+                          .digitsOnly, // Only allow digits
+                      LengthLimitingTextInputFormatter(
+                          2), // Limit to 3 characters
+                    ],
                     decoration: InputDecoration(
                       hintText: 'Your age',
                       focusedBorder: OutlineInputBorder(
@@ -467,9 +519,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                       ),
                                       RadioListTile<String>(
                                         activeColor: const Color(0xff3F710D),
-                                        title: Text('Get Stronger',
+                                        title: Text('Improve Endurance',
                                             style: GoogleFonts.vazirmatn()),
-                                        value: 'Get Stronger',
+                                        value: 'Improve Endurance',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
                                           setState(() {
@@ -479,9 +531,45 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                       ),
                                       RadioListTile<String>(
                                         activeColor: const Color(0xff3F710D),
-                                        title: Text('Gain Muscle Mass',
+                                        title: Text('Increase Strength',
                                             style: GoogleFonts.vazirmatn()),
-                                        value: 'Gain Muscle Mass',
+                                        value: 'Increase Strength',
+                                        groupValue: tempSelectedGoal,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            tempSelectedGoal = value!;
+                                          });
+                                        },
+                                      ),
+                                      RadioListTile<String>(
+                                        activeColor: const Color(0xff3F710D),
+                                        title: Text('Enhance Flexibility',
+                                            style: GoogleFonts.vazirmatn()),
+                                        value: 'Enhance Flexibility',
+                                        groupValue: tempSelectedGoal,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            tempSelectedGoal = value!;
+                                          });
+                                        },
+                                      ),
+                                      RadioListTile<String>(
+                                        activeColor: const Color(0xff3F710D),
+                                        title: Text('Muscle Gain',
+                                            style: GoogleFonts.vazirmatn()),
+                                        value: 'Muscle Gain',
+                                        groupValue: tempSelectedGoal,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            tempSelectedGoal = value!;
+                                          });
+                                        },
+                                      ),
+                                      RadioListTile<String>(
+                                        activeColor: const Color(0xff3F710D),
+                                        title: Text('Improve Cardio Health',
+                                            style: GoogleFonts.vazirmatn()),
+                                        value: 'Improve Cardio Health',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
                                           setState(() {
@@ -585,6 +673,15 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     style: GoogleFonts.vazirmatn(color: Colors.white),
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.white,
+                    inputFormatters: [
+                      FilteringTextInputFormatter
+                          .digitsOnly, // Only allow digits
+                      LengthLimitingTextInputFormatter(
+                          2), // Limit to 3 characters
+                    ],
+                    onChanged: (value) {
+                      _validateInput(sleepingHoursController, value);
+                    },
                     decoration: InputDecoration(
                       hintText: 'Sleep hours 1 to 24',
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
@@ -618,6 +715,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     style: GoogleFonts.vazirmatn(color: Colors.white),
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.white,
+                    onChanged: (value) {
+                      _validateMeal(mealFrequentlyController, value);
+                    },
                     decoration: InputDecoration(
                       hintText: 'Meal frequency 1 to 5',
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
@@ -651,6 +751,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     style: GoogleFonts.vazirmatn(color: Colors.white),
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.white,
+                    onChanged: (value) {
+                      _validateHydration(hydrationController, value);
+                    },
                     decoration: InputDecoration(
                       hintText: '5 Liters',
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
@@ -684,6 +787,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     style: GoogleFonts.vazirmatn(color: Colors.white),
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.white,
+                    inputFormatters: [
+                      FilteringTextInputFormatter
+                          .digitsOnly, // Only allow digits
+                      LengthLimitingTextInputFormatter(
+                          3), // Limit to 3 characters
+                    ],
                     decoration: InputDecoration(
                       hintText: 'Target weight',
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
@@ -1046,7 +1155,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
     );
   }
 
-  SizedBox buildTextField(TextEditingController controller,
+  SizedBox buildTextField(TextEditingController controller, int num,
       Function(String)? onChanged, String suffixText) {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.160,
@@ -1055,13 +1164,18 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         cursorColor: Colors.black,
         textAlign: TextAlign.center,
         style: GoogleFonts.vazirmatn(
-          fontSize: 12.sp,
+          fontSize: 14.sp,
         ),
         keyboardType: TextInputType.number,
-        inputFormatters: [
-          FilteringTextInputFormatter.digitsOnly, // Only allow digits
-          LengthLimitingTextInputFormatter(3), // Limit to 3 characters
-        ],
+        inputFormatters: num == 1
+            ? [
+                FilteringTextInputFormatter.digitsOnly, // Only allow digits
+                LengthLimitingTextInputFormatter(3), // Limit to 3 characters
+              ]
+            : [
+                FilteringTextInputFormatter.digitsOnly, // Only allow digits
+                LengthLimitingTextInputFormatter(2), // Limit to 2 characters
+              ],
         decoration: InputDecoration(
           border: const UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.black),
@@ -1075,7 +1189,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
           contentPadding: const EdgeInsets.all(0),
           suffixText: suffixText,
           suffixStyle: GoogleFonts.vazirmatn(
-            fontSize: 12.sp,
+            fontSize: 10.sp,
             fontWeight: FontWeight.w600,
           ),
         ),
