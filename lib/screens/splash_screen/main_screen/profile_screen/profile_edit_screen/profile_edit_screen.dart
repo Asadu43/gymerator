@@ -219,19 +219,16 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "Height",
-                              style: GoogleFonts.vazirmatn(
-                                  color: Colors.black, fontSize: 14.sp),
-                            ),
+                            Text("Height",
+                                style: GoogleFonts.vazirmatn(
+                                    color: Colors.black, fontSize: 14.sp)),
                             Container(
                               width: screenWidth * 0.4,
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(8),
-                                shape: BoxShape.rectangle,
-                              ),
+                                  border: Border.all(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(8),
+                                  shape: BoxShape.rectangle),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -328,7 +325,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           'increase strength',
                           'Enhance Flexibility',
                           'Muscle Gain',
-                          'Improve Cardio Health',
+                          'Improve Cardio Health'
                         ].map((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -346,9 +343,10 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                     AppButton(
                       text: "Save",
                       onPressed: () {
-
                         if (weightUnit == WeightUnits.kg &&
-                            heightUnit == HeightUnits.cm && heightCm !=0.0 && weightKg != 0.0) {
+                            heightUnit == HeightUnits.cm &&
+                            heightCm != 0.0 &&
+                            weightKg != 0.0) {
                           context
                               .read<UpdateUserInfoCubit>()
                               .editProfileRequest(
@@ -360,7 +358,9 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                   goal: goal!);
                         }
                         if (weightUnit == WeightUnits.lb &&
-                            heightUnit == HeightUnits.cm && heightCm != 0.0 && weightLb != 0.0) {
+                            heightUnit == HeightUnits.cm &&
+                            heightCm != 0.0 &&
+                            weightLb != 0.0) {
                           context
                               .read<UpdateUserInfoCubit>()
                               .editProfileRequest(
@@ -372,8 +372,11 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                   goal: goal!);
                         }
                         if (weightUnit == WeightUnits.kg &&
-                            heightUnit == HeightUnits.ftIn && heightFeet != 0.0  && weightKg != 0.0) {
-                          String val = "${(heightFeet.toInt())}.${heightInches.toInt()}";
+                            heightUnit == HeightUnits.ftIn &&
+                            heightFeet != 0.0 &&
+                            weightKg != 0.0) {
+                          String val =
+                              "${(heightFeet.toInt())}.${heightInches.toInt()}";
 
                           context
                               .read<UpdateUserInfoCubit>()
@@ -386,7 +389,9 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                   goal: goal!);
                         }
                         if (weightUnit == WeightUnits.lb &&
-                            heightUnit == HeightUnits.ftIn && heightFeet != 0.0  && weightLb != 0.0) {
+                            heightUnit == HeightUnits.ftIn &&
+                            heightFeet != 0.0 &&
+                            weightLb != 0.0) {
                           String val =
                               "${(heightFeet.toInt())}.${heightInches.toInt()}";
 
