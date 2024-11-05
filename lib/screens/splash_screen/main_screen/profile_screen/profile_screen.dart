@@ -150,6 +150,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           response?.data?.weight?.value ?? 0.0,
                                       heightValue:
                                           response?.data?.height?.value ?? 0.0,
+                                      sleepingHours: response?.data?.sleepHours ?? 0,
+                                      mealFrequency: response?.data?.mealFrequency ?? 0,
+                                      waterHydration: response?.data?.hydrationLitersPerDay ?? 0,
+                                      targetWeight: response?.data?.targetWeightInKG ?? 0.0,
+                                      dietPlan: response?.data?.dietType ?? "",
                                     ));
                               },
                             ),

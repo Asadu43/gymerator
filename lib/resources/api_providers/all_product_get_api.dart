@@ -11,7 +11,8 @@ class AllProductGetApi {
       dio.options.headers["x-auth-token"] = GetStorage().read('token');
       final Response response = await dio.get(ApiConstants.allProduct);
 
-      print(response.data);
+      print("All Product");;
+      print(response.data);;
       print(response.statusCode);
       if (response.statusCode == 200) {
         return GetAllProductApiResponse.fromJson(response.data);

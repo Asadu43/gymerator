@@ -81,6 +81,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               AppTextField(
                 controller: deliveryAddressController,
                 hintText: "Delivery Address",
+                cursorColor: Colors.black,
                 color: Colors.grey,
                 fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
               ),
@@ -90,6 +91,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               AppTextField(
                 controller: billingAddressController,
                 hintText: "Billing Address",
+                cursorColor: Colors.black,
                 color: Colors.grey,
                 fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
               ),

@@ -15,7 +15,7 @@ class UserIssueScreen extends StatefulWidget {
   final String weightUnit;
   final double weightValue;
   final String age;
-  final String goal;
+  final int goal;
   final String sleepHours;
   final String mealFrequency;
   final String hydrationDaily;

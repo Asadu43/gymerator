@@ -74,10 +74,15 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
     required double weightValue,
     required int age,
     required String goal,
+    required int sleepingHours,
+    required int mealFrequency,
+    required int waterHydration,
+    required double targetWeight,
+    required int dietPlan
   }) async {
     emit(LoadingState());
 
-    FormData data = FormData();
+    FormData? data;
     if (goal == "Lose Weight") {
       data = FormData.fromMap({
         "heightUnit": heightUnit,
@@ -85,7 +90,12 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
         "weightUnit": weightUnit,
         "weightValue": weightValue,
         "age": age,
-        "goal": 0
+        "goal": 0,
+        "sleepHours": sleepingHours,
+        "dietType": dietPlan,
+        "mealFrequency": mealFrequency,
+        "hydrationLitersPerDay": waterHydration,
+        "targetWeightInKG": targetWeight,
       });
     }
     if (goal == "Keep Fit") {
@@ -98,7 +108,11 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
         "weightValue": weightValue.toDouble(),
         "age": age,
         "goal": 1,
-        // 0 = LOSE_WEIGHT, 1 = KEEP_FIT, 2 = GET_STRONGER, 3 = MUSCLE_GAIN_MASS
+        "sleepHours": sleepingHours,
+        "dietType": dietPlan,
+        "mealFrequency": mealFrequency,
+        "hydrationLitersPerDay": waterHydration,
+        "targetWeightInKG": targetWeight,
       });
     }
     if (goal == "Improve Endurance") {
@@ -108,17 +122,27 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
         "weightUnit": weightUnit,
         "weightValue": weightValue,
         "age": age,
-        "goal": 2
+        "goal": 2,
+        "sleepHours": sleepingHours,
+        "dietType": dietPlan,
+        "mealFrequency": mealFrequency,
+        "hydrationLitersPerDay": waterHydration,
+        "targetWeightInKG": targetWeight,
       });
     }
-    if (goal == "increase strength") {
+    if (goal == "Increase Strength") {
       data = FormData.fromMap({
         "heightUnit": heightUnit,
         "heightValue": heightValue,
         "weightUnit": weightUnit,
         "weightValue": weightValue,
         "age": age,
-        "goal": 3
+        "goal": 3,
+        "sleepHours": sleepingHours,
+        "dietType": dietPlan,
+        "mealFrequency": mealFrequency,
+        "hydrationLitersPerDay": waterHydration,
+        "targetWeightInKG": targetWeight,
       });
     }
     if (goal == "Enhance Flexibility") {
@@ -128,27 +152,42 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
         "weightUnit": weightUnit,
         "weightValue": weightValue,
         "age": age,
-        "goal": 4
+        "goal": 4,
+        "sleepHours": sleepingHours,
+        "dietType": dietPlan,
+        "mealFrequency": mealFrequency,
+        "hydrationLitersPerDay": waterHydration,
+        "targetWeightInKG": targetWeight,
       });
     }
-    if (goal == "Muscle Gain") {
+    if (goal == "muscle gain") {
       data = FormData.fromMap({
         "heightUnit": heightUnit,
         "heightValue": heightValue,
         "weightUnit": weightUnit,
         "weightValue": weightValue,
         "age": age,
-        "goal": 5
+        "goal": 5,
+        "sleepHours": sleepingHours,
+        "dietType": dietPlan,
+        "mealFrequency": mealFrequency,
+        "hydrationLitersPerDay": waterHydration,
+        "targetWeightInKG": targetWeight,
       });
     }
-    if (goal == "Improve Cardio Health") {
+    else  {
       data = FormData.fromMap({
         "heightUnit": heightUnit,
         "heightValue": heightValue,
         "weightUnit": weightUnit,
         "weightValue": weightValue,
         "age": age,
-        "goal": 6
+        "goal": 6,
+        "sleepHours": sleepingHours,
+        "dietType": dietPlan,
+        "mealFrequency": mealFrequency,
+        "hydrationLitersPerDay": waterHydration,
+        "targetWeightInKG": targetWeight,
       });
     }
 

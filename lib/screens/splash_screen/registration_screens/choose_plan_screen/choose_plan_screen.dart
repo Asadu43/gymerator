@@ -19,7 +19,7 @@ class ChoosePlanScreen extends StatefulWidget {
   final String weightUnit;
   final double weightValue;
   final String age;
-  final String goal;
+  final int goal;
   final String sleepHours;
   final String mealFrequency;
   final String hydrationDaily;
@@ -81,7 +81,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                     image: DecorationImage(
                   image: AssetImage('assets/images/background.png'),
                   // Replace with your image asset path
-                  fit: BoxFit.cover, // You can adjust the fit property as needed
+                  fit:
+                      BoxFit.cover, // You can adjust the fit property as needed
                 )),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.07),
@@ -296,7 +297,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                                       }
                                     });
                                   },
-                                  child: Image.asset("assets/images/advance.png"),
+                                  child:
+                                      Image.asset("assets/images/advance.png"),
                                 ),
                               ),
                               SizedBox(
@@ -360,7 +362,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                                       }
                                     });
                                   },
-                                  child: Image.asset("assets/images/expert.png"),
+                                  child:
+                                      Image.asset("assets/images/expert.png"),
                                 ),
                               ),
                               SizedBox(
@@ -385,33 +388,32 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                           if (selectedIndex == 0) {
                             showSnackBar(context, "Please select plan");
                           } else {
-                            if (widget.goal == "Lose Weight") {
-                              await _savePressButtonPressed(context, 0);
-                              // Nav.push(
-                              //     context,
-                              //     CompleteSetup(
-                              //         gender: "Male",
-                              //         heightUnit: widget.heightUnit,
-                              //         heightValue: widget.heightValue,
-                              //         weightUnit: widget.weightUnit,
-                              //         weightValue: widget.weightValue,
-                              //         age: int.parse(widget.age),
-                              //         goal: 0,
-                              //         plan: selectedIndex,
-                              //         sleepHours: widget.sleepHours,
-                              //         mealFrequency: widget.mealFrequency,
-                              //         hydrationDaily: widget.hydrationDaily,
-                              //         targetWeight: widget.targetWeight,
-                              //         dietPlan: widget.dietPlan,
-                              //         selectMedicalName: widget.selectMedicalName,
-                              //         medicalCondition: widget.medicalCondition));
-                            } else if (widget.goal == "Keep Fit") {
-                              await _savePressButtonPressed(context, 1);
-                            } else if (widget.goal == "Get Stronger") {
-                              await _savePressButtonPressed(context, 2);
-                            } else if (widget.goal == "Gain Muscle Mass") {
-                              await _savePressButtonPressed(context, 3);
-                            }
+                            await _savePressButtonPressed(context);
+                            // Nav.push(
+                            //     context,
+                            //     CompleteSetup(
+                            //         gender: "Male",
+                            //         heightUnit: widget.heightUnit,
+                            //         heightValue: widget.heightValue,
+                            //         weightUnit: widget.weightUnit,
+                            //         weightValue: widget.weightValue,
+                            //         age: int.parse(widget.age),
+                            //         goal: 0,
+                            //         plan: selectedIndex,
+                            //         sleepHours: widget.sleepHours,
+                            //         mealFrequency: widget.mealFrequency,
+                            //         hydrationDaily: widget.hydrationDaily,
+                            //         targetWeight: widget.targetWeight,
+                            //         dietPlan: widget.dietPlan,
+                            //         selectMedicalName: widget.selectMedicalName,
+                            //         medicalCondition: widget.medicalCondition));
+                            // } else if (widget.goal == "Keep Fit") {
+                            //   await _savePressButtonPressed(context, 1);
+                            // } else if (widget.goal == "Get Stronger") {
+                            //   await _savePressButtonPressed(context, 2);
+                            // } else if (widget.goal == "Gain Muscle Mass") {
+                            //   await _savePressButtonPressed(context, 3);
+                            // }
                           }
                         },
                       ),
@@ -427,7 +429,7 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
     );
   }
 
-  Future<void> _savePressButtonPressed(BuildContext context, int goal) async {
+  Future<void> _savePressButtonPressed(BuildContext context) async {
     context.read<UpdateUserInfoCubit>().updateInfoRequest(
         gender: widget.gender,
         heightUnit: widget.heightUnit,
@@ -435,7 +437,7 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
         weightUnit: widget.weightUnit,
         weightValue: widget.weightValue,
         age: int.parse(widget.age),
-        goal: goal,
+        goal: widget.goal,
         workoutLevel: selectedIndex - 1,
         sleepHours: int.parse(widget.sleepHours),
         mealFrequency: int.parse(widget.mealFrequency),

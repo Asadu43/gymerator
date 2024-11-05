@@ -49,6 +49,7 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return BlocConsumer<WorkoutPlanCubit, WorkoutPlanState>(
       listener: (context, state) {
         if (state is FailedToGetWorkoutPlan) {
@@ -83,8 +84,9 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                         Container(
                           alignment: Alignment.topRight,
                           child: PopupMenuButton(
-                            elevation: 0,
+                            elevation: 1,
                             position: PopupMenuPosition.under,
+                            color: const Color(0xff599918),
                             itemBuilder: (BuildContext context) {
                               return [
                                 PopupMenuItem(
@@ -96,6 +98,7 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                   child: Center(
                                     child: Text("Update Workout Plan",
                                         style: GoogleFonts.vazirmatn(
+                                            color: Colors.white,
                                             fontSize: 10.sp)),
                                   ),
                                 ),
@@ -179,10 +182,11 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                             child: Stack(
                               children: [
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 20),
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: screenHeight * 0.03),
                                   child: Container(
-                                    padding: const EdgeInsets.all(12.0),
+                                    padding:
+                                        EdgeInsets.all(screenHeight * 0.01),
                                     decoration: BoxDecoration(
                                       color:
                                           weekdayName[DateTime.now().weekday] ==
@@ -253,10 +257,11 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                   ),
                                 ),
                                 Positioned(
-                                    top: 1,
-                                    left: 50,
+                                    top: screenHeight * 0.01,
+                                    left: screenHeight * 0.06,
                                     child: Container(
-                                        padding: const EdgeInsets.all(10.0),
+                                        width: screenWidth * 0.2,
+                                        padding: const EdgeInsets.all(8.0),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius:
@@ -264,14 +269,18 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                           border:
                                               Border.all(color: Colors.black12),
                                         ),
-                                        child: Text(
-                                            capitalizeFirstLetter(response?.data
-                                                    ?.workoutPlan?[index].day ??
-                                                ""),
-                                            style: GoogleFonts.vazirmatn(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black))))
+                                        child: Center(
+                                          child: Text(
+                                              capitalizeFirstLetter(response
+                                                      ?.data
+                                                      ?.workoutPlan?[index]
+                                                      .day ??
+                                                  ""),
+                                              style: GoogleFonts.vazirmatn(
+                                                  fontSize: 8.sp,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black)),
+                                        )))
                               ],
                             ),
                           ),

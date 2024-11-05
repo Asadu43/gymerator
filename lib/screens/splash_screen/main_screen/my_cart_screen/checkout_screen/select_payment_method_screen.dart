@@ -70,9 +70,9 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
         customerEphemeralKeySecret: data['ephemeralKey'],
         customerId: data['id'],
         style: ThemeMode.dark,
-        appearance: const PaymentSheetAppearance(
+        appearance:  const PaymentSheetAppearance(
             colors:
-                PaymentSheetAppearanceColors(background: Color(0xff3F710D))),
+                PaymentSheetAppearanceColors(background: Color(0xFF74994F))),
       ));
     } catch (e) {
       showSnackBar(context, "Error:  $e");

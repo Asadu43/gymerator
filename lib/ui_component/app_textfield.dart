@@ -7,6 +7,7 @@ class AppTextField extends StatefulWidget {
   final Widget? icon;
   final TextEditingController? controller;
   final Color? color;
+  final Color? cursorColor;
   final Color? prefixIconColor;
   final TextStyle? fieldTextStyle;
   final TextInputType? textInputType;
@@ -23,6 +24,7 @@ class AppTextField extends StatefulWidget {
     this.textInputType,
     this.color,
     this.onChanged,
+    this.cursorColor,
     this.obscureText, // Accept the obscureText flag
   });
 
@@ -53,7 +55,7 @@ class _AppTextFieldState extends State<AppTextField> {
       child: TextField(
         // textAlign: TextAlign.start,
         textAlignVertical: TextAlignVertical.center,
-        cursorColor: Colors.white,
+        cursorColor: widget.cursorColor ?? Colors.white,
         controller: widget.controller,
         style:
             widget.fieldTextStyle ?? GoogleFonts.vazirmatn(color: Colors.white),

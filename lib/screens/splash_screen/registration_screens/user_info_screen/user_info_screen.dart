@@ -33,11 +33,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   HeightUnits heightUnit = HeightUnits.cm;
   double weightLb = 0;
   double weightKg = 0;
-  double heightFeet = 0;
-  double heightInches = 0;
+  int heightFeet = 0;
+  int heightInches = 0;
   double heightCm = 0;
   int age = 20;
   String? goal;
+  int? goalType;
   String? dietPlan;
   int? dietType;
 
@@ -244,7 +245,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                             width: screenWidth * 0.4,
                             decoration: BoxDecoration(
                               color: Colors.white70.withOpacity(0.80),
-                              border: Border.all(color: Colors.white),
+                              border: Border.all(color: Colors.grey),
                               borderRadius: BorderRadius.circular(8),
                               shape: BoxShape.rectangle,
                             ),
@@ -253,7 +254,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                               children: [
                                 ToggleSwitch(
                                   initialLabelIndex:
-                                      weightUnit == WeightUnits.kg ? 0 : 1,
+                                  weightUnit == WeightUnits.kg ? 0 : 1,
                                   totalSwitches: 2,
                                   activeBgColor: const [
                                     Color(0xffB14501),
@@ -265,20 +266,26 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                       weightUnit = index == 0
                                           ? WeightUnits.kg
                                           : WeightUnits.lb;
-                                      weightKgController
-                                          .clear(); // Clear the text field on toggle
+                                      if (weightUnit == WeightUnits.kg) {
+                                        weightLbController.clear();
+                                        weightLb = 0.0;
+
+                                      } else {
+                                        weightKgController.clear();
+                                        weightKg = 0.0;
+                                      }
                                     });
                                   },
                                 ),
                                 SizedBox(
                                   width: screenWidth * 0.170,
                                   child: TextField(
-                                    controller:
-                                        weightKgController, // Assign the controller here
+                                    controller: weightUnit == WeightUnits.kg
+                                        ? weightKgController
+                                        : weightLbController,
                                     cursorColor: Colors.black,
                                     style: GoogleFonts.vazirmatn(
-                                      fontSize: 14.sp,
-                                    ),
+                                        fontSize: 12.sp),
                                     keyboardType: TextInputType.number,
                                     inputFormatters: [
                                       FilteringTextInputFormatter
@@ -288,30 +295,29 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                     ],
                                     decoration: InputDecoration(
                                       border: const UnderlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.black),
-                                      ),
-                                      enabledBorder: const UnderlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.black),
-                                      ),
-                                      focusedBorder: const UnderlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.black),
-                                      ),
-                                      contentPadding: const EdgeInsets.all(0),
-                                      suffixText: weightUnit == WeightUnits.kg
+                                          borderSide: BorderSide(
+                                              color: Colors.black)),
+                                      enabledBorder:
+                                      const UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.black)),
+                                      focusedBorder:
+                                      const UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.black)),
+                                      contentPadding:
+                                      const EdgeInsets.all(0),
+                                      suffixText:
+                                      weightUnit == WeightUnits.kg
                                           ? 'Kg'
                                           : 'Lb',
                                       suffixStyle: GoogleFonts.vazirmatn(
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                                          fontSize: 10.sp,
+                                          fontWeight: FontWeight.w600),
                                     ),
                                     onChanged: (value) {
-                                      if (value.isEmpty) {
-                                        return;
-                                      }
+                                      if (value.isEmpty) return;
+
                                       setState(() {
                                         if (weightUnit == WeightUnits.kg) {
                                           weightKg = double.parse(value);
@@ -324,7 +330,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                 ),
                               ],
                             ),
-                          ),
+                          )
                         ],
                       ),
                       const SizedBox(width: 20),
@@ -353,7 +359,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                               children: [
                                 ToggleSwitch(
                                   initialLabelIndex:
-                                      heightUnit == HeightUnits.cm ? 0 : 1,
+                                  heightUnit == HeightUnits.cm ? 0 : 1,
                                   totalSwitches: 2,
                                   activeBgColor: const [
                                     Color(0xffB14501),
@@ -362,52 +368,63 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                   labels: const ['Cm', 'Ft-In'],
                                   onToggle: (index) {
                                     setState(() {
-                                      heightUnit = index == 0
-                                          ? HeightUnits.cm
-                                          : HeightUnits.ftIn;
-                                      heightCmController.clear();
-                                      heightFeetController.clear();
-                                      heightInchesController.clear();
+                                      heightUnit = index == 0 ? HeightUnits.cm : HeightUnits.ftIn;
+
+                                      if (heightUnit == HeightUnits.cm) {
+                                        // Clear only feet and inches controllers if 'Cm' is selected
+                                        heightFeetController.clear();
+                                        heightInchesController.clear();
+                                        heightFeet = 0;
+                                        heightInches = 0;
+
+                                      } else {
+                                        // Clear only cm controller if 'Ft-In' is selected
+                                        heightCmController.clear();
+                                        heightCm = 0.0;
+                                      }
                                     });
                                   },
                                 ),
                                 Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                  MainAxisAlignment.spaceAround,
                                   children: heightUnit == HeightUnits.cm
                                       ? [
-                                          buildTextField(heightCmController, 1,
-                                              (value) {
-                                            if (value.isEmpty) {
-                                              return;
-                                            }
-                                            setState(() {
-                                              heightCm = double.parse(value);
-                                            });
-                                          }, 'Cm')
-                                        ]
+                                    buildTextField(
+                                        heightCmController, 1,
+                                            (value) {
+                                          if (value.isEmpty) {
+                                            return;
+                                          }
+                                          setState(() {
+                                            heightCm =
+                                                double.parse(value);
+                                          });
+                                        }, 'Cm')
+                                  ]
                                       : [
-                                          buildTextField(
-                                              heightFeetController, 2, (value) {
-                                            if (value.isEmpty) {
-                                              return;
-                                            }
-                                            setState(() {
-                                              heightFeet = double.parse(value);
-                                            });
-                                          }, 'Ft'),
-                                          buildTextField(
-                                              heightInchesController, 2,
-                                              (value) {
-                                            if (value.isEmpty) {
-                                              return;
-                                            }
-                                            setState(() {
-                                              heightInches =
-                                                  double.parse(value);
-                                            });
-                                          }, 'In'),
-                                        ],
+                                    buildTextField(
+                                        heightFeetController, 2,
+                                            (value) {
+                                          if (value.isEmpty) {
+                                            return;
+                                          }
+                                          setState(() {
+                                            heightFeet = int.parse(value);
+                                          });
+                                        }, 'Ft'),
+                                    buildTextField(
+                                        heightInchesController, 2,
+                                            (value) {
+                                          if (value.isEmpty) {
+                                            return;
+                                          }
+                                          setState(() {
+                                            heightInches =
+                                                int.parse(value);
+                                          });
+                                        }, 'In'),
+                                  ],
                                 ),
                               ],
                             ),
@@ -496,84 +513,98 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                       RadioListTile<String>(
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Lose Weight',
-                                            style: GoogleFonts.vazirmatn()),
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 10.sp)),
                                         value: 'Lose Weight',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
                                           setState(() {
                                             tempSelectedGoal = value!;
+                                            goalType = 0;
                                           });
                                         },
                                       ),
                                       RadioListTile<String>(
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Keep Fit',
-                                            style: GoogleFonts.vazirmatn()),
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 10.sp)),
                                         value: 'Keep Fit',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
                                           setState(() {
                                             tempSelectedGoal = value!;
+                                            goalType = 1;
                                           });
                                         },
                                       ),
                                       RadioListTile<String>(
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Improve Endurance',
-                                            style: GoogleFonts.vazirmatn()),
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 10.sp)),
                                         value: 'Improve Endurance',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
                                           setState(() {
                                             tempSelectedGoal = value!;
+                                            goalType = 2;
                                           });
                                         },
                                       ),
                                       RadioListTile<String>(
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Increase Strength',
-                                            style: GoogleFonts.vazirmatn()),
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 10.sp)),
                                         value: 'Increase Strength',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
                                           setState(() {
                                             tempSelectedGoal = value!;
+                                            goalType = 3;
                                           });
                                         },
                                       ),
                                       RadioListTile<String>(
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Enhance Flexibility',
-                                            style: GoogleFonts.vazirmatn()),
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 10.sp)),
                                         value: 'Enhance Flexibility',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
                                           setState(() {
                                             tempSelectedGoal = value!;
+                                            goalType = 4;
                                           });
                                         },
                                       ),
                                       RadioListTile<String>(
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Muscle Gain',
-                                            style: GoogleFonts.vazirmatn()),
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 10.sp)),
                                         value: 'Muscle Gain',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
                                           setState(() {
                                             tempSelectedGoal = value!;
+                                            goalType = 5;
                                           });
                                         },
                                       ),
                                       RadioListTile<String>(
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Improve Cardio Health',
-                                            style: GoogleFonts.vazirmatn()),
+                                            style: GoogleFonts.vazirmatn(
+                                                fontSize: 10.sp)),
                                         value: 'Improve Cardio Health',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
                                           setState(() {
                                             tempSelectedGoal = value!;
+                                            goalType = 6;
                                           });
                                         },
                                       ),
@@ -1029,7 +1060,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         showSnackBar(context, "Please enter height");
                       } else if (ageController.text.isEmpty) {
                         showSnackBar(context, "Please enter age");
-                      } else if (goal == null) {
+                      } else if (goalType == null) {
                         showSnackBar(context, "Please select goal");
                       } else if (sleepingHoursController.text.isEmpty) {
                         showSnackBar(context, "Please enter sleep hour");
@@ -1065,7 +1096,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                 weightUnit: "Kg",
                                 weightValue: weightKg,
                                 age: ageController.text,
-                                goal: goal!,
+                                goal: goalType!,
                                 sleepHours: sleepingHoursController.text,
                                 mealFrequency: mealFrequentlyController.text,
                                 hydrationDaily: hydrationController.text,
@@ -1086,7 +1117,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                 weightUnit: "lb",
                                 weightValue: weightLb,
                                 age: ageController.text,
-                                goal: goal!,
+                                goal: goalType!,
                                 sleepHours: sleepingHoursController.text,
                                 mealFrequency: mealFrequentlyController.text,
                                 hydrationDaily: hydrationController.text,
@@ -1109,7 +1140,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                 weightUnit: "Kg",
                                 weightValue: weightKg,
                                 age: ageController.text,
-                                goal: goal!,
+                                goal: goalType!,
                                 sleepHours: sleepingHoursController.text,
                                 mealFrequency: mealFrequentlyController.text,
                                 hydrationDaily: hydrationController.text,
@@ -1132,7 +1163,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                 weightUnit: "lb",
                                 weightValue: weightLb,
                                 age: ageController.text,
-                                goal: goal!,
+                                goal: goalType!,
                                 sleepHours: sleepingHoursController.text,
                                 mealFrequency: mealFrequentlyController.text,
                                 hydrationDaily: hydrationController.text,

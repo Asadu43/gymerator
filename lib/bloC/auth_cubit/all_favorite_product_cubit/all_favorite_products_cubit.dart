@@ -18,8 +18,8 @@ class AllFavoriteProductsCubit extends Cubit<AllFavoriteProductsState> {
     final GetAllFavoriteProductApiResponse model =
         await _repository.getFavoriteProductRequest();
     if (model.error == null) {
-      storeToken(model.data!.isRequiredInfoAdded!);
-      storeAccept(model.data!.isAccepted!);
+      storeToken(model.data?.isRequiredInfoAdded ?? false);
+      storeAccept(model.data?.isAccepted ?? false);
       emit(AllFavoriteProductGetSuccessfully(model));
     } else {
       emit(FailedToGetProduct(model));
