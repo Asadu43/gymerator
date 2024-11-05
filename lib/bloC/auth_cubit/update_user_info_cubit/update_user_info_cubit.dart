@@ -67,19 +67,18 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
     }
   }
 
-  Future editProfileRequest({
-    required String heightUnit,
-    required double heightValue,
-    required String weightUnit,
-    required double weightValue,
-    required int age,
-    required String goal,
-    required int sleepingHours,
-    required int mealFrequency,
-    required int waterHydration,
-    required double targetWeight,
-    required int dietPlan
-  }) async {
+  Future editProfileRequest(
+      {required String heightUnit,
+      required double heightValue,
+      required String weightUnit,
+      required double weightValue,
+      required int age,
+      required String goal,
+      required int sleepingHours,
+      required int mealFrequency,
+      required int waterHydration,
+      required double targetWeight,
+      required int dietPlan}) async {
     emit(LoadingState());
 
     FormData? data;
@@ -174,8 +173,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
         "hydrationLitersPerDay": waterHydration,
         "targetWeightInKG": targetWeight,
       });
-    }
-    else  {
+    } else {
       data = FormData.fromMap({
         "heightUnit": heightUnit,
         "heightValue": heightValue,
@@ -243,9 +241,6 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
         "country": country
       });
     }
-
-    print(formData.fields);
-
     final UpdateUserInfoApiResponse model =
         await _repository.updateUserInfoRequest(formData);
     if (model.error == null) {
