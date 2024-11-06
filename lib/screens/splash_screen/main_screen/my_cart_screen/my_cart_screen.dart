@@ -200,7 +200,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                           GoogleFonts.vazirmatn(
                                                               color:
                                                                   Colors.black,
-                                                              fontSize: 12,
+                                                              fontSize: 10.sp,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold),
@@ -248,8 +248,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        const Text(
+                                         Text(
                                           "Total Price Before Discount ",
+                                          style: GoogleFonts.vazirmatn(),
                                         ),
                                         Text(
                                           "\$ ${response?.data?.subTotal}",

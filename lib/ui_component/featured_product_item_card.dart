@@ -53,14 +53,14 @@ class _ProductItemCardState extends State<FeaturedProductItemCard> {
                     boxShadow: const [
                       BoxShadow(
                         color: Colors.grey,
-                        blurRadius: 2.0,
+                        blurRadius: 0.5,
                         spreadRadius: 0.0,
-                        offset: Offset(2.0, 2.0),
+                        offset: Offset(1.0, 1.0),
                       )
                     ],
                   )),
               Positioned(
-                  right: 8.0,
+                  right: 4.0,
                   top: 8.0,
                   child: widget.product.isFavorite == true
                       ? IconButton(

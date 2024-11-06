@@ -8,6 +8,7 @@ import 'package:gymmerator/screens/splash_screen/main_screen/my_cart_screen/my_c
 import 'package:gymmerator/ui_component/app_button.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../../../bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart'
     hide
@@ -56,6 +57,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return BlocProvider(
       create: (context) => ProductDetailCubit()
         ..detailRequest(id: widget.id)
@@ -154,7 +157,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                               cartResponse!.data!.items!.length
                                                   .toString(),
                                               textAlign: TextAlign.center,
-                                              style: const TextStyle(
+                                              style:  GoogleFonts.vazirmatn(
                                                 color: Colors.white,
                                                 fontSize: 11.0,
                                                 fontWeight: FontWeight.w500,
@@ -192,8 +195,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             fit: BoxFit.cover,
                                             errorBuilder:
                                                 (context, error, stackTrace) {
-                                              return const Center(
-                                                child: Text('Please Wait'),
+                                              return  Center(
+                                                child: Text('Please Wait',style: GoogleFonts.vazirmatn(),),
                                               );
                                             },
                                           ));
@@ -210,7 +213,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Text(
                             response?.data?.name ?? "",
                             style: GoogleFonts.vazirmatn(
-                                fontSize: 24, fontWeight: FontWeight.bold),
+                                fontSize: 16.sp, fontWeight: FontWeight.bold),
                           ),
                           (response?.data?.isFavorite == false)
                               ? InkWell(
@@ -240,14 +243,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             children: [
                               Text(
                                 'Price',
-                                style: GoogleFonts.vazirmatn(fontSize: 18),
+                                style: GoogleFonts.vazirmatn(fontSize: 12.sp,color: Colors.grey),
                               ),
                               Row(
                                 children: [
                                   Text(
                                     '\$ ${((response?.data?.price ?? 1) * _quantity)}',
                                     style: GoogleFonts.vazirmatn(
-                                        fontSize: 20,
+                                        fontSize: 12.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   const SizedBox(width: 20),
@@ -257,7 +260,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           style: GoogleFonts.vazirmatn(
                                               decoration:
                                                   TextDecoration.lineThrough,
-                                              fontSize: 16,
+                                              fontSize: 10.sp,
                                               color: Colors.grey),
                                         )
                                       : const SizedBox(),
@@ -287,7 +290,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     Text(
                                       '$_quantity',
                                       style:
-                                          GoogleFonts.vazirmatn(fontSize: 18),
+                                          GoogleFonts.vazirmatn(fontSize: 12.sp),
                                     ),
                                     const SizedBox(width: 8),
                                     InkWell(
@@ -310,14 +313,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               : Text(
                                   'Out of stock',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 12, color: Colors.red),
+                                      fontSize: 8.sp, color: Colors.red),
                                 ),
                         ],
                       ),
                       const SizedBox(height: 8),
                       Text(
                         'Product Variants',
-                        style: GoogleFonts.vazirmatn(fontSize: 18),
+                        style: GoogleFonts.vazirmatn(fontSize: 13.sp),
                       ),
                       const SizedBox(height: 8),
                       SizedBox(
@@ -352,13 +355,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   ),
                                   child: Center(
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding:  EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                                       child: Text(
                                         response?.data?.variants?[index]
                                                 .variant ??
                                             "", // Replace with actual text
                                         style: GoogleFonts.vazirmatn(
-                                          fontSize: 16,
+                                          fontSize: 12.sp,
                                           color: isSelected
                                               ? Colors.white
                                               : Colors
@@ -378,16 +381,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            'Details',
+                            'Description',
                             style: GoogleFonts.vazirmatn(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 13.sp, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
                       const SizedBox(height: 8),
                       Text(
                         response?.data?.description ?? "",
-                        style: GoogleFonts.vazirmatn(),
+                        style: GoogleFonts.vazirmatn(fontSize: 10.sp,color: Colors.grey),
                       ),
                       const SizedBox(height: 50),
                       (response?.data?.isAvailable == true)

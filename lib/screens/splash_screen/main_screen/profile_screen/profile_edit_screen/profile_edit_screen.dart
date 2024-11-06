@@ -496,7 +496,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             activeColor:
                                                 const Color(0xff3F710D),
                                             title: Text('Lose Weight',
-                                                style: GoogleFonts.vazirmatn()),
+                                                style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
                                             value: 'Lose Weight',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -509,7 +509,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             activeColor:
                                                 const Color(0xff3F710D),
                                             title: Text('Keep Fit',
-                                                style: GoogleFonts.vazirmatn()),
+                                                style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
                                             value: 'Keep Fit',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -522,7 +522,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             activeColor:
                                                 const Color(0xff3F710D),
                                             title: Text('Improve Endurance',
-                                                style: GoogleFonts.vazirmatn()),
+                                                style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
                                             value: 'Improve Endurance',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -535,7 +535,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             activeColor:
                                                 const Color(0xff3F710D),
                                             title: Text('Increase Strength',
-                                                style: GoogleFonts.vazirmatn()),
+                                                style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
                                             value: 'Increase Strength',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -548,7 +548,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             activeColor:
                                                 const Color(0xff3F710D),
                                             title: Text('Enhance Flexibility',
-                                                style: GoogleFonts.vazirmatn()),
+                                                style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
                                             value: 'Enhance Flexibility',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -561,7 +561,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             activeColor:
                                                 const Color(0xff3F710D),
                                             title: Text('Muscle Gain',
-                                                style: GoogleFonts.vazirmatn()),
+                                                style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
                                             value: 'Muscle Gain',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -574,7 +574,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             activeColor:
                                                 const Color(0xff3F710D),
                                             title: Text('Improve Cardio Health',
-                                                style: GoogleFonts.vazirmatn()),
+                                                style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
                                             value: 'Improve Cardio Health',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {

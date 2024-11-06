@@ -159,7 +159,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
         "targetWeightInKG": targetWeight,
       });
     }
-    if (goal == "muscle gain") {
+    if (goal == "Muscle Gain") {
       data = FormData.fromMap({
         "heightUnit": heightUnit,
         "heightValue": heightValue,

@@ -81,6 +81,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
                       child: AppTextField(
                         controller: searchController,
                         hintText: 'Search products',
+                        cursorColor: Colors.black,
                         icon: const Icon(Icons.search),
                         color: Colors.grey,
                         onChanged: (p0) {

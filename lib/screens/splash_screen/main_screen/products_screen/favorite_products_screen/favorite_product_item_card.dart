@@ -47,7 +47,7 @@ class _ProductItemCardState extends State<FavoriteProductItemCard> {
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.grey,
-                      blurRadius: 2.0,
+                      blurRadius: 0.5,
                       spreadRadius: 0.0,
                       offset: Offset(0.5, 0.5),
                     )
