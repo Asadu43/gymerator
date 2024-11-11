@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:country_state_city/models/city.dart';
 import 'package:country_state_city/models/country.dart';
 import 'package:country_state_city/models/state.dart' as cs;
@@ -43,6 +44,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   int isCurrentAddress = 0;
   bool isPasswordValid = false;
+  String _selectedCountryCode = "+1";
 
   getCurrentLocation() async {
     await Geolocator.requestPermission();
@@ -186,12 +188,71 @@ class _SignupScreenState extends State<SignupScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        AppTextField(
-                          controller: phoneNumberController,
-                          textInputType: TextInputType.number,
-                          hintText: "Mobile Number",
-                          icon: const Icon(Icons.phone),
+                        Container(
+                          height: MediaQuery.of(context).size.height * 0.07,
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            border: Border.all(color: Colors.white),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              // CountryCodePicker
+                              SizedBox(
+                                width: 30.w,
+                                // color: Colors.red,
+                                child: CountryCodePicker(
+                                  onChanged: (countryCode) {
+                                    setState(() {
+                                      _selectedCountryCode =
+                                          countryCode.dialCode!;
+                                    });
+                                  },
+                                  showFlag: false,
+                                  textStyle: GoogleFonts.vazirmatn(
+                                      color: Colors.white, fontSize: 10.sp),
+                                  showDropDownButton: true,
+                                  showFlagDialog: true,
+                                  enabled: true,
+                                  hideSearch: true,
+                                  // initialSelection: 'US', // Optional: Set default country to USA
+                                  // favorite: const ['+1', '+91'], // Optional: favorite country codes (e.g., USA, India)
+                                ),
+                              ),
+
+                              // Phone Number TextField
+                              Expanded(
+                                child: TextField(
+                                  controller: phoneNumberController,
+                                  keyboardType: TextInputType.phone,
+                                  cursorColor: Colors.white,
+                                  style: GoogleFonts.vazirmatn(
+                                      color: Colors.white),
+                                  decoration: InputDecoration(
+                                    hintText: 'Enter your phone number',
+
+                                    hintStyle: GoogleFonts.vazirmatn(
+                                        fontSize: 12, color: Colors.grey),
+                                    // prefixText:
+                                    //     _selectedCountryCode, // Show country code prefix
+                                    prefixStyle: GoogleFonts.vazirmatn(
+                                        color:
+                                            Colors.white), // Country code style
+                                    border:
+                                        InputBorder.none, // Remove the border
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
+                        // AppTextField(
+                        //   controller: phoneNumberController,
+                        //   textInputType: TextInputType.number,
+                        //   hintText: "Mobile Number",
+                        //   icon: const Icon(Icons.phone),
+                        // ),
                         const SizedBox(
                           height: 20,
                         ),
@@ -223,27 +284,38 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: Center(
                             child: DropdownButton<Country>(
                               underline: const SizedBox(),
-                              hint: Text(
-                                'Select Country',
-                                style: GoogleFonts.vazirmatn(
-                                    color: Colors.grey, fontSize: 12.sp),
+                              hint: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Select Country',
+                                  style: GoogleFonts.vazirmatn(
+                                    color: Colors.grey,
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
                               ),
                               value: selectedCountry,
                               isExpanded: true,
-
                               icon: const Icon(
                                 Icons.keyboard_arrow_down_sharp,
                                 color: Colors.grey,
                               ),
-                              dropdownColor: const Color(0xFF74994F),
+                              dropdownColor:
+                                  Colors.white, // Dropdown background color
                               items: countryList?.map((Country country) {
                                 return DropdownMenuItem<Country>(
                                   value: country,
-                                  child: Text(
-                                    country.name,
-                                    maxLines: 1,
-                                    style: GoogleFonts.vazirmatn(
-                                        fontSize: 12.sp, color: Colors.white),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      country.name,
+                                      maxLines: 1,
+                                      style: GoogleFonts.vazirmatn(
+                                        fontSize: 12.sp,
+                                        color: Colors
+                                            .black, // Text color in dropdown
+                                      ),
+                                    ),
                                   ),
                                 );
                               }).toList(),
@@ -255,9 +327,27 @@ class _SignupScreenState extends State<SignupScreen> {
                                   }
                                 });
                               },
+                              selectedItemBuilder: (BuildContext context) {
+                                return countryList
+                                        ?.map<Widget>((Country country) {
+                                      return Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          country.name,
+                                          style: GoogleFonts.vazirmatn(
+                                            fontSize: 12.sp,
+                                            color: Colors
+                                                .white, // Selected item text color in the button
+                                          ),
+                                        ),
+                                      );
+                                    }).toList() ??
+                                    [];
+                              },
                             ),
                           ),
                         ),
+
                         const SizedBox(
                           height: 20,
                         ),
@@ -274,10 +364,15 @@ class _SignupScreenState extends State<SignupScreen> {
                             child: Center(
                               child: DropdownButton<cs.State>(
                                 underline: const SizedBox(),
-                                hint: Text(
-                                  'Select State',
-                                  style: GoogleFonts.vazirmatn(
-                                      fontSize: 12.sp, color: Colors.grey),
+                                hint: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'Select State',
+                                    style: GoogleFonts.vazirmatn(
+                                      fontSize: 12.sp,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
                                 ),
                                 value: selectedState,
                                 isExpanded: true,
@@ -285,15 +380,23 @@ class _SignupScreenState extends State<SignupScreen> {
                                   Icons.keyboard_arrow_down_sharp,
                                   color: Colors.grey,
                                 ),
-                                dropdownColor: const Color(0xFF74994F),
+                                dropdownColor:
+                                    Colors.white, // Dropdown background color
                                 items: stateList?.map((cs.State state) {
                                   return DropdownMenuItem<cs.State>(
                                     value: state,
-                                    child: Text(state.name,
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        state.name,
                                         maxLines: 1,
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 12.sp,
-                                            color: Colors.white)),
+                                          fontSize: 12.sp,
+                                          color: Colors
+                                              .black, // Text color in dropdown
+                                        ),
+                                      ),
+                                    ),
                                   );
                                 }).toList(),
                                 onChanged: (cs.State? newState) {
@@ -302,9 +405,27 @@ class _SignupScreenState extends State<SignupScreen> {
                                     if (newState != null) loadCities(newState);
                                   });
                                 },
+                                selectedItemBuilder: (BuildContext context) {
+                                  return stateList
+                                          ?.map<Widget>((cs.State state) {
+                                        return Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            state.name,
+                                            style: GoogleFonts.vazirmatn(
+                                              fontSize: 12.sp,
+                                              color: Colors
+                                                  .white, // Selected item text color in the button
+                                            ),
+                                          ),
+                                        );
+                                      }).toList() ??
+                                      [];
+                                },
                               ),
                             ),
                           ),
+
                         const SizedBox(
                           height: 20,
                         ),
@@ -321,10 +442,15 @@ class _SignupScreenState extends State<SignupScreen> {
                             child: Center(
                               child: DropdownButton<City>(
                                 underline: const SizedBox(),
-                                hint: Text(
-                                  'Select City',
-                                  style: GoogleFonts.vazirmatn(
-                                      fontSize: 12.sp, color: Colors.grey),
+                                hint: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'Select City',
+                                    style: GoogleFonts.vazirmatn(
+                                      fontSize: 12.sp,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
                                 ),
                                 value: selectedCity,
                                 isExpanded: true,
@@ -332,21 +458,44 @@ class _SignupScreenState extends State<SignupScreen> {
                                   Icons.keyboard_arrow_down_sharp,
                                   color: Colors.grey,
                                 ),
-                                dropdownColor: const Color(0xFF74994F),
+                                dropdownColor:
+                                    Colors.white, // Dropdown background color
                                 items: cityList.map((City city) {
                                   return DropdownMenuItem<City>(
                                     value: city,
-                                    child: Text(city.name,
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        city.name,
                                         maxLines: 1,
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 12.sp,
-                                            color: Colors.white)),
+                                          fontSize: 12.sp,
+                                          color: Colors
+                                              .black, // Text color in dropdown
+                                        ),
+                                      ),
+                                    ),
                                   );
                                 }).toList(),
                                 onChanged: (City? newCity) {
                                   setState(() {
                                     selectedCity = newCity;
                                   });
+                                },
+                                selectedItemBuilder: (BuildContext context) {
+                                  return cityList.map<Widget>((City city) {
+                                    return Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        city.name,
+                                        style: GoogleFonts.vazirmatn(
+                                          fontSize: 12.sp,
+                                          color: Colors
+                                              .white, // Selected item text color in the button
+                                        ),
+                                      ),
+                                    );
+                                  }).toList();
                                 },
                               ),
                             ),
@@ -442,11 +591,12 @@ class _SignupScreenState extends State<SignupScreen> {
         showSnackBar(context,
             "Password must be at least 9 characters and include uppercase, lowercase, number, and special character.");
       } else {
+        String fullNumber = getFullPhoneNumber();
         context.read<SignupCubit>().signUp(
               firstname: firstNameController.text,
               lastName: lastNameController.text,
               email: emailController.text,
-              phoneNumber: phoneNumberController.text,
+              phoneNumber: fullNumber,
               address1: addressController.text,
               address2: address2Controller.text,
               city: cityList.isNotEmpty ? selectedCity!.name : "",
@@ -468,5 +618,22 @@ class _SignupScreenState extends State<SignupScreen> {
     setState(() {
       isPasswordValid = passwordRegExp.hasMatch(password);
     });
+  }
+
+  // Method to get the concatenated phone number
+  String getFullPhoneNumber() {
+    String phoneNumber = phoneNumberController.text;
+
+    // Remove any non-digit characters and leading '0' if it exists
+    phoneNumber = phoneNumber.replaceAll(
+        RegExp(r'[^0-9]'), ''); // Remove non-digit characters
+    if (phoneNumber.startsWith('0')) {
+      phoneNumber = phoneNumber.substring(1); // Remove the leading '0'
+    }
+
+    // Concatenate the country code and the phone number
+    String fullPhoneNumber = '$_selectedCountryCode$phoneNumber';
+
+    return fullPhoneNumber;
   }
 }

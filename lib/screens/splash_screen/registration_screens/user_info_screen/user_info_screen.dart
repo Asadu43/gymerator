@@ -118,8 +118,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text(
+                            "Male",
+                            style: GoogleFonts.vazirmatn(
+                                color: Colors.white, fontSize: 14.sp),
+                          ),
                           Container(
                             height: screenHeight * 0.18,
                             width: screenWidth * 0.4,
@@ -171,8 +177,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         ],
                       ),
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text(
+                            "Female",
+                            style: GoogleFonts.vazirmatn(
+                                color: Colors.white, fontSize: 14.sp),
+                          ),
                           Container(
                             height: screenHeight * 0.18,
                             width: screenWidth * 0.4,
