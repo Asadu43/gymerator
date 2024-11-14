@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutPlanApiResponse.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/schedule_workout_screen/exersice_screen/exercise_details_screen/exercise_details_screen.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../../../../ui_component/exercise_detail_row.dart';
 import '../../../../../../utils/nav/nav.dart';
@@ -19,13 +19,11 @@ class ExerciseScreen extends StatefulWidget {
 class _ExerciseScreenState extends State<ExerciseScreen> {
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(12.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -37,7 +35,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                           Nav.pop(context);
                         },
                         icon: const Icon(Icons.arrow_back_ios)),
-                    SizedBox(width: screenWidth * 0.2),
+                    SizedBox(width: 0.2.sw),
                     Text("Exercise",
                         style: GoogleFonts.vazirmatn(
                             fontSize: 14.sp,
@@ -46,10 +44,10 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: screenHeight * 0.02,
+                  height: 0.02.sh,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 12.0),
+                  padding: EdgeInsets.only(left: 12.w),
                   child: Text(
                       "Exercises (${widget.exercises.length.toString()})",
                       style: GoogleFonts.vazirmatn(
@@ -58,7 +56,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                           color: Colors.black)),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.02,
+                  height: 0.02.sh,
                 ),
                 GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
@@ -80,16 +78,15 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                 exercise: widget.exercises[index]));
                       },
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        padding: EdgeInsets.symmetric(vertical: 20.h),
                         child: Container(
-                          padding: const EdgeInsets.all(12.0),
+                          padding: EdgeInsets.all(16.h),
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(16.r),
                             border: Border.all(color: Colors.black12),
                           ),
                           child: Column(
-                            mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Center(
@@ -97,7 +94,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                   widget.exercises[index].exercise ?? "",
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.vazirmatn(),
+                                  style: GoogleFonts.vazirmatn(fontSize: 12.sp),
                                 ),
                               ),
                               ExerciseDetailRow(

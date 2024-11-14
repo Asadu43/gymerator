@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/registration_screens/choose_plan_screen/choose_plan_screen.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
-import 'package:sizer/sizer.dart';
-
 import '../../../../ui_component/app_button.dart';
 import '../../../../ui_component/show_snackbar.dart';
 import '../../../../utils/app_colors/app_colors.dart';
@@ -47,13 +46,10 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: Container(
-        height: screenHeight,
-        width: screenWidth,
+        height: 1.sh,
+        width: 1.sw,
         decoration: const BoxDecoration(
             image: DecorationImage(
           image: AssetImage('assets/images/background.png'),
@@ -61,31 +57,31 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
           fit: BoxFit.cover, // You can adjust the fit property as needed
         )),
         child: Padding(
-          padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+          padding: EdgeInsets.symmetric(horizontal: 0.03.sw),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: screenHeight / 12,
+                height: 1.sh / 12,
               ),
               SizedBox(
-                height: screenHeight * 0.030,
+                height: 30.h,
               ),
               Text("Do you have Medical issue?",
                   style: GoogleFonts.vazirmatn(
-                      fontSize: 18.sp,
+                      fontSize: 27.sp,
                       fontWeight: FontWeight.bold,
                       color: AppColors.white)),
+              SizedBox(
+                height: 10.h,
+              ),
               Text(
                   "Your coach will filter and reduce inappropriate exercises for you  Used Password.",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.vazirmatn(
-                      fontSize: 11.sp, color: Colors.grey)),
+                      fontSize: 16.sp, color: Colors.grey)),
               SizedBox(
-                height: screenHeight * 0.030,
-              ),
-              SizedBox(
-                height: screenHeight * 0.02,
+                height: 50.h,
               ),
               InkWell(
                 onTap: () {
@@ -98,15 +94,15 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                       return StatefulBuilder(
                         builder: (context, setState) {
                           return AlertDialog(
-                            shape: const RoundedRectangleBorder(
+                            shape:  RoundedRectangleBorder(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0))),
+                                    BorderRadius.all(Radius.circular(10.r))),
                             title: Text('Do you have any issue?',
                                 style: GoogleFonts.vazirmatn(
-                                    fontSize: 14.sp,
+                                    fontSize: 20.sp,
                                     fontWeight: FontWeight.bold)),
                             content: SizedBox(
-                              width: screenWidth * 1,
+                              width: 1.sw,
                               child: ListView(
                                 shrinkWrap: true,
                                 children: [
@@ -114,7 +110,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     activeColor: const Color(0xff3F710D),
                                     title: Text('No,I’m fine',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 10.sp)),
+                                            fontSize: 14.sp)),
                                     value: 'No,I’m fine',
                                     groupValue: tempSelectedGoal,
                                     onChanged: (String? value) {
@@ -128,7 +124,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     activeColor: const Color(0xff3F710D),
                                     title: Text('Cardiovascular',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 10.sp)),
+                                            fontSize: 14.sp)),
                                     value: 'Cardiovascular',
                                     groupValue: tempSelectedGoal,
                                     onChanged: (String? value) {
@@ -141,7 +137,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     activeColor: const Color(0xff3F710D),
                                     title: Text('Respiratory',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 10.sp)),
+                                            fontSize: 14.sp)),
                                     value: 'Respiratory',
                                     groupValue: tempSelectedGoal,
                                     onChanged: (String? value) {
@@ -154,7 +150,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     activeColor: const Color(0xff3F710D),
                                     title: Text('Metabolic and Endocrine',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 10.sp)),
+                                            fontSize: 14.sp)),
                                     value: 'Metabolic and Endocrine',
                                     groupValue: tempSelectedGoal,
                                     onChanged: (String? value) {
@@ -167,7 +163,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     activeColor: const Color(0xff3F710D),
                                     title: Text('Musculoskeletal',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 10.sp)),
+                                            fontSize: 14.sp)),
                                     value: 'Musculoskeletal',
                                     groupValue: tempSelectedGoal,
                                     onChanged: (String? value) {
@@ -180,7 +176,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     activeColor: const Color(0xff3F710D),
                                     title: Text('Neurological',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 10.sp)),
+                                            fontSize: 14.sp)),
                                     value: 'Neurological',
                                     groupValue: tempSelectedGoal,
                                     onChanged: (String? value) {
@@ -193,7 +189,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     activeColor: const Color(0xff3F710D),
                                     title: Text('Mental Health',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 10.sp)),
+                                            fontSize: 14.sp)),
                                     value: 'Mental Health',
                                     groupValue: tempSelectedGoal,
                                     onChanged: (String? value) {
@@ -206,7 +202,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     activeColor: const Color(0xff3F710D),
                                     title: Text('Gastrointestinal',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 10.sp)),
+                                            fontSize: 14.sp)),
                                     value: 'Gastrointestinal',
                                     groupValue: tempSelectedGoal,
                                     onChanged: (String? value) {
@@ -219,7 +215,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     activeColor: const Color(0xff3F710D),
                                     title: Text('Kidney and Liver',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 10.sp)),
+                                            fontSize: 14.sp)),
                                     value: 'Kidney and Liver',
                                     groupValue: tempSelectedGoal,
                                     onChanged: (String? value) {
@@ -232,7 +228,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     activeColor: const Color(0xff3F710D),
                                     title: Text('Immune System',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 10.sp)),
+                                            fontSize: 14.sp)),
                                     value: 'Immune System',
                                     groupValue: tempSelectedGoal,
                                     onChanged: (String? value) {
@@ -245,7 +241,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     activeColor: const Color(0xff3F710D),
                                     title: Text('Cancer',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 10.sp)),
+                                            fontSize: 14.sp)),
                                     value: 'Cancer',
                                     groupValue: tempSelectedGoal,
                                     onChanged: (String? value) {
@@ -258,7 +254,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     activeColor: const Color(0xff3F710D),
                                     title: Text('Pregnancy and Postpartum',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 10.sp)),
+                                            fontSize: 14.sp)),
                                     value: 'Pregnancy and Postpartum',
                                     groupValue: tempSelectedGoal,
                                     onChanged: (String? value) {
@@ -271,7 +267,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     activeColor: const Color(0xff3F710D),
                                     title: Text('Other Relevant',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 10.sp)),
+                                            fontSize: 14.sp)),
                                     value: 'Other Relevant',
                                     groupValue: tempSelectedGoal,
                                     onChanged: (String? value) {
@@ -353,7 +349,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                 ),
               ),
               SizedBox(
-                height: screenHeight * 0.02,
+                height: 20.h,
               ),
               (selectMedicalName == null || selectMedicalName == "No,I’m fine")
                   ? const SizedBox()
@@ -369,15 +365,15 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                 return StatefulBuilder(
                                   builder: (context, setState) {
                                     return AlertDialog(
-                                      shape: const RoundedRectangleBorder(
+                                      shape:  RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
-                                              Radius.circular(10.0))),
+                                              Radius.circular(10.r))),
                                       title: Text('Cardiovascular Conditions',
                                           style: GoogleFonts.vazirmatn(
-                                              fontSize: 14.sp,
+                                              fontSize: 20.sp,
                                               fontWeight: FontWeight.bold)),
                                       content: SizedBox(
-                                        width: screenWidth * 1,
+                                        width: 1.sw,
                                         child: ListView(
                                           shrinkWrap: true,
                                           // mainAxisSize: MainAxisSize.min,
@@ -387,7 +383,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                   const Color(0xff3F710D),
                                               title: Text('Heart Disease',
                                                   style: GoogleFonts.vazirmatn(
-                                                      fontSize: 10.sp)),
+                                                      fontSize: 14.sp)),
                                               value: 'Heart Disease',
                                               groupValue: tempSelectedGoal,
                                               onChanged: (String? value) {
@@ -401,7 +397,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                   const Color(0xff3F710D),
                                               title: Text('High Blood Pressure',
                                                   style: GoogleFonts.vazirmatn(
-                                                      fontSize: 10.sp)),
+                                                      fontSize: 14.sp)),
                                               value: 'High Blood Pressure',
                                               groupValue: tempSelectedGoal,
                                               onChanged: (String? value) {
@@ -415,7 +411,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                   const Color(0xff3F710D),
                                               title: Text('Low Blood Pressure',
                                                   style: GoogleFonts.vazirmatn(
-                                                      fontSize: 10.sp)),
+                                                      fontSize: 14.sp)),
                                               value: 'Low Blood Pressure',
                                               groupValue: tempSelectedGoal,
                                               onChanged: (String? value) {
@@ -429,7 +425,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                   const Color(0xff3F710D),
                                               title: Text('Arrhythmias',
                                                   style: GoogleFonts.vazirmatn(
-                                                      fontSize: 10.sp)),
+                                                      fontSize: 14.sp)),
                                               value: 'Arrhythmias',
                                               groupValue: tempSelectedGoal,
                                               onChanged: (String? value) {
@@ -444,7 +440,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                               title: Text(
                                                   'Peripheral Artery Disease',
                                                   style: GoogleFonts.vazirmatn(
-                                                      fontSize: 10.sp)),
+                                                      fontSize: 14.sp)),
                                               value:
                                                   'Peripheral Artery Disease',
                                               groupValue: tempSelectedGoal,
@@ -542,15 +538,15 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     return StatefulBuilder(
                                       builder: (context, setState) {
                                         return AlertDialog(
-                                          shape: const RoundedRectangleBorder(
+                                          shape:  RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(
-                                                  Radius.circular(10.0))),
+                                                  Radius.circular(10.r))),
                                           title: Text('Respiratory Conditions',
                                               style: GoogleFonts.vazirmatn(
-                                                  fontSize: 14.sp,
+                                                  fontSize: 20.sp,
                                                   fontWeight: FontWeight.bold)),
                                           content: SizedBox(
-                                            width: screenWidth * 1,
+                                            width: 1.sw,
                                             child: ListView(
                                               shrinkWrap: true,
                                               children: [
@@ -560,7 +556,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                   title: Text('Asthma',
                                                       style:
                                                           GoogleFonts.vazirmatn(
-                                                              fontSize: 10.sp)),
+                                                              fontSize: 14.sp)),
                                                   value: 'Asthma',
                                                   groupValue: tempSelectedGoal,
                                                   onChanged: (String? value) {
@@ -576,7 +572,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                       'Chronic Obstructive Pulmonary Disease',
                                                       style:
                                                           GoogleFonts.vazirmatn(
-                                                              fontSize: 10.sp)),
+                                                              fontSize: 14.sp)),
                                                   value:
                                                       'Chronic Obstructive Pulmonary Disease',
                                                   groupValue: tempSelectedGoal,
@@ -592,7 +588,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                   title: Text('Sleep Apnea',
                                                       style:
                                                           GoogleFonts.vazirmatn(
-                                                              fontSize: 10.sp)),
+                                                              fontSize: 14.sp)),
                                                   value: 'Sleep Apnea',
                                                   groupValue: tempSelectedGoal,
                                                   onChanged: (String? value) {
@@ -695,19 +691,19 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                           builder: (context, setState) {
                                             return AlertDialog(
                                               shape:
-                                                  const RoundedRectangleBorder(
+                                                   RoundedRectangleBorder(
                                                       borderRadius:
                                                           BorderRadius.all(
                                                               Radius.circular(
-                                                                  10.0))),
+                                                                  10.r))),
                                               title: Text(
                                                   'Musculoskeletal Conditions',
                                                   style: GoogleFonts.vazirmatn(
-                                                      fontSize: 14.sp,
+                                                      fontSize: 20.sp,
                                                       fontWeight:
                                                           FontWeight.bold)),
                                               content: SizedBox(
-                                                width: screenWidth * 1,
+                                                width: 1.sw,
                                                 child: ListView(
                                                   shrinkWrap: true,
                                                   children: [
@@ -718,7 +714,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                           style: GoogleFonts
                                                               .vazirmatn(
                                                                   fontSize:
-                                                                      10.sp)),
+                                                                      14.sp)),
                                                       value: 'Arthritis',
                                                       groupValue:
                                                           tempSelectedGoal,
@@ -738,7 +734,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                           style: GoogleFonts
                                                               .vazirmatn(
                                                                   fontSize:
-                                                                      10.sp)),
+                                                                      14.sp)),
                                                       value: 'Osteoporosis',
                                                       groupValue:
                                                           tempSelectedGoal,
@@ -758,7 +754,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                           style: GoogleFonts
                                                               .vazirmatn(
                                                                   fontSize:
-                                                                      10.sp)),
+                                                                      14.sp)),
                                                       value:
                                                           'Chronic Back Pain',
                                                       groupValue:
@@ -779,7 +775,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                           style: GoogleFonts
                                                               .vazirmatn(
                                                                   fontSize:
-                                                                      10.sp)),
+                                                                      14.sp)),
                                                       value: 'Joint Injuries',
                                                       groupValue:
                                                           tempSelectedGoal,
@@ -799,7 +795,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                           style: GoogleFonts
                                                               .vazirmatn(
                                                                   fontSize:
-                                                                      10.sp)),
+                                                                      14.sp)),
                                                       value: 'Fibromyalgia',
                                                       groupValue:
                                                           tempSelectedGoal,
@@ -818,7 +814,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                           style: GoogleFonts
                                                               .vazirmatn(
                                                                   fontSize:
-                                                                      10.sp)),
+                                                                      14.sp)),
                                                       value: 'Tendinitis',
                                                       groupValue:
                                                           tempSelectedGoal,
@@ -837,7 +833,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                           style: GoogleFonts
                                                               .vazirmatn(
                                                                   fontSize:
-                                                                      10.sp)),
+                                                                      14.sp)),
                                                       value: 'Bursitis',
                                                       groupValue:
                                                           tempSelectedGoal,
@@ -946,21 +942,21 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                               builder: (context, setState) {
                                                 return AlertDialog(
                                                   shape:
-                                                      const RoundedRectangleBorder(
+                                                       RoundedRectangleBorder(
                                                           borderRadius:
                                                               BorderRadius.all(
                                                                   Radius.circular(
-                                                                      10.0))),
+                                                                      10.r))),
                                                   title: Text(
                                                       'Neurological Conditions',
                                                       style:
                                                           GoogleFonts.vazirmatn(
-                                                              fontSize: 14.sp,
+                                                              fontSize: 20.sp,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold)),
                                                   content: SizedBox(
-                                                    width: screenWidth * 1,
+                                                    width: 1.sw,
                                                     child: ListView(
                                                       shrinkWrap: true,
                                                       children: [
@@ -973,7 +969,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                               style: GoogleFonts
                                                                   .vazirmatn(
                                                                       fontSize:
-                                                                          10.sp)),
+                                                                          14.sp)),
                                                           value:
                                                               'Parkinson Disease',
                                                           groupValue:
@@ -995,7 +991,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                               style: GoogleFonts
                                                                   .vazirmatn(
                                                                       fontSize:
-                                                                          10.sp)),
+                                                                          14.sp)),
                                                           value:
                                                               'Multiple Sclerosis',
                                                           groupValue:
@@ -1017,7 +1013,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                               style: GoogleFonts
                                                                   .vazirmatn(
                                                                       fontSize:
-                                                                          10.sp)),
+                                                                          14.sp)),
                                                           value: 'Epilepsy',
                                                           groupValue:
                                                               tempSelectedGoal,
@@ -1038,7 +1034,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                               style: GoogleFonts
                                                                   .vazirmatn(
                                                                       fontSize:
-                                                                          10.sp)),
+                                                                          14.sp)),
                                                           value:
                                                               'Stroke History',
                                                           groupValue:
@@ -1157,22 +1153,22 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                 return StatefulBuilder(
                                                   builder: (context, setState) {
                                                     return AlertDialog(
-                                                      shape: const RoundedRectangleBorder(
+                                                      shape:  RoundedRectangleBorder(
                                                           borderRadius:
                                                               BorderRadius.all(
                                                                   Radius.circular(
-                                                                      10.0))),
+                                                                      10.r))),
                                                       title: Text(
                                                           'Mental Health Conditions',
                                                           style: GoogleFonts
                                                               .vazirmatn(
                                                                   fontSize:
-                                                                      14.sp,
+                                                                      20.sp,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold)),
                                                       content: SizedBox(
-                                                        width: screenWidth * 1,
+                                                        width: 1.sw,
                                                         child: ListView(
                                                           shrinkWrap: true,
                                                           children: [
@@ -1186,7 +1182,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                   style: GoogleFonts
                                                                       .vazirmatn(
                                                                           fontSize:
-                                                                              10.sp)),
+                                                                              14.sp)),
                                                               value:
                                                                   'Depression',
                                                               groupValue:
@@ -1210,7 +1206,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                   style: GoogleFonts
                                                                       .vazirmatn(
                                                                           fontSize:
-                                                                              10.sp)),
+                                                                              14.sp)),
                                                               value:
                                                                   'Anxiety Disorders',
                                                               groupValue:
@@ -1234,7 +1230,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                   style: GoogleFonts
                                                                       .vazirmatn(
                                                                           fontSize:
-                                                                              10.sp)),
+                                                                              14.sp)),
                                                               value:
                                                                   'Bipolar Disorder',
                                                               groupValue:
@@ -1258,7 +1254,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                   style: GoogleFonts
                                                                       .vazirmatn(
                                                                           fontSize:
-                                                                              10.sp)),
+                                                                              14.sp)),
                                                               value:
                                                                   'Post-Traumatic Stress Disorder',
                                                               groupValue:
@@ -1389,23 +1385,22 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                       builder:
                                                           (context, setState) {
                                                         return AlertDialog(
-                                                          shape: const RoundedRectangleBorder(
+                                                          shape:  RoundedRectangleBorder(
                                                               borderRadius: BorderRadius
                                                                   .all(Radius
                                                                       .circular(
-                                                                          10.0))),
+                                                                          10.r))),
                                                           title: Text(
                                                               'Gastrointestinal Conditions',
                                                               style: GoogleFonts
                                                                   .vazirmatn(
                                                                       fontSize:
-                                                                          14.sp,
+                                                                          20.sp,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold)),
                                                           content: SizedBox(
-                                                            width:
-                                                                screenWidth * 1,
+                                                            width: 1.sw,
                                                             child: ListView(
                                                               shrinkWrap: true,
                                                               children: [
@@ -1418,7 +1413,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                       'Irritable Bowel Syndrome',
                                                                       style: GoogleFonts.vazirmatn(
                                                                           fontSize:
-                                                                              10.sp)),
+                                                                              14.sp)),
                                                                   value:
                                                                       'Irritable Bowel Syndrome',
                                                                   groupValue:
@@ -1442,7 +1437,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                       'Gastro esophageal Reflux Disease',
                                                                       style: GoogleFonts.vazirmatn(
                                                                           fontSize:
-                                                                              10.sp)),
+                                                                              14.sp)),
                                                                   value:
                                                                       'Gastro esophageal Reflux Disease',
                                                                   groupValue:
@@ -1577,23 +1572,21 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                           builder: (context,
                                                               setState) {
                                                             return AlertDialog(
-                                                              shape: const RoundedRectangleBorder(
+                                                              shape:  RoundedRectangleBorder(
                                                                   borderRadius:
                                                                       BorderRadius.all(
                                                                           Radius.circular(
-                                                                              10.0))),
+                                                                              10.r))),
                                                               title: Text(
                                                                   'Kidney and Liver Conditions',
                                                                   style: GoogleFonts.vazirmatn(
                                                                       fontSize:
-                                                                          14.sp,
+                                                                          20.sp,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold)),
                                                               content: SizedBox(
-                                                                width:
-                                                                    screenWidth *
-                                                                        1,
+                                                                width: 1.sw,
                                                                 child: ListView(
                                                                   shrinkWrap:
                                                                       true,
@@ -1606,7 +1599,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                       title: Text(
                                                                           'Chronic Kidney Disease',
                                                                           style:
-                                                                              GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                              GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                       value:
                                                                           'Chronic Kidney Disease',
                                                                       groupValue:
@@ -1629,7 +1622,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                       title: Text(
                                                                           'Liver Disease',
                                                                           style:
-                                                                              GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                              GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                       value:
                                                                           'Liver Disease',
                                                                       groupValue:
@@ -1770,22 +1763,20 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                               builder: (context,
                                                                   setState) {
                                                                 return AlertDialog(
-                                                                  shape: const RoundedRectangleBorder(
+                                                                  shape:  RoundedRectangleBorder(
                                                                       borderRadius:
                                                                           BorderRadius.all(
-                                                                              Radius.circular(10.0))),
+                                                                              Radius.circular(10.r))),
                                                                   title: Text(
                                                                       'Immune System Conditions',
                                                                       style: GoogleFonts.vazirmatn(
-                                                                          fontSize: 14
+                                                                          fontSize: 20
                                                                               .sp,
                                                                           fontWeight:
                                                                               FontWeight.bold)),
                                                                   content:
                                                                       SizedBox(
-                                                                    width:
-                                                                        screenWidth *
-                                                                            1,
+                                                                    width: 1.sw,
                                                                     child:
                                                                         ListView(
                                                                       shrinkWrap:
@@ -1797,7 +1788,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                               const Color(0xff3F710D),
                                                                           title: Text(
                                                                               'Chronic Kidney Disease',
-                                                                              style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                              style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                           value:
                                                                               'Chronic Kidney Disease',
                                                                           groupValue:
@@ -1815,7 +1806,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                               const Color(0xff3F710D),
                                                                           title: Text(
                                                                               'HIV/AIDS',
-                                                                              style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                              style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                           value:
                                                                               'HIV/AIDS',
                                                                           groupValue:
@@ -1957,19 +1948,18 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                   builder: (context,
                                                                       setState) {
                                                                     return AlertDialog(
-                                                                      shape: const RoundedRectangleBorder(
+                                                                      shape:  RoundedRectangleBorder(
                                                                           borderRadius:
-                                                                              BorderRadius.all(Radius.circular(10.0))),
+                                                                              BorderRadius.all(Radius.circular(10.r))),
                                                                       title: Text(
                                                                           'Cancer',
                                                                           style: GoogleFonts.vazirmatn(
-                                                                              fontSize: 14.sp,
+                                                                              fontSize: 20.sp,
                                                                               fontWeight: FontWeight.bold)),
                                                                       content:
                                                                           SizedBox(
-                                                                        width:
-                                                                            screenWidth *
-                                                                                1,
+                                                                        width: 1
+                                                                            .sw,
                                                                         child:
                                                                             ListView(
                                                                           shrinkWrap:
@@ -1977,7 +1967,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                           children: [
                                                                             RadioListTile<String>(
                                                                               activeColor: const Color(0xff3F710D),
-                                                                              title: Text('History of Cancer', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                              title: Text('History of Cancer', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                               value: 'History of Cancer',
                                                                               groupValue: tempSelectedGoal,
                                                                               onChanged: (String? value) {
@@ -2111,21 +2101,21 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                               setState) {
                                                                         return AlertDialog(
                                                                           shape:
-                                                                              const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                                                                               RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.r))),
                                                                           title: Text(
                                                                               'Pregnancy and Postpartum',
-                                                                              style: GoogleFonts.vazirmatn(fontSize: 14.sp, fontWeight: FontWeight.bold)),
+                                                                              style: GoogleFonts.vazirmatn(fontSize: 20.sp, fontWeight: FontWeight.bold)),
                                                                           content:
                                                                               SizedBox(
                                                                             width:
-                                                                                screenWidth * 1,
+                                                                                1.sw,
                                                                             child:
                                                                                 ListView(
                                                                               shrinkWrap: true,
                                                                               children: [
                                                                                 RadioListTile<String>(
                                                                                   activeColor: const Color(0xff3F710D),
-                                                                                  title: Text('Currently Pregnant', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                  title: Text('Currently Pregnant', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                                   value: 'Currently Pregnant',
                                                                                   groupValue: tempSelectedGoal,
                                                                                   onChanged: (String? value) {
@@ -2136,7 +2126,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                                 ),
                                                                                 RadioListTile<String>(
                                                                                   activeColor: const Color(0xff3F710D),
-                                                                                  title: Text('Postpartum Recovery', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                  title: Text('Postpartum Recovery', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                                   value: 'Postpartum Recovery',
                                                                                   groupValue: tempSelectedGoal,
                                                                                   onChanged: (String? value) {
@@ -2259,16 +2249,16 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                           builder:
                                                                               (context, setState) {
                                                                             return AlertDialog(
-                                                                              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                                                                              title: Text('Other Relevant Conditions', style: GoogleFonts.vazirmatn(fontSize: 14.sp, fontWeight: FontWeight.bold)),
+                                                                              shape:  RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.r))),
+                                                                              title: Text('Other Relevant Conditions', style: GoogleFonts.vazirmatn(fontSize: 20.sp, fontWeight: FontWeight.bold)),
                                                                               content: SizedBox(
-                                                                                width: screenWidth * 1,
+                                                                                width: 1.sw,
                                                                                 child: ListView(
                                                                                   shrinkWrap: true,
                                                                                   children: [
                                                                                     RadioListTile<String>(
                                                                                       activeColor: const Color(0xff3F710D),
-                                                                                      title: Text('Obesity', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                      title: Text('Obesity', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                                       value: 'Obesity',
                                                                                       groupValue: tempSelectedGoal,
                                                                                       onChanged: (String? value) {
@@ -2279,7 +2269,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                                     ),
                                                                                     RadioListTile<String>(
                                                                                       activeColor: const Color(0xff3F710D),
-                                                                                      title: Text('Eating Disorders', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                      title: Text('Eating Disorders', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                                       value: 'Eating Disorders',
                                                                                       groupValue: tempSelectedGoal,
                                                                                       onChanged: (String? value) {
@@ -2290,7 +2280,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                                     ),
                                                                                     RadioListTile<String>(
                                                                                       activeColor: const Color(0xff3F710D),
-                                                                                      title: Text('Chronic Fatigue Syndrome', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                      title: Text('Chronic Fatigue Syndrome', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                                       value: 'Chronic Fatigue Syndrome',
                                                                                       groupValue: tempSelectedGoal,
                                                                                       onChanged: (String? value) {
@@ -2301,7 +2291,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                                     ),
                                                                                     RadioListTile<String>(
                                                                                       activeColor: const Color(0xff3F710D),
-                                                                                      title: Text('Blood Clotting Disorders', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                      title: Text('Blood Clotting Disorders', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                                       value: 'Blood Clotting Disorders',
                                                                                       groupValue: tempSelectedGoal,
                                                                                       onChanged: (String? value) {
@@ -2420,16 +2410,16 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                             return StatefulBuilder(
                                                                               builder: (context, setState) {
                                                                                 return AlertDialog(
-                                                                                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                                                                                  title: Text('Metabolic and Endocrine Conditions', style: GoogleFonts.vazirmatn(fontSize: 14.sp, fontWeight: FontWeight.bold)),
+                                                                                  shape:  RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.r))),
+                                                                                  title: Text('Metabolic and Endocrine Conditions', style: GoogleFonts.vazirmatn(fontSize: 20.sp, fontWeight: FontWeight.bold)),
                                                                                   content: SizedBox(
-                                                                                    width: screenWidth * 1,
+                                                                                    width: 1.sw,
                                                                                     child: ListView(
                                                                                       shrinkWrap: true,
                                                                                       children: [
                                                                                         RadioListTile<String>(
                                                                                           activeColor: const Color(0xff3F710D),
-                                                                                          title: Text('Diabetes', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                          title: Text('Diabetes', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                                           value: 'Diabetes',
                                                                                           groupValue: tempSelectedGoal,
                                                                                           onChanged: (String? value) {
@@ -2440,7 +2430,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                                         ),
                                                                                         RadioListTile<String>(
                                                                                           activeColor: const Color(0xff3F710D),
-                                                                                          title: Text('Hypoglycemia', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                          title: Text('Hypoglycemia', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                                           value: 'Hypoglycemia',
                                                                                           groupValue: tempSelectedGoal,
                                                                                           onChanged: (String? value) {
@@ -2451,7 +2441,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                                         ),
                                                                                         RadioListTile<String>(
                                                                                           activeColor: const Color(0xff3F710D),
-                                                                                          title: Text('Hyperthyroidism', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                          title: Text('Hyperthyroidism', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                                           value: 'Hyperthyroidism',
                                                                                           groupValue: tempSelectedGoal,
                                                                                           onChanged: (String? value) {
@@ -2462,7 +2452,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                                         ),
                                                                                         RadioListTile<String>(
                                                                                           activeColor: const Color(0xff3F710D),
-                                                                                          title: Text('Hypothyroidism', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                          title: Text('Hypothyroidism', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                                           value: 'Hypothyroidism',
                                                                                           groupValue: tempSelectedGoal,
                                                                                           onChanged: (String? value) {
@@ -2473,7 +2463,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                                         ),
                                                                                         RadioListTile<String>(
                                                                                           activeColor: const Color(0xff3F710D),
-                                                                                          title: Text('Metabolic Syndrome', style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                                                          title: Text('Metabolic Syndrome', style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                                                                           value: 'Metabolic Syndrome',
                                                                                           groupValue: tempSelectedGoal,
                                                                                           onChanged: (String? value) {
@@ -2614,7 +2604,6 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                             dietPlan: widget.dietPlan,
                             selectMedicalName: selectMedicalName!,
                             medicalCondition: medicalCondition!));
-
                   }
 
                   // print(selectMedicalName);
@@ -2622,8 +2611,8 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                   // Nav.push(context, const ChoosePlanScreen());
                 },
               ),
-              const SizedBox(
-                height: 10,
+               SizedBox(
+                height: 20.h,
               ),
             ],
           ),

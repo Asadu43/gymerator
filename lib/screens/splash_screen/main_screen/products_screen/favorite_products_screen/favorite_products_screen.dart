@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
@@ -49,7 +50,7 @@ class _FavoriteProductsScreenState extends State<FavoriteProductsScreen> {
                   centerTitle: true,
                   title: Text('Favorite Products',
                       style: GoogleFonts.vazirmatn(
-                          fontSize: 20, fontWeight: FontWeight.bold)),
+                          fontSize: 20.sp, fontWeight: FontWeight.w600)),
                   leading: IconButton(
                     icon: const Icon(Icons.arrow_back_ios),
                     onPressed: () {
@@ -57,11 +58,11 @@ class _FavoriteProductsScreenState extends State<FavoriteProductsScreen> {
                     },
                   )),
               body: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(height: 16.0),
+                    SizedBox(height: 16.h),
                     (response?.data?.favoriteProducts?.length == 0)
                         ? Center(
                             child: Text(
@@ -80,11 +81,11 @@ class _FavoriteProductsScreenState extends State<FavoriteProductsScreen> {
                                 );
                               },
                               gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 8.0,
                                 mainAxisSpacing: 8.0,
-                                childAspectRatio: 0.7,
+                                childAspectRatio: 0.7
                               ),
                             ),
                           ),

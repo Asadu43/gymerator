@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/product_details_screen/product_details_screen.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
@@ -23,8 +24,6 @@ class FeaturedProductItemCard extends StatefulWidget {
 class _ProductItemCardState extends State<FeaturedProductItemCard> {
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {
         if (widget.product.id != null) {
@@ -39,12 +38,12 @@ class _ProductItemCardState extends State<FeaturedProductItemCard> {
           Stack(
             children: [
               Container(
-                  height: screenHeight * 0.19,
-                  width: screenWidth * 0.33,
-                  margin: const EdgeInsets.all(8.0),
+                  height: 0.19.sh,
+                  width: 0.33.sw,
+                  margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(8.r),
                     image: DecorationImage(
                       image: NetworkImage(
                           "${ApiConstants.baseUrl}/product/image/${widget.product.images?.first}"),
@@ -55,13 +54,12 @@ class _ProductItemCardState extends State<FeaturedProductItemCard> {
                         color: Colors.grey,
                         blurRadius: 0.5,
                         spreadRadius: 0.0,
-                        offset: Offset(1.0, 1.0),
                       )
                     ],
                   )),
               Positioned(
-                  right: 4.0,
-                  top: 8.0,
+                  right: 1.w,
+                  top: 2.h,
                   child: widget.product.isFavorite == true
                       ? IconButton(
                           onPressed: () {
@@ -79,26 +77,26 @@ class _ProductItemCardState extends State<FeaturedProductItemCard> {
                           icon: const Icon(Icons.favorite_border)))
             ],
           ),
-          SizedBox(height: screenHeight * 0.01),
+          SizedBox(height: 0.01.sh),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.4,
+            width: 0.4.sw,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: 8.w),
               child: Text(
                 widget.product.name!,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
+                style: GoogleFonts.vazirmatn(fontWeight: FontWeight.w600,fontSize: 9.sp),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: EdgeInsets.symmetric(horizontal: 8.w),
             child: Text(
               "\$${widget.product.price.toString()}",
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: GoogleFonts.vazirmatn(color: Colors.grey),
+              style: GoogleFonts.vazirmatn(color: Colors.grey,fontSize: 10.sp,fontWeight: FontWeight.w600),
             ),
           ),
         ],

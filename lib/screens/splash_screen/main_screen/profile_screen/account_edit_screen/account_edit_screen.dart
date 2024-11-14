@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/update_user_info_cubit/update_user_info_cubit.dart';
 import 'package:gymmerator/ui_component/app_button.dart';
@@ -81,8 +82,6 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return BlocProvider(
       create: (context) => UpdateUserInfoCubit(),
       child: BlocConsumer<UpdateUserInfoCubit, UpdateUserInfoState>(
@@ -104,14 +103,14 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
               resizeToAvoidBottomInset: false,
               appBar: AppBar(
                 leading: IconButton(
-                  icon: const Icon(Icons.arrow_back_ios, size: 20),
+                  icon: Icon(Icons.arrow_back_ios, size: 20.h),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                 ),
                 title: Text(
                   'Account Edit',
-                  style: GoogleFonts.vazirmatn(),
+                  style: GoogleFonts.vazirmatn(fontSize: 20.sp,fontWeight: FontWeight.w600),
                 ),
                 centerTitle: true,
                 backgroundColor: Colors.white,
@@ -120,15 +119,15 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
               ),
               body: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                   child: Column(
                     children: [
                       Center(
                         child: Stack(children: [
                           Center(
                             child: Container(
-                              height: screenHeight * 0.19,
-                              width: screenWidth * 0.4,
+                              height: 0.19.sh,
+                              width: 0.4.sw,
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(80),
@@ -148,8 +147,8 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
                                               child: Text(
                                                 widget.firstName[0]
                                                     .toUpperCase(),
-                                                style: const TextStyle(
-                                                    fontSize: 40,
+                                                style:  GoogleFonts.vazirmatn(
+                                                    fontSize: 40.sp,
                                                     color: Colors.black),
                                               ),
                                             )
@@ -160,15 +159,15 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
                             ),
                           ),
                           Positioned(
-                              bottom: -20,
-                              right: screenWidth * 0.3,
+                              bottom: -20.h,
+                              right:  0.3.sw,
                               child: GestureDetector(
                                 onTap: () {
                                   _imgFromGallery();
                                 },
                                 child: Container(
-                                  height: screenHeight * 0.1,
-                                  width: screenWidth * 0.1,
+                                  height: 0.1.sh,
+                                  width:  0.1.sw,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Colors.grey.shade300,
@@ -179,29 +178,29 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
                               ))
                         ]),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                       TextFormField(
                         controller: firstNameController,
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.person_outline),
                           hintText: 'Enter your first name',
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.r),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                       TextFormField(
                         controller: lastNameController,
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.person_outline),
                           hintText: 'Enter your last name',
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.r),
                           ),
                         ),
                       ),
-                      // const SizedBox(height: 20),
+                      // SizedBox(height: 20.h),
                       // TextFormField(
                       //   controller: emailController,
                       //   decoration: InputDecoration(
@@ -212,81 +211,81 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
                       //     ),
                       //   ),
                       // ),
-                      // const SizedBox(height: 20),
-                      // TextFormField(
-                      //   controller: phoneNumberController,
-                      //   decoration: InputDecoration(
-                      //     prefixIcon: const Icon(Icons.phone_outlined),
-                      //     hintText: 'Mobile Number',
-                      //     border: OutlineInputBorder(
-                      //       borderRadius: BorderRadius.circular(30),
-                      //     ),
-                      //   ),
-                      // ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
+                      TextFormField(
+                        controller: phoneNumberController,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.phone_outlined),
+                          hintText: 'Mobile Number',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30.r),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20.h),
                       TextFormField(
                         controller: address1Controller,
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.location_on_outlined),
                           hintText: 'Address 1',
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.r),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                       TextFormField(
                         controller: address2Controller,
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.location_on_outlined),
                           hintText: 'Address 2',
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.r),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                       TextFormField(
                         controller: cityController,
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.location_on_outlined),
                           hintText: 'city',
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.r),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                       TextFormField(
                         controller: stateController,
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.location_on_outlined),
                           hintText: 'state',
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.r),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                       SizedBox(height: 20.h),
                       TextFormField(
                         controller: countryController,
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.location_on_outlined),
                           hintText: 'country',
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.r),
                           ),
                         ),
                       ),
 
-                      const SizedBox(height: 40),
+                       SizedBox(height: 40.h),
                       AppButton(
                         text: "Save",
                         onPressed: () async {
                           await _onSaveButtonPressed(context);
                         },
                       ),
-                      const SizedBox(height: 10),
+                       SizedBox(height: 10.h),
                     ],
                   ),
                 ),

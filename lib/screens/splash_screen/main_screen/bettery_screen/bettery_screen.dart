@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../../bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
 import '../../../../models/api_response/GetAllFavoriteProductApiResponse.dart';
@@ -27,8 +27,6 @@ class _BatteryScreenState extends State<BatteryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return BlocConsumer<AllFavoriteProductsCubit, AllFavoriteProductsState>(
       listener: (context, state) {
         if (state is FailedToGetProduct) {}
@@ -44,7 +42,7 @@ class _BatteryScreenState extends State<BatteryScreen> {
             key: _scaffoldKey,
             drawer: const AppDrawer(),
             body: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -60,50 +58,52 @@ class _BatteryScreenState extends State<BatteryScreen> {
                               icon: const Icon(Icons.menu)),
                           Text("Hi, ${response?.data?.firstName ?? ""}",
                               style: GoogleFonts.vazirmatn(
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.w600,
                                   color: Colors.black)),
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Image.asset("assets/icons/coin.png",
-                              fit: BoxFit.cover),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text("10",
-                              style: GoogleFonts.vazirmatn(
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.bold)),
-                        ],
+                      Padding(
+                        padding: EdgeInsets.only(right: 8.w),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Image.asset("assets/icons/coin.png",
+                                fit: BoxFit.cover),
+                             SizedBox(
+                              width: 10.w,
+                            ),
+                            Text("10",
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w600)),
+                          ],
+                        ),
                       )
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 16.0, right: 8.0),
+                    padding: EdgeInsets.only(left: 16.w, right: 8.w),
                     child: Text("Energize your life",
                         style: GoogleFonts.vazirmatn(
-                            fontSize: 14.sp, fontWeight: FontWeight.bold)),
+                            fontSize: 16.sp, fontWeight: FontWeight.w600)),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                    padding: EdgeInsets.symmetric(horizontal: 8.w),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      padding:  EdgeInsets.symmetric(vertical: 15.h),
                       child: Card(
                         elevation: 0,
                         color: const Color(0xff599918).withOpacity(0.15),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5.w),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.23,
+                                height: 150.h,
                                 child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
+                                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -113,8 +113,8 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                       Text(
                                         "Gym Prime Charger \n(250mAh,GaNPrime)",
                                         style: GoogleFonts.vazirmatn(
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.w600,
                                           color: Colors.black,
                                         ),
                                       ),
@@ -126,11 +126,11 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                         ),
                                       ),
                                       SizedBox(
-                                        height: screenHeight * 0.025,
+                                        height: 10.h,
                                       ),
                                       Container(
-                                        height: screenHeight * 0.07,
-                                        width: screenHeight * 0.18,
+                                        height: 50.h,
+                                        width: 100.w,
                                         decoration: BoxDecoration(
                                           boxShadow: const [
                                             BoxShadow(
@@ -148,7 +148,7 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                             ],
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(10),
+                                              BorderRadius.circular(10.r),
                                         ),
                                         child: ElevatedButton(
                                           style: ButtonStyle(
@@ -156,7 +156,7 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                                 RoundedRectangleBorder>(
                                               RoundedRectangleBorder(
                                                 borderRadius:
-                                                    BorderRadius.circular(10.0),
+                                                    BorderRadius.circular(10.r),
                                               ),
                                             ),
                                             backgroundColor:
@@ -170,7 +170,7 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                           child: Text(
                                             "10 Coin",
                                             style: GoogleFonts.vazirmatn(
-                                              fontSize: 12.sp,
+                                              fontSize: 11.sp,
                                               color: Colors.white,
                                             ),
                                           ),
@@ -191,19 +191,19 @@ class _BatteryScreenState extends State<BatteryScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                    padding: EdgeInsets.symmetric(horizontal: 8.w),
                     child: Card(
                       elevation: 0,
                       color: const Color(0xff599918).withOpacity(0.15),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        padding:  EdgeInsets.symmetric(horizontal: 5.w),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.23,
+                              height: 150.h,
                               child: Padding(
-                                padding: const EdgeInsets.all(12.0),
+                                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment:
@@ -212,8 +212,8 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                     Text(
                                       "Gym Prime Charger \n(250mAh,GaNPrime)",
                                       style: GoogleFonts.vazirmatn(
-                                        fontSize: 11.sp,
-                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w600,
                                         color: Colors.black,
                                       ),
                                     ),
@@ -225,11 +225,11 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                       ),
                                     ),
                                     SizedBox(
-                                      height: screenHeight * 0.025,
+                                      height: 10.h,
                                     ),
                                     Container(
-                                      height: screenHeight * 0.07,
-                                      width: screenHeight * 0.18,
+                                      height: 50.h,
+                                      width: 100.w,
                                       decoration: BoxDecoration(
                                         boxShadow: const [
                                           BoxShadow(
@@ -246,7 +246,7 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                             Color(0xff3F710D),
                                           ],
                                         ),
-                                        borderRadius: BorderRadius.circular(10),
+                                        borderRadius: BorderRadius.circular(10.r),
                                       ),
                                       child: ElevatedButton(
                                         style: ButtonStyle(
@@ -254,7 +254,7 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                               RoundedRectangleBorder>(
                                             RoundedRectangleBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(10.0),
+                                                  BorderRadius.circular(10.r),
                                             ),
                                           ),
                                           backgroundColor:
@@ -267,7 +267,7 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                         child: Text(
                                           "15 Coin",
                                           style: GoogleFonts.vazirmatn(
-                                            fontSize: 12.sp,
+                                            fontSize: 11.sp,
                                             color: Colors.white,
                                           ),
                                         ),
@@ -287,22 +287,21 @@ class _BatteryScreenState extends State<BatteryScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                    padding: EdgeInsets.symmetric(horizontal: 8.w),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 15),
                       child: Card(
                         elevation: 0,
                         color: const Color(0xff599918).withOpacity(0.15),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5.w),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.23,
+                                height: 150.h,
                                 child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
+                                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -312,8 +311,8 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                       Text(
                                         "Gym Prime Charger \n(250mAh,GaNPrime)",
                                         style: GoogleFonts.vazirmatn(
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.w600,
                                           color: Colors.black,
                                         ),
                                       ),
@@ -325,11 +324,11 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                         ),
                                       ),
                                       SizedBox(
-                                        height: screenHeight * 0.025,
+                                        height:  10.h,
                                       ),
                                       Container(
-                                        height: screenHeight * 0.07,
-                                        width: screenHeight * 0.18,
+                                        height:  50.h,
+                                        width: 100.w,
                                         decoration: BoxDecoration(
                                           boxShadow: const [
                                             BoxShadow(
@@ -347,7 +346,7 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                             ],
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(10),
+                                              BorderRadius.circular(10.r),
                                         ),
                                         child: ElevatedButton(
                                           style: ButtonStyle(
@@ -355,7 +354,7 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                                 RoundedRectangleBorder>(
                                               RoundedRectangleBorder(
                                                 borderRadius:
-                                                    BorderRadius.circular(10.0),
+                                                    BorderRadius.circular(10.r),
                                               ),
                                             ),
                                             backgroundColor:
@@ -369,7 +368,7 @@ class _BatteryScreenState extends State<BatteryScreen> {
                                           child: Text(
                                             "20 Coin",
                                             style: GoogleFonts.vazirmatn(
-                                              fontSize: 12.sp,
+                                              fontSize: 11.sp,
                                               color: Colors.white,
                                             ),
                                           ),

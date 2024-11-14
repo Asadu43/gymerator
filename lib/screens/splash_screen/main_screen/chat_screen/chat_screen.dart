@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/chat_bot_cubit/chat_bot_cubit.dart';
 import 'package:gymmerator/ui_component/app_drawer.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/utils/app_colors/app_colors.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../../models/api_response/ChatAiApiResponse.dart';
 import '../../../../ui_component/show_snackbar.dart';
@@ -46,11 +46,11 @@ class _ChatScreenState extends State<ChatScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Image.asset('assets/icons/chat_ai_title_icon.png',
-                        width: 35, height: 35),
+                        width: 35.w, height: 35.h),
                     Text('GYMI',
                         style: GoogleFonts.vazirmatn(
                             color: AppColors.prductBuyNowButtonColor,
-                            fontSize: 16.sp,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.w600)),
                   ],
                 ),
@@ -70,7 +70,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           color: const Color(0xff599918).withOpacity(0.44),
                         )
                       : const SizedBox(),
-                  const SizedBox(height: 18.0),
+                  SizedBox(height: 18.h),
                   response?.data?.response != null
                       ? FeatureButton(title: response?.data?.response ?? "")
                       : const SizedBox(),
@@ -79,14 +79,14 @@ class _ChatScreenState extends State<ChatScreen> {
               bottomNavigationBar: Material(
                 color: AppColors.chatScreenBackgroundColor,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(8.h),
                   child: Row(
                     children: [
                       Expanded(
                         child: Material(
-                          shape: const RoundedRectangleBorder(
+                          shape:  RoundedRectangleBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
+                                BorderRadius.all(Radius.circular(30.r)),
                           ),
                           shadowColor:
                               Colors.grey, // Example color for the shadow
@@ -98,6 +98,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             minLines: 1,
                             // Starts with one line
                             keyboardType: TextInputType.multiline,
+                            cursorColor: Colors.black,
                             // Supports multi-line input
                             decoration: InputDecoration(
                               fillColor: Colors.white,
@@ -105,18 +106,18 @@ class _ChatScreenState extends State<ChatScreen> {
                               // Fills the background with color
                               hintText: 'Hello GYMI, how are you today?',
                               hintStyle: GoogleFonts.vazirmatn(),
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 20),
-                              border: const OutlineInputBorder(
+                              contentPadding:  EdgeInsets.symmetric(
+                                  vertical: 10.h, horizontal: 20.w),
+                              border:  OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(30.0)),
+                                    BorderRadius.all(Radius.circular(30.r)),
                               ),
                               suffixIcon: IconButton(
                                 onPressed: () async {
                                   await _onSendButtonPressed(context);
                                 },
-                                icon: const Icon(Icons.send),
+                                icon: const Icon(Icons.send,color: Colors.green,),
                               ),
                             ),
                           ),
@@ -154,7 +155,7 @@ class SectionTitle extends StatelessWidget {
     return Column(
       children: [
         icon,
-        const SizedBox(height: 16.0),
+         SizedBox(height: 16.h),
         Text(
           title,
           style: GoogleFonts.vazirmatn(
@@ -176,20 +177,20 @@ class FeatureButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      padding:  EdgeInsets.symmetric(vertical: 4.h),
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          vertical: 8.0,
-          horizontal: 16.0,
+        padding:  EdgeInsets.symmetric(
+          vertical: 8.h,
+          horizontal: 16.w,
         ),
         decoration: BoxDecoration(
           color: color ?? AppColors.chatScreenFeatureButtonColor,
-          borderRadius: BorderRadius.circular(30.0),
+          borderRadius: BorderRadius.circular(30.r),
         ),
         child: Center(
             child: Text(title,
                 style: GoogleFonts.vazirmatn(
-                    fontSize: 12.sp, fontWeight: FontWeight.w400))),
+                    fontSize: 14.sp, fontWeight: FontWeight.w400))),
       ),
     );
   }

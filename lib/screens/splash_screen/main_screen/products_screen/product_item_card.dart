@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/products_screen/product_details_screen/product_details_screen.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
@@ -25,8 +26,6 @@ class ProductItemCard extends StatefulWidget {
 class _ProductItemCardState extends State<ProductItemCard> {
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {
         if (widget.product.id != null) {
@@ -40,12 +39,12 @@ class _ProductItemCardState extends State<ProductItemCard> {
           Stack(
             children: [
               Container(
-                  height: screenHeight * 0.178,
-                  width: screenWidth * 3,
-                  margin: const EdgeInsets.all(8.0),
+                  height: 0.178.sh,
+                  width: 0.5.sw,
+                  margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(8.r),
                     image: DecorationImage(
                       image: NetworkImage(
                           "${ApiConstants.baseUrl}/product/image/${widget.product.images?.first}"),
@@ -56,15 +55,14 @@ class _ProductItemCardState extends State<ProductItemCard> {
                         color: Colors.grey,
                         blurRadius: 0.5,
                         spreadRadius: 0.0,
-                        offset: Offset(0.1, 0.1),
                       )
                     ],
                   )),
               widget.show == false
                   ? const SizedBox()
                   : Positioned(
-                      right: 8.0,
-                      top: 8.0,
+                      right: 1.w,
+                      top: 2.h,
                       child: widget.product.isFavorite == true
                           ? IconButton(
                               onPressed: () {
@@ -84,40 +82,40 @@ class _ProductItemCardState extends State<ProductItemCard> {
                               icon: const Icon(Icons.favorite_border)))
             ],
           ),
-          const SizedBox(height: 8.0),
+          SizedBox(height: 8.h),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.4,
+            width: 0.4.sw,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: 8.w),
               child: Text(
                 widget.product.name!,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
+                style: GoogleFonts.vazirmatn(fontWeight: FontWeight.w600,fontSize: 14.sp),
               ),
             ),
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.4,
+            width: 0.4.sw,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: 8.w),
               child: Text(
                 "\$${widget.product.price.toString()}",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
+                style: GoogleFonts.vazirmatn(fontWeight: FontWeight.w600,color: Colors.grey,),
               ),
             ),
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.4,
+            width: 0.4.sw,
             child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                padding: EdgeInsets.symmetric(horizontal: 8.w),
                 child: Text(
                   widget.product.description!,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.vazirmatn(),
+                  style: GoogleFonts.vazirmatn(fontSize: 8.sp,color: Colors.grey),
                 )),
           ),
         ],

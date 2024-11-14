@@ -1,12 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gymmerator/screens/splash_screen/splash_screen.dart';
 import 'package:gymmerator/utils/internet_connection/dependency_injection.dart';
-import 'package:sizer/sizer.dart';
 
 import 'bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
 import 'bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart';
@@ -24,7 +24,12 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await GetStorage.init();
-  runApp(const MyApp());
+  runApp(
+    ScreenUtilInit(
+      designSize: const Size(375, 812), // base design size
+      builder: (context, child) => const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -50,18 +55,14 @@ class MyApp extends StatelessWidget {
           create: (context) => WorkoutPlanCubit(),
         )
       ],
-      child: Sizer(
-        builder: (context, orientation, deviceType) {
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Gymerator',
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: true,
-            ),
-            home: const SplashScreen(),
-          );
-        },
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Gymerator',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const SplashScreen(),
       ),
     );
   }

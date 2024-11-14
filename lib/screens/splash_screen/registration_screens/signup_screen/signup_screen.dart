@@ -14,7 +14,7 @@ import 'package:gymmerator/bloC/auth_cubit/signup_cubit/signup_cubit.dart';
 import 'package:gymmerator/screens/splash_screen/registration_screens/login_screen/login_screen.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
-import 'package:sizer/sizer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../ui_component/app_button.dart';
 import '../../../../ui_component/app_textfield.dart';
@@ -108,11 +108,9 @@ class _SignupScreenState extends State<SignupScreen> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-
     return BlocProvider(
       create: (context) => SignupCubit(),
       child: BlocConsumer<SignupCubit, SignupState>(
@@ -130,156 +128,126 @@ class _SignupScreenState extends State<SignupScreen> {
             isLoading: state is LoadingState,
             child: Scaffold(
               body: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: 1.sh, // Full screen height
+                width: 1.sw,  // Full screen width
                 decoration: const BoxDecoration(
-                    image: DecorationImage(
-                  image: AssetImage('assets/images/background.png'),
-                  // Replace with your image asset path
-                  fit:
-                      BoxFit.cover, // You can adjust the fit property as needed
-                )),
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/background.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
+                    padding: EdgeInsets.symmetric(horizontal: 0.1.sw),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          height: screenHeight / 14,
-                        ),
+                        SizedBox(height: 50.h),
                         Image.asset('assets/images/logo_g.png'),
-                        const SizedBox(
-                          height: 20,
+                        SizedBox(height: 20.h),
+                        Text(
+                          "Create Account",
+                          style: GoogleFonts.vazirmatn(
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.white,
+                          ),
                         ),
-                        Text("Create Account",
-                            style: GoogleFonts.vazirmatn(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.white)),
-                        Text("Please Sign up to get all the features",
-                            style: GoogleFonts.vazirmatn(
-                                fontSize: 11.sp, color: Colors.grey)),
-                        const SizedBox(
-                          height: 20,
+                        Text(
+                          "Please Sign up to get all the features",
+                          style: GoogleFonts.vazirmatn(
+                            fontSize: 11.sp,
+                            color: Colors.grey,
+                          ),
                         ),
+                        SizedBox(height: 20.h),
                         AppTextField(
                           controller: firstNameController,
                           hintText: "Enter your first name",
                           icon: const Icon(Icons.person_outline_outlined),
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        SizedBox(height: 20.h),
                         AppTextField(
                           controller: lastNameController,
                           hintText: "Enter your last name",
                           icon: const Icon(Icons.person_outline_outlined),
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        SizedBox(height: 20.h),
                         AppTextField(
                           controller: emailController,
                           hintText: "Enter your email",
                           icon: const Icon(Icons.email_outlined),
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        SizedBox(height: 20.h),
                         Container(
-                          height: MediaQuery.of(context).size.height * 0.07,
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          height: 53.h,
+                          padding: EdgeInsets.symmetric(horizontal: 12.w),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.r),
                             border: Border.all(color: Colors.white),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              // CountryCodePicker
                               SizedBox(
-                                width: 30.w,
-                                // color: Colors.red,
+                                width: 0.3.sw,
                                 child: CountryCodePicker(
                                   onChanged: (countryCode) {
                                     setState(() {
-                                      _selectedCountryCode =
-                                          countryCode.dialCode!;
+                                      _selectedCountryCode = countryCode.dialCode!;
                                     });
                                   },
                                   showFlag: false,
                                   textStyle: GoogleFonts.vazirmatn(
-                                      color: Colors.white, fontSize: 10.sp),
+                                    color: Colors.white,
+                                    fontSize: 12.sp,
+                                  ),
                                   showDropDownButton: true,
                                   showFlagDialog: true,
                                   enabled: true,
                                   hideSearch: true,
-                                  // initialSelection: 'US', // Optional: Set default country to USA
-                                  // favorite: const ['+1', '+91'], // Optional: favorite country codes (e.g., USA, India)
                                 ),
                               ),
-
-                              // Phone Number TextField
                               Expanded(
                                 child: TextField(
                                   controller: phoneNumberController,
                                   keyboardType: TextInputType.phone,
                                   cursorColor: Colors.white,
-                                  style: GoogleFonts.vazirmatn(
-                                      color: Colors.white),
+                                  style: GoogleFonts.vazirmatn(color: Colors.white),
                                   decoration: InputDecoration(
                                     hintText: 'Enter your phone number',
-
                                     hintStyle: GoogleFonts.vazirmatn(
-                                        fontSize: 12, color: Colors.grey),
-                                    // prefixText:
-                                    //     _selectedCountryCode, // Show country code prefix
-                                    prefixStyle: GoogleFonts.vazirmatn(
-                                        color:
-                                            Colors.white), // Country code style
-                                    border:
-                                        InputBorder.none, // Remove the border
+                                      fontSize: 12.sp,
+                                      color: Colors.grey,
+                                    ),
+                                    prefixStyle: GoogleFonts.vazirmatn(color: Colors.white),
+                                    border: InputBorder.none,
                                   ),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        // AppTextField(
-                        //   controller: phoneNumberController,
-                        //   textInputType: TextInputType.number,
-                        //   hintText: "Mobile Number",
-                        //   icon: const Icon(Icons.phone),
-                        // ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        SizedBox(height: 20.h),
                         AppTextField(
                           controller: addressController,
                           hintText: "Address 1",
                           icon: const Icon(Icons.location_on_outlined),
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        SizedBox(height: 20.h),
                         AppTextField(
                           controller: address2Controller,
                           hintText: "Address 2",
                           icon: const Icon(Icons.location_on_outlined),
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        SizedBox(height: 20.h),
                         Container(
                           width: double.infinity,
-                          height: screenHeight * 0.07,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 4, horizontal: 16),
+                          height: 53.h,
+                          padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 16.w),
                           decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(30),
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Center(
                             child: DropdownButton<Country>(
@@ -290,7 +258,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   'Select Country',
                                   style: GoogleFonts.vazirmatn(
                                     color: Colors.grey,
-                                    fontSize: 12.sp,
+                                    fontSize: 14.sp,
                                   ),
                                 ),
                               ),
@@ -300,8 +268,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 Icons.keyboard_arrow_down_sharp,
                                 color: Colors.grey,
                               ),
-                              dropdownColor:
-                                  Colors.white, // Dropdown background color
+                              dropdownColor: Colors.white,
                               items: countryList?.map((Country country) {
                                 return DropdownMenuItem<Country>(
                                   value: country,
@@ -311,9 +278,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                       country.name,
                                       maxLines: 1,
                                       style: GoogleFonts.vazirmatn(
-                                        fontSize: 12.sp,
-                                        color: Colors
-                                            .black, // Text color in dropdown
+                                        fontSize: 14.sp,
+                                        color: Colors.black,
                                       ),
                                     ),
                                   ),
@@ -354,12 +320,11 @@ class _SignupScreenState extends State<SignupScreen> {
                         if (stateList != null && stateList!.isNotEmpty)
                           Container(
                             width: double.infinity,
-                            height: screenHeight * 0.07,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 4, horizontal: 16),
+                            height:53.h,
+                            padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 16.w),
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(30),
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(30.r),
                             ),
                             child: Center(
                               child: DropdownButton<cs.State>(
@@ -369,7 +334,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   child: Text(
                                     'Select State',
                                     style: GoogleFonts.vazirmatn(
-                                      fontSize: 12.sp,
+                                      fontSize: 14.sp,
                                       color: Colors.grey,
                                     ),
                                   ),
@@ -391,7 +356,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                         state.name,
                                         maxLines: 1,
                                         style: GoogleFonts.vazirmatn(
-                                          fontSize: 12.sp,
+                                          fontSize: 14.sp,
                                           color: Colors
                                               .black, // Text color in dropdown
                                         ),
@@ -413,7 +378,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                           child: Text(
                                             state.name,
                                             style: GoogleFonts.vazirmatn(
-                                              fontSize: 12.sp,
+                                              fontSize: 14.sp,
                                               color: Colors
                                                   .white, // Selected item text color in the button
                                             ),
@@ -426,18 +391,17 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                           ),
 
-                        const SizedBox(
-                          height: 20,
+                         SizedBox(
+                          height: 20.h,
                         ),
                         if (cityList.isNotEmpty)
                           Container(
-                            width: double.infinity,
-                            height: screenHeight * 0.07,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 4, horizontal: 16),
+                            height: 53.h,
+                            padding:  EdgeInsets.symmetric(
+                                vertical: 4.h, horizontal: 16.w),
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(30.r),
                             ),
                             child: Center(
                               child: DropdownButton<City>(
@@ -447,7 +411,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   child: Text(
                                     'Select City',
                                     style: GoogleFonts.vazirmatn(
-                                      fontSize: 12.sp,
+                                      fontSize: 14.sp,
                                       color: Colors.grey,
                                     ),
                                   ),
@@ -469,7 +433,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                         city.name,
                                         maxLines: 1,
                                         style: GoogleFonts.vazirmatn(
-                                          fontSize: 12.sp,
+                                          fontSize: 14.sp,
                                           color: Colors
                                               .black, // Text color in dropdown
                                         ),
@@ -489,7 +453,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                       child: Text(
                                         city.name,
                                         style: GoogleFonts.vazirmatn(
-                                          fontSize: 12.sp,
+                                          fontSize: 14.sp,
                                           color: Colors
                                               .white, // Selected item text color in the button
                                         ),
@@ -501,8 +465,8 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                           ),
                         (cityList.isNotEmpty)
-                            ? const SizedBox(
-                                height: 20,
+                            ?  SizedBox(
+                                height: 20.h,
                               )
                             : const SizedBox(),
                         AppTextField(
@@ -511,46 +475,46 @@ class _SignupScreenState extends State<SignupScreen> {
                           hintText: "Postal code",
                           icon: const Icon(Icons.location_on_outlined),
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        SizedBox(height: 20.h),
                         AppTextField(
                           controller: passwordController,
-                          hintText: "password",
+                          hintText: "Password",
                           obscureText: true,
                           icon: const Icon(Icons.lock_open_outlined),
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        SizedBox(height: 20.h),
                         AppButton(
                           text: "Sign up",
                           onPressed: () async {
                             await _onSignUpButtonPressed(context);
                           },
                         ),
-                        const SizedBox(
-                          height: 8,
-                        ),
+                        SizedBox(height: 8.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Already have an account? ",
-                                style: GoogleFonts.vazirmatn(
-                                    fontSize: 14, color: Colors.grey)),
+                            Text(
+                              "Already have an account? ",
+                              style: GoogleFonts.vazirmatn(
+                                fontSize: 14.sp,
+                                color: Colors.grey,
+                              ),
+                            ),
                             InkWell(
                               onTap: () {
                                 Nav.push(context, const LoginScreen());
                               },
-                              child: Text("Sign In",
-                                  style: GoogleFonts.vazirmatn(
-                                      fontSize: 14, color: Colors.white)),
+                              child: Text(
+                                "Sign In",
+                                style: GoogleFonts.vazirmatn(
+                                  fontSize: 14.sp,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        SizedBox(height: 20.h),
                       ],
                     ),
                   ),
@@ -562,6 +526,7 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
+
 
   Future<void> _onSignUpButtonPressed(BuildContext context) async {
     if (firstNameController.text.isEmpty) {

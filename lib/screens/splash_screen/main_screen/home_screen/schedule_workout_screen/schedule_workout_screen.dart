@@ -2,6 +2,7 @@ import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/get_workout_plan_cubit/workout_plan_cubit.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/schedule_workout_screen/exersice_screen/exersice_screen.dart';
@@ -9,8 +10,6 @@ import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/schedul
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
-import 'package:sizer/sizer.dart';
-
 import '../../../../../models/api_response/GetWorkoutPlanApiResponse.dart';
 
 class ScheduleWorkoutScreen extends StatefulWidget {
@@ -48,8 +47,6 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     return BlocConsumer<WorkoutPlanCubit, WorkoutPlanState>(
       listener: (context, state) {
         if (state is FailedToGetWorkoutPlan) {
@@ -78,7 +75,7 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                             icon: const Icon(Icons.arrow_back_ios)),
                         Text("Schedule Workout",
                             style: GoogleFonts.vazirmatn(
-                                fontSize: 14.sp,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black)),
                         Container(
@@ -90,7 +87,7 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                             itemBuilder: (BuildContext context) {
                               return [
                                 PopupMenuItem(
-                                  height: screenHeight * 0.05,
+                                  height: 0.05.sh,
                                   onTap: () {
                                     Nav.push(context,
                                         const UpdateWorkoutPlanScreen());
@@ -99,7 +96,7 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                     child: Text("Update Workout Plan",
                                         style: GoogleFonts.vazirmatn(
                                             color: Colors.white,
-                                            fontSize: 10.sp)),
+                                            fontSize: 16.sp)),
                                   ),
                                 ),
                                 // Add more actions to the menu here if needed
@@ -110,10 +107,10 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                       ],
                     ),
                     SizedBox(
-                      height: screenHeight * 0.02,
+                      height: 0.02.sh,
                     ),
                     SizedBox(
-                      height: screenHeight * 0.13,
+                      height: 0.13.sh,
                       child: DatePicker(
                         DateTime.now(),
                         daysCount: 7,
@@ -133,14 +130,14 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: screenHeight * 0.02,
+                      height: 0.02.sh,
                     ),
                     const Divider(),
                     SizedBox(
-                      height: screenHeight * 0.02,
+                      height: 0.02.sh,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 12.0),
+                      padding:  EdgeInsets.only(left: 12.w),
                       child: Text(
                           "Today’s Report : ${weekdayName[DateTime.now().weekday]}",
                           style: GoogleFonts.vazirmatn(
@@ -149,7 +146,7 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                               color: Colors.black)),
                     ),
                     SizedBox(
-                      height: screenHeight * 0.01,
+                      height: 0.01.sh,
                     ),
                     GridView.builder(
                       physics: const NeverScrollableScrollPhysics(),
@@ -183,10 +180,10 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                               children: [
                                 Padding(
                                   padding: EdgeInsets.symmetric(
-                                      vertical: screenHeight * 0.03),
+                                      vertical: 0.03.sh),
                                   child: Container(
                                     padding:
-                                        EdgeInsets.all(screenHeight * 0.01),
+                                        EdgeInsets.all(0.01.h),
                                     decoration: BoxDecoration(
                                       color:
                                           weekdayName[DateTime.now().weekday] ==
@@ -198,7 +195,7 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                               ? const Color(0xff599918)
                                                   .withOpacity(0.5)
                                               : Colors.white,
-                                      borderRadius: BorderRadius.circular(20),
+                                      borderRadius: BorderRadius.circular(20.r),
                                       border: Border.all(color: Colors.black12),
                                     ),
                                     child: Center(
@@ -209,13 +206,13 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
                                               children: [
-                                                const SizedBox(height: 10),
+                                                SizedBox(height: 20.h),
                                                 Image.asset(
                                                     "assets/images/rest_day.png"),
-                                                const SizedBox(height: 5),
+                                                 SizedBox(height: 10.h),
                                                 Text("Rest Day",
                                                     style: GoogleFonts.vazirmatn(
-                                                        fontSize: 9.sp,
+                                                        fontSize: 14.sp,
                                                         color: weekdayName[DateTime
                                                                         .now()
                                                                     .weekday] ==
@@ -233,13 +230,13 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
                                               children: [
-                                                const SizedBox(height: 10),
+                                                SizedBox(height: 20.h),
                                                 Image.asset(
                                                     "assets/images/exersise.png"),
-                                                const SizedBox(height: 5),
+                                                SizedBox(height: 20.h),
                                                 Text("Exercise Day",
                                                     style: GoogleFonts.vazirmatn(
-                                                        fontSize: 9.sp,
+                                                        fontSize: 14.sp,
                                                         color: weekdayName[DateTime
                                                                         .now()
                                                                     .weekday] ==
@@ -257,15 +254,15 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                   ),
                                 ),
                                 Positioned(
-                                    top: screenHeight * 0.01,
-                                    left: screenHeight * 0.06,
+                                    top: 0.001.sh,
+                                    left: 0.03.sh,
                                     child: Container(
-                                        width: screenWidth * 0.2,
-                                        padding: const EdgeInsets.all(8.0),
+                                        width: 130.w,
+                                        padding:  EdgeInsets.all(8.0.h),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius:
-                                              BorderRadius.circular(12),
+                                              BorderRadius.circular(12.r),
                                           border:
                                               Border.all(color: Colors.black12),
                                         ),
@@ -277,7 +274,7 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                                       .day ??
                                                   ""),
                                               style: GoogleFonts.vazirmatn(
-                                                  fontSize: 8.sp,
+                                                  fontSize: 16.sp,
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.black)),
                                         )))

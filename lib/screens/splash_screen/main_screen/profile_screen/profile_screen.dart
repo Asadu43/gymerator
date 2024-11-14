@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
@@ -10,7 +11,6 @@ import 'package:gymmerator/ui_component/app_button.dart';
 import 'package:gymmerator/ui_component/app_dialog_box.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/utils/app_colors/app_colors.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../../models/api_response/GetAllFavoriteProductApiResponse.dart';
 import '../../../../ui_component/show_snackbar.dart';
@@ -55,8 +55,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     Container(
                       width: double.infinity,
-                      height: MediaQuery.of(context).size.height,
-                      padding: const EdgeInsets.all(16.0),
+                      height: 1.sh,
+                      padding: EdgeInsets.all(16.h),
                       decoration: const BoxDecoration(
                         // gradient: LinearGradient(
                         //   colors: [Colors.orange, Colors.deepOrange],
@@ -72,7 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Column(
                         children: [
                           CircleAvatar(
-                            radius: 50,
+                            radius: 50.r,
                             backgroundImage: response?.data?.profile == null
                                 ? null
                                 : NetworkImage(
@@ -88,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   )
                                 : null,
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           Text(
                             "${response?.data?.firstName ?? " "} ${response?.data?.lastName ?? " "}",
                             style: GoogleFonts.vazirmatn(
@@ -101,15 +101,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                     Positioned(
-                      top: 200,
+                      top: 200.h,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height - 200,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30),
+                            topLeft: Radius.circular(30.r),
+                            topRight: Radius.circular(30.r),
                           ),
                         ),
                         child: ListView(
@@ -118,23 +118,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           children: [
                             ListTile(
                               leading: Container(
-                                  padding: const EdgeInsets.all(8),
+                                  padding: EdgeInsets.all(8.h),
                                   decoration: const BoxDecoration(
                                     color: AppColors.profileEditIconsBackground,
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.asset(
                                     'assets/icons/profile_edit.png',
-                                    width: 22,
-                                    height: 22,
+                                    width: 22.w,
+                                    height: 22.h,
                                   )),
-                              trailing: const Icon(
+                              trailing: Icon(
                                 Icons.arrow_forward_ios,
-                                size: 18,
+                                size: 18.h,
                               ),
                               title: Text('Profile Edit',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 13.sp,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
                                 Nav.push(
@@ -175,13 +175,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     shape: BoxShape.circle,
                                   ),
                                   child: const Icon(Icons.person_outline)),
-                              trailing: const Icon(
+                              trailing: Icon(
                                 Icons.arrow_forward_ios,
-                                size: 18,
+                                size: 18.h,
                               ),
                               title: Text('Account Edit',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 13.sp,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
                                 Nav.push(
@@ -207,9 +207,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         response?.data?.profile));
                               },
                             ),
-                            const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 24.0),
-                                child: Divider()),
+                            Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                                child: const Divider()),
                             ListTile(
                               leading: Container(
                                   padding: const EdgeInsets.all(8),
@@ -219,24 +219,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   child: Image.asset(
                                     'assets/icons/order.png',
-                                    width: 22,
-                                    height: 22,
+                                    width: 22.w,
+                                    height: 22.h,
                                   )),
-                              trailing: const Icon(
+                              trailing: Icon(
                                 Icons.arrow_forward_ios,
-                                size: 18,
+                                size: 18.h,
                               ),
                               title: Text('Orders',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 13.sp,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
                                 Nav.push(context, const OrdersScreen());
                               },
                             ),
-                            const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 24.0),
-                                child: Divider()),
+                             Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                                child: const Divider()),
                             ListTile(
                               leading: Container(
                                   padding: const EdgeInsets.all(8),
@@ -246,16 +246,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   child: Image.asset(
                                     'assets/icons/profile_terms_conditions.png',
-                                    width: 22,
-                                    height: 22,
+                                    width: 22.w,
+                                    height: 22.h,
                                   )),
-                              trailing: const Icon(
+                              trailing: Icon(
                                 Icons.arrow_forward_ios,
-                                size: 18,
+                                size: 18.h,
                               ),
                               title: Text('Terms & Conditions',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 13.sp,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {},
                             ),
@@ -271,16 +271,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   child: Image.asset(
                                     'assets/icons/profile_privacy_policy.png',
-                                    width: 22,
-                                    height: 22,
+                                    width: 22.w,
+                                    height: 22.h,
                                   )),
-                              trailing: const Icon(
+                              trailing: Icon(
                                 Icons.arrow_forward_ios,
-                                size: 18,
+                                size: 18.h,
                               ),
                               title: Text('Privacy Policy',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 13.sp,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {},
                             ),
@@ -296,17 +296,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                                 child: Image.asset(
                                   'assets/icons/profile_delete_account.png',
-                                  width: 24,
-                                  height: 24,
+                                  width: 22.w,
+                                  height: 22.h,
                                 ),
                               ),
-                              trailing: const Icon(
+                              trailing: Icon(
                                 Icons.arrow_forward_ios,
-                                size: 18,
+                                size: 18.h,
                               ),
                               title: Text('Delete Account',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 13.sp,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
                                 showDialog(
@@ -322,8 +322,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             ),
                                             child: Image.asset(
                                               'assets/icons/profile_delete_account.png',
-                                              width: 30,
-                                              height: 30,
+                                              width: 22.w,
+                                              height: 22.h,
                                               color: Colors.white,
                                             ),
                                           ),
@@ -338,6 +338,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     Navigator.of(context).pop();
                                                   },
                                                 ),
+                                                SizedBox(
+                                                  height: 10.h,
+                                                ),
                                                 TextButton(
                                                     onPressed: () {
                                                       Navigator.of(context)
@@ -349,7 +352,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                           GoogleFonts.vazirmatn(
                                                               color:
                                                                   Colors.grey,
-                                                              fontSize: 16),
+                                                              fontSize: 16.sp),
                                                     )),
                                               ],
                                             ),
@@ -357,9 +360,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ));
                               },
                             ),
-                            const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 24.0),
-                                child: Divider()),
+                            Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                                child: const Divider()),
                             ListTile(
                               leading: Container(
                                   padding: const EdgeInsets.all(8),
@@ -369,22 +372,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   child: Image.asset(
                                     'assets/icons/profile_share_app.png',
-                                    width: 22,
-                                    height: 22,
+                                    width: 22.w,
+                                    height: 22.h,
                                   )),
-                              trailing: const Icon(
+                              trailing: Icon(
                                 Icons.arrow_forward_ios,
-                                size: 18,
+                                size: 18.h,
                               ),
                               title: Text('Share the app',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 13.sp,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {},
                             ),
-                            const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 24.0),
-                                child: Divider()),
+                            Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                                child: const Divider()),
                             ListTile(
                               leading: Container(
                                   padding: const EdgeInsets.all(8),
@@ -394,16 +397,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   child: Image.asset(
                                     'assets/icons/profile_logout.png',
-                                    width: 22,
-                                    height: 22,
+                                    width: 22.w,
+                                    height: 22.h,
                                   )),
-                              trailing: const Icon(
+                              trailing: Icon(
                                 Icons.arrow_forward_ios,
-                                size: 18,
+                                size: 18.h,
                               ),
                               title: Text('Logout',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 13.sp,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w500)),
                               onTap: () {
                                 showDialog(
@@ -417,9 +420,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   .profileDeleteDialogIconBackgroundColor,
                                               shape: BoxShape.circle,
                                             ),
-                                            child: const Icon(
+                                            child: Icon(
                                               Icons.logout,
-                                              size: 40,
+                                              size: 40.h,
                                               color: Colors.white,
                                             ),
                                           ),
@@ -438,6 +441,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                         const LoginScreen());
                                                   },
                                                 ),
+                                                SizedBox(height: 10.h),
                                                 TextButton(
                                                     onPressed: () {
                                                       Navigator.of(context)
@@ -449,7 +453,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                           GoogleFonts.vazirmatn(
                                                               color:
                                                                   Colors.grey,
-                                                              fontSize: 16),
+                                                              fontSize: 16.sp),
                                                     )),
                                               ],
                                             ),

@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/product_detail_cubit/product_detail_cubit.dart';
 import 'package:gymmerator/models/api_response/ProductDetailApiResponse.dart';
@@ -8,7 +9,6 @@ import 'package:gymmerator/screens/splash_screen/main_screen/my_cart_screen/my_c
 import 'package:gymmerator/ui_component/app_button.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../../../bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart'
     hide
@@ -57,8 +57,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return BlocProvider(
       create: (context) => ProductDetailCubit()
         ..detailRequest(id: widget.id)
@@ -116,7 +114,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             child: Scaffold(
               body: SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
                   child: ListView(
                     children: [
                       Row(
@@ -143,11 +141,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             true)
                                     ? const SizedBox()
                                     : Positioned(
-                                        right: 5,
-                                        top: 5,
+                                        right: 5.w,
+                                        top: 5.h,
                                         child: Container(
-                                          width: 20,
-                                          height: 20,
+                                          width: 20.w,
+                                          height: 20.h,
                                           decoration: BoxDecoration(
                                               color: const Color(0xff3F710D),
                                               borderRadius:
@@ -157,9 +155,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                               cartResponse!.data!.items!.length
                                                   .toString(),
                                               textAlign: TextAlign.center,
-                                              style:  GoogleFonts.vazirmatn(
+                                              style: GoogleFonts.vazirmatn(
                                                 color: Colors.white,
-                                                fontSize: 11.0,
+                                                fontSize: 11.sp,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                             ),
@@ -175,7 +173,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ? Center(
                               child: CarouselSlider(
                                 options: CarouselOptions(
-                                  height: 250.0,
+                                  height: 250.h,
                                   autoPlay: true,
                                   enlargeCenterPage: true,
                                   viewportFraction: 0.9,
@@ -185,8 +183,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   return Builder(
                                     builder: (BuildContext context) {
                                       return SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width,
+                                          width: 1.sw,
                                           // decoration: const BoxDecoration(
                                           //     color: Colors.amber
                                           // ),
@@ -195,8 +192,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             fit: BoxFit.cover,
                                             errorBuilder:
                                                 (context, error, stackTrace) {
-                                              return  Center(
-                                                child: Text('Please Wait',style: GoogleFonts.vazirmatn(),),
+                                              return Center(
+                                                child: Text(
+                                                  'Please Wait',
+                                                  style:
+                                                      GoogleFonts.vazirmatn(),
+                                                ),
                                               );
                                             },
                                           ));
@@ -206,35 +207,42 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               ),
                             )
                           : const SizedBox(),
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             response?.data?.name ?? "",
                             style: GoogleFonts.vazirmatn(
-                                fontSize: 16.sp, fontWeight: FontWeight.bold),
+                                fontSize: 16.sp, fontWeight: FontWeight.w600),
                           ),
                           (response?.data?.isFavorite == false)
-                              ? InkWell(
-                                  onTap: () {
-                                    context
-                                        .read<ProductDetailCubit>()
-                                        .addToFavoriteRequest(
-                                            id: response!.data!.id!);
-                                  },
-                                  child: const Icon(Icons.favorite_border))
-                              : InkWell(
-                                  onTap: () {
-                                    context
-                                        .read<ProductDetailCubit>()
-                                        .removeRequest(id: response!.data!.id!);
-                                  },
-                                  child: const Icon(Icons.favorite,
-                                      color: Colors.red))
+                              ? Padding(
+                                  padding: EdgeInsets.only(right: 8.w),
+                                  child: InkWell(
+                                      onTap: () {
+                                        context
+                                            .read<ProductDetailCubit>()
+                                            .addToFavoriteRequest(
+                                                id: response!.data!.id!);
+                                      },
+                                      child: const Icon(Icons.favorite_border)),
+                                )
+                              : Padding(
+                                  padding: EdgeInsets.only(right: 8.w),
+                                  child: InkWell(
+                                      onTap: () {
+                                        context
+                                            .read<ProductDetailCubit>()
+                                            .removeRequest(
+                                                id: response!.data!.id!);
+                                      },
+                                      child: const Icon(Icons.favorite,
+                                          color: Colors.red)),
+                                )
                         ],
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -243,24 +251,25 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             children: [
                               Text(
                                 'Price',
-                                style: GoogleFonts.vazirmatn(fontSize: 12.sp,color: Colors.grey),
+                                style: GoogleFonts.vazirmatn(
+                                    fontSize: 11.sp, color: Colors.grey),
                               ),
                               Row(
                                 children: [
                                   Text(
                                     '\$ ${((response?.data?.price ?? 1) * _quantity)}',
                                     style: GoogleFonts.vazirmatn(
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.bold),
+                                        fontSize: 20.sp,
+                                        fontWeight: FontWeight.w600),
                                   ),
-                                  const SizedBox(width: 20),
+                                  SizedBox(width: 20.w),
                                   (response?.data?.discount?.valid == true)
                                       ? Text(
                                           '${((response?.data?.discount?.percentage))}%',
                                           style: GoogleFonts.vazirmatn(
                                               decoration:
                                                   TextDecoration.lineThrough,
-                                              fontSize: 10.sp,
+                                              fontSize: 12.sp,
                                               color: Colors.grey),
                                         )
                                       : const SizedBox(),
@@ -269,46 +278,49 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ],
                           ),
                           (response?.data?.isAvailable == true)
-                              ? Row(
-                                  children: [
-                                    InkWell(
-                                      onTap: _decrementQuantity,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          border:
-                                              Border.all(color: Colors.black),
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                        ),
-                                        child: const Icon(
-                                          Icons.remove,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      '$_quantity',
-                                      style:
-                                          GoogleFonts.vazirmatn(fontSize: 12.sp),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    InkWell(
-                                      onTap: _incrementQuantity,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          border:
-                                              Border.all(color: Colors.black),
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                        ),
-                                        child: const Icon(
-                                          Icons.add,
-                                          color: Colors.black,
+                              ? Padding(
+                                  padding: EdgeInsets.only(right: 8.w),
+                                  child: Row(
+                                    children: [
+                                      InkWell(
+                                        onTap: _decrementQuantity,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            border:
+                                                Border.all(color: Colors.black),
+                                            borderRadius:
+                                                BorderRadius.circular(4.r),
+                                          ),
+                                          child: const Icon(
+                                            Icons.remove,
+                                            color: Colors.black,
+                                          ),
                                         ),
                                       ),
-                                    )
-                                  ],
+                                      SizedBox(width: 8.w),
+                                      Text(
+                                        '$_quantity',
+                                        style: GoogleFonts.vazirmatn(
+                                            fontSize: 12.sp),
+                                      ),
+                                      SizedBox(width: 8.w),
+                                      InkWell(
+                                        onTap: _incrementQuantity,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            border:
+                                                Border.all(color: Colors.black),
+                                            borderRadius:
+                                                BorderRadius.circular(4.r),
+                                          ),
+                                          child: const Icon(
+                                            Icons.add,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 )
                               : Text(
                                   'Out of stock',
@@ -317,14 +329,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 ),
                         ],
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
                       Text(
                         'Product Variants',
                         style: GoogleFonts.vazirmatn(fontSize: 13.sp),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
                       SizedBox(
-                        height: 50,
+                        height: 50.h,
                         child: ListView.builder(
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
@@ -339,11 +351,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 });
                               },
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                padding: EdgeInsets.symmetric(horizontal: 8.w),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(10.r),
                                     border: Border.all(
                                         color: isSelected
                                             ? const Color(0xff3F710D)
@@ -355,7 +366,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   ),
                                   child: Center(
                                     child: Padding(
-                                      padding:  EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 0.05.sw),
                                       child: Text(
                                         response?.data?.variants?[index]
                                                 .variant ??
@@ -376,23 +388,24 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           },
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
                             'Description',
                             style: GoogleFonts.vazirmatn(
-                                fontSize: 13.sp, fontWeight: FontWeight.bold),
+                                fontSize: 16.sp, fontWeight: FontWeight.w600),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
                       Text(
                         response?.data?.description ?? "",
-                        style: GoogleFonts.vazirmatn(fontSize: 10.sp,color: Colors.grey),
+                        style: GoogleFonts.vazirmatn(
+                            fontSize: 10.sp, color: Colors.grey),
                       ),
-                      const SizedBox(height: 50),
+                      SizedBox(height: 50.h),
                       (response?.data?.isAvailable == true)
                           ? AppButton(
                               text: "Add to Cart",
@@ -401,7 +414,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               },
                             )
                           : const SizedBox(),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                     ],
                   ),
                 ),

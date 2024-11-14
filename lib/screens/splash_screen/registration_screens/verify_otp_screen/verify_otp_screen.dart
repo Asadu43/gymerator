@@ -3,12 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/verify_otp_cubit/verify_otp_cubit.dart';
 import 'package:gymmerator/screens/splash_screen/registration_screens/create_new_password_screen/create_new_password_screen.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
-import 'package:sizer/sizer.dart';
-
 import '../../../../ui_component/app_button.dart';
 import '../../../../ui_component/show_snackbar.dart';
 import '../../../../utils/app_colors/app_colors.dart';
@@ -45,9 +44,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-
     return BlocProvider(
       create: (context) => VerifyOtpCubit(),
       child: BlocConsumer<VerifyOtpCubit, VerifyOtpState>(
@@ -67,8 +63,8 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
             child: Scaffold(
               body: SingleChildScrollView(
                 child: Container(
-                  height: screenHeight,
-                  width: screenWidth,
+                  height: 1.sh,
+                  width: 1.sw,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
                     image: AssetImage('assets/images/background.png'),
@@ -77,21 +73,19 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                         .cover, // You can adjust the fit property as needed
                   )),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                    padding: EdgeInsets.symmetric(horizontal: 30.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          height: screenHeight / 14,
-                        ),
+                        SizedBox(height: 70.h),
                         Image.asset('assets/images/logo_g.png'),
-                        const SizedBox(
-                          height: 20,
+                        SizedBox(
+                          height: 20.h,
                         ),
                         Text("Verify OTP",
                             style: GoogleFonts.vazirmatn(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w600,
                                 color: AppColors.white)),
                         Text("Please Enter the 4 Digit Code Send  Your Email",
                             textAlign: TextAlign.center,
@@ -113,14 +107,14 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                             );
                           },
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20.h),
                         if (_isTextVisible)
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("Did not receive OTP? ",
                                   style: GoogleFonts.barlow(
-                                      fontSize: 14, color: Colors.grey)),
+                                      fontSize: 14.sp, color: Colors.grey)),
                               InkWell(
                                 onTap: _hideTextForOneMinute,
                                 child: Text("Resend OTP",
@@ -132,7 +126,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                         if (!_isTextVisible)
                           Text("OTP send successfully please check your email ",
                               style: GoogleFonts.barlow(
-                                  fontSize: 14, color: Colors.white)),
+                                  fontSize: 14.sp, color: Colors.white)),
                         const Spacer(),
                         AppButton(
                           text: "Verify",
@@ -141,8 +135,8 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                             print("code..... $code");
                           },
                         ),
-                        const SizedBox(
-                          height: 20,
+                        SizedBox(
+                          height: 20.h,
                         ),
                       ],
                     ),

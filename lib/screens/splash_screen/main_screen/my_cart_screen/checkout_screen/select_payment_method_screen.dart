@@ -1,10 +1,10 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart' hide Card;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../../../bloC/auth_cubit/create_order_cubit/create_order_cubit.dart';
 import '../../../../../models/api_response/GetAllFavoriteProductApiResponse.dart';
@@ -82,8 +82,6 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return BlocProvider(
       create: (context) => CreateOrderCubit()..featuredRequest(),
       child: BlocConsumer<CreateOrderCubit, CreateOrderState>(
@@ -98,15 +96,15 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
               builder: (ctx) => PlaceholderDialog(
                 icon: Image.asset(
                   "assets/icons/success.png",
-                  width: screenWidth * 0.1,
-                  height: screenHeight * 0.1,
+                  width:  0.1.sw,
+                  height: 0.1.sh,
                 ),
                 title: 'Payment Successfully',
                 message:
                     'Thanks for your order. Your order has placed successfully. Please continue your order.',
                 actions: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20),
+                    padding:  EdgeInsets.symmetric(horizontal: 20.w,),
                     child: AppButton(
                         text: "Continue Shopping",
                         onPressed: () async {
@@ -133,7 +131,7 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
               resizeToAvoidBottomInset: false,
               body: SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.all(24.0),
+                  padding: EdgeInsets.all(16.h),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -145,88 +143,90 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                                 Nav.pop(context);
                               },
                               icon: const Icon(Icons.arrow_back_ios)),
-                          SizedBox(width: screenWidth * 0.2),
+                          SizedBox(width:  0.2.sw),
                           Text("Order Summary",
                               style: GoogleFonts.vazirmatn(
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.w600,
                                   color: Colors.black)),
                         ],
                       ),
-                      SizedBox(width: screenWidth * 0.2),
+                      SizedBox(width: 0.2.sw),
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("Delivery Address",
                                 style: GoogleFonts.vazirmatn(
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w600,
                                     color: Colors.black)),
+                            SizedBox(height: 10.h,),
                             Text(widget.deliveryAddress,
                                 style: GoogleFonts.vazirmatn(
-                                    fontSize: 12.sp, color: Colors.grey)),
+                                    fontSize: 14.sp, color: Colors.grey)),
                             const Divider(thickness: 2)
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("Billing Address",
                                 style: GoogleFonts.vazirmatn(
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w600,
                                     color: Colors.black)),
+                            SizedBox(height: 10.h),
                             Text(widget.billingAddress,
                                 style: GoogleFonts.vazirmatn(
-                                    fontSize: 12.sp, color: Colors.grey)),
+                                    fontSize: 14.sp, color: Colors.grey)),
                             const Divider(thickness: 2)
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("Payment",
                                 style: GoogleFonts.vazirmatn(
-                                    fontSize: 12.sp,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black)),
-                            SizedBox(height: screenHeight * 0.02),
+                            SizedBox(height: 0.02.sh),
                             Text(widget.payment,
                                 style: GoogleFonts.vazirmatn(
-                                    fontSize: 12.sp, color: Colors.black)),
-                            SizedBox(height: screenHeight * 0.01),
+                                    fontSize: 14.sp, color: Colors.black)),
+                            SizedBox(height:  0.01.sh),
                             const Divider(thickness: 2)
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding:EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("Subtotal",
                                 style: GoogleFonts.vazirmatn(
-                                    fontSize: 12.sp,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black)),
-                            SizedBox(height: screenHeight * 0.02),
+                            SizedBox(height: 0.02.sh),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text("${widget.totalProducts} Items Product",
                                     style: GoogleFonts.vazirmatn(
-                                        fontSize: 12.sp, color: Colors.grey)),
+                                        fontSize: 14.sp, color: Colors.grey)),
                                 Text("\$ ${widget.totalAmount}",
                                     style: GoogleFonts.vazirmatn(
-                                        fontSize: 12.sp, color: Colors.grey)),
+                                        fontSize: 14.sp, color: Colors.grey)),
                               ],
                             ),
                             Row(
@@ -234,13 +234,13 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                               children: [
                                 Text("Discount",
                                     style: GoogleFonts.vazirmatn(
-                                        fontSize: 12.sp, color: Colors.grey)),
+                                        fontSize: 14.sp, color: Colors.grey)),
                                 Text("\$ ${widget.totalDiscount}",
                                     style: GoogleFonts.vazirmatn(
-                                        fontSize: 12.sp, color: Colors.grey)),
+                                        fontSize: 14.sp, color: Colors.grey)),
                               ],
                             ),
-                            SizedBox(height: screenHeight * 0.01),
+                            SizedBox(height: 0.01.sh),
                             const DottedLine(
                               dashLength: 5,
                               lineThickness: 2,
@@ -250,7 +250,7 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -259,12 +259,12 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                               children: [
                                 Text("Total",
                                     style: GoogleFonts.vazirmatn(
-                                        fontSize: 12.sp,
+                                        fontSize: 14.sp,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black)),
                                 Text("\$ ${widget.totalPayingPrice}",
                                     style: GoogleFonts.vazirmatn(
-                                        fontSize: 12.sp,
+                                        fontSize: 14.sp,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black)),
                               ],
@@ -273,7 +273,7 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: screenHeight * 0.15,
+                        height: 0.15.sh,
                       ),
                       const Spacer(),
                       AppButton(

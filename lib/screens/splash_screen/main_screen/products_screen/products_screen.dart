@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart';
 import 'package:gymmerator/models/api_response/FeaturedProductApiResponse.dart';
@@ -35,7 +36,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
     return BlocConsumer<FeaturedProductCubit, FeaturedProductState>(
       listener: (context, state) {
         if (state is FailedToGetProduct) {
@@ -82,24 +82,24 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 centerTitle: true,
                 title: Text(
                   'Gymerator Store',
-                  style: GoogleFonts.vazirmatn(),
+                  style: GoogleFonts.vazirmatn(fontSize: 20.sp,fontWeight: FontWeight.w600),
                 ),
               ),
               body: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:  EdgeInsets.all(8.h),
                 child: ListView(
                   shrinkWrap: true,
                   children: [
-                    const SizedBox(height: 8.0),
+                     SizedBox(height: 8.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding:  EdgeInsets.all(8.h),
                           child: Text(
-                            'Featured Products',
+                            'Featured',
                             style: GoogleFonts.vazirmatn(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                                fontSize: 20.sp,fontWeight: FontWeight.w600),
                           ),
                         ),
                         InkWell(
@@ -112,25 +112,25 @@ class _ProductsScreenState extends State<ProductsScreen> {
                             );
                           },
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding:  EdgeInsets.symmetric(horizontal: 8.w,vertical: 8.w),
                             child: Text(
                               'View All',
                               style: GoogleFonts.vazirmatn(
-                                  fontSize: 14, color: Colors.grey),
+                                  fontSize: 12.sp, color: Colors.grey),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 8.0),
+                    SizedBox(height: 8.h),
                     SizedBox(
-                      height: screenHeight * 0.28,
+                      height: 0.28.sh,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount:
                             response?.data?.updatedFeaturedProducts?.length ??
                                 0,
-                        itemExtent: MediaQuery.of(context).size.width * 0.3,
+                        itemExtent: 0.35.sw,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return FeaturedProductItemCard(
@@ -140,16 +140,16 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         },
                       ),
                     ),
-                    const SizedBox(height: 16.0),
+                    // SizedBox(height: 10.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding:  EdgeInsets.symmetric(horizontal: 8.w,vertical: 8.w),
                           child: Text(
-                            'Most Popular Products',
+                            'Most Popular',
                             style: GoogleFonts.vazirmatn(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                                fontSize: 20.sp, fontWeight: FontWeight.w600),
                           ),
                         ),
                         InkWell(
@@ -162,29 +162,28 @@ class _ProductsScreenState extends State<ProductsScreen> {
                             );
                           },
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding:EdgeInsets.symmetric(horizontal: 8.w,vertical: 8.w),
                             child: Text(
                               'View All',
                               style: GoogleFonts.vazirmatn(
-                                  fontSize: 14, color: Colors.grey),
+                                  fontSize: 12.sp, color: Colors.grey),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 8.0),
                     SizedBox(
                       // Use SizedBox instead of Expanded
-                      height: screenHeight * 0.32, // Set a fixed height
+                      height: 0.32.sh, // Set a fixed height
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount:
                             response?.data?.updatedHotProducts?.length ?? 0,
-                        itemExtent: MediaQuery.of(context).size.width * 0.45,
+                        itemExtent: 0.45.sw,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
+                            padding:  EdgeInsets.only(right: 8.w),
                             child: ProductItemCard(
                               product:
                                   response!.data!.updatedHotProducts![index],
@@ -197,11 +196,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.symmetric(horizontal: 8.w,vertical: 8.w),
                           child: Text(
                             'All Products',
                             style: GoogleFonts.vazirmatn(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                                fontSize: 20.sp, fontWeight: FontWeight.w600),
                           ),
                         ),
                         InkWell(
@@ -209,17 +208,17 @@ class _ProductsScreenState extends State<ProductsScreen> {
                             Nav.push(context, const AllProductScreen());
                           },
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: EdgeInsets.symmetric(horizontal: 8.w,vertical: 8.w),
                             child: Text(
                               'View All',
                               style: GoogleFonts.vazirmatn(
-                                  fontSize: 14, color: Colors.grey),
+                                  fontSize: 12.sp, color: Colors.grey),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 8.0),
+                     SizedBox(height: 8.h),
                     (allProduct == null)
                         ? const SizedBox()
                         : GridView.builder(
@@ -239,7 +238,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
                               return Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
+                                padding:  EdgeInsets.only(right: 8.w),
                                 child: ProductItemCard(
                                   product: allProduct!.data![index],
                                 ),

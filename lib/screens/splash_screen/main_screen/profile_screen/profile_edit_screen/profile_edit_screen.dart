@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/update_user_info_cubit/update_user_info_cubit.dart';
 import 'package:gymmerator/ui_component/app_button.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
-import 'package:sizer/sizer.dart';
+
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../../../bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart'
@@ -184,9 +185,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("-------> $goal");
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+
     return BlocProvider(
       create: (context) => UpdateUserInfoCubit(),
       child: BlocConsumer<UpdateUserInfoCubit, UpdateUserInfoState>(
@@ -211,7 +210,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
               ),
               body: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
                   child: Column(
                     children: [
                       Row(
@@ -223,18 +222,18 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                               Text(
                                 "Weight",
                                 style: GoogleFonts.vazirmatn(
-                                    color: Colors.black, fontSize: 14.sp),
+                                    color: Colors.black, fontSize: 18.sp),
                               ),
                               SizedBox(
-                                height: screenHeight * 0.01,
+                                height: 10.h,
                               ),
                               Container(
                                 padding: const EdgeInsets.all(8),
-                                width: screenWidth * 0.4,
+                                width: 0.4.sw,
                                 decoration: BoxDecoration(
                                   color: Colors.white70.withOpacity(0.80),
                                   border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(8.r),
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Column(
@@ -266,7 +265,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                       },
                                     ),
                                     SizedBox(
-                                      width: screenWidth * 0.170,
+                                      width: 0.17.sw,
                                       child: TextField(
                                         controller: weightUnit == WeightUnits.kg
                                             ? weightKgController
@@ -300,7 +299,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                                   ? 'Kg'
                                                   : 'Lb',
                                           suffixStyle: GoogleFonts.vazirmatn(
-                                              fontSize: 10.sp,
+                                              fontSize: 12.sp,
                                               fontWeight: FontWeight.w600),
                                         ),
                                         onChanged: (value) {
@@ -321,25 +320,25 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                               )
                             ],
                           ),
-                          const SizedBox(width: 20),
+                          SizedBox(width: 20.w),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 "Height",
                                 style: GoogleFonts.vazirmatn(
-                                    color: Colors.black, fontSize: 14.sp),
+                                    color: Colors.black, fontSize: 18.sp),
                               ),
                               SizedBox(
-                                height: screenHeight * 0.01,
+                                height: 10.h,
                               ),
                               Container(
-                                padding: const EdgeInsets.all(8),
-                                width: screenWidth * 0.4,
+                                padding:EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
+                                width: 0.4.sw,
                                 decoration: BoxDecoration(
                                   color: Colors.white70.withOpacity(0.80),
                                   border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(8.r),
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Column(
@@ -422,7 +421,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         ],
                       ),
                       SizedBox(
-                        height: screenHeight * 0.02,
+                        height: 20.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -430,12 +429,12 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           Text(
                             'Age',
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.black, fontSize: 14.sp),
+                                color: Colors.black, fontSize: 18.sp),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: screenHeight * 0.01,
+                        height: 10.h,
                       ),
                       TextFormField(
                         controller: ageController,
@@ -444,16 +443,16 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         decoration: InputDecoration(
                           hintText: 'Enter your age',
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.r),
                           ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.circular(30.r),
                             )
                         ),
                       ),
                       SizedBox(
-                        height: screenHeight * 0.015,
+                        height: 10.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -461,12 +460,12 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           Text(
                             'Goal',
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.black, fontSize: 14.sp),
+                                color: Colors.black, fontSize: 18.sp),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: screenHeight * 0.01,
+                        height: 10.h,
                       ),
                       InkWell(
                         onTap: () {
@@ -478,15 +477,15 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                               return StatefulBuilder(
                                 builder: (context, setState) {
                                   return AlertDialog(
-                                    shape: const RoundedRectangleBorder(
+                                    shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0))),
+                                            Radius.circular(10.r))),
                                     title: Text('Select Goal',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 14.sp,
+                                            fontSize: 18.sp,
                                             fontWeight: FontWeight.bold)),
                                     content: SizedBox(
-                                      width: screenWidth * 1,
+                                      width: 1.sw,
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment:
@@ -496,7 +495,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             activeColor:
                                                 const Color(0xff3F710D),
                                             title: Text('Lose Weight',
-                                                style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                             value: 'Lose Weight',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -509,7 +508,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             activeColor:
                                                 const Color(0xff3F710D),
                                             title: Text('Keep Fit',
-                                                style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                             value: 'Keep Fit',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -522,7 +521,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             activeColor:
                                                 const Color(0xff3F710D),
                                             title: Text('Improve Endurance',
-                                                style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                             value: 'Improve Endurance',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -535,7 +534,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             activeColor:
                                                 const Color(0xff3F710D),
                                             title: Text('Increase Strength',
-                                                style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                             value: 'Increase Strength',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -548,7 +547,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             activeColor:
                                                 const Color(0xff3F710D),
                                             title: Text('Enhance Flexibility',
-                                                style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                             value: 'Enhance Flexibility',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -561,7 +560,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             activeColor:
                                                 const Color(0xff3F710D),
                                             title: Text('Muscle Gain',
-                                                style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                             value: 'Muscle Gain',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -574,7 +573,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             activeColor:
                                                 const Color(0xff3F710D),
                                             title: Text('Improve Cardio Health',
-                                                style: GoogleFonts.vazirmatn(fontSize: 10.sp)),
+                                                style: GoogleFonts.vazirmatn(fontSize: 14.sp)),
                                             value: 'Improve Cardio Health',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -593,7 +592,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                         child: Text(
                                           'Cancel',
                                           style: GoogleFonts.vazirmatn(
-                                              fontSize: 14.sp,
+                                              fontSize: 18.sp,
                                               color: Colors.red),
                                         ),
                                         onPressed: () {
@@ -604,7 +603,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                         child: Text(
                                           'Ok',
                                           style: GoogleFonts.vazirmatn(
-                                              fontSize: 14.sp,
+                                              fontSize: 18.sp,
                                               color: Colors.black),
                                         ),
                                         onPressed: () {
@@ -630,7 +629,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         },
                         child: Container(
                           width: double.infinity,
-                          height: MediaQuery.of(context).size.height * 0.07,
+                          height: 53.h,
                           padding: const EdgeInsets.symmetric(
                               vertical: 4, horizontal: 16),
                           decoration: BoxDecoration(
@@ -661,7 +660,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: screenHeight * 0.015,
+                        height: 10.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -669,12 +668,12 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           Text(
                             'Sleep Hours',
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.black, fontSize: 14.sp),
+                                color: Colors.black, fontSize: 18.sp),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: screenHeight * 0.01,
+                        height: 10.h,
                       ),
                       TextFormField(
                         controller: sleepingHoursController,
@@ -703,7 +702,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: screenHeight * 0.015,
+                        height: 10.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -711,12 +710,12 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           Text(
                             'Meal frequency',
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.black, fontSize: 14.sp),
+                                color: Colors.black, fontSize: 18.sp),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: screenHeight * 0.01,
+                        height: 10.h,
                       ),
                       TextFormField(
                         controller: mealFrequentlyController,
@@ -739,7 +738,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: screenHeight * 0.015,
+                        height: 10.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -747,12 +746,12 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           Text(
                             'Hydration Per Day',
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.black, fontSize: 14.sp),
+                                color: Colors.black, fontSize: 18.sp),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: screenHeight * 0.01,
+                        height: 10.h,
                       ),
                       TextFormField(
                         controller: hydrationController,
@@ -775,7 +774,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: screenHeight * 0.0155,
+                        height: 10.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -783,12 +782,12 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           Text(
                             'Target Weight',
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.black, fontSize: 14.sp),
+                                color: Colors.black, fontSize: 18.sp),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: screenHeight * 0.01,
+                        height: 10.h,
                       ),
                       TextFormField(
                         controller: targetWeightController,
@@ -814,7 +813,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: screenHeight * 0.015,
+                        height: 10.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -822,12 +821,12 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           Text(
                             'Diet Plan',
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.black, fontSize: 14.sp),
+                                color: Colors.black, fontSize: 18.sp),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: screenHeight * 0.01,
+                        height: 10.h,
                       ),
                       InkWell(
                         onTap: () {
@@ -844,10 +843,10 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             Radius.circular(10.0))),
                                     title: Text('Select Diet Plan',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 14.sp,
+                                            fontSize: 18.sp,
                                             fontWeight: FontWeight.bold)),
                                     content: SizedBox(
-                                      width: screenWidth * 1,
+                                      width: 1.sw,
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
@@ -856,7 +855,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                                 const Color(0xff3F710D),
                                             title: Text('Balanced Diet',
                                                 style: GoogleFonts.vazirmatn(
-                                                    fontSize: 10.sp)),
+                                                    fontSize: 14.sp)),
                                             value: 'Balanced Diet',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -871,7 +870,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                                 const Color(0xff3F710D),
                                             title: Text('Low-Carb/Keto Diet',
                                                 style: GoogleFonts.vazirmatn(
-                                                    fontSize: 10.sp)),
+                                                    fontSize: 14.sp)),
                                             value: 'Low-Carb/Keto Diet',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -886,7 +885,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                                 const Color(0xff3F710D),
                                             title: Text('High-Protein Diet',
                                                 style: GoogleFonts.vazirmatn(
-                                                    fontSize: 10.sp)),
+                                                    fontSize: 14.sp)),
                                             value: 'High-Protein Diet',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -901,7 +900,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                                 const Color(0xff3F710D),
                                             title: Text('Vegan/Vegetarian Diet',
                                                 style: GoogleFonts.vazirmatn(
-                                                    fontSize: 10.sp)),
+                                                    fontSize: 14.sp)),
                                             value: 'Vegan/Vegetarian Diet',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -916,7 +915,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                                 const Color(0xff3F710D),
                                             title: Text('Mediterranean Diet',
                                                 style: GoogleFonts.vazirmatn(
-                                                    fontSize: 10.sp)),
+                                                    fontSize: 14.sp)),
                                             value: 'Mediterranean Diet',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -931,7 +930,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                                 const Color(0xff3F710D),
                                             title: Text('Intermittent Fasting',
                                                 style: GoogleFonts.vazirmatn(
-                                                    fontSize: 10.sp)),
+                                                    fontSize: 14.sp)),
                                             value: 'Intermittent Fasting',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -946,7 +945,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                                 const Color(0xff3F710D),
                                             title: Text('Paleo Diet',
                                                 style: GoogleFonts.vazirmatn(
-                                                    fontSize: 10.sp)),
+                                                    fontSize: 14.sp)),
                                             value: 'Paleo Diet',
                                             groupValue: tempSelectedGoal,
                                             onChanged: (String? value) {
@@ -966,7 +965,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                         child: Text(
                                           'Cancel',
                                           style: GoogleFonts.vazirmatn(
-                                              fontSize: 14.sp,
+                                              fontSize: 18.sp,
                                               color: Colors.red),
                                         ),
                                         onPressed: () {
@@ -977,7 +976,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                         child: Text(
                                           'Ok',
                                           style: GoogleFonts.vazirmatn(
-                                              fontSize: 14.sp,
+                                              fontSize: 18.sp,
                                               color: Colors.black),
                                         ),
                                         onPressed: () {
@@ -1002,7 +1001,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         },
                         child: Container(
                           width: double.infinity,
-                          height: MediaQuery.of(context).size.height * 0.07,
+                          height: 53.h,
                           padding: const EdgeInsets.symmetric(
                               vertical: 4, horizontal: 16),
                           decoration: BoxDecoration(
@@ -1033,7 +1032,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: screenHeight * 0.03,
+                        height: 0.03.sh,
                       ),
                       AppButton(
                         text: "Update",
@@ -1184,7 +1183,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
   SizedBox buildTextField(TextEditingController controller, int num,
       Function(String)? onChanged, String suffixText) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.160,
+      width: 0.16.sw,
       child: TextField(
         controller: controller,
         cursorColor: Colors.black,
@@ -1215,7 +1214,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
           contentPadding: const EdgeInsets.all(0),
           suffixText: suffixText,
           suffixStyle: GoogleFonts.vazirmatn(
-            fontSize: 10.sp,
+            fontSize: 12.sp,
             fontWeight: FontWeight.w600,
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
@@ -23,8 +24,6 @@ class FavoriteProductItemCard extends StatefulWidget {
 class _ProductItemCardState extends State<FavoriteProductItemCard> {
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {
         if (widget.product.id != null) {
@@ -38,23 +37,22 @@ class _ProductItemCardState extends State<FavoriteProductItemCard> {
           Stack(
             children: [
               Container(
-                height: screenHeight * 0.178,
-                width: screenWidth * 0.4,
-                margin: const EdgeInsets.all(8.0),
+                height: 0.178.sh,
+                width: 0.5.sw,
+                margin:EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(8.r),
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.grey,
                       blurRadius: 0.5,
                       spreadRadius: 0.0,
-                      offset: Offset(0.5, 0.5),
                     )
                   ],
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(8.r),
                   child: Image.network(
                     "${ApiConstants.baseUrl}/product/image/${widget.product.images?.first}",
                     fit: BoxFit.cover,
@@ -67,8 +65,8 @@ class _ProductItemCardState extends State<FavoriteProductItemCard> {
                 ),
               ),
               Positioned(
-                  right: 8.0,
-                  top: 8.0,
+                  right: 8.w,
+                  top: 8.h,
                   child: InkWell(
                     onTap: () async {
                       setState(() {
@@ -81,42 +79,41 @@ class _ProductItemCardState extends State<FavoriteProductItemCard> {
                   ))
             ],
           ),
-          const SizedBox(height: 8.0),
+          SizedBox(height: 8.h),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.4,
+            width: 0.4.sw,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: 8.w),
               child: Text(
                 widget.product.name!,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
+                style: GoogleFonts.vazirmatn(fontWeight: FontWeight.w600,fontSize: 14.sp),
               ),
             ),
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.4,
+            width: 0.4.sw,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: 8.w),
               child: Text(
                 "\$${widget.product.price.toString()}",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.vazirmatn(fontWeight: FontWeight.bold),
+                style: GoogleFonts.vazirmatn(fontWeight: FontWeight.w600,color: Colors.grey,),
               ),
             ),
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.4,
+            width: 0.4.sw,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                widget.product.description!,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.vazirmatn(),
-              ),
-            ),
+                padding: EdgeInsets.symmetric(horizontal: 8.w),
+                child: Text(
+                  widget.product.description!,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.vazirmatn(fontSize: 8.sp,color: Colors.grey),
+                )),
           ),
         ],
       ),

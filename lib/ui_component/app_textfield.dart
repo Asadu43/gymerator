@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
+
 
 class AppTextField extends StatefulWidget {
   final String hintText;
@@ -45,49 +46,47 @@ class _AppTextFieldState extends State<AppTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.07,
+      height: 53.h, // Set height using ScreenUtil
       alignment: Alignment.center,
-      padding: const EdgeInsets.only(left: 12),
+      padding: EdgeInsets.only(left: 12.w), // Adjust padding using ScreenUtil
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(30.r), // Adjust border radius
         border: Border.all(color: widget.color ?? Colors.white),
       ),
       child: TextField(
-        // textAlign: TextAlign.start,
         textAlignVertical: TextAlignVertical.center,
         cursorColor: widget.cursorColor ?? Colors.white,
         controller: widget.controller,
-        style:
-            widget.fieldTextStyle ?? GoogleFonts.vazirmatn(color: Colors.white),
+        style: widget.fieldTextStyle ??
+            GoogleFonts.vazirmatn(color: Colors.white, fontSize: 14.sp), // Font size with ScreenUtil
         keyboardType: widget.textInputType ?? TextInputType.text,
         onChanged: widget.onChanged,
         obscureText: widget.obscureText == true
             ? obscurePassword // Use the flag for obscuring text
             : false,
-        // If not obscured, always show plain text
         decoration: InputDecoration(
           prefixIcon: widget.icon,
           prefixIconColor: widget.prefixIconColor ?? Colors.white,
           hintText: widget.hintText,
           border: InputBorder.none,
-          // Show the visibility toggle icon only when obscureText is true
           suffixIcon: widget.obscureText == true
               ? IconButton(
-                  icon: Icon(
-                    obscurePassword ? Icons.visibility : Icons.visibility_off,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      obscurePassword = !obscurePassword;
-                    });
-                  },
-                )
+            icon: Icon(
+              obscurePassword ? Icons.visibility : Icons.visibility_off,
+              color: Colors.white,
+              size: 20.sp, // Adjust icon size with ScreenUtil
+            ),
+            onPressed: () {
+              setState(() {
+                obscurePassword = !obscurePassword;
+              });
+            },
+          )
               : null,
-          // No suffix icon if not obscured
-          hintStyle: GoogleFonts.vazirmatn(fontSize: 12.sp, color: Colors.grey),
+          hintStyle: GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.grey), // Adjust hint text size with ScreenUtil
         ),
       ),
     );
   }
+
 }

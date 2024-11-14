@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
 
 class PlaceholderDialog extends StatelessWidget {
   const PlaceholderDialog({
@@ -9,8 +9,8 @@ class PlaceholderDialog extends StatelessWidget {
     this.message,
     this.actions = const [],
     this.backgroundColor,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Widget? icon;
   final String? title;
@@ -22,7 +22,7 @@ class PlaceholderDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(16.r),
       ),
       backgroundColor: backgroundColor,
       icon: icon,
@@ -38,11 +38,12 @@ class PlaceholderDialog extends StatelessWidget {
       content: message == null
           ? null
           : Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.h),
               child: Text(
                 message!,
                 textAlign: TextAlign.center,
-                style: GoogleFonts.vazirmatn(color: Colors.grey, fontSize: 12),
+                style:
+                    GoogleFonts.vazirmatn(color: Colors.grey, fontSize: 18.sp),
               ),
             ),
       contentTextStyle: GoogleFonts.vazirmatn(color: Colors.black),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/user_cart_product_cubit/user_cart_products_cubit.dart';
@@ -8,8 +9,6 @@ import 'package:gymmerator/screens/splash_screen/main_screen/my_cart_screen/Item
 import 'package:gymmerator/screens/splash_screen/main_screen/my_cart_screen/checkout_screen/checkout_screen.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
-import 'package:sizer/sizer.dart';
-
 import '../../../../ui_component/app_button.dart';
 import '../../../../utils/api_constants/api_constants.dart';
 import '../../../../utils/nav/nav.dart';
@@ -40,8 +39,6 @@ class _MyCartScreenState extends State<MyCartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return BlocProvider(
       create: (context) => UserCartProductsCubit()..cartRequest(),
       child: BlocConsumer<UserCartProductsCubit, UserCartProductsState>(
@@ -93,16 +90,17 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                   Nav.pop(context);
                                 },
                                 icon: const Icon(Icons.arrow_back_ios)),
-                            SizedBox(width: screenWidth * 0.2),
-                            Text("  My Cart",
+                            SizedBox(width: 0.25.sw,),
+                            Text(" My Cart",
                                 style: GoogleFonts.vazirmatn(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.w600,
                                     color: Colors.black)),
+
                           ],
                         ),
                         SizedBox(
-                          height: screenHeight * 0.02,
+                          height: 0.02.sh,
                         ),
                         (response?.data == null ||
                                 response?.data?.items?.isEmpty == true)
@@ -132,35 +130,37 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                           backgroundColor: Colors.red,
                                           foregroundColor: Colors.white,
                                           borderRadius:
-                                              BorderRadius.circular(20),
+                                              BorderRadius.circular(16.r),
                                           icon: Icons.delete,
                                           label: 'delete',
+
                                         ),
                                       ],
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 16.0, left: 16.0, right: 16.0),
+                                      padding:  EdgeInsets.only(
+                                          top: 8.h, left: 8.w, right: 8.w),
                                       child: Container(
-                                        height: screenHeight * 0.1,
+                                        height: 0.1.sh,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(10),
+                                                BorderRadius.circular(10.r),
                                             border:
                                                 Border.all(color: Colors.grey)),
                                         child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 2.0, right: 8.0),
+                                          padding: EdgeInsets.only(
+                                              right: 8.w),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
                                               SizedBox(
-                                                width: screenWidth * 0.2,
+                                                width: 70.w,
+                                                height: 90.h,
                                                 // color: Colors.red,
                                                 child: Padding(
                                                   padding:
-                                                      const EdgeInsets.all(4.0),
+                                                       EdgeInsets.all(4.h),
                                                   child: Image.network(
                                                     "${ApiConstants.baseUrl}/product/image/${response?.data?.items?[index].product?.images?.first}",
                                                     fit: BoxFit.fitHeight,
@@ -177,9 +177,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                   ),
                                                 ),
                                               ),
-                                              const SizedBox(width: 20),
+                                              SizedBox(width: 20.w),
                                               SizedBox(
-                                                width: screenWidth * 0.3,
+                                                width: 0.3.sw,
                                                 // color: Colors.red,
                                                 child: Column(
                                                   crossAxisAlignment:
@@ -200,10 +200,10 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                           GoogleFonts.vazirmatn(
                                                               color:
                                                                   Colors.black,
-                                                              fontSize: 10.sp,
+                                                              fontSize: 12.sp,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .bold),
+                                                                      .w600),
                                                     ),
                                                     ItemQuantity(
                                                         quantity: int.parse(
@@ -217,15 +217,15 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                   ],
                                                 ),
                                               ),
-                                              const SizedBox(
-                                                width: 20,
+                                               SizedBox(
+                                                width: 20.w,
                                               ),
                                               Text(
                                                 "\$ ${response?.data?.items?[index].total}",
                                                 overflow: TextOverflow.ellipsis,
                                                 style: GoogleFonts.vazirmatn(
                                                     color: Colors.black,
-                                                    fontSize: 14),
+                                                    fontSize: 14.sp,fontWeight: FontWeight.w600),
                                               ),
                                             ],
                                           ),
@@ -236,7 +236,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 },
                               ),
                         SizedBox(
-                          height: screenHeight * 0.05,
+                          height: 0.05.sh,
                         ),
                         (response?.data == null ||
                                 response?.data?.items?.isEmpty == true)
@@ -250,11 +250,12 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                       children: [
                                          Text(
                                           "Total Price Before Discount ",
-                                          style: GoogleFonts.vazirmatn(),
+                                          style: GoogleFonts.vazirmatn(fontSize: 12.sp),
                                         ),
                                         Text(
                                           "\$ ${response?.data?.subTotal}",
                                           style: GoogleFonts.vazirmatn(
+                                            fontSize: 10.sp,
                                             color: Colors.grey,
                                             decoration:
                                                 TextDecoration.lineThrough,
@@ -268,12 +269,13 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                       children: [
                                         Text(
                                           "Total Discount ",
-                                          style: GoogleFonts.vazirmatn(),
+                                          style: GoogleFonts.vazirmatn(fontSize: 12.sp),
                                         ),
                                         Text(
                                           "\$ ${response?.data?.discount?.toStringAsFixed(2)}",
                                           style: GoogleFonts.vazirmatn(
                                             color: Colors.grey,
+                                            fontSize: 10.sp,
                                             decoration:
                                                 TextDecoration.lineThrough,
                                           ),
@@ -283,7 +285,8 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                     Text(
                                       "Total Price \$ ${response?.data?.total.toString()}",
                                       style: GoogleFonts.vazirmatn(
-                                          fontWeight: FontWeight.bold),
+                                        fontSize: 12.sp,
+                                          fontWeight: FontWeight.w600),
                                     ),
                                   ],
                                 ),
@@ -292,27 +295,30 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 response?.data?.items?.isEmpty == true)
                             ? const SizedBox()
                             : SizedBox(
-                                height: screenHeight * 0.1,
+                                height: 0.1.sh,
                               ),
                         (response?.data == null ||
                                 response?.data?.items?.isEmpty == true)
                             ? const SizedBox()
-                            : AppButton(
-                                text: "Checkout",
-                                onPressed: () async {
-                                  Nav.push(
-                                      context,
-                                      CheckoutScreen(
-                                        totalAmount: response!.data!.subTotal!,
-                                        totalDiscount:
-                                            response!.data!.discount!,
-                                        totalProducts:
-                                            response!.data!.items!.length,
-                                        totalPayingPrice:
-                                            response!.data!.total!,
-                                      ));
-                                },
-                              ),
+                            : Padding(
+                              padding:  EdgeInsets.symmetric(horizontal: 8.w),
+                              child: AppButton(
+                                  text: "Checkout",
+                                  onPressed: () async {
+                                    Nav.push(
+                                        context,
+                                        CheckoutScreen(
+                                          totalAmount: response!.data!.subTotal!,
+                                          totalDiscount:
+                                              response!.data!.discount!,
+                                          totalProducts:
+                                              response!.data!.items!.length,
+                                          totalPayingPrice:
+                                              response!.data!.total!,
+                                        ));
+                                  },
+                                ),
+                            ),
                       ],
                     ),
                   ),

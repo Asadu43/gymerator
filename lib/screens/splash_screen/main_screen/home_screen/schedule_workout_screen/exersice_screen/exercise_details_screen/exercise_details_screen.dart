@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutPlanApiResponse.dart';
-import 'package:sizer/sizer.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../../../ui_component/app_button.dart';
@@ -43,8 +43,6 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -60,23 +58,23 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
                         Nav.pop(context);
                       },
                       icon: const Icon(Icons.arrow_back_ios)),
-                  SizedBox(width: screenWidth * 0.15),
+                  SizedBox(width: 0.15.sw),
                   Flexible(
                     child: Text(widget.exercise.exercise ?? "",
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.vazirmatn(
-                            fontSize: 14.sp,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.bold,
                             color: Colors.black)),
                   ),
                 ],
               ),
               SizedBox(
-                height: screenHeight * 0.02,
+                height: 0.02.sh,
               ),
               Container(
-                height: screenHeight * 0.25,
-                width: screenWidth,
+                height: 0.25.sh,
+                width: 1.sw,
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(20)),
                 child: AspectRatio(
@@ -84,7 +82,7 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
                   child: VideoPlayer(_controller!),
                 ),
               ),
-              SizedBox(height: screenHeight * 0.02),
+              SizedBox(height: 0.02.sh),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -92,31 +90,29 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
                     child: Text(widget.exercise.exercise ?? "",
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.vazirmatn(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black)),
+                            fontSize: 20.sp, color: Colors.black)),
                   ),
                   IconButton(
                       onPressed: () {}, icon: const Icon(Icons.bluetooth))
                 ],
               ),
-              SizedBox(height: screenHeight * 0.02),
+              SizedBox(height: 0.02.sh),
               Text(
                   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
                   style: GoogleFonts.vazirmatn(
                       fontSize: 12.sp, color: Colors.black)),
-              SizedBox(height: screenHeight * 0.02),
+              SizedBox(height: 0.02.sh),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    height: screenHeight * 0.14,
-                    width: screenWidth * 0.27,
-                    padding: const EdgeInsets.all(16),
+                    height: 0.12.sh,
+                    width: 0.27.sw,
+                    padding: EdgeInsets.all(16.h),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius:
-                          BorderRadius.circular(15), // Rounded corners
+                          BorderRadius.circular(15.r), // Rounded corners
                       border: Border.all(
                           color: Colors.grey[300]!,
                           width: 1), // Border color and width
@@ -128,8 +124,7 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
                         Image.asset(
                           'assets/icons/clock.png', // Update with your asset image path
                         ),
-                        const SizedBox(
-                            height: 5), // Space between image and text
+                        SizedBox(height: 5.h), // Space between image and text
                         // Text widget to display the duration text
                         Text(
                           "Sets : ${widget.exercise.sets ?? ""}",
@@ -142,8 +137,8 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
                     ),
                   ),
                   Container(
-                    height: screenHeight * 0.14,
-                    width: screenWidth * 0.27,
+                    height: 0.12.sh,
+                    width: 0.27.sw,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -174,13 +169,13 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
                     ),
                   ),
                   Container(
-                    height: screenHeight * 0.14,
-                    width: screenWidth * 0.27,
-                    padding: const EdgeInsets.all(16),
+                    height: 0.12.sh,
+                    width: 0.27.sw,
+                    padding: EdgeInsets.all(12.h),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius:
-                          BorderRadius.circular(15), // Rounded corners
+                          BorderRadius.circular(15.r), // Rounded corners
                       border: Border.all(
                           color: Colors.grey[300]!,
                           width: 1), // Border color and width
@@ -192,8 +187,7 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
                         Image.asset(
                           'assets/icons/rest.png', // Update with your asset image path
                         ),
-                        const SizedBox(
-                            height: 8), // Space between image and text
+                        SizedBox(height: 5.h), // Space between image and text
                         // Text widget to display the duration text
                         Text(
                           widget.exercise.rest ?? "",

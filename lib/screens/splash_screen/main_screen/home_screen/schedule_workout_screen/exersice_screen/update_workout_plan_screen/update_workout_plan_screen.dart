@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/generate_workout_plan_cubit/generate_work_out_plan_cubit.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../../../../../bloC/auth_cubit/get_workout_plan_cubit/workout_plan_cubit.dart'
     hide LoadingState;
@@ -26,8 +26,6 @@ class _UpdateWorkoutPlanScreenState extends State<UpdateWorkoutPlanScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return BlocProvider(
       create: (context) => GenerateWorkOutPlanCubit()..generateWorkoutRequest(),
       child: BlocConsumer<GenerateWorkOutPlanCubit, GenerateWorkOutPlanState>(
@@ -78,18 +76,11 @@ class _UpdateWorkoutPlanScreenState extends State<UpdateWorkoutPlanScreen> {
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black)),
-                            IconButton(
-                                onPressed: () {
-                                  context
-                                      .read<GenerateWorkOutPlanCubit>()
-                                      .generateWorkoutRequest();
-                                },
-                                icon: const Icon(Icons.refresh,
-                                    color: Colors.black)),
+                           const SizedBox(),
                           ],
                         ),
                         SizedBox(
-                          height: screenHeight * 0.02,
+                          height: 0.02.sh,
                         ),
                         ListView.builder(
                           itemCount: response?.data?.length ?? 0,
@@ -100,145 +91,145 @@ class _UpdateWorkoutPlanScreenState extends State<UpdateWorkoutPlanScreen> {
                               elevation: 0,
                               color: const Color(0xffE7F2DC),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(10.r),
                               ),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    width: screenWidth * 0.4,
-                                    padding: const EdgeInsets.all(25),
-                                    // color: Colors.red,
+                                    width: 0.4.sw, // Responsive width
+                                    padding: EdgeInsets.all(25.w), // Responsive padding
                                     decoration: const BoxDecoration(
                                         color: Color(0xffE7F2DC)),
                                     child: Text(
                                       capitalizeFirstLetter(
                                           response?.data?[index].day ?? ""),
                                       style: GoogleFonts.vazirmatn(
-                                        fontSize: 12.sp,
+                                        fontSize: 16.sp,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ),
                                   response?.data?[index].restDay == false
                                       ? Expanded(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            child: ListView.separated(
-                                              separatorBuilder:
-                                                  (context, index) {
-                                                return const Divider();
-                                              },
-                                              shrinkWrap: true,
-                                              physics:
-                                                  const NeverScrollableScrollPhysics(),
-                                              itemCount: response?.data?[index]
-                                                      .exercises?.length ??
-                                                  0,
-                                              itemBuilder: (context, ind) {
-                                                return Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 16.0,
-                                                          right: 16.0,
-                                                          top: 8.0),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Center(
-                                                        child: Text(
-                                                          response
-                                                                  ?.data?[index]
-                                                                  .exercises?[
-                                                                      ind]
-                                                                  .exercise ??
-                                                              "",
-                                                          maxLines: 1,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          style: GoogleFonts
-                                                              .vazirmatn(),
-                                                        ),
-                                                      ),
-                                                      ExerciseDetailRow(
-                                                        icon:
-                                                            "assets/icons/sets.png",
-                                                        label: 'Sets',
-                                                        value: response
-                                                                ?.data?[index]
-                                                                .exercises?[ind]
-                                                                .sets ??
-                                                            "",
-                                                      ),
-                                                      ExerciseDetailRow(
-                                                        icon:
-                                                            "assets/icons/rep.png",
-                                                        label: 'Reps',
-                                                        value: response
-                                                                ?.data?[index]
-                                                                .exercises?[ind]
-                                                                .reps ??
-                                                            "",
-                                                      ),
-                                                      ExerciseDetailRow(
-                                                        icon:
-                                                            "assets/icons/time.png",
-                                                        label: 'Rest Period',
-                                                        value: response
-                                                                ?.data?[index]
-                                                                .exercises?[ind]
-                                                                .rest ??
-                                                            "",
-                                                      ),
-                                                    ],
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10.r),
+                                      ),
+                                      child: ListView.separated(
+                                        separatorBuilder: (context, index) {
+                                          return const Divider();
+                                        },
+                                        shrinkWrap: true,
+                                        physics:
+                                        const NeverScrollableScrollPhysics(),
+                                        itemCount: response?.data?[index]
+                                            .exercises?.length ??
+                                            0,
+                                        itemBuilder: (context, ind) {
+                                          return Padding(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: 16.0.w,
+                                              vertical: 8.0.h,
+                                            ), // Responsive padding
+                                            child: Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                              children: [
+                                                Center(
+                                                  child: Text(
+                                                    response
+                                                        ?.data?[index]
+                                                        .exercises?[ind]
+                                                        .exercise ??
+                                                        "",
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: GoogleFonts.vazirmatn(fontSize: 12.sp),
                                                   ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        )
-                                      : Expanded(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: ListTile(
-                                                title: Text(
-                                                  "Rest Day",
-                                                  style:
-                                                      GoogleFonts.vazirmatn(),
                                                 ),
-                                              ),
+                                                ExerciseDetailRow(
+                                                  icon: "assets/icons/sets.png",
+                                                  label: 'Sets',
+                                                  value: response
+                                                      ?.data?[index]
+                                                      .exercises?[ind]
+                                                      .sets ??
+                                                      "",
+                                                ),
+                                                ExerciseDetailRow(
+                                                  icon: "assets/icons/rep.png",
+                                                  label: 'Reps',
+                                                  value: response
+                                                      ?.data?[index]
+                                                      .exercises?[ind]
+                                                      .reps ??
+                                                      "",
+                                                ),
+                                                ExerciseDetailRow(
+                                                  icon: "assets/icons/time.png",
+                                                  label: 'Rest Period',
+                                                  value: response
+                                                      ?.data?[index]
+                                                      .exercises?[ind]
+                                                      .rest ??
+                                                      "",
+                                                ),
+                                              ],
                                             ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  )
+                                      : Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10.r),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(8.0.w), // Responsive padding
+                                        child: ListTile(
+                                          title: Text(
+                                            "Rest Day",
+                                            style: GoogleFonts.vazirmatn(),
                                           ),
                                         ),
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             );
                           },
                         ),
                         SizedBox(
-                          height: screenHeight * 0.02,
+                          height: 0.02.sh,
                         ),
                         state is LoadingState
                             ? const SizedBox()
                             : AppButton(
-                                text: "Update Workout Plan",
+                                text: "Regenerate Workout Plan",
                                 onPressed: () async {
-                                  await _onAcceptButtonPressed(context);
+                                  context
+                                      .read<GenerateWorkOutPlanCubit>()
+                                      .generateWorkoutRequest();
                                 },
                               ),
+
+                        SizedBox(
+                          height: 0.02.sh,
+                        ),
+                        state is LoadingState
+                            ? const SizedBox()
+                            : AppButton(
+                          text: "Update Workout Plan",
+                          onPressed: () async {
+                            await _onAcceptButtonPressed(context);
+                          },
+                        ),
                       ],
                     ),
                   ),

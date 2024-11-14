@@ -65,6 +65,7 @@ dependencies:
   external_app_launcher: ^3.1.0
   country_state_city: ^0.1.6
   country_code_picker: ^3.1.0
+  flutter_screenutil: ^5.9.3
 
 
 dev_dependencies:

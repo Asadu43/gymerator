@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/featured_product_cubit/featured_product_cubit.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
@@ -61,7 +62,7 @@ class _FeaturedProductsScreenState extends State<FeaturedProductsScreen> {
                 centerTitle: true,
                 title: Text('Featured Products',
                     style: GoogleFonts.vazirmatn(
-                        fontSize: 20, fontWeight: FontWeight.bold)),
+                        fontSize: 20.sp, fontWeight: FontWeight.bold)),
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back_ios),
                   onPressed: () {
@@ -69,11 +70,11 @@ class _FeaturedProductsScreenState extends State<FeaturedProductsScreen> {
                   },
                 )),
             body: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.symmetric(horizontal: 8.w,vertical: 8.w),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(height: 4.0),
+                  SizedBox(height: 4.h),
                   Expanded(
                     child: GridView.builder(
                       itemCount:

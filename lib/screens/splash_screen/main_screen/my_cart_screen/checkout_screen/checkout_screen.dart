@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/my_cart_screen/checkout_screen/select_payment_method_screen.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
-import 'package:sizer/sizer.dart';
-
 import '../../../../../ui_component/app_button.dart';
 import '../../../../../ui_component/app_textfield.dart';
 import '../../../../../utils/nav/nav.dart';
@@ -49,8 +48,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -67,16 +64,16 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         Nav.pop(context);
                       },
                       icon: const Icon(Icons.arrow_back_ios)),
-                  SizedBox(width: screenWidth * 0.2),
+                  SizedBox(width: 0.2.sw),
                   Text("Checkout",
                       style: GoogleFonts.vazirmatn(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w600,
                           color: Colors.black)),
                 ],
               ),
               SizedBox(
-                height: screenHeight * 0.02,
+                height: 0.02.sh,
               ),
               AppTextField(
                 controller: deliveryAddressController,
@@ -86,7 +83,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
               ),
               SizedBox(
-                height: screenHeight * 0.02,
+                height: 0.02.sh,
               ),
               AppTextField(
                 controller: billingAddressController,
@@ -96,10 +93,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 fieldTextStyle: GoogleFonts.vazirmatn(color: Colors.black),
               ),
               SizedBox(
-                height: screenHeight * 0.04,
+                height: 0.04.sh,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 12.0),
+                padding:EdgeInsets.only(left: 12.w),
                 child: Text("Payment method",
                     style: GoogleFonts.vazirmatn(
                         fontSize: 14.sp,
@@ -107,13 +104,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         color: Colors.black)),
               ),
               SizedBox(
-                height: screenHeight * 0.02,
+                height: 0.02.sh,
               ),
               Card(
                 color: Colors.white,
                 elevation: 2,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.w,vertical: 8.w),
                   child: Column(
                     children: [
                       RadioListTile(
@@ -136,14 +133,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         title: Text(
                           "Card",
                           style: GoogleFonts.vazirmatn(
-                            fontSize: 12.sp,
+                            fontSize: 14.sp,
                           ),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(
-                            left: 24, right: 24, top: 8, bottom: 8),
-                        child: Divider(
+                       Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.w,vertical: 8.h),
+                        child: const Divider(
                           color: Colors.grey,
                           thickness: 2,
                         ),
@@ -167,7 +163,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         },
                         title: Text(
                           "Cash on Delivery",
-                          style: GoogleFonts.vazirmatn(fontSize: 12.sp),
+                          style: GoogleFonts.vazirmatn(fontSize: 14.sp),
                         ),
                       ),
                     ],
@@ -175,10 +171,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 ),
               ),
               SizedBox(
-                height: screenHeight * 0.02,
+                height:0.02.sh,
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(10.h),
                 child: RadioListTile(
                   value: 1,
                   activeColor: const Color(0xff3F710D),

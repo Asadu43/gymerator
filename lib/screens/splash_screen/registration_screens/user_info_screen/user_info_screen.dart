@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/registration_screens/user_issue_screen/user_issue_screen.dart';
-import 'package:sizer/sizer.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../../ui_component/app_button.dart';
@@ -92,13 +92,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+        height: 1.sh,
+        width: 1.sw,
         decoration: const BoxDecoration(
             image: DecorationImage(
           image: AssetImage('assets/images/background.png'),
@@ -108,11 +106,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         child: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+              padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
               child: Column(
                 children: [
                   SizedBox(
-                    height: screenHeight * 0.02,
+                    height: 20.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,19 +122,17 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                           Text(
                             "Male",
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.white, fontSize: 14.sp),
+                                color: Colors.white, fontSize: 20.sp),
                           ),
                           Container(
-                            height: screenHeight * 0.18,
-                            width: screenWidth * 0.4,
+                            height: 0.18.sh, // 18% of the screen height
+                            width: 0.4.sw, // 40% of the screen width
                             decoration: BoxDecoration(
-                              // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
                               gradient:
                                   (checkboxValue == true && selectedIndex == 1)
                                       ? const LinearGradient(
                                           begin: Alignment.topLeft,
                                           end: Alignment.bottomRight,
-                                          // stops: const [0.0, 1.0],
                                           colors: [
                                             Color(0xffB14501),
                                             Color(0xff3F710D),
@@ -145,35 +141,36 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                       : const LinearGradient(
                                           begin: Alignment.topLeft,
                                           end: Alignment.bottomRight,
-                                          // stops: const [0.0, 1.0],
                                           colors: [
                                             Colors.transparent,
                                             Colors.transparent,
                                           ],
                                         ),
                               border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(
+                                  20.r), // Adjusting corner radius
                             ),
                             child: InkWell(
                               onTap: () {
                                 setState(() {
                                   if ((checkboxValue == true) &&
                                       (selectedIndex == 1)) {
-                                    setState(() {
-                                      checkboxValue = false;
-                                      selectedIndex = 0;
-                                    });
+                                    checkboxValue = false;
+                                    selectedIndex = 0;
                                   } else {
-                                    setState(() {
-                                      checkboxValue = true;
-                                      selectedIndex = 1;
-                                    });
+                                    checkboxValue = true;
+                                    selectedIndex = 1;
                                   }
                                 });
                               },
-                              child: Image.asset("assets/icons/male.png"),
+                              child: Image.asset(
+                                "assets/icons/male.png",
+                                width: 40
+                                    .w, // Adjusting image size using ScreenUtil
+                                height: 40.h,
+                              ),
                             ),
-                          ),
+                          )
                         ],
                       ),
                       Column(
@@ -183,11 +180,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                           Text(
                             "Female",
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.white, fontSize: 14.sp),
+                                color: Colors.white, fontSize: 20.sp),
                           ),
                           Container(
-                            height: screenHeight * 0.18,
-                            width: screenWidth * 0.4,
+                            height: 0.18.sh, // 18% of the screen height
+                            width: 0.4.sw,
                             decoration: BoxDecoration(
                               // color: (checkboxValue == true && selectedIndex == 1) ? Colors.blue : Colors.red,
                               gradient:
@@ -211,7 +208,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                           ],
                                         ),
                               border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(20.r),
                             ),
                             child: InkWell(
                               onTap: () {
@@ -237,7 +234,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -247,41 +244,38 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                           Text(
                             "Weight",
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.white, fontSize: 14.sp),
+                              color: Colors.white,
+                              fontSize: 20.sp,
+                            ),
                           ),
                           SizedBox(
-                            height: screenHeight * 0.01,
+                            height: 0.01.sh, // 1% of screen height
                           ),
                           Container(
-                            padding: const EdgeInsets.all(8),
-                            width: screenWidth * 0.4,
+                            padding: EdgeInsets.all(8.w), // Padding adapted to screen width
+                            width: 0.4.sw,// 40% of screen width
                             decoration: BoxDecoration(
                               color: Colors.white70.withOpacity(0.80),
                               border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(8),
-                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(8.r), // Responsive border radius
                             ),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 ToggleSwitch(
-                                  initialLabelIndex:
-                                  weightUnit == WeightUnits.kg ? 0 : 1,
+                                  initialLabelIndex: weightUnit == WeightUnits.kg ? 0 : 1,
                                   totalSwitches: 2,
                                   activeBgColor: const [
                                     Color(0xffB14501),
-                                    Color(0xff3F710D)
+                                    Color(0xff3F710D),
                                   ],
                                   labels: const ['Kg', 'Lb'],
                                   onToggle: (index) {
                                     setState(() {
-                                      weightUnit = index == 0
-                                          ? WeightUnits.kg
-                                          : WeightUnits.lb;
+                                      weightUnit = index == 0 ? WeightUnits.kg : WeightUnits.lb;
                                       if (weightUnit == WeightUnits.kg) {
                                         weightLbController.clear();
                                         weightLb = 0.0;
-
                                       } else {
                                         weightKgController.clear();
                                         weightKg = 0.0;
@@ -290,46 +284,40 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                   },
                                 ),
                                 SizedBox(
-                                  width: screenWidth * 0.170,
+                                  width: 0.17.sw, // 17% of screen width
                                   child: TextField(
                                     controller: weightUnit == WeightUnits.kg
                                         ? weightKgController
                                         : weightLbController,
                                     cursorColor: Colors.black,
                                     style: GoogleFonts.vazirmatn(
-                                        fontSize: 12.sp),
+                                      fontSize: 12.sp, // Responsive font size
+                                    ),
                                     keyboardType: TextInputType.number,
                                     inputFormatters: [
-                                      FilteringTextInputFormatter
-                                          .digitsOnly, // Only allow digits
-                                      LengthLimitingTextInputFormatter(
-                                          3), // Limit to 3 characters
+                                      FilteringTextInputFormatter.digitsOnly,
+                                      LengthLimitingTextInputFormatter(3),
                                     ],
                                     decoration: InputDecoration(
                                       border: const UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.black)),
-                                      enabledBorder:
-                                      const UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.black)),
-                                      focusedBorder:
-                                      const UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.black)),
-                                      contentPadding:
-                                      const EdgeInsets.all(0),
-                                      suffixText:
-                                      weightUnit == WeightUnits.kg
-                                          ? 'Kg'
-                                          : 'Lb',
+                                        borderSide: BorderSide(color: Colors.black),
+                                      ),
+                                      enabledBorder: const UnderlineInputBorder(
+                                        borderSide: BorderSide(color: Colors.black),
+                                      ),
+                                      focusedBorder: const UnderlineInputBorder(
+                                        borderSide: BorderSide(color: Colors.black),
+                                      ),
+                                      contentPadding: EdgeInsets.zero,
+
+                                      suffixText: weightUnit == WeightUnits.kg ? 'Kg' : 'Lb',
                                       suffixStyle: GoogleFonts.vazirmatn(
-                                          fontSize: 10.sp,
-                                          fontWeight: FontWeight.w600),
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                     onChanged: (value) {
                                       if (value.isEmpty) return;
-
                                       setState(() {
                                         if (weightUnit == WeightUnits.kg) {
                                           weightKg = double.parse(value);
@@ -342,55 +330,51 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                 ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
-                      const SizedBox(width: 20),
+                      SizedBox(width: 20.w), // Responsive spacing
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             "Height",
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.white, fontSize: 14.sp),
+                              color: Colors.white,
+                              fontSize: 20.sp,
+                            ),
                           ),
                           SizedBox(
-                            height: screenHeight * 0.01,
+                            height: 0.01.sh, // 1% of screen height
                           ),
                           Container(
-                            padding: const EdgeInsets.all(8),
-                            width: screenWidth * 0.4,
+                            padding: EdgeInsets.all(8.w), // Responsive padding
+                            width: 0.4.sw, // 40% of screen width
                             decoration: BoxDecoration(
                               color: Colors.white70.withOpacity(0.80),
                               border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(8),
-                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(8.r), // Responsive border radius
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 ToggleSwitch(
-                                  initialLabelIndex:
-                                  heightUnit == HeightUnits.cm ? 0 : 1,
+                                  initialLabelIndex: heightUnit == HeightUnits.cm ? 0 : 1,
                                   totalSwitches: 2,
                                   activeBgColor: const [
                                     Color(0xffB14501),
-                                    Color(0xff3F710D)
+                                    Color(0xff3F710D),
                                   ],
                                   labels: const ['Cm', 'Ft-In'],
                                   onToggle: (index) {
                                     setState(() {
                                       heightUnit = index == 0 ? HeightUnits.cm : HeightUnits.ftIn;
-
                                       if (heightUnit == HeightUnits.cm) {
-                                        // Clear only feet and inches controllers if 'Cm' is selected
                                         heightFeetController.clear();
                                         heightInchesController.clear();
                                         heightFeet = 0;
                                         heightInches = 0;
-
                                       } else {
-                                        // Clear only cm controller if 'Ft-In' is selected
                                         heightCmController.clear();
                                         heightCm = 0.0;
                                       }
@@ -398,44 +382,44 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                   },
                                 ),
                                 Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: heightUnit == HeightUnits.cm
                                       ? [
                                     buildTextField(
-                                        heightCmController, 1,
-                                            (value) {
-                                          if (value.isEmpty) {
-                                            return;
-                                          }
-                                          setState(() {
-                                            heightCm =
-                                                double.parse(value);
-                                          });
-                                        }, 'Cm')
+                                      heightCmController,
+                                      1,
+                                          (value) {
+                                        if (value.isEmpty) return;
+                                        setState(() {
+                                          heightCm = double.parse(value);
+                                        });
+                                      },
+                                      'Cm',
+                                    )
                                   ]
                                       : [
                                     buildTextField(
-                                        heightFeetController, 2,
-                                            (value) {
-                                          if (value.isEmpty) {
-                                            return;
-                                          }
-                                          setState(() {
-                                            heightFeet = int.parse(value);
-                                          });
-                                        }, 'Ft'),
+                                      heightFeetController,
+                                      2,
+                                          (value) {
+                                        if (value.isEmpty) return;
+                                        setState(() {
+                                          heightFeet = int.parse(value);
+                                        });
+                                      },
+                                      'Ft',
+                                    ),
                                     buildTextField(
-                                        heightInchesController, 2,
-                                            (value) {
-                                          if (value.isEmpty) {
-                                            return;
-                                          }
-                                          setState(() {
-                                            heightInches =
-                                                int.parse(value);
-                                          });
-                                        }, 'In'),
+                                      heightInchesController,
+                                      2,
+                                          (value) {
+                                        if (value.isEmpty) return;
+                                        setState(() {
+                                          heightInches = int.parse(value);
+                                        });
+                                      },
+                                      'In',
+                                    ),
                                   ],
                                 ),
                               ],
@@ -445,19 +429,19 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 30),
+                  SizedBox(height: 30.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         'Age',
                         style: GoogleFonts.vazirmatn(
-                            color: Colors.white, fontSize: 14.sp),
+                            color: Colors.white, fontSize: 20.sp),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: screenHeight * 0.01,
+                    height: 10.h,
                   ),
                   TextFormField(
                     controller: ageController,
@@ -474,7 +458,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       hintText: 'Your age',
                       focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.circular(30.r),
                       ),
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
                       border: OutlineInputBorder(
@@ -483,7 +467,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: screenHeight * 0.02,
+                    height: 10.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -491,12 +475,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       Text(
                         'Goal',
                         style: GoogleFonts.vazirmatn(
-                            color: Colors.white, fontSize: 14.sp),
+                            color: Colors.white, fontSize: 20.sp),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: screenHeight * 0.01,
+                    height: 10.h,
                   ),
                   InkWell(
                     onTap: () {
@@ -516,7 +500,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.bold)),
                                 content: SizedBox(
-                                  width: screenWidth * 1,
+                                  width:  1.sw,
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment:
@@ -526,7 +510,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Lose Weight',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 10.sp)),
+                                                fontSize: 14.sp)),
                                         value: 'Lose Weight',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
@@ -540,7 +524,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Keep Fit',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 10.sp)),
+                                                fontSize: 14.sp)),
                                         value: 'Keep Fit',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
@@ -554,7 +538,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Improve Endurance',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 10.sp)),
+                                                fontSize: 14.sp)),
                                         value: 'Improve Endurance',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
@@ -568,7 +552,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Increase Strength',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 10.sp)),
+                                                fontSize: 14.sp)),
                                         value: 'Increase Strength',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
@@ -582,7 +566,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Enhance Flexibility',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 10.sp)),
+                                                fontSize: 14.sp)),
                                         value: 'Enhance Flexibility',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
@@ -596,7 +580,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Muscle Gain',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 10.sp)),
+                                                fontSize: 14.sp)),
                                         value: 'Muscle Gain',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
@@ -610,7 +594,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Improve Cardio Health',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 10.sp)),
+                                                fontSize: 14.sp)),
                                         value: 'Improve Cardio Health',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
@@ -664,13 +648,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       );
                     },
                     child: Container(
-                      width: double.infinity,
-                      height: MediaQuery.of(context).size.height * 0.07,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4, horizontal: 16),
+                      height: 53.h,
+                      padding:  EdgeInsets.symmetric(
+                          vertical: 4.w, horizontal: 16.w),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(30.r),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -696,7 +679,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: screenHeight * 0.02,
+                    height: 20.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -704,12 +687,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       Text(
                         'Sleep Hours',
                         style: GoogleFonts.vazirmatn(
-                            color: Colors.white, fontSize: 14.sp),
+                            color: Colors.white, fontSize: 20.sp),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: screenHeight * 0.01,
+                    height: 10.h,
                   ),
                   TextFormField(
                     controller: sleepingHoursController,
@@ -730,15 +713,15 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
                       focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.circular(30.r),
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(30.r),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: screenHeight * 0.02,
+                    height: 20.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -746,12 +729,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       Text(
                         'Meal Frequency',
                         style: GoogleFonts.vazirmatn(
-                            color: Colors.white, fontSize: 14.sp),
+                            color: Colors.white, fontSize: 20.sp),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: screenHeight * 0.01,
+                    height: 10.h,
                   ),
                   TextFormField(
                     controller: mealFrequentlyController,
@@ -766,15 +749,15 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
                       focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.circular(30.r),
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(30.r),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: screenHeight * 0.02,
+                    height: 20.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -782,12 +765,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       Text(
                         'Hydration Per Day',
                         style: GoogleFonts.vazirmatn(
-                            color: Colors.white, fontSize: 14.sp),
+                            color: Colors.white, fontSize: 20.sp),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: screenHeight * 0.01,
+                    height: 10.h,
                   ),
                   TextFormField(
                     controller: hydrationController,
@@ -802,15 +785,15 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
                       focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.circular(30.r),
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(30.r),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: screenHeight * 0.02,
+                    height: 20.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -818,12 +801,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       Text(
                         'Target Weight',
                         style: GoogleFonts.vazirmatn(
-                            color: Colors.white, fontSize: 14.sp),
+                            color: Colors.white, fontSize: 20.sp),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: screenHeight * 0.01,
+                    height: 10.h,
                   ),
                   TextFormField(
                     controller: targetWeightController,
@@ -841,7 +824,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
                       focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.circular(30.r),
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
@@ -849,7 +832,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: screenHeight * 0.02,
+                    height: 20.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -857,12 +840,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       Text(
                         'Diet Plan',
                         style: GoogleFonts.vazirmatn(
-                            color: Colors.white, fontSize: 14.sp),
+                            color: Colors.white, fontSize: 20.sp),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: screenHeight * 0.01,
+                    height: 10.h,
                   ),
                   InkWell(
                     onTap: () {
@@ -882,7 +865,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.bold)),
                                 content: SizedBox(
-                                  width: screenWidth * 1,
+                                  width:  1.sw,
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
@@ -890,7 +873,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Balanced Diet',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 10.sp)),
+                                                fontSize: 14.sp)),
                                         value: 'Balanced Diet',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
@@ -904,7 +887,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Low-Carb/Keto Diet',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 10.sp)),
+                                                fontSize: 14.sp)),
                                         value: 'Low-Carb/Keto Diet',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
@@ -918,7 +901,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('High-Protein Diet',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 10.sp)),
+                                                fontSize: 14.sp)),
                                         value: 'High-Protein Diet',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
@@ -932,7 +915,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Vegan/Vegetarian Diet',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 10.sp)),
+                                                fontSize: 14.sp)),
                                         value: 'Vegan/Vegetarian Diet',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
@@ -946,7 +929,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Mediterranean Diet',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 10.sp)),
+                                                fontSize: 14.sp)),
                                         value: 'Mediterranean Diet',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
@@ -960,7 +943,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Intermittent Fasting',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 10.sp)),
+                                                fontSize: 14.sp)),
                                         value: 'Intermittent Fasting',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
@@ -974,7 +957,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         activeColor: const Color(0xff3F710D),
                                         title: Text('Paleo Diet',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 10.sp)),
+                                                fontSize: 14.sp)),
                                         value: 'Paleo Diet',
                                         groupValue: tempSelectedGoal,
                                         onChanged: (String? value) {
@@ -1028,12 +1011,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     },
                     child: Container(
                       width: double.infinity,
-                      height: MediaQuery.of(context).size.height * 0.07,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4, horizontal: 16),
+                      height: 53.h,
+                      padding:  EdgeInsets.symmetric(
+                          vertical: 4.h, horizontal: 16.w),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(30.r),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1059,7 +1042,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: screenHeight * 0.04,
+                    height: 30.h,
                   ),
                   AppButton(
                     text: "Next",
@@ -1187,7 +1170,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     },
                   ),
                   SizedBox(
-                    height: screenHeight * 0.02,
+                    height: 20.h,
                   ),
                 ],
               ),
@@ -1198,27 +1181,31 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
     );
   }
 
-  SizedBox buildTextField(TextEditingController controller, int num,
-      Function(String)? onChanged, String suffixText) {
+  SizedBox buildTextField(
+      TextEditingController controller,
+      int num,
+      Function(String)? onChanged,
+      String suffixText,
+      ) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.160,
+      width: 0.16.sw, // 16% of screen width
       child: TextField(
         controller: controller,
         cursorColor: Colors.black,
         textAlign: TextAlign.center,
         style: GoogleFonts.vazirmatn(
-          fontSize: 14.sp,
+          fontSize: 12.sp, // Responsive font size
         ),
         keyboardType: TextInputType.number,
         inputFormatters: num == 1
             ? [
-                FilteringTextInputFormatter.digitsOnly, // Only allow digits
-                LengthLimitingTextInputFormatter(3), // Limit to 3 characters
-              ]
+          FilteringTextInputFormatter.digitsOnly, // Only allow digits
+          LengthLimitingTextInputFormatter(3), // Limit to 3 characters
+        ]
             : [
-                FilteringTextInputFormatter.digitsOnly, // Only allow digits
-                LengthLimitingTextInputFormatter(2), // Limit to 2 characters
-              ],
+          FilteringTextInputFormatter.digitsOnly, // Only allow digits
+          LengthLimitingTextInputFormatter(2), // Limit to 2 characters
+        ],
         decoration: InputDecoration(
           border: const UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.black),
@@ -1229,10 +1216,10 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
           focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.black),
           ),
-          contentPadding: const EdgeInsets.all(0),
+          contentPadding: EdgeInsets.all(0.w), // Zero padding, scaled
           suffixText: suffixText,
           suffixStyle: GoogleFonts.vazirmatn(
-            fontSize: 10.sp,
+            fontSize: 12.sp, // Responsive suffix font size
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -1240,4 +1227,5 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
       ),
     );
   }
+
 }
