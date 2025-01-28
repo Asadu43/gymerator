@@ -212,7 +212,8 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                                  SizedBox(height: 10.h),
                                                 Text("Rest Day",
                                                     style: GoogleFonts.vazirmatn(
-                                                        fontSize: 14.sp,
+                                                        fontSize: 12.sp,
+                                                        fontWeight: FontWeight.w500,
                                                         color: weekdayName[DateTime
                                                                         .now()
                                                                     .weekday] ==
@@ -236,7 +237,8 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                                 SizedBox(height: 20.h),
                                                 Text("Exercise Day",
                                                     style: GoogleFonts.vazirmatn(
-                                                        fontSize: 14.sp,
+                                                        fontSize: 12.sp,
+                                                        fontWeight: FontWeight.w500,
                                                         color: weekdayName[DateTime
                                                                         .now()
                                                                     .weekday] ==
@@ -274,8 +276,8 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                                       .day ??
                                                   ""),
                                               style: GoogleFonts.vazirmatn(
-                                                  fontSize: 16.sp,
-                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14.sp,
+                                                  fontWeight: FontWeight.w400,
                                                   color: Colors.black)),
                                         )))
                               ],

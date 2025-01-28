@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Nav.push(context, const ForgetPasswordScreen());
                             },
                             child: Text(
-                              "Forget Password?",
+                              "Forgot Password?",
                               style: GoogleFonts.vazirmatn(
                                 fontSize: 12.sp,
                                 color: Colors.white,

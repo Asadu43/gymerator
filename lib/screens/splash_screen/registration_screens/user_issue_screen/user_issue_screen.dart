@@ -76,7 +76,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                 height: 10.h,
               ),
               Text(
-                  "Your coach will filter and reduce inappropriate exercises for you  Used Password.",
+                  "Your coach will filter and reduce inappropriate exercises for you",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.vazirmatn(
                       fontSize: 16.sp, color: Colors.grey)),

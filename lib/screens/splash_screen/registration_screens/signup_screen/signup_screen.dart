@@ -181,7 +181,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         SizedBox(height: 20.h),
                         Container(
                           height: 53.h,
-                          padding: EdgeInsets.symmetric(horizontal: 12.w),
+                          // padding: EdgeInsets.symmetric(horizontal: 4.w),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30.r),
                             border: Border.all(color: Colors.white),
@@ -190,17 +190,18 @@ class _SignupScreenState extends State<SignupScreen> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               SizedBox(
-                                width: 0.3.sw,
+                                width: 0.33.sw,
                                 child: CountryCodePicker(
+
                                   onChanged: (countryCode) {
                                     setState(() {
                                       _selectedCountryCode = countryCode.dialCode!;
                                     });
                                   },
-                                  showFlag: false,
+                                  showFlag: true,
                                   textStyle: GoogleFonts.vazirmatn(
                                     color: Colors.white,
-                                    fontSize: 12.sp,
+                                    fontSize: 11.sp,
                                   ),
                                   showDropDownButton: true,
                                   showFlagDialog: true,
@@ -301,7 +302,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                         child: Text(
                                           country.name,
                                           style: GoogleFonts.vazirmatn(
-                                            fontSize: 12.sp,
+                                            fontSize: 14.sp,
                                             color: Colors
                                                 .white, // Selected item text color in the button
                                           ),

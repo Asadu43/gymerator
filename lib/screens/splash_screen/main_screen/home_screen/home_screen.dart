@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Text(
                               "Hi, ${response?.data?.firstName ?? ""}",
                               style: GoogleFonts.vazirmatn(
-                                fontSize: 20.sp,
+                                fontSize: 18.sp,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black,
                               ),

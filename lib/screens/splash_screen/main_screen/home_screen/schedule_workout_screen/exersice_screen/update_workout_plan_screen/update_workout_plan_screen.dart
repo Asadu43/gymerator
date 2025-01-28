@@ -92,6 +92,10 @@ class _UpdateWorkoutPlanScreenState extends State<UpdateWorkoutPlanScreen> {
                               color: const Color(0xffE7F2DC),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.r),
+                                  side: const BorderSide(
+                                    color: Colors.grey,
+                                    width: 1.0,
+                                  )
                               ),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,7 +150,7 @@ class _UpdateWorkoutPlanScreenState extends State<UpdateWorkoutPlanScreen> {
                                                         "",
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,
-                                                    style: GoogleFonts.vazirmatn(fontSize: 12.sp),
+                                                    style: GoogleFonts.vazirmatn(fontSize: 12.sp,fontWeight: FontWeight.w600),
                                                   ),
                                                 ),
                                                 ExerciseDetailRow(

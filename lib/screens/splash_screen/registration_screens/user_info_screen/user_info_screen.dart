@@ -122,7 +122,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                           Text(
                             "Male",
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.white, fontSize: 20.sp),
+                                color: Colors.white, fontSize: 17.sp),
                           ),
                           Container(
                             height: 0.18.sh, // 18% of the screen height
@@ -180,7 +180,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                           Text(
                             "Female",
                             style: GoogleFonts.vazirmatn(
-                                color: Colors.white, fontSize: 20.sp),
+                                color: Colors.white, fontSize: 17.sp),
                           ),
                           Container(
                             height: 0.18.sh, // 18% of the screen height
@@ -245,7 +245,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                             "Weight",
                             style: GoogleFonts.vazirmatn(
                               color: Colors.white,
-                              fontSize: 20.sp,
+                              fontSize: 17.sp,
                             ),
                           ),
                           SizedBox(
@@ -341,7 +341,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                             "Height",
                             style: GoogleFonts.vazirmatn(
                               color: Colors.white,
-                              fontSize: 20.sp,
+                              fontSize: 17.sp,
                             ),
                           ),
                           SizedBox(
@@ -436,7 +436,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       Text(
                         'Age',
                         style: GoogleFonts.vazirmatn(
-                            color: Colors.white, fontSize: 20.sp),
+                            color: Colors.white, fontSize: 17.sp),
                       ),
                     ],
                   ),
@@ -456,6 +456,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     ],
                     decoration: InputDecoration(
                       hintText: 'Your age',
+                      contentPadding: const EdgeInsets.only(left: 24.0,top: 16.0,bottom: 16.0),
                       focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(30.r),
@@ -475,7 +476,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       Text(
                         'Goal',
                         style: GoogleFonts.vazirmatn(
-                            color: Colors.white, fontSize: 20.sp),
+                            color: Colors.white, fontSize: 17.sp),
                       ),
                     ],
                   ),
@@ -660,16 +661,22 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           goal == null
-                              ? Text(
-                                  "Select your goal",
-                                  style:
-                                      GoogleFonts.vazirmatn(color: Colors.grey),
-                                )
-                              : Text(
-                                  "$goal",
-                                  style: GoogleFonts.vazirmatn(
-                                      color: Colors.white),
-                                ),
+                              ? Padding(
+                                padding: const EdgeInsets.only(left:8.0),
+                                child: Text(
+                                    "Select your goal",
+                                    style:
+                                        GoogleFonts.vazirmatn(color: Colors.grey),
+                                  ),
+                              )
+                              : Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(
+                                    "$goal",
+                                    style: GoogleFonts.vazirmatn(
+                                        color: Colors.white),
+                                  ),
+                              ),
                           const Icon(
                             Icons.keyboard_arrow_down_sharp,
                             color: Colors.grey,
@@ -687,7 +694,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       Text(
                         'Sleep Hours',
                         style: GoogleFonts.vazirmatn(
-                            color: Colors.white, fontSize: 20.sp),
+                            color: Colors.white, fontSize: 17.sp),
                       ),
                     ],
                   ),
@@ -710,6 +717,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     },
                     decoration: InputDecoration(
                       hintText: 'Sleep hours 1 to 24',
+                      contentPadding: const EdgeInsets.only(left: 24.0,top: 16.0,bottom: 16.0),
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
                       focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.white),
@@ -729,7 +737,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       Text(
                         'Meal Frequency',
                         style: GoogleFonts.vazirmatn(
-                            color: Colors.white, fontSize: 20.sp),
+                            color: Colors.white, fontSize: 17.sp),
                       ),
                     ],
                   ),
@@ -746,6 +754,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     },
                     decoration: InputDecoration(
                       hintText: 'Meal frequency 1 to 5',
+                      contentPadding: const EdgeInsets.only(left: 24.0,top: 16.0,bottom: 16.0),
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
                       focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.white),
@@ -765,7 +774,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       Text(
                         'Hydration Per Day',
                         style: GoogleFonts.vazirmatn(
-                            color: Colors.white, fontSize: 20.sp),
+                            color: Colors.white, fontSize: 17.sp),
                       ),
                     ],
                   ),
@@ -782,6 +791,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     },
                     decoration: InputDecoration(
                       hintText: '5 Liters',
+                      contentPadding: const EdgeInsets.only(left: 24.0,top: 16.0,bottom: 16.0),
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
                       focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.white),
@@ -801,7 +811,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       Text(
                         'Target Weight',
                         style: GoogleFonts.vazirmatn(
-                            color: Colors.white, fontSize: 20.sp),
+                            color: Colors.white, fontSize: 17.sp),
                       ),
                     ],
                   ),
@@ -821,6 +831,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     ],
                     decoration: InputDecoration(
                       hintText: 'Target weight',
+                      contentPadding: const EdgeInsets.only(left: 24.0,top: 16.0,bottom: 16.0),
                       hintStyle: GoogleFonts.vazirmatn(color: Colors.grey),
                       focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.white),
@@ -840,7 +851,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       Text(
                         'Diet Plan',
                         style: GoogleFonts.vazirmatn(
-                            color: Colors.white, fontSize: 20.sp),
+                            color: Colors.white, fontSize: 17.sp),
                       ),
                     ],
                   ),
@@ -860,10 +871,13 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10.0))),
-                                title: Text('Select Diet Plan',
-                                    style: GoogleFonts.vazirmatn(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.bold)),
+                                title: Padding(
+                                  padding: const EdgeInsets.only(left: 24.0,top: 16.0,bottom: 16.0),
+                                  child: Text('Select Diet Plan',
+                                      style: GoogleFonts.vazirmatn(
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.bold)),
+                                ),
                                 content: SizedBox(
                                   width:  1.sw,
                                   child: Column(
@@ -1023,16 +1037,22 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           dietPlan == null
-                              ? Text(
-                                  "Select Diet Plan",
-                                  style:
-                                      GoogleFonts.vazirmatn(color: Colors.grey),
-                                )
-                              : Text(
-                                  "$dietPlan",
-                                  style: GoogleFonts.vazirmatn(
-                                      color: Colors.white),
-                                ),
+                              ? Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(
+                                    "Select Diet Plan",
+                                    style:
+                                        GoogleFonts.vazirmatn(color: Colors.grey),
+                                  ),
+                              )
+                              : Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(
+                                    "$dietPlan",
+                                    style: GoogleFonts.vazirmatn(
+                                        color: Colors.white),
+                                  ),
+                              ),
                           const Icon(
                             Icons.keyboard_arrow_down_sharp,
                             color: Colors.grey,

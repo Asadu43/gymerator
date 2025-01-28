@@ -201,13 +201,13 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
             child: Image.asset(imagePath),
           ),
         ),
-        SizedBox(height: 0.03.sh),
+        SizedBox(height: 0.02.sh),
         Text(
           title,
           style: GoogleFonts.vazirmatn(
             fontSize: 17.sp,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color:(checkboxValue == true && selectedIndex == planIndex) ?  const Color(0xff3F710D) : Colors.white,
           ),
         ),
         Text(
