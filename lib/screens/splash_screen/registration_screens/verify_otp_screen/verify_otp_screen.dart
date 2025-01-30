@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/verify_otp_cubit/verify_otp_cubit.dart';
 import 'package:gymmerator/screens/splash_screen/registration_screens/create_new_password_screen/create_new_password_screen.dart';
+import 'package:gymmerator/screens/splash_screen/registration_screens/login_screen/login_screen.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import '../../../../ui_component/app_button.dart';
 import '../../../../ui_component/show_snackbar.dart';
@@ -15,8 +16,10 @@ import '../../../../utils/nav/nav.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
   final String email;
+  final bool isFromSignUp;
 
-  const VerifyOtpScreen({super.key, required this.email});
+  const VerifyOtpScreen(
+      {super.key, required this.email, required this.isFromSignUp});
 
   @override
   State<VerifyOtpScreen> createState() => _VerifyOtpScreenState();
@@ -53,8 +56,12 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           }
           if (state is VerifyOtpSuccessfully) {
             showSnackBar(context, state.message, type: SnackBarType.success);
-            Nav.pushReplace(
-                context, CreateNewPasswordScreen(email: widget.email));
+            if (widget.isFromSignUp == false) {
+              Nav.pushReplace(
+                  context, CreateNewPasswordScreen(email: widget.email));
+            }
+
+            Nav.pushAndRemoveAllRoute(context, const LoginScreen());
           }
         },
         builder: (context, state) {

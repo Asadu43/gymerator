@@ -94,13 +94,13 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                       return StatefulBuilder(
                         builder: (context, setState) {
                           return AlertDialog(
-                            shape:  RoundedRectangleBorder(
+                            shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.r))),
                             title: Text('Do you have any issue?',
                                 style: GoogleFonts.vazirmatn(
                                     fontSize: 20.sp,
-                                    fontWeight: FontWeight.bold)),
+                                    fontWeight: FontWeight.w700)),
                             content: SizedBox(
                               width: 1.sw,
                               child: ListView(
@@ -286,7 +286,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                 child: Text(
                                   'Cancel',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 14.sp, color: Colors.red),
+                                      fontSize: 16.sp, color: Colors.red),
                                 ),
                                 onPressed: () {
                                   Navigator.of(context).pop();
@@ -296,7 +296,9 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                 child: Text(
                                   'Ok',
                                   style: GoogleFonts.vazirmatn(
-                                      fontSize: 14.sp, color: Colors.black),
+                                      fontSize: 16.sp,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500),
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -365,13 +367,13 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                 return StatefulBuilder(
                                   builder: (context, setState) {
                                     return AlertDialog(
-                                      shape:  RoundedRectangleBorder(
+                                      shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(10.r))),
                                       title: Text('Cardiovascular Conditions',
                                           style: GoogleFonts.vazirmatn(
                                               fontSize: 20.sp,
-                                              fontWeight: FontWeight.bold)),
+                                              fontWeight: FontWeight.w700)),
                                       content: SizedBox(
                                         width: 1.sw,
                                         child: ListView(
@@ -460,7 +462,8 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                           child: Text(
                                             'Cancel',
                                             style: GoogleFonts.vazirmatn(
-                                                color: Colors.red),
+                                                color: Colors.red,
+                                                fontSize: 16.sp),
                                           ),
                                           onPressed: () {
                                             Navigator.of(context).pop();
@@ -470,8 +473,9 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                           child: Text(
                                             'OK',
                                             style: GoogleFonts.vazirmatn(
-                                                fontSize: 14.sp,
-                                                color: Colors.black),
+                                                fontSize: 16.sp,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w500),
                                           ),
                                           onPressed: () {
                                             setState(() {
@@ -538,13 +542,13 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                     return StatefulBuilder(
                                       builder: (context, setState) {
                                         return AlertDialog(
-                                          shape:  RoundedRectangleBorder(
+                                          shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(10.r))),
                                           title: Text('Respiratory Conditions',
                                               style: GoogleFonts.vazirmatn(
                                                   fontSize: 20.sp,
-                                                  fontWeight: FontWeight.bold)),
+                                                  fontWeight: FontWeight.w700)),
                                           content: SizedBox(
                                             width: 1.sw,
                                             child: ListView(
@@ -608,7 +612,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                               child: Text(
                                                 'Cancel',
                                                 style: GoogleFonts.vazirmatn(
-                                                    fontSize: 14.sp,
+                                                    fontSize: 16.sp,
                                                     color: Colors.red),
                                               ),
                                               onPressed: () {
@@ -619,8 +623,10 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                               child: Text(
                                                 'OK',
                                                 style: GoogleFonts.vazirmatn(
-                                                    fontSize: 14.sp,
-                                                    color: Colors.black),
+                                                    fontSize: 16.sp,
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                        FontWeight.w500),
                                               ),
                                               onPressed: () {
                                                 setState(() {
@@ -690,18 +696,17 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                         return StatefulBuilder(
                                           builder: (context, setState) {
                                             return AlertDialog(
-                                              shape:
-                                                   RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  10.r))),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(
+                                                              10.r))),
                                               title: Text(
                                                   'Musculoskeletal Conditions',
                                                   style: GoogleFonts.vazirmatn(
                                                       fontSize: 20.sp,
                                                       fontWeight:
-                                                          FontWeight.bold)),
+                                                          FontWeight.w700)),
                                               content: SizedBox(
                                                 width: 1.sw,
                                                 child: ListView(
@@ -857,7 +862,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                     'Cancel',
                                                     style:
                                                         GoogleFonts.vazirmatn(
-                                                            fontSize: 14.sp,
+                                                            fontSize: 16.sp,
                                                             color: Colors.red),
                                                   ),
                                                   onPressed: () {
@@ -869,9 +874,11 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                     'OK',
                                                     style:
                                                         GoogleFonts.vazirmatn(
-                                                            fontSize: 14.sp,
-                                                            color:
-                                                                Colors.black),
+                                                            fontSize: 16.sp,
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
                                                   ),
                                                   onPressed: () {
                                                     setState(() {
@@ -941,12 +948,11 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                             return StatefulBuilder(
                                               builder: (context, setState) {
                                                 return AlertDialog(
-                                                  shape:
-                                                       RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius.circular(
-                                                                      10.r))),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10.r))),
                                                   title: Text(
                                                       'Neurological Conditions',
                                                       style:
@@ -954,7 +960,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                               fontSize: 20.sp,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .bold)),
+                                                                      .w700)),
                                                   content: SizedBox(
                                                     width: 1.sw,
                                                     child: ListView(
@@ -1059,7 +1065,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                         'Cancel',
                                                         style: GoogleFonts
                                                             .vazirmatn(
-                                                                fontSize: 14.sp,
+                                                                fontSize: 16.sp,
                                                                 color:
                                                                     Colors.red),
                                                       ),
@@ -1073,9 +1079,12 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                         'OK',
                                                         style: GoogleFonts
                                                             .vazirmatn(
-                                                                fontSize: 14.sp,
+                                                                fontSize: 16.sp,
                                                                 color: Colors
-                                                                    .black),
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
                                                       ),
                                                       onPressed: () {
                                                         setState(() {
@@ -1153,7 +1162,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                 return StatefulBuilder(
                                                   builder: (context, setState) {
                                                     return AlertDialog(
-                                                      shape:  RoundedRectangleBorder(
+                                                      shape: RoundedRectangleBorder(
                                                           borderRadius:
                                                               BorderRadius.all(
                                                                   Radius.circular(
@@ -1166,7 +1175,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                       20.sp,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .bold)),
+                                                                          .w700)),
                                                       content: SizedBox(
                                                         width: 1.sw,
                                                         child: ListView(
@@ -1282,7 +1291,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                             style: GoogleFonts
                                                                 .vazirmatn(
                                                                     fontSize:
-                                                                        14.sp,
+                                                                        16.sp,
                                                                     color: Colors
                                                                         .red),
                                                           ),
@@ -1298,9 +1307,12 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                             style: GoogleFonts
                                                                 .vazirmatn(
                                                                     fontSize:
-                                                                        14.sp,
+                                                                        16.sp,
                                                                     color: Colors
-                                                                        .black),
+                                                                        .black,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500),
                                                           ),
                                                           onPressed: () {
                                                             setState(() {
@@ -1385,7 +1397,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                       builder:
                                                           (context, setState) {
                                                         return AlertDialog(
-                                                          shape:  RoundedRectangleBorder(
+                                                          shape: RoundedRectangleBorder(
                                                               borderRadius: BorderRadius
                                                                   .all(Radius
                                                                       .circular(
@@ -1398,7 +1410,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                           20.sp,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .bold)),
+                                                                              .w700)),
                                                           content: SizedBox(
                                                             width: 1.sw,
                                                             child: ListView(
@@ -1462,14 +1474,12 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                           actions: [
                                                             TextButton(
                                                               child: Text(
-                                                                'Cancel',
-                                                                style: GoogleFonts
-                                                                    .vazirmatn(
-                                                                        fontSize: 14
-                                                                            .sp,
-                                                                        color: Colors
-                                                                            .red),
-                                                              ),
+                                                                  'Cancel',
+                                                                  style: GoogleFonts.vazirmatn(
+                                                                      fontSize:
+                                                                          16.sp,
+                                                                      color: Colors
+                                                                          .red)),
                                                               onPressed: () {
                                                                 Navigator.of(
                                                                         context)
@@ -1481,9 +1491,12 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                 'Ok',
                                                                 style: GoogleFonts.vazirmatn(
                                                                     fontSize:
-                                                                        14.sp,
+                                                                        16.sp,
                                                                     color: Colors
-                                                                        .black),
+                                                                        .black,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500),
                                                               ),
                                                               onPressed: () {
                                                                 setState(() {
@@ -1572,7 +1585,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                           builder: (context,
                                                               setState) {
                                                             return AlertDialog(
-                                                              shape:  RoundedRectangleBorder(
+                                                              shape: RoundedRectangleBorder(
                                                                   borderRadius:
                                                                       BorderRadius.all(
                                                                           Radius.circular(
@@ -1584,7 +1597,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                           20.sp,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .bold)),
+                                                                              .w700)),
                                                               content: SizedBox(
                                                                 width: 1.sw,
                                                                 child: ListView(
@@ -1649,7 +1662,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                   child: Text(
                                                                     'Cancel',
                                                                     style: GoogleFonts.vazirmatn(
-                                                                        fontSize: 14
+                                                                        fontSize: 16
                                                                             .sp,
                                                                         color: Colors
                                                                             .red),
@@ -1665,10 +1678,12 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                   child: Text(
                                                                     'Ok',
                                                                     style: GoogleFonts.vazirmatn(
-                                                                        fontSize: 14
+                                                                        fontSize: 16
                                                                             .sp,
                                                                         color: Colors
-                                                                            .black),
+                                                                            .black,
+                                                                        fontWeight:
+                                                                            FontWeight.w500),
                                                                   ),
                                                                   onPressed:
                                                                       () {
@@ -1763,7 +1778,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                               builder: (context,
                                                                   setState) {
                                                                 return AlertDialog(
-                                                                  shape:  RoundedRectangleBorder(
+                                                                  shape: RoundedRectangleBorder(
                                                                       borderRadius:
                                                                           BorderRadius.all(
                                                                               Radius.circular(10.r))),
@@ -1773,7 +1788,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                           fontSize: 20
                                                                               .sp,
                                                                           fontWeight:
-                                                                              FontWeight.bold)),
+                                                                              FontWeight.w700)),
                                                                   content:
                                                                       SizedBox(
                                                                     width: 1.sw,
@@ -1833,7 +1848,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                         style: GoogleFonts.vazirmatn(
                                                                             color:
                                                                                 Colors.red,
-                                                                            fontSize: 14.sp),
+                                                                            fontSize: 16.sp),
                                                                       ),
                                                                       onPressed:
                                                                           () {
@@ -1848,7 +1863,8 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                         style: GoogleFonts.vazirmatn(
                                                                             color:
                                                                                 Colors.black,
-                                                                            fontSize: 14.sp),
+                                                                            fontSize: 16.sp,
+                                                                            fontWeight: FontWeight.w500),
                                                                       ),
                                                                       onPressed:
                                                                           () {
@@ -1948,14 +1964,14 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                   builder: (context,
                                                                       setState) {
                                                                     return AlertDialog(
-                                                                      shape:  RoundedRectangleBorder(
+                                                                      shape: RoundedRectangleBorder(
                                                                           borderRadius:
                                                                               BorderRadius.all(Radius.circular(10.r))),
                                                                       title: Text(
                                                                           'Cancer',
                                                                           style: GoogleFonts.vazirmatn(
                                                                               fontSize: 20.sp,
-                                                                              fontWeight: FontWeight.bold)),
+                                                                              fontWeight: FontWeight.w700)),
                                                                       content:
                                                                           SizedBox(
                                                                         width: 1
@@ -1988,7 +2004,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                               Text(
                                                                             'Cancel',
                                                                             style:
-                                                                                GoogleFonts.vazirmatn(color: Colors.red, fontSize: 14.sp),
+                                                                                GoogleFonts.vazirmatn(color: Colors.red, fontSize: 16.sp),
                                                                           ),
                                                                           onPressed:
                                                                               () {
@@ -1999,8 +2015,10 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                           child:
                                                                               Text(
                                                                             'Ok',
-                                                                            style:
-                                                                                GoogleFonts.vazirmatn(color: Colors.black, fontSize: 14.sp),
+                                                                            style: GoogleFonts.vazirmatn(
+                                                                                color: Colors.black,
+                                                                                fontSize: 16.sp,
+                                                                                fontWeight: FontWeight.w500),
                                                                           ),
                                                                           onPressed:
                                                                               () {
@@ -2101,10 +2119,10 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                               setState) {
                                                                         return AlertDialog(
                                                                           shape:
-                                                                               RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.r))),
+                                                                              RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.r))),
                                                                           title: Text(
                                                                               'Pregnancy and Postpartum',
-                                                                              style: GoogleFonts.vazirmatn(fontSize: 20.sp, fontWeight: FontWeight.bold)),
+                                                                              style: GoogleFonts.vazirmatn(fontSize: 20.sp, fontWeight: FontWeight.w700)),
                                                                           content:
                                                                               SizedBox(
                                                                             width:
@@ -2144,7 +2162,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                             TextButton(
                                                                               child: Text(
                                                                                 'Cancel',
-                                                                                style: GoogleFonts.vazirmatn(color: Colors.red, fontSize: 14.sp),
+                                                                                style: GoogleFonts.vazirmatn(color: Colors.red, fontSize: 16.sp),
                                                                               ),
                                                                               onPressed: () {
                                                                                 Navigator.of(context).pop();
@@ -2153,7 +2171,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                             TextButton(
                                                                               child: Text(
                                                                                 'Ok',
-                                                                                style: GoogleFonts.vazirmatn(color: Colors.black, fontSize: 14.sp),
+                                                                                style: GoogleFonts.vazirmatn(color: Colors.black, fontSize: 16.sp, fontWeight: FontWeight.w500),
                                                                               ),
                                                                               onPressed: () {
                                                                                 setState(() {
@@ -2249,8 +2267,8 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                           builder:
                                                                               (context, setState) {
                                                                             return AlertDialog(
-                                                                              shape:  RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.r))),
-                                                                              title: Text('Other Relevant Conditions', style: GoogleFonts.vazirmatn(fontSize: 20.sp, fontWeight: FontWeight.bold)),
+                                                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.r))),
+                                                                              title: Text('Other Relevant Conditions', style: GoogleFonts.vazirmatn(fontSize: 20.sp, fontWeight: FontWeight.w700)),
                                                                               content: SizedBox(
                                                                                 width: 1.sw,
                                                                                 child: ListView(
@@ -2308,7 +2326,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                                 TextButton(
                                                                                   child: Text(
                                                                                     'Cancel',
-                                                                                    style: GoogleFonts.vazirmatn(color: Colors.red, fontSize: 14.sp),
+                                                                                    style: GoogleFonts.vazirmatn(color: Colors.red, fontSize: 16.sp),
                                                                                   ),
                                                                                   onPressed: () {
                                                                                     Navigator.of(context).pop();
@@ -2317,7 +2335,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                                 TextButton(
                                                                                   child: Text(
                                                                                     'Ok',
-                                                                                    style: GoogleFonts.vazirmatn(color: Colors.black, fontSize: 14.sp),
+                                                                                    style: GoogleFonts.vazirmatn(color: Colors.black, fontSize: 16.sp, fontWeight: FontWeight.w500),
                                                                                   ),
                                                                                   onPressed: () {
                                                                                     setState(() {
@@ -2410,8 +2428,8 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                             return StatefulBuilder(
                                                                               builder: (context, setState) {
                                                                                 return AlertDialog(
-                                                                                  shape:  RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.r))),
-                                                                                  title: Text('Metabolic and Endocrine Conditions', style: GoogleFonts.vazirmatn(fontSize: 20.sp, fontWeight: FontWeight.bold)),
+                                                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.r))),
+                                                                                  title: Text('Metabolic and Endocrine Conditions', style: GoogleFonts.vazirmatn(fontSize: 20.sp, fontWeight: FontWeight.w700)),
                                                                                   content: SizedBox(
                                                                                     width: 1.sw,
                                                                                     child: ListView(
@@ -2480,7 +2498,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                                     TextButton(
                                                                                       child: Text(
                                                                                         'Cancel',
-                                                                                        style: GoogleFonts.vazirmatn(color: Colors.red, fontSize: 14.sp),
+                                                                                        style: GoogleFonts.vazirmatn(color: Colors.red, fontSize: 16.sp),
                                                                                       ),
                                                                                       onPressed: () {
                                                                                         Navigator.of(context).pop();
@@ -2489,7 +2507,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                                                                                     TextButton(
                                                                                       child: Text(
                                                                                         'Ok',
-                                                                                        style: GoogleFonts.vazirmatn(color: Colors.black, fontSize: 14.sp),
+                                                                                        style: GoogleFonts.vazirmatn(color: Colors.black, fontSize: 16.sp, fontWeight: FontWeight.w500),
                                                                                       ),
                                                                                       onPressed: () {
                                                                                         setState(() {
@@ -2611,7 +2629,7 @@ class _UserIssueScreenState extends State<UserIssueScreen> {
                   // Nav.push(context, const ChoosePlanScreen());
                 },
               ),
-               SizedBox(
+              SizedBox(
                 height: 20.h,
               ),
             ],

@@ -43,7 +43,7 @@ class PlaceholderDialog extends StatelessWidget {
                 message!,
                 textAlign: TextAlign.center,
                 style:
-                    GoogleFonts.vazirmatn(color: Colors.grey, fontSize: 18.sp),
+                    GoogleFonts.vazirmatn(color: Colors.grey, fontSize: 16.sp),
               ),
             ),
       contentTextStyle: GoogleFonts.vazirmatn(color: Colors.black),

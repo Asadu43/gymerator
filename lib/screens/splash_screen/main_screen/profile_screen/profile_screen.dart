@@ -321,10 +321,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               shape: BoxShape.circle,
                                             ),
                                             child: Image.asset(
-                                              'assets/icons/profile_delete_account.png',
-                                              width: 22.w,
-                                              height: 22.h,
-                                              color: Colors.white,
+                                              'assets/icons/delete.png',
+                                              width: 60.w,
+                                              height: 60.h,
+                                              // color: Colors.white,
                                             ),
                                           ),
                                           message:
@@ -422,7 +422,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             ),
                                             child: Icon(
                                               Icons.logout,
-                                              size: 40.h,
+                                              size: 60.h,
                                               color: Colors.white,
                                             ),
                                           ),

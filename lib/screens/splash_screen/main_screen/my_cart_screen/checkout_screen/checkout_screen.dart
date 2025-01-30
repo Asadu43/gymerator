@@ -134,6 +134,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           "Card",
                           style: GoogleFonts.vazirmatn(
                             fontSize: 14.sp,
+                            fontWeight: FontWeight.w400
                           ),
                         ),
                       ),
@@ -163,7 +164,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         },
                         title: Text(
                           "Cash on Delivery",
-                          style: GoogleFonts.vazirmatn(fontSize: 14.sp),
+                          style: GoogleFonts.vazirmatn(fontSize: 14.sp,fontWeight: FontWeight.w400),
                         ),
                       ),
                     ],
@@ -195,7 +196,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   title: Text(
                     "I Agree Terms & Conditions",
                     style: GoogleFonts.vazirmatn(
-                      fontSize: 12.sp,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w400,
                       color: const Color(0xff3F710D),
                     ),
                   ),

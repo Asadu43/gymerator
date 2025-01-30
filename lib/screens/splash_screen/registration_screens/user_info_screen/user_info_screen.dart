@@ -291,7 +291,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         : weightLbController,
                                     cursorColor: Colors.black,
                                     style: GoogleFonts.vazirmatn(
-                                      fontSize: 12.sp, // Responsive font size
+                                      fontSize: 17.sp, // Responsive font size
+                                      fontWeight: FontWeight.w600
                                     ),
                                     keyboardType: TextInputType.number,
                                     inputFormatters: [
@@ -313,7 +314,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                       suffixText: weightUnit == WeightUnits.kg ? 'Kg' : 'Lb',
                                       suffixStyle: GoogleFonts.vazirmatn(
                                         fontSize: 12.sp,
-                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                     onChanged: (value) {
@@ -498,8 +498,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                         Radius.circular(10.0))),
                                 title: Text('Select Goal',
                                     style: GoogleFonts.vazirmatn(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.bold)),
+                                        fontSize: 20.sp,
+                                        fontWeight: FontWeight.w700)),
                                 content: SizedBox(
                                   width:  1.sw,
                                   child: Column(
@@ -615,7 +615,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                     child: Text(
                                       'Cancel',
                                       style: GoogleFonts.vazirmatn(
-                                          fontSize: 14.sp, color: Colors.red),
+                                          fontSize: 16.sp, color: Colors.red),
                                     ),
                                     onPressed: () {
                                       Navigator.of(context).pop();
@@ -625,7 +625,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                     child: Text(
                                       'Ok',
                                       style: GoogleFonts.vazirmatn(
-                                          fontSize: 14.sp, color: Colors.black),
+                                          fontSize: 16.sp, color: Colors.black,fontWeight: FontWeight.w500),
                                     ),
                                     onPressed: () {
                                       setState(() {
@@ -871,13 +871,10 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10.0))),
-                                title: Padding(
-                                  padding: const EdgeInsets.only(left: 24.0,top: 16.0,bottom: 16.0),
-                                  child: Text('Select Diet Plan',
-                                      style: GoogleFonts.vazirmatn(
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.bold)),
-                                ),
+                                title: Text('Select Diet Plan',
+                                    style: GoogleFonts.vazirmatn(
+                                        fontSize: 20.sp,
+                                        fontWeight: FontWeight.w700)),
                                 content: SizedBox(
                                   width:  1.sw,
                                   child: Column(
@@ -991,7 +988,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                     child: Text(
                                       'Cancel',
                                       style: GoogleFonts.vazirmatn(
-                                          fontSize: 14.sp, color: Colors.red),
+                                          fontSize: 16.sp, color: Colors.red),
                                     ),
                                     onPressed: () {
                                       Navigator.of(context).pop();
@@ -1001,7 +998,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                     child: Text(
                                       'Ok',
                                       style: GoogleFonts.vazirmatn(
-                                          fontSize: 14.sp, color: Colors.black),
+                                          fontSize: 16.sp, color: Colors.black,fontWeight: FontWeight.w500),
                                     ),
                                     onPressed: () {
                                       setState(() {
@@ -1214,7 +1211,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         cursorColor: Colors.black,
         textAlign: TextAlign.center,
         style: GoogleFonts.vazirmatn(
-          fontSize: 12.sp, // Responsive font size
+            fontSize: 17.sp, // Responsive font size
+            fontWeight: FontWeight.w600 // Responsive font size
         ),
         keyboardType: TextInputType.number,
         inputFormatters: num == 1
@@ -1239,8 +1237,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
           contentPadding: EdgeInsets.all(0.w), // Zero padding, scaled
           suffixText: suffixText,
           suffixStyle: GoogleFonts.vazirmatn(
-            fontSize: 12.sp, // Responsive suffix font size
-            fontWeight: FontWeight.w600,
+            fontSize: 12.sp,
           ),
         ),
         onChanged: onChanged,

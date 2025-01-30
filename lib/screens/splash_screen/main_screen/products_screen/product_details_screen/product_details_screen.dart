@@ -132,20 +132,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             },
                             child: Stack(
                               children: <Widget>[
-                                const IconButton(
-                                  icon: Icon(Icons.shopping_cart),
-                                  onPressed: null,
-                                ),
+                                Image.asset("assets/icons/cart_background.png"),
                                 (cartResponse?.data == null ||
                                         cartResponse?.data?.items?.isEmpty ==
                                             true)
                                     ? const SizedBox()
                                     : Positioned(
-                                        right: 5.w,
-                                        top: 5.h,
+                                        right: 1.w,
+                                        top: 1.h,
                                         child: Container(
-                                          width: 20.w,
-                                          height: 20.h,
+                                          width: 18.w,
+                                          height: 18.h,
                                           decoration: BoxDecoration(
                                               color: const Color(0xff3F710D),
                                               borderRadius:
@@ -211,10 +208,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            response?.data?.name ?? "",
-                            style: GoogleFonts.vazirmatn(
-                                fontSize: 16.sp, fontWeight: FontWeight.w600),
+                          Flexible(
+                            child: Text(
+                              response?.data?.name ?? "",
+                              maxLines: 3,
+                              style: GoogleFonts.vazirmatn(
+                                  fontSize: 16.sp, fontWeight: FontWeight.w600),
+                            ),
                           ),
                           (response?.data?.isFavorite == false)
                               ? Padding(

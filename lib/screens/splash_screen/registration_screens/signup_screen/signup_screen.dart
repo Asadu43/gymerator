@@ -21,6 +21,7 @@ import '../../../../ui_component/app_textfield.dart';
 import '../../../../utils/app_colors/app_colors.dart';
 import '../../../../utils/common/common.dart';
 import '../../../../utils/nav/nav.dart';
+import '../verify_otp_screen/verify_otp_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -119,8 +120,11 @@ class _SignupScreenState extends State<SignupScreen> {
             showSnackBar(context, state.message);
           }
           if (state is SignUpSuccessful) {
-            showSnackBar(context, state.message, type: SnackBarType.success);
-            Navigator.pop(context);
+            // showSnackBar(context, state.message, type: SnackBarType.success);
+            Nav.pushReplace(
+              context,
+              VerifyOtpScreen(email: emailController.text,isFromSignUp: true),
+            );
           }
         },
         builder: (context, state) {
@@ -251,8 +255,12 @@ class _SignupScreenState extends State<SignupScreen> {
                             borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Center(
-                            child: DropdownButton<Country>(
-                              underline: const SizedBox(),
+                            child: DropdownButtonFormField<Country>(
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(Icons.location_on_outlined,color: Colors.white,),
+                                border: InputBorder.none,
+                              ),
+
                               hint: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
@@ -328,8 +336,11 @@ class _SignupScreenState extends State<SignupScreen> {
                               borderRadius: BorderRadius.circular(30.r),
                             ),
                             child: Center(
-                              child: DropdownButton<cs.State>(
-                                underline: const SizedBox(),
+                              child: DropdownButtonFormField<cs.State>(
+                                decoration: const InputDecoration(
+                                  prefixIcon: Icon(Icons.location_on_outlined,color: Colors.white,),
+                                  border: InputBorder.none,
+                                ),
                                 hint: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
@@ -405,8 +416,11 @@ class _SignupScreenState extends State<SignupScreen> {
                               borderRadius: BorderRadius.circular(30.r),
                             ),
                             child: Center(
-                              child: DropdownButton<City>(
-                                underline: const SizedBox(),
+                              child: DropdownButtonFormField<City>(
+                                decoration: const InputDecoration(
+                                  prefixIcon: Icon(Icons.location_on_outlined,color: Colors.white,),
+                                  border: InputBorder.none,
+                                ),
                                 hint: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(

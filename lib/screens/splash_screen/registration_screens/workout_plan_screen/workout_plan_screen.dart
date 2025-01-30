@@ -133,20 +133,17 @@ class _WorkoutPlanScreenState extends State<WorkoutPlanScreen> {
                                               vertical: 8.0.h,
                                             ), // Responsive padding
                                             child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
-                                                Center(
-                                                  child: Text(
-                                                    response
-                                                        ?.data?[index]
-                                                        .exercises?[ind]
-                                                        .exercise ??
-                                                        "",
-                                                    maxLines: 1,
-                                                    overflow: TextOverflow.ellipsis,
-                                                    style: GoogleFonts.vazirmatn(fontSize: 12.sp,fontWeight: FontWeight.w600),
-                                                  ),
+                                                Text(
+                                                  response
+                                                      ?.data?[index]
+                                                      .exercises?[ind]
+                                                      .exercise ??
+                                                      "",
+                                                  maxLines: 1,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: GoogleFonts.vazirmatn(fontSize: 12.sp,fontWeight: FontWeight.w600),
                                                 ),
                                                 ExerciseDetailRow(
                                                   icon: "assets/icons/sets.png",

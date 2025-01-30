@@ -52,7 +52,8 @@ class AppButton extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: GoogleFonts.vazirmatn(
-            fontSize: 20.sp, // Set font size with ScreenUtil
+            fontSize: 17.sp,
+            fontWeight: FontWeight.w600,// Set font size with ScreenUtil
             color: Colors.white,
           ),
         ),
