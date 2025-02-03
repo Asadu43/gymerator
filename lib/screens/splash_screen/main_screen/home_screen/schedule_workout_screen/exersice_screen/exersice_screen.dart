@@ -78,12 +78,12 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                 exercise: widget.exercises[index]));
                       },
                       child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.h),
+                        padding: EdgeInsets.symmetric(vertical: 16.h),
                         child: Container(
-                          padding: EdgeInsets.all(16.h),
+                          padding: EdgeInsets.symmetric(vertical:16.h),
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(16.r),
+                            borderRadius: BorderRadius.circular(8.r),
                             border: Border.all(color: Colors.black12),
                           ),
                           child: Column(
@@ -94,24 +94,33 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                   widget.exercises[index].exercise ?? "",
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.vazirmatn(fontSize: 12.sp),
+                                  style: GoogleFonts.vazirmatn(fontSize: 12.sp,fontWeight: FontWeight.w600),
                                 ),
                               ),
-                              ExerciseDetailRow(
-                                icon: "assets/icons/sets.png",
-                                label: 'Sets',
-                                value: widget.exercises[index].sets ?? "",
+                              const Divider(color: Colors.black),
+                              Padding(
+                                padding:  EdgeInsets.symmetric(horizontal: 8.w),
+                                child: Column(
+                                  children: [
+                                    ExerciseDetailRow(
+                                      icon: "assets/icons/sets.png",
+                                      label: 'Sets',
+                                      value: widget.exercises[index].sets ?? "",
+                                    ),
+                                    ExerciseDetailRow(
+                                      icon: "assets/icons/time.png",
+                                      label: 'Rest Period',
+                                      value: widget.exercises[index].rest ?? "",
+                                    ),
+                                    ExerciseDetailRow(
+                                      icon: "assets/icons/rep.png",
+                                      label: 'Reps',
+                                      value: widget.exercises[index].reps ?? "",
+                                    ),
+                                  ],
+                                ),
                               ),
-                              ExerciseDetailRow(
-                                icon: "assets/icons/time.png",
-                                label: 'Rest Period',
-                                value: widget.exercises[index].rest ?? "",
-                              ),
-                              ExerciseDetailRow(
-                                icon: "assets/icons/rep.png",
-                                label: 'Reps',
-                                value: widget.exercises[index].reps ?? "",
-                              ),
+
                               // ExerciseDetailRow(
                               //   icon: Icons.timer,
                               //   label: 'Duration',

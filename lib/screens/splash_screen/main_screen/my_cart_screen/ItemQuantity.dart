@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../bloC/auth_cubit/user_cart_product_cubit/user_cart_products_cubit.dart';
+import '../../../../ui_component/show_snackbar.dart';
 
 class ItemQuantity extends StatefulWidget {
   const ItemQuantity({
@@ -36,7 +37,7 @@ class _ItemQuantityState extends State<ItemQuantity> {
   }
 
   void decrement() async {
-    // if (count > widget.qLimit) {
+    if (widget.quantity > 1) {
     setState(() {
       count--;
     });
@@ -44,13 +45,9 @@ class _ItemQuantityState extends State<ItemQuantity> {
     await context
         .read<UserCartProductsCubit>()
         .updateRequest(id: widget.id, quantity: -1);
-    // final GetCartItemsApiResponse checkOutModel = await context.read<CartItemsCubit>().changeQuantity(id: widget.id, quantity: count);
-    // if(checkOutModel.result == true){
-    //   context.read<CartItemsCubit>().getCartItems(context);
-    // }else{
-    //   showSnackBar(context,"Failed to Change Quantity");
-    // }
-    // }
+    }else {
+      showSnackBar(context, "Minimum one item required");
+    }
   }
 
   @override

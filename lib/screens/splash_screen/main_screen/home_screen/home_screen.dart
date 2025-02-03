@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/schedule_workout_screen/schedule_workout_screen.dart';
 import 'package:gymmerator/ui_component/app_drawer.dart';
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
+import 'package:gymmerator/utils/app_colors/app_colors.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
 import '../../../../bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
 import '../../../../models/api_response/GetAllFavoriteProductApiResponse.dart';
@@ -104,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
-                                      height: 175.h,
+                                      height: 180.h,
                                       child: Padding(
                                         padding: EdgeInsets.all(12.w),
                                         child: Column(
@@ -149,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ],
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(10.r),
+                                                    BorderRadius.circular(8.r),
                                               ),
                                               child: ElevatedButton(
                                                 style: ButtonStyle(
@@ -158,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     RoundedRectangleBorder(
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              10.r),
+                                                              8.r),
                                                     ),
                                                   ),
                                                   backgroundColor:
@@ -330,8 +331,8 @@ class _HomeScreenState extends State<HomeScreen> {
             title,
             style: GoogleFonts.vazirmatn(
               fontSize: 17.sp,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+              fontWeight: FontWeight.w500,
+              color: isSelected ? AppColors.buttonColor : Colors.black,
             ),
           ),
           Text(

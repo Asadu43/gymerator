@@ -222,13 +222,13 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                               Text(
                                 "Weight",
                                 style: GoogleFonts.vazirmatn(
-                                    color: Colors.black, fontSize: 16.sp),
-                              ),
+                                  fontSize: 17.sp,
+                                )),
                               SizedBox(
                                 height: 10.h,
                               ),
                               Container(
-                                padding: const EdgeInsets.all(8),
+                                padding:  EdgeInsets.all(8.w),
                                 width: 0.4.sw,
                                 decoration: BoxDecoration(
                                   color: Colors.white70.withOpacity(0.80),
@@ -265,14 +265,16 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                       },
                                     ),
                                     SizedBox(
-                                      width: 0.17.sw,
+                                      width: 0.18.sw,
                                       child: TextField(
                                         controller: weightUnit == WeightUnits.kg
                                             ? weightKgController
                                             : weightLbController,
                                         cursorColor: Colors.black,
-                                        style: GoogleFonts.vazirmatn(
-                                            fontSize: 12.sp),
+                                        style:  GoogleFonts.vazirmatn(
+                                          fontSize: 16.sp, // Responsive font size
+                                          fontWeight: FontWeight.w600
+                                        ),
                                         keyboardType: TextInputType.number,
                                         inputFormatters: [
                                           FilteringTextInputFormatter
@@ -299,8 +301,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                                   ? 'Kg'
                                                   : 'Lb',
                                           suffixStyle: GoogleFonts.vazirmatn(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w600),
+                                              fontSize: 11.sp),
                                         ),
                                         onChanged: (value) {
                                           if (value.isEmpty) return;
@@ -320,7 +321,6 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                               )
                             ],
                           ),
-                          SizedBox(width: 20.w),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -483,8 +483,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             Radius.circular(10.r))),
                                     title: Text('Select Goal',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.bold)),
+                                            fontSize: 20.sp,
+                                            fontWeight: FontWeight.w700)),
                                     content: SizedBox(
                                       width: 1.sw,
                                       child: Column(
@@ -605,7 +605,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                           'Ok',
                                           style: GoogleFonts.vazirmatn(
                                               fontSize: 16.sp,
-                                              color: Colors.black),
+                                              color: Colors.black,fontWeight: FontWeight.w500),
                                         ),
                                         onPressed: () {
                                           setState(() {
@@ -854,8 +854,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                             Radius.circular(10.0))),
                                     title: Text('Select Diet Plan',
                                         style: GoogleFonts.vazirmatn(
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.bold)),
+                                            fontSize: 20.sp,
+                                            fontWeight: FontWeight.w700)),
                                     content: SizedBox(
                                       width: 1.sw,
                                       child: Column(
@@ -988,7 +988,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                           'Ok',
                                           style: GoogleFonts.vazirmatn(
                                               fontSize: 16.sp,
-                                              color: Colors.black),
+                                              color: Colors.black,fontWeight: FontWeight.w500),
                                         ),
                                         onPressed: () {
                                           setState(() {
@@ -1200,13 +1200,14 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
   SizedBox buildTextField(TextEditingController controller, int num,
       Function(String)? onChanged, String suffixText) {
     return SizedBox(
-      width: 0.16.sw,
+      width: 0.17.sw,
       child: TextField(
         controller: controller,
         cursorColor: Colors.black,
         textAlign: TextAlign.center,
-        style: GoogleFonts.vazirmatn(
-          fontSize: 12.sp,
+        style:GoogleFonts.vazirmatn(
+            fontSize: 16.sp, // Responsive font size
+            fontWeight: FontWeight.w600 // Responsive font size
         ),
         keyboardType: TextInputType.number,
         inputFormatters: num == 1
@@ -1231,8 +1232,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
           contentPadding: const EdgeInsets.all(0),
           suffixText: suffixText,
           suffixStyle: GoogleFonts.vazirmatn(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w600,
+            fontSize: 11.sp
           ),
         ),
         onChanged: onChanged,

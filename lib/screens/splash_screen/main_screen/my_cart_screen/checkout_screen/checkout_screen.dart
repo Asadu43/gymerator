@@ -116,6 +116,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       RadioListTile(
                         value: 1,
                         activeColor: const Color(0xff3F710D),
+                        visualDensity:  const VisualDensity(horizontal: -4.0),
                         groupValue: _paymentMethodValue,
                         fillColor: WidgetStateProperty.resolveWith(
                           (states) {
@@ -134,7 +135,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           "Card",
                           style: GoogleFonts.vazirmatn(
                             fontSize: 14.sp,
-                            fontWeight: FontWeight.w400
+                            fontWeight: FontWeight.w500
                           ),
                         ),
                       ),
@@ -147,6 +148,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ),
                       RadioListTile(
                         value: 2,
+                        visualDensity:  const VisualDensity(horizontal: -4.0),
                         activeColor: const Color(0xff3F710D),
                         groupValue: _paymentMethodValue,
                         fillColor: WidgetStateProperty.resolveWith(
@@ -164,7 +166,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         },
                         title: Text(
                           "Cash on Delivery",
-                          style: GoogleFonts.vazirmatn(fontSize: 14.sp,fontWeight: FontWeight.w400),
+                          style: GoogleFonts.vazirmatn(fontSize: 14.sp,fontWeight: FontWeight.w500),
                         ),
                       ),
                     ],

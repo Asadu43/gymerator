@@ -69,6 +69,7 @@ class _AppTextFieldState extends State<AppTextField> {
           prefixIconColor: widget.prefixIconColor ?? Colors.white,
           hintText: widget.hintText,
           border: InputBorder.none,
+          contentPadding: EdgeInsets.only(bottom: 8.h,left: 6.w,right: 12.w),
           suffixIcon: widget.obscureText == true
               ? IconButton(
             icon: Icon(

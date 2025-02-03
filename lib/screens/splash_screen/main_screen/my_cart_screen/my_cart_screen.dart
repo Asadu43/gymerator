@@ -205,6 +205,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                                   FontWeight
                                                                       .w600),
                                                     ),
+                                                    SizedBox(height: 8.h),
                                                     ItemQuantity(
                                                         quantity: int.parse(
                                                             response!
@@ -250,12 +251,12 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                       children: [
                                          Text(
                                           "Total Price Before Discount ",
-                                          style: GoogleFonts.vazirmatn(fontSize: 12.sp),
+                                          style: GoogleFonts.vazirmatn(fontSize: 14.sp,fontWeight: FontWeight.w600),
                                         ),
                                         Text(
                                           "\$ ${response?.data?.subTotal}",
                                           style: GoogleFonts.vazirmatn(
-                                            fontSize: 10.sp,
+                                            fontSize: 11.sp,
                                             color: Colors.grey,
                                             decoration:
                                                 TextDecoration.lineThrough,
@@ -269,13 +270,13 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                       children: [
                                         Text(
                                           "Total Discount ",
-                                          style: GoogleFonts.vazirmatn(fontSize: 12.sp),
+                                          style: GoogleFonts.vazirmatn(fontSize: 14.sp,fontWeight: FontWeight.w600),
                                         ),
                                         Text(
                                           "\$ ${response?.data?.discount?.toStringAsFixed(2)}",
                                           style: GoogleFonts.vazirmatn(
                                             color: Colors.grey,
-                                            fontSize: 10.sp,
+                                            fontSize: 11.sp,
                                             decoration:
                                                 TextDecoration.lineThrough,
                                           ),
@@ -285,7 +286,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                     Text(
                                       "Total Price \$ ${response?.data?.total.toString()}",
                                       style: GoogleFonts.vazirmatn(
-                                        fontSize: 12.sp,
+                                        fontSize: 20.sp,
                                           fontWeight: FontWeight.w600),
                                     ),
                                   ],
