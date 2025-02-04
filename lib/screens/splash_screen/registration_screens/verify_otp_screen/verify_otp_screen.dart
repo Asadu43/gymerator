@@ -16,7 +16,7 @@ import '../../../../utils/nav/nav.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
   final String email;
-  final bool isFromSignUp;
+  final int isFromSignUp;
 
   const VerifyOtpScreen(
       {super.key, required this.email, required this.isFromSignUp});
@@ -47,6 +47,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.isFromSignUp);
     return BlocProvider(
       create: (context) => VerifyOtpCubit(),
       child: BlocConsumer<VerifyOtpCubit, VerifyOtpState>(
@@ -56,12 +57,12 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           }
           if (state is VerifyOtpSuccessfully) {
             showSnackBar(context, state.message, type: SnackBarType.success);
-            if (widget.isFromSignUp == false) {
+            if (widget.isFromSignUp == 1) {
               Nav.pushReplace(
                   context, CreateNewPasswordScreen(email: widget.email));
+            }else if (widget.isFromSignUp == 2){
+              Nav.pushAndRemoveAllRoute(context, const LoginScreen());
             }
-
-            Nav.pushAndRemoveAllRoute(context, const LoginScreen());
           }
         },
         builder: (context, state) {

@@ -123,7 +123,7 @@ class _SignupScreenState extends State<SignupScreen> {
             // showSnackBar(context, state.message, type: SnackBarType.success);
             Nav.pushReplace(
               context,
-              VerifyOtpScreen(email: emailController.text,isFromSignUp: true),
+              VerifyOtpScreen(email: emailController.text,isFromSignUp: 2),
             );
           }
         },

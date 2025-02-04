@@ -77,6 +77,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               ),
               AppTextField(
                 controller: deliveryAddressController,
+                contentPadding: EdgeInsets.only(left: 6.w,right: 12.w,bottom: 10.h),
                 hintText: "Delivery Address",
                 cursorColor: Colors.black,
                 color: Colors.grey,
@@ -87,6 +88,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               ),
               AppTextField(
                 controller: billingAddressController,
+                contentPadding: EdgeInsets.only(left: 6.w,right: 12.w,bottom: 10.h),
                 hintText: "Billing Address",
                 cursorColor: Colors.black,
                 color: Colors.grey,

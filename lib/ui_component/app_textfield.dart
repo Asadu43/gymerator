@@ -12,6 +12,7 @@ class AppTextField extends StatefulWidget {
   final Color? prefixIconColor;
   final TextStyle? fieldTextStyle;
   final TextInputType? textInputType;
+  final EdgeInsetsGeometry? contentPadding;
   final Function(String?)? onChanged;
   final bool? obscureText; // Add this to make obscureText optional
 
@@ -25,6 +26,7 @@ class AppTextField extends StatefulWidget {
     this.textInputType,
     this.color,
     this.onChanged,
+    this.contentPadding,
     this.cursorColor,
     this.obscureText, // Accept the obscureText flag
   });
@@ -69,7 +71,7 @@ class _AppTextFieldState extends State<AppTextField> {
           prefixIconColor: widget.prefixIconColor ?? Colors.white,
           hintText: widget.hintText,
           border: InputBorder.none,
-          contentPadding: EdgeInsets.only(bottom: 8.h,left: 6.w,right: 12.w),
+          contentPadding: widget.contentPadding ?? EdgeInsets.only(left: 6.w,right: 12.w),
           suffixIcon: widget.obscureText == true
               ? IconButton(
             icon: Icon(
