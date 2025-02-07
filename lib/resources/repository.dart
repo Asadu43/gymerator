@@ -13,6 +13,7 @@ import 'package:gymmerator/models/api_response/GetAllFavoriteProductApiResponse.
 import 'package:gymmerator/models/api_response/GetAllProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllUserOrdersApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllUserProductApiResponse.dart';
+import 'package:gymmerator/models/api_response/GetNonceApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutMetricsApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutMetricsByExersiceApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutPlanApiResponse.dart';
@@ -39,6 +40,7 @@ import 'package:gymmerator/resources/api_providers/create_order_post_api.dart';
 import 'package:gymmerator/resources/api_providers/featured_product_get_api.dart';
 import 'package:gymmerator/resources/api_providers/forget_password_post_api.dart';
 import 'package:gymmerator/resources/api_providers/generate_work_plan_get_api.dart';
+import 'package:gymmerator/resources/api_providers/nonce_get_api.dart';
 import 'package:gymmerator/resources/api_providers/order_details_get_api.dart';
 import 'package:gymmerator/resources/api_providers/product_detail_get_api.dart';
 import 'package:gymmerator/resources/api_providers/remove_cart_item_put_api.dart';
@@ -230,5 +232,10 @@ class Repository {
       String exercise) {
     final request = WorkoutMetricsByExerciseGetApi();
     return request.getRequest(exercise);
+  }
+
+  Future<GetNonceApiResponse> getNonceRequest() {
+    final request = NonceGetApi();
+    return request.getNonceRequest();
   }
 }
