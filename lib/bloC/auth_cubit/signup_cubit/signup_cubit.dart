@@ -33,7 +33,7 @@ class SignupCubit extends Cubit<SignupState> {
       "lastName": lastName,
       "email": email,
       "password": password,
-      "mobile": phoneNumber,
+      "mobileNumber": phoneNumber,
       "address1": address1,
       "address2": address2,
       "city": city,

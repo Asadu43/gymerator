@@ -2,8 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:gymmerator/models/api_response/AcceptWorkoutPlanApiResponse.dart';
 import 'package:gymmerator/models/api_response/AddFavoriteProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/AddToCartProductApiResponse.dart';
+import 'package:gymmerator/models/api_response/AddWorkoutMetricsApiResponse.dart';
 import 'package:gymmerator/models/api_response/ChatAiApiResponse.dart';
 import 'package:gymmerator/models/api_response/CreateOrderApiResponse.dart';
+import 'package:gymmerator/models/api_response/DeleteWorkoutMetricsApiResponse.dart';
 import 'package:gymmerator/models/api_response/FeaturedProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/ForgetPasswordApiResponse.dart';
 import 'package:gymmerator/models/api_response/GenerateWorkoutPlanApiResponse.dart';
@@ -11,12 +13,16 @@ import 'package:gymmerator/models/api_response/GetAllFavoriteProductApiResponse.
 import 'package:gymmerator/models/api_response/GetAllProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllUserOrdersApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllUserProductApiResponse.dart';
+import 'package:gymmerator/models/api_response/GetWorkoutMetricsApiResponse.dart';
+import 'package:gymmerator/models/api_response/GetWorkoutMetricsByExersiceApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutPlanApiResponse.dart';
+import 'package:gymmerator/models/api_response/GetWorkoutSummaryApiResponse.dart';
 import 'package:gymmerator/models/api_response/LoginWithGoogleApiResponse.dart';
 import 'package:gymmerator/models/api_response/ProductDetailApiResponse.dart';
 import 'package:gymmerator/models/api_response/RemoveCartItemApiResponse.dart';
 import 'package:gymmerator/models/api_response/RemoveFavoriteProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/SearchProductApiResponse.dart';
+import 'package:gymmerator/models/api_response/TotalBurnedCaloriesApiResponse.dart';
 import 'package:gymmerator/models/api_response/UpdateCartItemApiResponse.dart';
 import 'package:gymmerator/models/api_response/UpdatePasswordApiResponse.dart';
 import 'package:gymmerator/models/api_response/UpdateUserInfoApiResponse.dart';
@@ -25,6 +31,7 @@ import 'package:gymmerator/models/api_response/UserOrderDetailsApiResponse.dart'
 import 'package:gymmerator/models/api_response/VerifyOTPApiResponse.dart';
 import 'package:gymmerator/resources/api_providers/add_favorite_product_post_api.dart';
 import 'package:gymmerator/resources/api_providers/add_to_cart_post_api.dart';
+import 'package:gymmerator/resources/api_providers/add_workout_metrics_post_api.dart';
 import 'package:gymmerator/resources/api_providers/all_favorite_product_get_api.dart';
 import 'package:gymmerator/resources/api_providers/all_product_get_api.dart';
 import 'package:gymmerator/resources/api_providers/chat_bot_post_api.dart';
@@ -37,6 +44,7 @@ import 'package:gymmerator/resources/api_providers/product_detail_get_api.dart';
 import 'package:gymmerator/resources/api_providers/remove_cart_item_put_api.dart';
 import 'package:gymmerator/resources/api_providers/remove_favorite_put_api.dart';
 import 'package:gymmerator/resources/api_providers/search_product_get_api.dart';
+import 'package:gymmerator/resources/api_providers/total_burned_calories_get_api.dart';
 import 'package:gymmerator/resources/api_providers/update_cart_item_put_api.dart';
 import 'package:gymmerator/resources/api_providers/update_password_put_api.dart';
 import 'package:gymmerator/resources/api_providers/update_user_info_post_api.dart';
@@ -45,6 +53,10 @@ import 'package:gymmerator/resources/api_providers/update_work_out_put_api.dart'
 import 'package:gymmerator/resources/api_providers/user_cart_products_get_api.dart';
 import 'package:gymmerator/resources/api_providers/user_orders_get_api.dart';
 import 'package:gymmerator/resources/api_providers/verify_Otp_get_api.dart';
+import 'package:gymmerator/resources/api_providers/workout_metrics_by_exercise_get_api.dart';
+import 'package:gymmerator/resources/api_providers/workout_metrics_delete_api.dart';
+import 'package:gymmerator/resources/api_providers/workout_metrics_get_api.dart';
+import 'package:gymmerator/resources/api_providers/workout_metrics_summary_get_api.dart';
 import 'package:gymmerator/resources/api_providers/workout_plan_get_api.dart';
 
 import '../models/api_response/SignInApiResponse.dart';
@@ -186,5 +198,37 @@ class Repository {
   Future<UpdateWorkoutPlanApiResponse> updateWorkoutRequest() {
     final request = UpdateWorkOutPutApi();
     return request.updateRequest();
+  }
+
+  Future<AddWorkoutMetricsApiResponse> addWorkoutMetricRequest(var data) {
+    final request = AddWorkoutMetricsPostApi();
+    return request.addRequest(data);
+  }
+
+  Future<GetWorkoutMetricsApiResponse> getWorkoutMetricRequest() {
+    final request = WorkoutMetricsGetApi();
+    return request.getRequest();
+  }
+
+  Future<DeleteWorkoutMetricsApiResponse> deleteWorkoutMetricRequest(
+      String id) {
+    final request = WorkoutMetricsDeleteApi();
+    return request.deleteRequest(id);
+  }
+
+  Future<GetWorkoutSummaryApiResponse> getWorkoutSummaryRequest() {
+    final request = WorkoutMetricsSummaryGetApi();
+    return request.getRequest();
+  }
+
+  Future<TotalBurnedCaloriesApiResponse> getWorkoutCaloriesRequest() {
+    final request = TotalBurnedCaloriesGetApi();
+    return request.getRequest();
+  }
+
+  Future<GetWorkoutMetricsByExersiceApiResponse> getWorkoutByExerciseRequest(
+      String exercise) {
+    final request = WorkoutMetricsByExerciseGetApi();
+    return request.getRequest(exercise);
   }
 }

@@ -19,7 +19,7 @@ class AccountEditScreen extends StatefulWidget {
   final String firstName;
   final String lastName;
 
-  // final String phoneNumber;
+  final String mobileNumber;
   final String address1;
   final String address2;
   final String city;
@@ -32,7 +32,7 @@ class AccountEditScreen extends StatefulWidget {
       required this.firstName,
       required this.lastName,
       // required this.email,
-      // required this.phoneNumber,
+      required this.mobileNumber,
       required this.address1,
       required this.address2,
       required this.city,
@@ -76,7 +76,7 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
     stateController = TextEditingController(text: widget.state);
     countryController = TextEditingController(text: widget.country);
     // emailController = TextEditingController(text: widget.email);
-    // phoneNumberController = TextEditingController(text: widget.phoneNumber);
+    phoneNumberController = TextEditingController(text: widget.mobileNumber);
     super.initState();
   }
 
@@ -110,7 +110,8 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
                 ),
                 title: Text(
                   'Account Edit',
-                  style: GoogleFonts.vazirmatn(fontSize: 20.sp,fontWeight: FontWeight.w600),
+                  style: GoogleFonts.vazirmatn(
+                      fontSize: 20.sp, fontWeight: FontWeight.w600),
                 ),
                 centerTitle: true,
                 backgroundColor: Colors.white,
@@ -119,7 +120,8 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
               ),
               body: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                   child: Column(
                     children: [
                       Center(
@@ -147,7 +149,7 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
                                               child: Text(
                                                 widget.firstName[0]
                                                     .toUpperCase(),
-                                                style:  GoogleFonts.vazirmatn(
+                                                style: GoogleFonts.vazirmatn(
                                                     fontSize: 40.sp,
                                                     color: Colors.black),
                                               ),
@@ -160,14 +162,14 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
                           ),
                           Positioned(
                               bottom: -20.h,
-                              right:  0.3.sw,
+                              right: 0.3.sw,
                               child: GestureDetector(
                                 onTap: () {
                                   _imgFromGallery();
                                 },
                                 child: Container(
                                   height: 0.1.sh,
-                                  width:  0.1.sw,
+                                  width: 0.1.sw,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Colors.grey.shade300,
@@ -266,7 +268,7 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
                           ),
                         ),
                       ),
-                       SizedBox(height: 20.h),
+                      SizedBox(height: 20.h),
                       TextFormField(
                         controller: countryController,
                         decoration: InputDecoration(
@@ -278,14 +280,14 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
                         ),
                       ),
 
-                       SizedBox(height: 40.h),
+                      SizedBox(height: 40.h),
                       AppButton(
                         text: "Save",
                         onPressed: () async {
                           await _onSaveButtonPressed(context);
                         },
                       ),
-                       SizedBox(height: 10.h),
+                      SizedBox(height: 10.h),
                     ],
                   ),
                 ),
@@ -316,6 +318,7 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
         context.read<UpdateUserInfoCubit>().editAccountRequest(
             firstName: firstNameController.text,
             lastName: lastNameController.text,
+            mobileNumber: phoneNumberController.text,
             address1: address1Controller.text,
             address2: address2Controller.text,
             city: cityController.text,
@@ -326,6 +329,7 @@ class _AccountEditScreenState extends State<AccountEditScreen> {
         context.read<UpdateUserInfoCubit>().editAccountRequest(
             firstName: firstNameController.text,
             lastName: lastNameController.text,
+            mobileNumber: phoneNumberController.text,
             address1: address1Controller.text,
             address2: address2Controller.text,
             city: cityController.text,

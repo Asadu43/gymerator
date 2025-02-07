@@ -212,6 +212,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
     required String city,
     required String state,
     required String country,
+    required String mobileNumber,
     XFile? profileImage,
   }) async {
     emit(LoadingState());
@@ -222,6 +223,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
       formData = FormData.fromMap({
         "firstName": firstName,
         "lastName": lastName,
+        "mobileNumber": mobileNumber,
         "address1": address1,
         "address2": address2,
         "city": city,
@@ -234,6 +236,7 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
       formData = FormData.fromMap({
         "firstName": firstName,
         "lastName": lastName,
+        "mobileNumber": mobileNumber,
         "address1": address1,
         "address2": address2,
         "city": city,

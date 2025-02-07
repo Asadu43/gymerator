@@ -40,7 +40,7 @@ class SignInCubit extends Cubit<SignInState> {
     Map data = {
       "displayName": displayName,
       "email": email,
-      "phoneNumber": phoneNumber,
+      "mobileNumber": phoneNumber,
       "photoURL": photoURL ?? ""
     };
     final LoginWithGoogleApiResponse signInModel =

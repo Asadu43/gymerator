@@ -39,6 +39,7 @@ class Data {
     String? password,
     String? activityLevel,
     String? dietType,
+    String? mobileNumber,
     int? mealFrequency,
     String? goal,
     String? workoutLevel,
@@ -69,6 +70,7 @@ class Data {
     _activityLevel = activityLevel;
     _dietType = dietType;
     _mealFrequency = mealFrequency;
+    _mobileNumber = mobileNumber;
     _goal = goal;
     _workoutLevel = workoutLevel;
     _type = type;
@@ -104,6 +106,7 @@ class Data {
     _activityLevel = json['activityLevel'];
     _dietType = json['dietType'];
     _mealFrequency = json['mealFrequency'];
+    _mobileNumber = json['mobileNumber'];
     _goal = json['goal'];
     _workoutLevel = json['workoutLevel'];
     _type = json['type'];
@@ -153,6 +156,7 @@ class Data {
   String? _password;
   String? _activityLevel;
   String? _dietType;
+  String? _mobileNumber;
   int? _mealFrequency;
   String? _goal;
   String? _workoutLevel;
@@ -182,6 +186,7 @@ class Data {
   String? get password => _password;
   String? get activityLevel => _activityLevel;
   String? get dietType => _dietType;
+  String? get mobileNumber => _mobileNumber;
   int? get mealFrequency => _mealFrequency;
   String? get goal => _goal;
   String? get workoutLevel => _workoutLevel;
@@ -199,8 +204,6 @@ class Data {
   double? get targetWeightInKG => _targetWeightInKG;
   String? get profile => _profile;
 }
-
-
 
 class MedicalCondition {
   MedicalCondition({

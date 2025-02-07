@@ -31,4 +31,16 @@ class ApiConstants {
   static const String acceptPlan = "$baseUrl/api/workout/accept";
   static const String getWorkoutPlan = "$baseUrl/api/workout/";
   static const String updateWorkoutPlan = "$baseUrl/api/workout";
+  static const String getNonce = "$baseUrl/api/user/nonce";
+  static const String verifyWallet = "$baseUrl/api/user/verifywallet";
+  static const String resetWallet = "$baseUrl/api/user/resetwallet";
+  static const String addWorkoutMetrics = "$baseUrl/api/workout/mymetrics/bydate";
+  static const String getWorkoutMetrics = "$baseUrl/api/workout/mymetrics/all";
+  static const String deleteWorkoutMetrics = "$baseUrl/api/workout/mymetrics";
+  static const String getWorkoutSummary = "$baseUrl/api/workout/mymetrics/summary";
+  static const String getBurnedCalories = "$baseUrl/api/workout/mymetrics/burnedcalories/total";
+  static const String getMetricsByExercise = "$baseUrl/api/workout/mymetrics/byexercise";
+
+
+
 }

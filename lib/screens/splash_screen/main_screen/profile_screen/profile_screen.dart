@@ -197,6 +197,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         address2:
                                             response?.data?.address?.address2 ??
                                                 " ",
+                                        mobileNumber:
+                                            response?.data?.mobileNumber ?? "",
                                         city: response?.data?.address?.city ??
                                             " ",
                                         state: response?.data?.address?.state ??
@@ -234,7 +236,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Nav.push(context, const OrdersScreen());
                               },
                             ),
-                             Padding(
+                            Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 24.w),
                                 child: const Divider()),
                             ListTile(
