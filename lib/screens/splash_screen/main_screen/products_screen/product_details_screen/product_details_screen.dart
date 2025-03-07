@@ -1,4 +1,4 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_slider/carousel_slider.dart' as cs;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -178,8 +178,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                             (response?.data?.images != null)
                                 ? Center(
-                                    child: CarouselSlider(
-                                      options: CarouselOptions(
+                                    child: cs.CarouselSlider(
+                                      options: cs.CarouselOptions(
                                         height: 250.h,
                                         autoPlay: true,
                                         enlargeCenterPage: true,

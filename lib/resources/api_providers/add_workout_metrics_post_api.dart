@@ -9,7 +9,7 @@ class AddWorkoutMetricsPostApi {
     try {
       final Dio dio = Dio();
       dio.options.headers["x-auth-token"] = GetStorage().read('token');
-      final Response response = await dio.post( "${ApiConstants.addWorkoutMetrics}?date=2025-01-12",
+      final Response response = await dio.post(ApiConstants.addWorkoutMetrics,
           data: data, options: Options(validateStatus: (status) {
         return status! <= 500;
       }));
