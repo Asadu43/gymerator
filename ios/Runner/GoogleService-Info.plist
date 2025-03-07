@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>615830748129-4e9rlqrpkbq59nsimpiv35r279ebis4o.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.615830748129-4e9rlqrpkbq59nsimpiv35r279ebis4o</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>615830748129-ad5d7uubrrjpm2asgi8c4p8go9nh9fbp.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAxJI9axiqc4miY_oLjnDHpTXSZizO74ok</string>
+	<key>GCM_SENDER_ID</key>
+	<string>615830748129</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.gymmerator.gymmerator</string>
+	<key>PROJECT_ID</key>
+	<string>gymerator</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gymerator.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:615830748129:ios:42845d53bb08e8826130a0</string>
+</dict>
+</plist>
