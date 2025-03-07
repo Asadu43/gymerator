@@ -10,6 +10,7 @@ import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/schedul
 import 'package:gymmerator/ui_component/loading_screen_animation.dart';
 import 'package:gymmerator/ui_component/show_snackbar.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
+
 import '../../../../../models/api_response/GetWorkoutPlanApiResponse.dart';
 
 class ScheduleWorkoutScreen extends StatefulWidget {
@@ -22,13 +23,14 @@ class ScheduleWorkoutScreen extends StatefulWidget {
 class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
   bool checkboxValue = false;
   int selectedIndex = 0;
-  var selectedTime = '12.30';
-  var selectedDate = 19;
 
   GetWorkoutPlanApiResponse? response;
 
+  /// This is the currently selected date from the timeline picker.
+  /// We’ll use this to highlight the corresponding day in the Grid.
   DateTime selectedValue = DateTime.now();
 
+  /// Mapping weekday integers to their names
   Map<int, String> weekdayName = {
     1: "Monday",
     2: "Tuesday",
@@ -65,19 +67,24 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: ListView(
                   children: [
+                    /// Top Bar with Back Button, Title, Popup Menu
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                            onPressed: () {
-                              Nav.pop(context);
-                            },
-                            icon: const Icon(Icons.arrow_back_ios)),
-                        Text("Schedule Workout",
-                            style: GoogleFonts.vazirmatn(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black)),
+                          onPressed: () {
+                            Nav.pop(context);
+                          },
+                          icon: const Icon(Icons.arrow_back_ios),
+                        ),
+                        Text(
+                          "Schedule Workout",
+                          style: GoogleFonts.vazirmatn(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
                         Container(
                           alignment: Alignment.topRight,
                           child: PopupMenuButton(
@@ -89,197 +96,187 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                 PopupMenuItem(
                                   height: 0.05.sh,
                                   onTap: () {
-                                    Nav.push(context,
-                                        const UpdateWorkoutPlanScreen());
+                                    Nav.push(
+                                      context,
+                                      const UpdateWorkoutPlanScreen(),
+                                    );
                                   },
                                   child: Center(
-                                    child: Text("Update Workout Plan",
-                                        style: GoogleFonts.vazirmatn(
-                                            color: Colors.white,
-                                            fontSize: 16.sp)),
+                                    child: Text(
+                                      "Update Workout Plan",
+                                      style: GoogleFonts.vazirmatn(
+                                        color: Colors.white,
+                                        fontSize: 16.sp,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                                // Add more actions to the menu here if needed
                               ];
                             },
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 0.02.sh,
-                    ),
+
+                    SizedBox(height: 0.02.sh),
+
+                    /// Date Picker Timeline
                     SizedBox(
                       height: 0.13.sh,
                       child: DatePicker(
                         DateTime.now(),
-                        daysCount: 7,
-                        // inactiveDates: [
-                        //   // DateTime.sunday,
-                        // ],
+                        daysCount: 7, // Show 7 days in the timeline
                         initialSelectedDate: DateTime.now(),
                         selectionColor: const Color(0xff599918),
                         selectedTextColor: Colors.white,
-
                         onDateChange: (date) {
-                          // New date selected
+                          /// Update the selected date and rebuild the UI
                           setState(() {
                             selectedValue = date;
                           });
                         },
                       ),
                     ),
-                    SizedBox(
-                      height: 0.02.sh,
-                    ),
+
+                    SizedBox(height: 0.02.sh),
                     const Divider(),
-                    SizedBox(
-                      height: 0.02.sh,
-                    ),
+                    SizedBox(height: 0.02.sh),
+
+                    /// Heading for current selection
                     Padding(
-                      padding:  EdgeInsets.only(left: 12.w),
+                      padding: EdgeInsets.only(left: 12.w),
                       child: Text(
-                          "Today’s Report : ${weekdayName[DateTime.now().weekday]}",
-                          style: GoogleFonts.vazirmatn(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black)),
+                        // Show the name of the newly selected day
+                        "Today’s Report : ${weekdayName[selectedValue.weekday]}",
+                        style: GoogleFonts.vazirmatn(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
-                    SizedBox(
-                      height: 0.01.sh,
-                    ),
+                    SizedBox(height: 0.01.sh),
+
+                    /// Grid of Days (Mon-Sun presumably)
                     GridView.builder(
                       physics: const NeverScrollableScrollPhysics(),
-                      // Allow scrolling
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 1.0,
-                              mainAxisSpacing: 1.0,
-                              childAspectRatio: 1.0),
-                      // itemCount: allProduct?.data?.length ?? 0,
-                      itemCount: 7,
                       shrinkWrap: true,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 1.0,
+                        mainAxisSpacing: 1.0,
+                        childAspectRatio: 1.0,
+                      ),
+                      itemCount: 7, // For 7 days
                       itemBuilder: (context, index) {
+                        bool isRestDay = response?.data?.workoutPlan?[index].restDay ?? false;
+                        String dayNameFromApi = capitalizeFirstLetter(
+                          response?.data?.workoutPlan?[index].day ?? "",
+                        );
+
+                        /// Check if this box's day matches the 'selectedValue's day.
+                        /// If so, highlight it.
+                        bool isSelectedDay =
+                            weekdayName[selectedValue.weekday] == dayNameFromApi;
+
                         return GestureDetector(
                           onTap: () {
-                            if (response?.data?.workoutPlan?[index].restDay ==
-                                true) {
+                            if (isRestDay) {
                               showSnackBar(context, "Rest Day");
                             } else {
-                              Nav.push(
+                              if (response?.data?.workoutPlan?[index].exercises != null) {
+                                Nav.push(
                                   context,
                                   ExerciseScreen(
-                                      exercises: response!.data!
-                                          .workoutPlan![index].exercises!));
+                                    exercises:
+                                    response!.data!.workoutPlan![index].exercises!,
+                                  ),
+                                );
+                              }
                             }
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
                             child: Stack(
                               children: [
+                                /// Main Container for Day / Rest
                                 Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 0.03.sh),
+                                  padding: EdgeInsets.symmetric(vertical: 0.03.sh),
                                   child: Container(
-                                    padding:
-                                        EdgeInsets.all(0.01.h),
+                                    padding: EdgeInsets.all(0.01.h),
                                     decoration: BoxDecoration(
-                                      color:
-                                          weekdayName[DateTime.now().weekday] ==
-                                                  capitalizeFirstLetter(response
-                                                          ?.data
-                                                          ?.workoutPlan?[index]
-                                                          .day ??
-                                                      "")
-                                              ? const Color(0xff599918)
-                                                  .withOpacity(0.5)
-                                              : Colors.white,
+                                      color: isSelectedDay
+                                          ? const Color(0xff599918).withOpacity(0.5)
+                                          : Colors.white,
                                       borderRadius: BorderRadius.circular(20.r),
                                       border: Border.all(color: Colors.black12),
                                     ),
                                     child: Center(
-                                      child: response?.data?.workoutPlan?[index]
-                                                  .restDay ==
-                                              true
+                                      child: isRestDay
                                           ? Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                SizedBox(height: 20.h),
-                                                Image.asset(
-                                                    "assets/images/rest_day.png"),
-                                                 SizedBox(height: 10.h),
-                                                Text("Rest Day",
-                                                    style: GoogleFonts.vazirmatn(
-                                                        fontSize: 12.sp,
-                                                        fontWeight: FontWeight.w500,
-                                                        color: weekdayName[DateTime
-                                                                        .now()
-                                                                    .weekday] ==
-                                                                capitalizeFirstLetter(response
-                                                                        ?.data
-                                                                        ?.workoutPlan?[
-                                                                            index]
-                                                                        .day ??
-                                                                    "")
-                                                            ? Colors.white
-                                                            : Colors.black)),
-                                              ],
-                                            )
-                                          : Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                SizedBox(height: 20.h),
-                                                Image.asset(
-                                                    "assets/images/exersise.png"),
-                                                SizedBox(height: 20.h),
-                                                Text("Exercise Day",
-                                                    style: GoogleFonts.vazirmatn(
-                                                        fontSize: 12.sp,
-                                                        fontWeight: FontWeight.w500,
-                                                        color: weekdayName[DateTime
-                                                                        .now()
-                                                                    .weekday] ==
-                                                                capitalizeFirstLetter(response
-                                                                        ?.data
-                                                                        ?.workoutPlan?[
-                                                                            index]
-                                                                        .day ??
-                                                                    "")
-                                                            ? Colors.white
-                                                            : Colors.black)),
-                                              ],
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(height: 20.h),
+                                          Image.asset("assets/images/rest_day.png"),
+                                          SizedBox(height: 10.h),
+                                          Text(
+                                            "Rest Day",
+                                            style: GoogleFonts.vazirmatn(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w500,
+                                              color: isSelectedDay
+                                                  ? Colors.white
+                                                  : Colors.black,
                                             ),
+                                          ),
+                                        ],
+                                      )
+                                          : Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(height: 20.h),
+                                          Image.asset("assets/images/exersise.png"),
+                                          SizedBox(height: 20.h),
+                                          Text(
+                                            "Exercise Day",
+                                            style: GoogleFonts.vazirmatn(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w500,
+                                              color: isSelectedDay
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
+
+                                /// Box Label at the Top
                                 Positioned(
-                                    top: 0.001.sh,
-                                    left: 0.03.sh,
-                                    child: Container(
-                                        width: 130.w,
-                                        padding:  EdgeInsets.all(8.0.h),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(12.r),
-                                          border:
-                                              Border.all(color: Colors.black12),
+                                  top: 0.001.sh,
+                                  left: 0.03.sh,
+                                  child: Container(
+                                    width: 130.w,
+                                    padding: EdgeInsets.all(8.0.h),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12.r),
+                                      border: Border.all(color: Colors.black12),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        dayNameFromApi,
+                                        style: GoogleFonts.vazirmatn(
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black,
                                         ),
-                                        child: Center(
-                                          child: Text(
-                                              capitalizeFirstLetter(response
-                                                      ?.data
-                                                      ?.workoutPlan?[index]
-                                                      .day ??
-                                                  ""),
-                                              style: GoogleFonts.vazirmatn(
-                                                  fontSize: 14.sp,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Colors.black)),
-                                        )))
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
