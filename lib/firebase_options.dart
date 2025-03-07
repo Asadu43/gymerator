@@ -58,11 +58,14 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBydeY0MaNuJwBX-mySFBYbUH9AjGKlmL8',
-    appId: '1:759619530811:ios:86f7ddedd1e96b15d0ec1e',
-    messagingSenderId: '759619530811',
-    projectId: 'test-app-689d0',
-    storageBucket: 'test-app-689d0.appspot.com',
+    apiKey: 'AIzaSyAxJI9axiqc4miY_oLjnDHpTXSZizO74ok',
+    appId: '1:615830748129:ios:42845d53bb08e8826130a0',
+    messagingSenderId: '615830748129',
+    projectId: 'gymerator',
+    storageBucket: 'gymerator.firebasestorage.app',
+    androidClientId: '615830748129-ad5d7uubrrjpm2asgi8c4p8go9nh9fbp.apps.googleusercontent.com',
+    iosClientId: '615830748129-4e9rlqrpkbq59nsimpiv35r279ebis4o.apps.googleusercontent.com',
     iosBundleId: 'com.gymmerator.gymmerator',
   );
+
 }

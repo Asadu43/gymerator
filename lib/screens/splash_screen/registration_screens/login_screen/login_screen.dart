@@ -101,165 +101,167 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 0.1.sw),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Spacer(),
-                      Image.asset(
-                        'assets/images/logo_g.png',
-                        width: 0.5.sw, // responsive width for logo
-                      ),
-                      SizedBox(height: 0.01.sh),
-                      Text(
-                        "Welcome!",
-                        style: GoogleFonts.vazirmatn(
-                          fontSize: 32.sp,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.white,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // const Spacer(),
+                        Image.asset(
+                          'assets/images/logo_g.png',
+                          width: 0.5.sw, // responsive width for logo
                         ),
-                      ),
-                      SizedBox(height: 0.01.sh),
-                      Text(
-                        "Please Sign in to get all the features",
-                        style: GoogleFonts.vazirmatn(
-                          fontSize: 17.sp,
-                          color: Colors.grey,
+                        SizedBox(height: 0.01.sh),
+                        Text(
+                          "Welcome!",
+                          style: GoogleFonts.vazirmatn(
+                            fontSize: 32.sp,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.white,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 0.04.sh),
-                      AppTextField(
-                        controller: emailController,
-                        hintText: "Email",
-                        icon: const Icon(Icons.email_outlined),
-                      ),
-                      SizedBox(height: 0.03.sh),
-                      AppTextField(
-                        controller: passwordController,
-                        hintText: "Password",
-                        obscureText: true,
-                        icon: const Icon(Icons.lock_open_outlined),
-                      ),
-                      SizedBox(height: 0.01.sh),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              Nav.push(context, const ForgetPasswordScreen());
-                            },
-                            child: Text(
-                              "Forgot Password?",
-                              style: GoogleFonts.vazirmatn(
-                                fontSize: 12.sp,
-                                color: Colors.white,
-                              ),
-                            ),
+                        SizedBox(height: 0.01.sh),
+                        Text(
+                          "Please Sign in to get all the features",
+                          style: GoogleFonts.vazirmatn(
+                            fontSize: 17.sp,
+                            color: Colors.grey,
                           ),
-                        ],
-                      ),
-                      SizedBox(height: 0.03.sh),
-                      AppButton(
-                        text: "Login",
-                        onPressed: () async {
-                          await _onSignInButtonPressed(context);
-                        },
-                      ),
-                      SizedBox(height: 0.01.sh),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Do you have an account? ",
-                            style: GoogleFonts.vazirmatn(
-                              fontSize: 12.sp,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Nav.push(context, const SignupScreen());
-                            },
-                            child: Text(
-                              "Create Account",
-                              style: GoogleFonts.vazirmatn(
-                                fontSize: 12.sp,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 0.03.sh),
-                      Row(
-                        children: [
-                          const Expanded(
-                            child: Divider(
-                              color: Colors.grey,
-                              thickness: 1.0,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 0.01.sw),
-                            child: Text(
-                              "OR",
-                              style: GoogleFonts.vazirmatn(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16.sp,
-                              ),
-                            ),
-                          ),
-                          const Expanded(
-                            child: Divider(
-                              color: Colors.grey,
-                              thickness: 1.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 0.03.sh),
-                      InkWell(
-                        onTap: () async {
-                          User? user = await _authService.signInWithGoogle();
-                          if (user != null) {
-                            context.read<SignInCubit>().loginWithGoogle(
-                                  displayName: user.displayName ?? "",
-                                  email: user.email ?? "",
-                                  phoneNumber: user.phoneNumber ?? "",
-                                  photoURL: user.photoURL ?? "",
-                                );
-                          } else {
-                            showSnackBar(context, 'Sign in failed');
-                          }
-                        },
-                        child: Container(
-                          height: 53.h,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(30.r),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Image.asset(
-                                'assets/images/google.png',
-                                height: 0.05.sh,
-                                width: 0.05.sw,
-                              ),
-                              Text(
-                                "Sign in with Google",
+                        ),
+                        SizedBox(height: 0.04.sh),
+                        AppTextField(
+                          controller: emailController,
+                          hintText: "Email",
+                          icon: const Icon(Icons.email_outlined),
+                        ),
+                        SizedBox(height: 0.03.sh),
+                        AppTextField(
+                          controller: passwordController,
+                          hintText: "Password",
+                          obscureText: true,
+                          icon: const Icon(Icons.lock_open_outlined),
+                        ),
+                        SizedBox(height: 0.01.sh),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Nav.push(context, const ForgetPasswordScreen());
+                              },
+                              child: Text(
+                                "Forgot Password?",
                                 style: GoogleFonts.vazirmatn(
-                                  fontSize: 16.sp,
+                                  fontSize: 12.sp,
                                   color: Colors.white,
                                 ),
                               ),
-                              const SizedBox(),
-                            ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 0.03.sh),
+                        AppButton(
+                          text: "Login",
+                          onPressed: () async {
+                            await _onSignInButtonPressed(context);
+                          },
+                        ),
+                        SizedBox(height: 0.01.sh),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Do you have an account? ",
+                              style: GoogleFonts.vazirmatn(
+                                fontSize: 12.sp,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Nav.push(context, const SignupScreen());
+                              },
+                              child: Text(
+                                "Create Account",
+                                style: GoogleFonts.vazirmatn(
+                                  fontSize: 12.sp,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 0.03.sh),
+                        Row(
+                          children: [
+                            const Expanded(
+                              child: Divider(
+                                color: Colors.grey,
+                                thickness: 1.0,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 0.01.sw),
+                              child: Text(
+                                "OR",
+                                style: GoogleFonts.vazirmatn(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.sp,
+                                ),
+                              ),
+                            ),
+                            const Expanded(
+                              child: Divider(
+                                color: Colors.grey,
+                                thickness: 1.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 0.03.sh),
+                        InkWell(
+                          onTap: () async {
+                            User? user = await _authService.signInWithGoogle();
+                            if (user != null) {
+                              context.read<SignInCubit>().loginWithGoogle(
+                                    displayName: user.displayName ?? "",
+                                    email: user.email ?? "",
+                                    phoneNumber: user.phoneNumber ?? "",
+                                    photoURL: user.photoURL ?? "",
+                                  );
+                            } else {
+                              showSnackBar(context, 'Sign in failed');
+                            }
+                          },
+                          child: Container(
+                            height: 53.h,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(30.r),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Image.asset(
+                                  'assets/images/google.png',
+                                  height: 0.05.sh,
+                                  width: 0.05.sw,
+                                ),
+                                Text(
+                                  "Sign in with Google",
+                                  style: GoogleFonts.vazirmatn(
+                                    fontSize: 16.sp,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 0.02.sh),
-                    ],
+                        SizedBox(height: 0.02.sh),
+                      ],
+                    ),
                   ),
                 ),
               ),
