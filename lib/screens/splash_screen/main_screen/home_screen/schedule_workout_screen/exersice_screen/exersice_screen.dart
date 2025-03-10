@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutPlanApiResponse.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/schedule_workout_screen/exersice_screen/exercise_details_screen/exercise_details_screen.dart';
+import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/schedule_workout_screen/exersice_screen/workout_metrics_screen/workout_metrics_screen.dart';
 
 import '../../../../../../ui_component/exercise_detail_row.dart';
 import '../../../../../../utils/nav/nav.dart';
@@ -28,19 +29,45 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
                         onPressed: () {
                           Nav.pop(context);
                         },
                         icon: const Icon(Icons.arrow_back_ios)),
-                    SizedBox(width: 0.2.sw),
                     Text("Exercise",
                         style: GoogleFonts.vazirmatn(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
                             color: Colors.black)),
+                    Container(
+                      alignment: Alignment.topRight,
+                      child: PopupMenuButton(
+                        elevation: 1,
+                        position: PopupMenuPosition.under,
+                        color: const Color(0xff599918),
+                        itemBuilder: (BuildContext context) {
+                          return [
+                            PopupMenuItem(
+                              height: 0.05.sh,
+                              onTap: () {
+                                Nav.push(context, const WorkoutMetricsScreen());
+                              },
+                              child: Center(
+                                child: Text(
+                                  "Workout Metrics",
+                                  style: GoogleFonts.vazirmatn(
+                                    color: Colors.white,
+                                    fontSize: 16.sp,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ];
+                        },
+                      ),
+                    ),
                   ],
                 ),
                 SizedBox(

@@ -15,6 +15,7 @@ import 'package:gymmerator/models/api_response/GetAllUserOrdersApiResponse.dart'
 import 'package:gymmerator/models/api_response/GetAllUserProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetNonceApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutMetricsApiResponse.dart';
+import 'package:gymmerator/models/api_response/GetWorkoutMetricsByDateApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutMetricsByExersiceApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutPlanApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutSummaryApiResponse.dart';
@@ -210,6 +211,12 @@ class Repository {
   Future<GetWorkoutMetricsApiResponse> getWorkoutMetricRequest() {
     final request = WorkoutMetricsGetApi();
     return request.getRequest();
+  }
+
+  Future<GetWorkoutMetricsByDateApiResponse> getWorkoutByDateMetricsRequest(
+      String date) {
+    final request = WorkoutMetricsGetApi();
+    return request.getWorkoutByDateRequest(date);
   }
 
   Future<DeleteWorkoutMetricsApiResponse> deleteWorkoutMetricRequest(

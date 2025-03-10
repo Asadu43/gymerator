@@ -36,6 +36,7 @@ class ApiConstants {
   static const String resetWallet = "$baseUrl/api/user/resetwallet";
   static const String addWorkoutMetrics = "$baseUrl/api/workout/mymetrics";
   static const String getWorkoutMetrics = "$baseUrl/api/workout/mymetrics/all";
+  static const String getWorkoutMetricsByDate = "$baseUrl/api/workout/mymetrics/bydate";
   static const String deleteWorkoutMetrics = "$baseUrl/api/workout/mymetrics";
   static const String getWorkoutSummary = "$baseUrl/api/workout/mymetrics/summary";
   static const String getBurnedCalories = "$baseUrl/api/workout/mymetrics/burnedcalories/total";

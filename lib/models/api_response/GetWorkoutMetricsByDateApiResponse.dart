@@ -1,15 +1,14 @@
-class GetWorkoutMetricsApiResponse {
-  GetWorkoutMetricsApiResponse({
-    List<Data>? data,
-    String? message,
-    dynamic error,
-  }) {
+class GetWorkoutMetricsByDateApiResponse {
+  GetWorkoutMetricsByDateApiResponse({
+      List<Data>? data, 
+      String? message, 
+      dynamic error,}){
     _data = data;
     _message = message;
     _error = error;
-  }
+}
 
-  GetWorkoutMetricsApiResponse.fromJson(dynamic json) {
+  GetWorkoutMetricsByDateApiResponse.fromJson(dynamic json) {
     if (json['data'] != null) {
       _data = [];
       json['data'].forEach((v) {
@@ -26,25 +25,36 @@ class GetWorkoutMetricsApiResponse {
   List<Data>? get data => _data;
   String? get message => _message;
   dynamic get error => _error;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    if (_data != null) {
+      map['data'] = _data?.map((v) => v.toJson()).toList();
+    }
+    map['message'] = _message;
+    map['error'] = _error;
+    return map;
+  }
+
 }
 
 class Data {
   Data({
-    String? id,
-    User? user,
-    String? day,
-    String? exercise,
-    int? setsCompleted,
-    int? repsCompleted,
-    int? weightUsed,
-    int? caloriesBurned,
-    int? heartRateAvg,
-    int? distanceCovered,
-    int? pace,
-    bool? personalRecord,
-    String? createdAt,
-    String? updatedAt,
-    int? v,}){
+      String? id, 
+      User? user, 
+      String? day, 
+      String? exercise, 
+      int? setsCompleted, 
+      int? repsCompleted, 
+      int? weightUsed, 
+      int? caloriesBurned, 
+      int? heartRateAvg, 
+      int? distanceCovered, 
+      int? pace, 
+      bool? personalRecord, 
+      String? createdAt, 
+      String? updatedAt, 
+      int? v,}){
     _id = id;
     _user = user;
     _day = day;
@@ -60,7 +70,7 @@ class Data {
     _createdAt = createdAt;
     _updatedAt = updatedAt;
     _v = v;
-  }
+}
 
   Data.fromJson(dynamic json) {
     _id = json['_id'];
@@ -137,15 +147,15 @@ class Data {
 
 class User {
   User({
-    String? id,
-    String? firstName,
-    String? lastName,
-    String? email,}){
+      String? id, 
+      String? firstName, 
+      String? lastName, 
+      String? email,}){
     _id = id;
     _firstName = firstName;
     _lastName = lastName;
     _email = email;
-  }
+}
 
   User.fromJson(dynamic json) {
     _id = json['_id'];
