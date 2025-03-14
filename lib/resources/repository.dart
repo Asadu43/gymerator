@@ -16,6 +16,7 @@ import 'package:gymmerator/models/api_response/GetAllProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllUserOrdersApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllUserProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetNonceApiResponse.dart';
+import 'package:gymmerator/models/api_response/GetNotificationsApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetRewardSignatureApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutMetricsApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutMetricsByDateApiResponse.dart';
@@ -60,6 +61,7 @@ import 'package:gymmerator/resources/api_providers/update_user_info_post_api.dar
 import 'package:gymmerator/resources/api_providers/update_user_profile_post_api.dart';
 import 'package:gymmerator/resources/api_providers/update_work_out_put_api.dart';
 import 'package:gymmerator/resources/api_providers/user_cart_products_get_api.dart';
+import 'package:gymmerator/resources/api_providers/user_notifications_get_api.dart';
 import 'package:gymmerator/resources/api_providers/user_orders_get_api.dart';
 import 'package:gymmerator/resources/api_providers/verify_Otp_get_api.dart';
 import 'package:gymmerator/resources/api_providers/verify_signature_put_api.dart';
@@ -272,5 +274,10 @@ class Repository {
   Future<DeviceRemoveApiResponse> deleteRequest() {
     final request = DeviceRemoveDeleteApi();
     return request.deleteRequest();
+  }
+
+  Future<GetNotificationsApiResponse> getNotificationRequest() {
+    final request = UserNotificationsGetApi();
+    return request.getUserNotificationRequest();
   }
 }

@@ -43,6 +43,7 @@ class ApiConstants {
   static const String getMetricsByExercise = "$baseUrl/api/workout/mymetrics/byexercise";
   static const String getSignatureReward = "$baseUrl/api/workout/signature";
   static const String registerDevice = "$baseUrl/api/device/";
+  static const String userNotification = "$baseUrl/api/notification";
 
 
 

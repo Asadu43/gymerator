@@ -10,6 +10,7 @@ import 'package:gymmerator/utils/nav/nav.dart';
 import '../../../../bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
 import '../../../../models/api_response/GetAllFavoriteProductApiResponse.dart';
 import '../../../../ui_component/show_snackbar.dart';
+import '../notification_screen/notification_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -84,7 +85,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Nav.push(context, const NotificationScreen());
+                          },
                           icon: const Icon(Icons.notifications_none),
                         ),
                       ],

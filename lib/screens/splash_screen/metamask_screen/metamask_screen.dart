@@ -205,7 +205,8 @@ class _MetaMaskScreenState extends State<MetaMaskScreen>
       // Check if the transaction was signed successfully and navigate back
       if (signResponse != null) {
         print("Transaction signed successfully: $signResponse");
-        Nav.push(context, const MainScreen()); // Navigate back to the previous screen
+        Nav.push(context,
+            const MainScreen()); // Navigate back to the previous screen
       }
 
       return signResponse;
@@ -284,7 +285,9 @@ class _MetaMaskScreenState extends State<MetaMaskScreen>
                       child: Text(
                         "${userInfoResponse?.data?.rewardAmount?.toStringAsFixed(6)} GYM",
                         style: GoogleFonts.vazirmatn(
-                            fontSize: 20, color: Colors.black38,fontWeight: FontWeight.bold),
+                            fontSize: 20,
+                            color: Colors.black38,
+                            fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       ),
                     ),
