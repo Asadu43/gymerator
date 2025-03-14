@@ -22,3 +22,40 @@ final class FailedToGetNonce extends MetamaskState {
 
   const FailedToGetNonce(this.response);
 }
+
+final class VerifySignatureSuccessfully extends MetamaskState {
+  final VerifySignatureApiResponse? response;
+
+  const VerifySignatureSuccessfully(this.response);
+}
+
+final class FailedToVerifySignature extends MetamaskState {
+  final String? response;
+
+  const FailedToVerifySignature(this.response);
+}
+
+class AllFavoriteProductGetSuccessfully extends MetamaskState {
+  final GetAllFavoriteProductApiResponse response;
+
+  const AllFavoriteProductGetSuccessfully(this.response);
+}
+
+class FailedToGetProduct extends MetamaskState {
+  final GetAllFavoriteProductApiResponse response;
+
+  const FailedToGetProduct(this.response);
+}
+
+
+class GetSignatureRewardSuccessfully extends MetamaskState {
+  final GetRewardSignatureApiResponse response;
+
+  const GetSignatureRewardSuccessfully(this.response);
+}
+
+class FailedToGetSignature extends MetamaskState {
+  final GetRewardSignatureApiResponse response;
+
+  const FailedToGetSignature(this.response);
+}

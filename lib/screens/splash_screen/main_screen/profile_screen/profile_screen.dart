@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
+import 'package:gymmerator/resources/repository.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/profile_screen/account_edit_screen/account_edit_screen.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/profile_screen/profile_edit_screen/profile_edit_screen.dart';
 import 'package:gymmerator/screens/splash_screen/registration_screens/login_screen/login_screen.dart';
@@ -436,6 +437,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 AppButton(
                                                   text: "Logout",
                                                   onPressed: () {
+                                                    Repository repo = Repository();
+                                                    repo.deleteRequest();
                                                     GetStorage()
                                                         .write('token', null);
                                                     Nav.pushAndRemoveAllRoute(

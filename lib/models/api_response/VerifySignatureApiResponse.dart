@@ -1,17 +1,16 @@
 import 'Product.dart';
 
-class GetAllFavoriteProductApiResponse {
-  GetAllFavoriteProductApiResponse({
-    Data? data,
-    String? message,
-    dynamic error,
-  }) {
+class VerifySignatureApiResponse {
+  VerifySignatureApiResponse({
+      Data? data, 
+      String? message, 
+      dynamic error,}){
     _data = data;
     _message = message;
     _error = error;
-  }
+}
 
-  GetAllFavoriteProductApiResponse.fromJson(dynamic json) {
+  VerifySignatureApiResponse.fromJson(dynamic json) {
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
     _message = json['message'];
     _error = json['error'];
@@ -23,6 +22,7 @@ class GetAllFavoriteProductApiResponse {
   Data? get data => _data;
   String? get message => _message;
   dynamic get error => _error;
+
 }
 
 class Data {
@@ -57,6 +57,7 @@ class Data {
     int? sleepHours,
     double? targetWeightInKG,
     String? profile,
+    String? walletAddress
   }) {
     _address = address;
     _location = location;
@@ -88,13 +89,14 @@ class Data {
     _sleepHours = sleepHours;
     _targetWeightInKG = targetWeightInKG;
     _profile = profile;
+    _walletAddress = walletAddress;
   }
 
   Data.fromJson(dynamic json) {
     _address =
-        json['address'] != null ? Address.fromJson(json['address']) : null;
+    json['address'] != null ? Address.fromJson(json['address']) : null;
     _location =
-        json['location'] != null ? Location.fromJson(json['location']) : null;
+    json['location'] != null ? Location.fromJson(json['location']) : null;
     _height = json['height'] != null ? Height.fromJson(json['height']) : null;
     _weight = json['weight'] != null ? Weight.fromJson(json['weight']) : null;
     _medicalCondition = json['medicalCondition'] != null
@@ -120,7 +122,7 @@ class Data {
         _favoriteProducts?.add(Product.fromJson(v));
       });
     }
-    _rewardAmount = _convertToDouble(json['rewardAmount']);
+    _rewardAmount = json['rewardAmount'];
     _createdAt = json['createdAt'];
     _updatedAt = json['updatedAt'];
     _v = json['__v'];
@@ -130,7 +132,7 @@ class Data {
     _sleepHours = json['sleepHours'];
     _targetWeightInKG = _convertToDouble(json['targetWeightInKG']);
     _profile = json['profile'];
-
+    _walletAddress = json['walletAddress'];
   }
 
   static double? _convertToDouble(dynamic val) {
@@ -178,6 +180,7 @@ class Data {
   int? _sleepHours;
   double? _targetWeightInKG;
   String? _profile;
+  String? _walletAddress;
 
   Address? get address => _address;
   Location? get location => _location;
@@ -209,6 +212,7 @@ class Data {
   int? get sleepHours => _sleepHours;
   double? get targetWeightInKG => _targetWeightInKG;
   String? get profile => _profile;
+  String? get walletAddress => _walletAddress;
 }
 
 class MedicalCondition {

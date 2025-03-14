@@ -68,11 +68,16 @@ dependencies:
   flutter_screenutil: ^5.9.3
   health: ^12.0.1
   permission_handler: ^11.3.0
+  web3dart: ^2.7.3
+  convert: ^3.1.2
+  firebase_messaging: ^14.6.2
 
 
 
 dependency_overrides:
   flutter_slidable: ^3.1.2
+  firebase_messaging: ^15.1.0
+
 
 
 
@@ -102,6 +107,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/videos/
+    - assets/abi/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

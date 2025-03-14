@@ -6,6 +6,8 @@ import 'package:gymmerator/models/api_response/AddWorkoutMetricsApiResponse.dart
 import 'package:gymmerator/models/api_response/ChatAiApiResponse.dart';
 import 'package:gymmerator/models/api_response/CreateOrderApiResponse.dart';
 import 'package:gymmerator/models/api_response/DeleteWorkoutMetricsApiResponse.dart';
+import 'package:gymmerator/models/api_response/DeviceRegisterApiResponse.dart';
+import 'package:gymmerator/models/api_response/DeviceRemoveApiResponse.dart';
 import 'package:gymmerator/models/api_response/FeaturedProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/ForgetPasswordApiResponse.dart';
 import 'package:gymmerator/models/api_response/GenerateWorkoutPlanApiResponse.dart';
@@ -14,6 +16,7 @@ import 'package:gymmerator/models/api_response/GetAllProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllUserOrdersApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetAllUserProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetNonceApiResponse.dart';
+import 'package:gymmerator/models/api_response/GetRewardSignatureApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutMetricsApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutMetricsByDateApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutMetricsByExersiceApiResponse.dart';
@@ -38,6 +41,8 @@ import 'package:gymmerator/resources/api_providers/all_favorite_product_get_api.
 import 'package:gymmerator/resources/api_providers/all_product_get_api.dart';
 import 'package:gymmerator/resources/api_providers/chat_bot_post_api.dart';
 import 'package:gymmerator/resources/api_providers/create_order_post_api.dart';
+import 'package:gymmerator/resources/api_providers/device_register_post_api.dart';
+import 'package:gymmerator/resources/api_providers/device_remove_delete_api.dart';
 import 'package:gymmerator/resources/api_providers/featured_product_get_api.dart';
 import 'package:gymmerator/resources/api_providers/forget_password_post_api.dart';
 import 'package:gymmerator/resources/api_providers/generate_work_plan_get_api.dart';
@@ -46,6 +51,7 @@ import 'package:gymmerator/resources/api_providers/order_details_get_api.dart';
 import 'package:gymmerator/resources/api_providers/product_detail_get_api.dart';
 import 'package:gymmerator/resources/api_providers/remove_cart_item_put_api.dart';
 import 'package:gymmerator/resources/api_providers/remove_favorite_put_api.dart';
+import 'package:gymmerator/resources/api_providers/reward_signature_get_api.dart';
 import 'package:gymmerator/resources/api_providers/search_product_get_api.dart';
 import 'package:gymmerator/resources/api_providers/total_burned_calories_get_api.dart';
 import 'package:gymmerator/resources/api_providers/update_cart_item_put_api.dart';
@@ -56,6 +62,7 @@ import 'package:gymmerator/resources/api_providers/update_work_out_put_api.dart'
 import 'package:gymmerator/resources/api_providers/user_cart_products_get_api.dart';
 import 'package:gymmerator/resources/api_providers/user_orders_get_api.dart';
 import 'package:gymmerator/resources/api_providers/verify_Otp_get_api.dart';
+import 'package:gymmerator/resources/api_providers/verify_signature_put_api.dart';
 import 'package:gymmerator/resources/api_providers/workout_metrics_by_exercise_get_api.dart';
 import 'package:gymmerator/resources/api_providers/workout_metrics_delete_api.dart';
 import 'package:gymmerator/resources/api_providers/workout_metrics_get_api.dart';
@@ -64,6 +71,7 @@ import 'package:gymmerator/resources/api_providers/workout_plan_get_api.dart';
 
 import '../models/api_response/SignInApiResponse.dart';
 import '../models/api_response/SignupApiResponse.dart';
+import '../models/api_response/VerifySignatureApiResponse.dart';
 import 'api_providers/sign_in_post_api.dart';
 import 'api_providers/signup_post_api.dart';
 
@@ -244,5 +252,25 @@ class Repository {
   Future<GetNonceApiResponse> getNonceRequest() {
     final request = NonceGetApi();
     return request.getNonceRequest();
+  }
+
+  Future<VerifySignatureApiResponse> verifySignatureRequest(Map data) {
+    final request = VerifySignaturePutApi();
+    return request.verifySignatureRequest(data);
+  }
+
+  Future<GetRewardSignatureApiResponse> getSignatureRequest() {
+    final request = RewardSignatureGetApi();
+    return request.getRequest();
+  }
+
+  Future<DeviceRegisterApiResponse> deviceRegisterRequest(Map data) {
+    final request = DeviceRegisterPostApi();
+    return request.registerRequest(data);
+  }
+
+  Future<DeviceRemoveApiResponse> deleteRequest() {
+    final request = DeviceRemoveDeleteApi();
+    return request.deleteRequest();
   }
 }
