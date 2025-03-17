@@ -24,6 +24,7 @@ import 'package:gymmerator/models/api_response/GetWorkoutMetricsByExersiceApiRes
 import 'package:gymmerator/models/api_response/GetWorkoutPlanApiResponse.dart';
 import 'package:gymmerator/models/api_response/GetWorkoutSummaryApiResponse.dart';
 import 'package:gymmerator/models/api_response/LoginWithGoogleApiResponse.dart';
+import 'package:gymmerator/models/api_response/MarkAsReadApiResponse.dart';
 import 'package:gymmerator/models/api_response/ProductDetailApiResponse.dart';
 import 'package:gymmerator/models/api_response/RemoveCartItemApiResponse.dart';
 import 'package:gymmerator/models/api_response/RemoveFavoriteProductApiResponse.dart';
@@ -47,6 +48,7 @@ import 'package:gymmerator/resources/api_providers/device_remove_delete_api.dart
 import 'package:gymmerator/resources/api_providers/featured_product_get_api.dart';
 import 'package:gymmerator/resources/api_providers/forget_password_post_api.dart';
 import 'package:gymmerator/resources/api_providers/generate_work_plan_get_api.dart';
+import 'package:gymmerator/resources/api_providers/marked_as_read_put_api.dart';
 import 'package:gymmerator/resources/api_providers/nonce_get_api.dart';
 import 'package:gymmerator/resources/api_providers/order_details_get_api.dart';
 import 'package:gymmerator/resources/api_providers/product_detail_get_api.dart';
@@ -279,5 +281,11 @@ class Repository {
   Future<GetNotificationsApiResponse> getNotificationRequest() {
     final request = UserNotificationsGetApi();
     return request.getUserNotificationRequest();
+  }
+
+
+  Future<MarkAsReadApiResponse> markAsReadRequest(String id) {
+    final request = MarkedAsReadPutApi();
+    return request.readRequest(id);
   }
 }

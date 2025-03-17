@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/nft_market_place_screen/details_screen/details_screen.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../../../ui_component/app_textfield.dart';
 import '../../../../../utils/nav/nav.dart';

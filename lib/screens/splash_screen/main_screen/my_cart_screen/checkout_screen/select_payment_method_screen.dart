@@ -281,12 +281,11 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                         onPressed: () async {
                           if (widget.payment == "Cash on Delivery") {
                             try {
-                              await initPaymentSheet();
                               context.read<CreateOrderCubit>().createRequest(
                                   shippingAddress: widget.deliveryAddress,
                                   paymentAddress: widget.billingAddress,
                                   paymentMethod: widget.payment,
-                                  paymentIntentId: data['id'],
+                                  paymentIntentId: "",
                                   amount: int.parse(widget.totalPayingPrice
                                       .round()
                                       .toString()),

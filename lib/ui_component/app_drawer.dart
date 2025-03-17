@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/models/api_response/GetAllFavoriteProductApiResponse.dart';
 import 'package:gymmerator/screens/splash_screen/main_screen/bettery_screen/bettery_screen.dart';
@@ -79,7 +80,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
                 title: Text("Metamask",
                     style: GoogleFonts.vazirmatn(
-                        fontSize: 12, color: Colors.black)),
+                        fontSize: 12.sp, color: Colors.black,fontWeight:FontWeight.w400)),
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
                   color: Colors.black,
@@ -100,7 +101,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
                 title: Text("Cart",
                     style: GoogleFonts.vazirmatn(
-                        fontSize: 14, color: Colors.black)),
+                        fontSize: 12.sp, color: Colors.black,fontWeight:FontWeight.w400)),
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
                   color: Colors.black,
@@ -121,7 +122,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
                 title: Text("Favorite product",
                     style: GoogleFonts.vazirmatn(
-                        fontSize: 12, color: Colors.black)),
+                        fontSize: 12.sp, color: Colors.black,fontWeight:FontWeight.w400)),
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
                   color: Colors.black,
@@ -142,7 +143,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
                 title: Text("Energize life",
                     style: GoogleFonts.vazirmatn(
-                        fontSize: 14, color: Colors.black)),
+                        fontSize: 12.sp, color: Colors.black,fontWeight: FontWeight.w400)),
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
                   color: Colors.black,

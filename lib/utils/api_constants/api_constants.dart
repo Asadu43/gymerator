@@ -44,6 +44,7 @@ class ApiConstants {
   static const String getSignatureReward = "$baseUrl/api/workout/signature";
   static const String registerDevice = "$baseUrl/api/device/";
   static const String userNotification = "$baseUrl/api/notification";
+  static const String markAsNotification = "$baseUrl/api/notification/read";
 
 
 

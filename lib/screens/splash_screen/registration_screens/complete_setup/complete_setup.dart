@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gymmerator/screens/splash_screen/registration_screens/workout_plan_screen/workout_plan_screen.dart';
 import 'package:gymmerator/ui_component/app_button.dart';
@@ -8,7 +9,6 @@ import 'package:gymmerator/ui_component/show_snackbar.dart';
 import 'package:gymmerator/utils/app_colors/app_colors.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../../bloC/auth_cubit/update_user_info_cubit/update_user_info_cubit.dart';
 

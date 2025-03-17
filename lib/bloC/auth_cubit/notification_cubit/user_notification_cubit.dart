@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:gymmerator/models/api_response/GetNotificationsApiResponse.dart';
+import 'package:gymmerator/models/api_response/MarkAsReadApiResponse.dart';
 
 import '../../../resources/repository.dart';
 
@@ -19,6 +20,16 @@ class UserNotificationCubit extends Cubit<UserNotificationState> {
       emit(AllNotificationGetSuccessfully(model));
     } else {
       emit(FailedToGetNotifications(model));
+    }
+  }
+
+  Future readRequest({required String id}) async {
+    emit(LoadingState());
+    final MarkAsReadApiResponse model = await _repository.markAsReadRequest(id);
+    if (model.error == null) {
+      emit(MarkAsReadSuccessfully(model));
+    } else {
+      emit(FailedToMarkedAsRead(model));
     }
   }
 }

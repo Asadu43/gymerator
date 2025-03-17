@@ -23,3 +23,16 @@ class FailedToGetNotifications extends UserNotificationState {
 
   const FailedToGetNotifications(this.response);
 }
+
+
+class MarkAsReadSuccessfully extends UserNotificationState {
+  final MarkAsReadApiResponse response;
+
+  const MarkAsReadSuccessfully(this.response);
+}
+
+class FailedToMarkedAsRead extends UserNotificationState {
+  final MarkAsReadApiResponse response;
+
+  const FailedToMarkedAsRead(this.response);
+}

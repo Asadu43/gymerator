@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gymmerator/bloC/auth_cubit/notification_cubit/user_notification_cubit.dart';
 import 'package:gymmerator/screens/splash_screen/splash_screen.dart';
 import 'package:gymmerator/utils/internet_connection/dependency_injection.dart';
 
@@ -53,6 +54,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => WorkoutPlanCubit(),
+        ),
+        BlocProvider(
+          create: (context) => UserNotificationCubit(),
         )
       ],
       child: GetMaterialApp(
