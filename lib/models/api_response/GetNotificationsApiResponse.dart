@@ -98,8 +98,8 @@ class PayLoadData {
   }
 
   PayLoadData.fromJson(dynamic json) {
-    // _order = json['order'];
-    // _total = json['total'];
+    _order = json['orderID'];
+    _total = json['orderStatus'];
   }
   String? _order;
   String? _total;
