@@ -9,6 +9,7 @@ import 'package:gymmerator/utils/app_colors/app_colors.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
 import '../../../../bloC/auth_cubit/all_favorite_product_cubit/all_favorite_products_cubit.dart';
 import '../../../../models/api_response/GetAllFavoriteProductApiResponse.dart';
+import '../../../../models/api_response/GetNotificationsApiResponse.dart';
 import '../../../../ui_component/show_snackbar.dart';
 import '../notification_screen/notification_screen.dart';
 
@@ -24,11 +25,21 @@ class _HomeScreenState extends State<HomeScreen> {
   bool checkboxValue = true;
   int selectedIndex = 2;
   GetAllFavoriteProductApiResponse? response;
+  GetNotificationsApiResponse? notificationResponse;
 
   @override
   void initState() {
     context.read<AllFavoriteProductsCubit>().featuredRequest();
+    context.read<AllFavoriteProductsCubit>().getNotificationRequest();
     super.initState();
+  }
+
+  // Calculate unread notifications count
+  int get unreadNotificationsCount {
+    if (notificationResponse?.data == null) return 0;
+    return notificationResponse!.data!
+        .where((notification) => notification.status?.toLowerCase() != 'read')
+        .length;
   }
 
   @override
@@ -49,6 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
           } else if (response?.data?.workoutLevel == "Expert") {
             selectedIndex = 4;
           }
+        }
+        if (state is AllNotificationGetSuccessfully) {
+          notificationResponse = state.response;
         }
       },
       builder: (context, state) {
@@ -84,11 +98,40 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
-                        IconButton(
-                          onPressed: () {
+                        GestureDetector(
+                          onTap: () {
                             Nav.push(context, const NotificationScreen());
                           },
-                          icon: const Icon(Icons.notifications_none),
+                          child: Stack(
+                            children: <Widget>[
+                              const Icon(Icons.notifications_none),
+                              unreadNotificationsCount == 0
+                                  ? const SizedBox()
+                                  : Positioned(
+                                right: 1.w,
+                                top: 1.h,
+                                child: Container(
+                                  width: 18.w,
+                                  height: 18.h,
+                                  decoration: BoxDecoration(
+                                      color: const Color(0xff3F710D),
+                                      borderRadius:
+                                      BorderRadius.circular(20)),
+                                  child: Center(
+                                    child: Text(
+                                      unreadNotificationsCount.toString(),
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.vazirmatn(
+                                        color: Colors.white,
+                                        fontSize: 11.sp,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -113,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         padding: EdgeInsets.all(12.w),
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               "Full Body Training\nWorkout",
@@ -153,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ],
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(8.r),
+                                                BorderRadius.circular(8.r),
                                               ),
                                               child: ElevatedButton(
                                                 style: ButtonStyle(
@@ -161,16 +204,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       RoundedRectangleBorder>(
                                                     RoundedRectangleBorder(
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.r),
+                                                      BorderRadius.circular(
+                                                          8.r),
                                                     ),
                                                   ),
                                                   backgroundColor:
-                                                      WidgetStateProperty.all(
-                                                          Colors.transparent),
+                                                  WidgetStateProperty.all(
+                                                      Colors.transparent),
                                                   shadowColor:
-                                                      WidgetStateProperty.all(
-                                                          Colors.transparent),
+                                                  WidgetStateProperty.all(
+                                                      Colors.transparent),
                                                 ),
                                                 onPressed: () {
                                                   Nav.push(context,
@@ -227,7 +270,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           duration: "5-10 mins a day",
                           assetPath: "assets/images/begginer.png",
                           isSelected:
-                              checkboxValue == true && selectedIndex == 1,
+                          checkboxValue == true && selectedIndex == 1,
                           onTap: () {
                             if (checkboxValue == true && selectedIndex == 1) {
                               Nav.push(context, const ScheduleWorkoutScreen());
@@ -239,7 +282,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           duration: "10-20 mins a day",
                           assetPath: "assets/images/intermedate.png",
                           isSelected:
-                              checkboxValue == true && selectedIndex == 2,
+                          checkboxValue == true && selectedIndex == 2,
                           onTap: () {
                             if (checkboxValue == true && selectedIndex == 2) {
                               Nav.push(context, const ScheduleWorkoutScreen());
@@ -257,7 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           duration: "15-30 mins a day",
                           assetPath: "assets/images/advance.png",
                           isSelected:
-                              checkboxValue == true && selectedIndex == 3,
+                          checkboxValue == true && selectedIndex == 3,
                           onTap: () {
                             if (checkboxValue == true && selectedIndex == 3) {
                               Nav.push(context, const ScheduleWorkoutScreen());
@@ -269,7 +312,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           duration: "20-35 mins a day",
                           assetPath: "assets/images/expert.png",
                           isSelected:
-                              checkboxValue == true && selectedIndex == 4,
+                          checkboxValue == true && selectedIndex == 4,
                           onTap: () {
                             if (checkboxValue == true && selectedIndex == 4) {
                               Nav.push(context, const ScheduleWorkoutScreen());
@@ -306,21 +349,21 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
               gradient: isSelected
                   ? const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color(0xffB14501),
-                        Color(0xff3F710D),
-                      ],
-                    )
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xffB14501),
+                  Color(0xff3F710D),
+                ],
+              )
                   : const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Colors.transparent,
-                        Colors.transparent,
-                      ],
-                    ),
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.transparent,
+                  Colors.transparent,
+                ],
+              ),
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(10.r),
             ),

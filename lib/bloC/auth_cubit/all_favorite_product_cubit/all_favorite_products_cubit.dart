@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:gymmerator/models/api_response/GetAllFavoriteProductApiResponse.dart';
 import 'package:gymmerator/models/api_response/RemoveFavoriteProductApiResponse.dart';
 
+import '../../../models/api_response/GetNotificationsApiResponse.dart';
 import '../../../resources/repository.dart';
 
 part 'all_favorite_products_state.dart';
@@ -35,6 +36,17 @@ class AllFavoriteProductsCubit extends Cubit<AllFavoriteProductsState> {
       emit(RemoveFavoriteProductGetSuccessfully(model));
     } else {
       emit(FailedToRemoveProduct(model));
+    }
+  }
+
+  Future getNotificationRequest() async {
+    emit(LoadingState());
+    final GetNotificationsApiResponse model =
+    await _repository.getNotificationRequest();
+    if (model.error == null) {
+      emit(AllNotificationGetSuccessfully(model));
+    } else {
+      emit(FailedToGetNotifications(model));
     }
   }
 

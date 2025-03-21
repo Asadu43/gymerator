@@ -7,6 +7,7 @@ import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/schedul
 
 import '../../../../../../ui_component/exercise_detail_row.dart';
 import '../../../../../../utils/nav/nav.dart';
+import 'exercise_details_screen/workout_detail_activity_screen/health_detail_screen.dart';
 
 class ExerciseScreen extends StatefulWidget {
   final List<Exercises> exercises;
@@ -29,45 +30,22 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     IconButton(
                         onPressed: () {
                           Nav.pop(context);
                         },
                         icon: const Icon(Icons.arrow_back_ios)),
+                    SizedBox(
+                      width: 0.25.sw,
+                    ),
                     Text("Exercise",
                         style: GoogleFonts.vazirmatn(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
                             color: Colors.black)),
-                    Container(
-                      alignment: Alignment.topRight,
-                      child: PopupMenuButton(
-                        elevation: 1,
-                        position: PopupMenuPosition.under,
-                        color: const Color(0xff599918),
-                        itemBuilder: (BuildContext context) {
-                          return [
-                            PopupMenuItem(
-                              height: 0.05.sh,
-                              onTap: () {
-                                Nav.push(context, const WorkoutMetricsScreen());
-                              },
-                              child: Center(
-                                child: Text(
-                                  "Workout Metrics",
-                                  style: GoogleFonts.vazirmatn(
-                                    color: Colors.white,
-                                    fontSize: 16.sp,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ];
-                        },
-                      ),
-                    ),
+
                   ],
                 ),
                 SizedBox(
@@ -105,7 +83,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                 exercise: widget.exercises[index]));
                       },
                       child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 16.h),
+                        padding: EdgeInsets.symmetric(vertical: 12.h),
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical:16.h),
                           decoration: BoxDecoration(

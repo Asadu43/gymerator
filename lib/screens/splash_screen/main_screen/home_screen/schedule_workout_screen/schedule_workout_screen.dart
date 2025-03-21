@@ -12,6 +12,7 @@ import 'package:gymmerator/ui_component/show_snackbar.dart';
 import 'package:gymmerator/utils/nav/nav.dart';
 
 import '../../../../../models/api_response/GetWorkoutPlanApiResponse.dart';
+import 'exersice_screen/workout_metrics_screen/workout_metrics_screen.dart';
 
 class ScheduleWorkoutScreen extends StatefulWidget {
   const ScheduleWorkoutScreen({super.key});
@@ -86,7 +87,7 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                           ),
                         ),
                         Container(
-                          alignment: Alignment.topRight,
+                          alignment: Alignment.center,
                           child: PopupMenuButton(
                             elevation: 1,
                             position: PopupMenuPosition.under,
@@ -101,13 +102,25 @@ class _ScheduleWorkoutScreenState extends State<ScheduleWorkoutScreen> {
                                       const UpdateWorkoutPlanScreen(),
                                     );
                                   },
-                                  child: Center(
-                                    child: Text(
-                                      "Update Workout Plan",
-                                      style: GoogleFonts.vazirmatn(
-                                        color: Colors.white,
-                                        fontSize: 16.sp,
-                                      ),
+                                  child: Text(
+                                    "Update Workout Plan",
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.vazirmatn(
+                                      color: Colors.white,
+                                      fontSize: 16.sp,
+                                    ),
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  height: 0.05.sh,
+                                  onTap: () {
+                                    Nav.push(context, const WorkoutMetricsScreen());
+                                  },
+                                  child: Text(
+                                    "Workout Metrics",
+                                    style: GoogleFonts.vazirmatn(
+                                      color: Colors.white,
+                                      fontSize: 16.sp,
                                     ),
                                   ),
                                 ),

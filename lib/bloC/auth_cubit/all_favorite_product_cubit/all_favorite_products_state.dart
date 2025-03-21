@@ -34,3 +34,15 @@ class FailedToRemoveProduct extends AllFavoriteProductsState {
 
   const FailedToRemoveProduct(this.response);
 }
+
+class AllNotificationGetSuccessfully extends AllFavoriteProductsState {
+  final GetNotificationsApiResponse response;
+
+  const AllNotificationGetSuccessfully(this.response);
+}
+
+class FailedToGetNotifications extends AllFavoriteProductsState {
+  final GetNotificationsApiResponse response;
+
+  const FailedToGetNotifications(this.response);
+}

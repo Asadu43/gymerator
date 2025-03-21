@@ -5,7 +5,6 @@ import 'package:gymmerator/screens/splash_screen/main_screen/home_screen/schedul
 import 'package:health/health.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-
 class HealthApp extends StatefulWidget {
   const HealthApp({super.key});
 
@@ -32,49 +31,54 @@ enum AppState {
   CALORIES_READY,
   HEART_RATE_READY,
   LAST_THREE_MINUTES_READY,
-  ELLIPTICAL_WORKOUT_READY,
-  GYMNASTICS_WORKOUT_READY,
-  ALL_EXERCISES_READY,
 }
 
 class HealthAppState extends State<HealthApp> {
-  List<HealthDataPoint> _healthDataList = [];
+  final List<HealthDataPoint> _healthDataList = [];
   AppState _state = AppState.DATA_NOT_FETCHED;
-  int _nofSteps = 0;
-  double _caloriesBurned = 0.0;
+  final int _nofSteps = 0;
+  final double _caloriesBurned = 0.0;
   double _latestHeartRate = 0.0;
-  int _lastThreeMinSteps = 0;
-  double _lastThreeMinCalories = 0.0;
-  List<HealthDataPoint> _ellipticalWorkouts = [];
-  List<HealthDataPoint> _gymnasticsWorkouts = [];
-  List<HealthDataPoint> _allExercises = [];
+  HealthDataPoint? _latestExercise;
   List<RecordingMethod> recordingMethodsToFilter = [];
   final health = Health();
+  bool _isAuthorized = false;
 
   List<HealthDataType> get types => (Platform.isAndroid)
       ? dataTypesAndroid
       : (Platform.isIOS)
-      ? dataTypesIOS
-      : [];
+          ? dataTypesIOS
+          : [];
 
   List<HealthDataAccess> get permissions => types
       .map((type) => [
-    HealthDataType.WALKING_HEART_RATE,
-    HealthDataType.ELECTROCARDIOGRAM,
-    HealthDataType.HIGH_HEART_RATE_EVENT,
-    HealthDataType.LOW_HEART_RATE_EVENT,
-    HealthDataType.IRREGULAR_HEART_RATE_EVENT,
-    HealthDataType.EXERCISE_TIME,
-  ].contains(type)
-      ? HealthDataAccess.READ
-      : HealthDataAccess.READ_WRITE)
+            HealthDataType.WALKING_HEART_RATE,
+            HealthDataType.ELECTROCARDIOGRAM,
+            HealthDataType.HIGH_HEART_RATE_EVENT,
+            HealthDataType.LOW_HEART_RATE_EVENT,
+            HealthDataType.IRREGULAR_HEART_RATE_EVENT,
+            HealthDataType.EXERCISE_TIME,
+          ].contains(type)
+              ? HealthDataAccess.READ
+              : HealthDataAccess.READ_WRITE)
       .toList();
 
   @override
   void initState() {
-    health.configure();
-    health.getHealthConnectSdkStatus();
     super.initState();
+    health.configure();
+    _checkPermissionsOnInit();
+  }
+
+  Future<void> _checkPermissionsOnInit() async {
+    bool? hasPermissions =
+        await health.hasPermissions(types, permissions: permissions);
+    if (hasPermissions ?? false) {
+      setState(() {
+        _isAuthorized = true;
+        _state = AppState.AUTHORIZED;
+      });
+    }
   }
 
   Future<void> installHealthConnect() async =>
@@ -85,21 +89,23 @@ class HealthAppState extends State<HealthApp> {
     await Permission.location.request();
 
     bool? hasPermissions =
-    await health.hasPermissions(types, permissions: permissions);
+        await health.hasPermissions(types, permissions: permissions);
     hasPermissions = false;
 
     bool authorized = false;
     if (!hasPermissions) {
       try {
         authorized =
-        await health.requestAuthorization(types, permissions: permissions);
+            await health.requestAuthorization(types, permissions: permissions);
       } catch (error) {
         debugPrint("Exception in authorize: $error");
       }
     }
 
-    setState(() => _state =
-    (authorized) ? AppState.AUTHORIZED : AppState.AUTH_NOT_GRANTED);
+    setState(() {
+      _state = (authorized) ? AppState.AUTHORIZED : AppState.AUTH_NOT_GRANTED;
+      _isAuthorized = authorized;
+    });
   }
 
   Future<void> getHealthConnectSdkStatus() async {
@@ -114,96 +120,12 @@ class HealthAppState extends State<HealthApp> {
     });
   }
 
-  Future<void> fetchStepData() async {
-    final now = DateTime.now();
-    final midnight = DateTime(now.year, now.month, now.day);
-
-    bool stepsPermission = await health.hasPermissions(
-        [HealthDataType.STEPS, HealthDataType.ACTIVE_ENERGY_BURNED]) ??
-        false;
-    if (!stepsPermission) {
-      stepsPermission = await health.requestAuthorization([
-        HealthDataType.STEPS,
-        HealthDataType.ACTIVE_ENERGY_BURNED
-      ]);
-    }
-
-    if (stepsPermission) {
-      try {
-        int? steps = await health.getTotalStepsInInterval(midnight, now,
-            includeManualEntry:
-            !recordingMethodsToFilter.contains(RecordingMethod.manual));
-
-        List<HealthDataPoint> caloriesData = await health.getHealthDataFromTypes(
-          types: [HealthDataType.ACTIVE_ENERGY_BURNED],
-          startTime: midnight,
-          endTime: now,
-        );
-
-        double calories = 0;
-        for (var data in caloriesData) {
-          calories += (data.value as NumericHealthValue).numericValue.toDouble();
-        }
-
-        debugPrint('Today\'s steps: $steps');
-        debugPrint('Today\'s calories burned: $calories kcal');
-
-        setState(() {
-          _nofSteps = steps ?? 0;
-          _caloriesBurned = calories;
-          _state = (steps == null) ? AppState.NO_DATA : AppState.STEPS_READY;
-        });
-      } catch (error) {
-        debugPrint("Exception in fetchStepData: $error");
-      }
-    } else {
-      debugPrint("Authorization not granted");
-      setState(() => _state = AppState.DATA_NOT_FETCHED);
-    }
-  }
-
-  Future<void> fetchTotalCalories() async {
-    bool permission = await health
-        .hasPermissions([HealthDataType.ACTIVE_ENERGY_BURNED]) ??
-        false;
-    if (!permission) {
-      permission = await health
-          .requestAuthorization([HealthDataType.ACTIVE_ENERGY_BURNED]);
-    }
-
-    if (permission) {
-      try {
-        final now = DateTime.now();
-        final weekAgo = now.subtract(Duration(days: 7));
-
-        List<HealthDataPoint> caloriesData = await health.getHealthDataFromTypes(
-          types: [HealthDataType.ACTIVE_ENERGY_BURNED],
-          startTime: weekAgo,
-          endTime: now,
-        );
-
-        double totalCalories = 0;
-        for (var data in caloriesData) {
-          totalCalories +=
-              (data.value as NumericHealthValue).numericValue.toDouble();
-        }
-
-        setState(() {
-          _caloriesBurned = totalCalories;
-          _state = AppState.CALORIES_READY;
-        });
-      } catch (error) {
-        debugPrint("Exception in fetchTotalCalories: $error");
-      }
-    }
-  }
-
   Future<void> fetchLatestHeartRate() async {
     bool permission =
         await health.hasPermissions([HealthDataType.HEART_RATE]) ?? false;
     if (!permission) {
       permission =
-      await health.requestAuthorization([HealthDataType.HEART_RATE]);
+          await health.requestAuthorization([HealthDataType.HEART_RATE]);
     }
 
     if (permission) {
@@ -211,7 +133,8 @@ class HealthAppState extends State<HealthApp> {
         final now = DateTime.now();
         final yesterday = now.subtract(Duration(days: 1));
 
-        List<HealthDataPoint> heartRateData = await health.getHealthDataFromTypes(
+        List<HealthDataPoint> heartRateData =
+            await health.getHealthDataFromTypes(
           types: [HealthDataType.HEART_RATE],
           startTime: yesterday,
           endTime: now,
@@ -219,8 +142,9 @@ class HealthAppState extends State<HealthApp> {
 
         if (heartRateData.isNotEmpty) {
           heartRateData.sort((a, b) => b.dateTo.compareTo(a.dateTo));
-          double latestHR =
-          (heartRateData.first.value as NumericHealthValue).numericValue.toDouble();
+          double latestHR = (heartRateData.first.value as NumericHealthValue)
+              .numericValue
+              .toDouble();
 
           setState(() {
             _latestHeartRate = latestHR;
@@ -236,172 +160,59 @@ class HealthAppState extends State<HealthApp> {
   }
 
   Future<void> fetchLastThreeMinutesData() async {
-    bool permission = await health.hasPermissions(
-        [HealthDataType.STEPS, HealthDataType.ACTIVE_ENERGY_BURNED]) ??
+    bool permission = await health.hasPermissions([
+          HealthDataType.WORKOUT,
+          HealthDataType.HEART_RATE,
+        ]) ??
         false;
     if (!permission) {
       permission = await health.requestAuthorization([
-        HealthDataType.STEPS,
-        HealthDataType.ACTIVE_ENERGY_BURNED
+        HealthDataType.WORKOUT,
+        HealthDataType.HEART_RATE,
       ]);
     }
 
     if (permission) {
       try {
         final now = DateTime.now();
-        final threeMinutesAgo = now.subtract(Duration(minutes: 3));
+        final threeMinutesAgo = now.subtract(const Duration(hours: 3));
 
-        int? steps = await health.getTotalStepsInInterval(threeMinutesAgo, now,
-            includeManualEntry:
-            !recordingMethodsToFilter.contains(RecordingMethod.manual));
-
-        List<HealthDataPoint> caloriesData = await health.getHealthDataFromTypes(
-          types: [HealthDataType.ACTIVE_ENERGY_BURNED],
+        // Fetch workout data
+        List<HealthDataPoint> workoutData = await health.getHealthDataFromTypes(
+          types: [HealthDataType.WORKOUT],
           startTime: threeMinutesAgo,
           endTime: now,
         );
 
-        double calories = 0;
-        for (var data in caloriesData) {
-          calories += (data.value as NumericHealthValue).numericValue.toDouble();
-        }
-
-        debugPrint('Last 3 minutes steps: $steps');
-        debugPrint('Last 3 minutes calories burned: $calories kcal');
+        // Fetch heart rate data
+        List<HealthDataPoint> heartRateData =
+            await health.getHealthDataFromTypes(
+          types: [HealthDataType.HEART_RATE],
+          startTime: threeMinutesAgo,
+          endTime: now,
+        );
 
         setState(() {
-          _lastThreeMinSteps = steps ?? 0;
-          _lastThreeMinCalories = calories;
-          _state = (steps == null)
-              ? AppState.NO_DATA
-              : AppState.LAST_THREE_MINUTES_READY;
+          if (workoutData.isNotEmpty) {
+            workoutData.sort((a, b) => b.dateTo.compareTo(a.dateTo));
+            _latestExercise = workoutData.first;
+          } else {
+            _latestExercise = null;
+          }
+
+          if (heartRateData.isNotEmpty) {
+            heartRateData.sort((a, b) => b.dateTo.compareTo(a.dateTo));
+            _latestHeartRate = (heartRateData.first.value as NumericHealthValue)
+                .numericValue
+                .toDouble();
+          } else {
+            _latestHeartRate = 0.0;
+          }
+
+          _state = AppState.LAST_THREE_MINUTES_READY;
         });
       } catch (error) {
         debugPrint("Exception in fetchLastThreeMinutesData: $error");
-      }
-    } else {
-      debugPrint("Authorization not granted");
-      setState(() => _state = AppState.DATA_NOT_FETCHED);
-    }
-  }
-
-  Future<void> fetchEllipticalWorkout() async {
-    bool permission = await health.hasPermissions([HealthDataType.WORKOUT]) ?? false;
-    if (!permission) {
-      permission = await health.requestAuthorization([HealthDataType.WORKOUT]);
-    }
-
-    if (permission) {
-      try {
-        final now = DateTime.now();
-        final midnight = DateTime(now.year, now.month, now.day);
-
-        List<HealthDataPoint> workoutData = await health.getHealthDataFromTypes(
-          types: [HealthDataType.WORKOUT],
-          startTime: midnight,
-          endTime: now,
-        );
-
-        _ellipticalWorkouts.clear();
-        for (var data in workoutData) {
-          if (data.value is WorkoutHealthValue) {
-            final workoutValue = data.value as WorkoutHealthValue;
-            if (workoutValue.workoutActivityType == HealthWorkoutActivityType.ELLIPTICAL) {
-              _ellipticalWorkouts.add(data);
-            }
-          }
-        }
-
-        debugPrint('Found ${_ellipticalWorkouts.length} elliptical workouts today');
-
-        setState(() {
-          _state = _ellipticalWorkouts.isNotEmpty
-              ? AppState.ELLIPTICAL_WORKOUT_READY
-              : AppState.NO_DATA;
-        });
-      } catch (error) {
-        debugPrint("Exception in fetchEllipticalWorkout: $error");
-        setState(() => _state = AppState.NO_DATA);
-      }
-    } else {
-      debugPrint("Authorization not granted");
-      setState(() => _state = AppState.DATA_NOT_FETCHED);
-    }
-  }
-
-  Future<void> fetchGymnasticsWorkout() async {
-    bool permission = await health.hasPermissions([HealthDataType.WORKOUT]) ?? false;
-    if (!permission) {
-      permission = await health.requestAuthorization([HealthDataType.WORKOUT]);
-    }
-
-    if (permission) {
-      try {
-        final now = DateTime.now();
-        final midnight = DateTime(now.year, now.month, now.day);
-
-        List<HealthDataPoint> workoutData = await health.getHealthDataFromTypes(
-          types: [HealthDataType.WORKOUT],
-          startTime: midnight,
-          endTime: now,
-        );
-
-        _gymnasticsWorkouts.clear();
-        for (var data in workoutData) {
-          if (data.value is WorkoutHealthValue) {
-            final workoutValue = data.value as WorkoutHealthValue;
-            if (workoutValue.workoutActivityType == HealthWorkoutActivityType.GYMNASTICS) {
-              _gymnasticsWorkouts.add(data);
-            }
-          }
-        }
-
-        debugPrint('Found ${_gymnasticsWorkouts.length} gymnastics workouts today');
-
-        setState(() {
-          _state = _gymnasticsWorkouts.isNotEmpty
-              ? AppState.GYMNASTICS_WORKOUT_READY
-              : AppState.NO_DATA;
-        });
-      } catch (error) {
-        debugPrint("Exception in fetchGymnasticsWorkout: $error");
-        setState(() => _state = AppState.NO_DATA);
-      }
-    } else {
-      debugPrint("Authorization not granted");
-      setState(() => _state = AppState.DATA_NOT_FETCHED);
-    }
-  }
-
-  Future<void> fetchAllExercises() async {
-    bool permission = await health.hasPermissions([HealthDataType.WORKOUT]) ?? false;
-    if (!permission) {
-      permission = await health.requestAuthorization([HealthDataType.WORKOUT]);
-    }
-
-    if (permission) {
-      try {
-        final now = DateTime.now();
-        final midnight = DateTime(now.year, now.month, now.day);
-
-        List<HealthDataPoint> workoutData = await health.getHealthDataFromTypes(
-          types: [HealthDataType.WORKOUT],
-          startTime: midnight,
-          endTime: now,
-        );
-
-        _allExercises.clear();
-        _allExercises.addAll(workoutData);
-
-        debugPrint('Found ${_allExercises.length} exercises today');
-
-        setState(() {
-          _state = _allExercises.isNotEmpty
-              ? AppState.ALL_EXERCISES_READY
-              : AppState.NO_DATA;
-        });
-      } catch (error) {
-        debugPrint("Exception in fetchAllExercises: $error");
         setState(() => _state = AppState.NO_DATA);
       }
     } else {
@@ -423,6 +234,9 @@ class HealthAppState extends State<HealthApp> {
       _state = success
           ? AppState.PERMISSIONS_REVOKED
           : AppState.PERMISSIONS_NOT_REVOKED;
+      if (success) {
+        _isAuthorized = false;
+      }
     });
   }
 
@@ -455,79 +269,47 @@ class HealthAppState extends State<HealthApp> {
                       child: const Text("Install Health Connect",
                           style: TextStyle(color: Colors.white))),
                 if (Platform.isIOS ||
-                    Platform.isAndroid &&
+                    (Platform.isAndroid &&
                         health.healthConnectSdkStatus ==
-                            HealthConnectSdkStatus.sdkAvailable)
+                            HealthConnectSdkStatus.sdkAvailable))
                   Wrap(spacing: 10, children: [
-                    TextButton(
-                        onPressed: authorize,
-                        style: const ButtonStyle(
-                            backgroundColor:
-                            WidgetStatePropertyAll(Colors.blue)),
-                        child: const Text("Authenticate",
-                            style: TextStyle(color: Colors.white))),
-                    TextButton(
-                        onPressed: fetchStepData,
-                        style: const ButtonStyle(
-                            backgroundColor:
-                            WidgetStatePropertyAll(Colors.blue)),
-                        child: const Text("Fetch Step Data",
-                            style: TextStyle(color: Colors.white))),
-                    TextButton(
-                        onPressed: fetchTotalCalories,
-                        style: const ButtonStyle(
-                            backgroundColor:
-                            WidgetStatePropertyAll(Colors.blue)),
-                        child: const Text("Total Calories",
-                            style: TextStyle(color: Colors.white))),
+                    if (!_isAuthorized)
+                      TextButton(
+                          onPressed: authorize,
+                          style: const ButtonStyle(
+                              backgroundColor:
+                                  WidgetStatePropertyAll(Colors.blue)),
+                          child: const Text("Authenticate",
+                              style: TextStyle(color: Colors.white))),
                     TextButton(
                         onPressed: fetchLatestHeartRate,
                         style: const ButtonStyle(
                             backgroundColor:
-                            WidgetStatePropertyAll(Colors.blue)),
+                                WidgetStatePropertyAll(Colors.blue)),
                         child: const Text("Latest Heart Rate",
                             style: TextStyle(color: Colors.white))),
                     TextButton(
                         onPressed: fetchLastThreeMinutesData,
                         style: const ButtonStyle(
                             backgroundColor:
-                            WidgetStatePropertyAll(Colors.blue)),
+                                WidgetStatePropertyAll(Colors.blue)),
                         child: const Text("Last 3 Min Data",
                             style: TextStyle(color: Colors.white))),
-                    TextButton(
-                        onPressed: fetchEllipticalWorkout,
-                        style: const ButtonStyle(
-                            backgroundColor:
-                            WidgetStatePropertyAll(Colors.blue)),
-                        child: const Text("Elliptical",
-                            style: TextStyle(color: Colors.white))),
-                    TextButton(
-                        onPressed: fetchGymnasticsWorkout,
-                        style: const ButtonStyle(
-                            backgroundColor:
-                            WidgetStatePropertyAll(Colors.blue)),
-                        child: const Text("Gymnastics",
-                            style: TextStyle(color: Colors.white))),
-                    TextButton(
-                        onPressed: fetchAllExercises,
-                        style: const ButtonStyle(
-                            backgroundColor:
-                            WidgetStatePropertyAll(Colors.blue)),
-                        child: const Text("All Exercises",
-                            style: TextStyle(color: Colors.white))),
-                    TextButton(
-                        onPressed: revokeAccess,
-                        style: const ButtonStyle(
-                            backgroundColor:
-                            WidgetStatePropertyAll(Colors.blue)),
-                        child: const Text("Revoke Access",
-                            style: TextStyle(color: Colors.white))),
+                    if (_isAuthorized)
+                      TextButton(
+                          onPressed: revokeAccess,
+                          style: const ButtonStyle(
+                              backgroundColor:
+                                  WidgetStatePropertyAll(Colors.blue)),
+                          child: const Text("Revoke Access",
+                              style: TextStyle(color: Colors.white))),
                   ]),
               ],
             ),
             const Divider(thickness: 3),
             if (_state == AppState.DATA_READY) _dataFiltration,
-            if (_state == AppState.STEPS_READY || _state == AppState.LAST_THREE_MINUTES_READY)
+            if (_state == AppState.STEPS_READY ||
+                _state == AppState.LAST_THREE_MINUTES_READY)
               _stepsFiltration,
             Expanded(child: Center(child: _content))
           ],
@@ -537,95 +319,93 @@ class HealthAppState extends State<HealthApp> {
   }
 
   Widget get _dataFiltration => Column(
-    children: [
-      Wrap(
         children: [
-          for (final method in Platform.isAndroid
-              ? [
-            RecordingMethod.manual,
-            RecordingMethod.automatic,
-            RecordingMethod.active,
-            RecordingMethod.unknown,
-          ]
-              : [
-            RecordingMethod.automatic,
-            RecordingMethod.manual,
-          ])
-            SizedBox(
-              width: 150,
-              child: CheckboxListTile(
-                title: Text(
-                    '${method.name[0].toUpperCase()}${method.name.substring(1)} entries'),
-                value: !recordingMethodsToFilter.contains(method),
-                onChanged: (value) {
-                  setState(() {
-                    if (value!) {
-                      recordingMethodsToFilter.remove(method);
-                    } else {
-                      recordingMethodsToFilter.add(method);
-                    }
-                  });
-                },
-                controlAffinity: ListTileControlAffinity.leading,
-                contentPadding: EdgeInsets.zero,
-                dense: true,
-              ),
-            ),
+          Wrap(
+            children: [
+              for (final method in Platform.isAndroid
+                  ? [
+                      RecordingMethod.manual,
+                      RecordingMethod.automatic,
+                      RecordingMethod.active,
+                      RecordingMethod.unknown,
+                    ]
+                  : [
+                      RecordingMethod.automatic,
+                      RecordingMethod.manual,
+                    ])
+                SizedBox(
+                  width: 150,
+                  child: CheckboxListTile(
+                    title: Text(
+                        '${method.name[0].toUpperCase()}${method.name.substring(1)} entries'),
+                    value: !recordingMethodsToFilter.contains(method),
+                    onChanged: (value) {
+                      setState(() {
+                        if (value!) {
+                          recordingMethodsToFilter.remove(method);
+                        } else {
+                          recordingMethodsToFilter.add(method);
+                        }
+                      });
+                    },
+                    controlAffinity: ListTileControlAffinity.leading,
+                    contentPadding: EdgeInsets.zero,
+                    dense: true,
+                  ),
+                ),
+            ],
+          ),
+          const Divider(thickness: 3),
         ],
-      ),
-      const Divider(thickness: 3),
-    ],
-  );
+      );
 
   Widget get _stepsFiltration => Column(
-    children: [
-      Wrap(
         children: [
-          for (final method in [
-            RecordingMethod.manual,
-          ])
-            SizedBox(
-              width: 150,
-              child: CheckboxListTile(
-                title: Text(
-                    '${method.name[0].toUpperCase()}${method.name.substring(1)} entries'),
-                value: !recordingMethodsToFilter.contains(method),
-                onChanged: (value) {
-                  setState(() {
-                    if (value!) {
-                      recordingMethodsToFilter.remove(method);
-                    } else {
-                      recordingMethodsToFilter.add(method);
-                    }
-                    if (_state == AppState.STEPS_READY) {
-                      fetchStepData();
-                    } else if (_state == AppState.LAST_THREE_MINUTES_READY) {
-                      fetchLastThreeMinutesData();
-                    }
-                  });
-                },
-                controlAffinity: ListTileControlAffinity.leading,
-                contentPadding: EdgeInsets.zero,
-                dense: true,
-              ),
-            ),
+          Wrap(
+            children: [
+              for (final method in [
+                RecordingMethod.manual,
+              ])
+                SizedBox(
+                  width: 150,
+                  child: CheckboxListTile(
+                    title: Text(
+                        '${method.name[0].toUpperCase()}${method.name.substring(1)} entries'),
+                    value: !recordingMethodsToFilter.contains(method),
+                    onChanged: (value) {
+                      setState(() {
+                        if (value!) {
+                          recordingMethodsToFilter.remove(method);
+                        } else {
+                          recordingMethodsToFilter.add(method);
+                        }
+                        if (_state == AppState.LAST_THREE_MINUTES_READY) {
+                          fetchLastThreeMinutesData();
+                        }
+                      });
+                    },
+                    controlAffinity: ListTileControlAffinity.leading,
+                    contentPadding: EdgeInsets.zero,
+                    dense: true,
+                  ),
+                ),
+            ],
+          ),
+          const Divider(thickness: 3),
         ],
-      ),
-      const Divider(thickness: 3),
-    ],
-  );
+      );
 
   Widget get _permissionsRevoking => Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: <Widget>[
-      Container(
-          padding: const EdgeInsets.all(20),
-          child: const CircularProgressIndicator(
-            strokeWidth: 10,
-          )),
-      const Text('Revoking permissions...')
-    ],
-  );
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Container(
+              padding: const EdgeInsets.all(20),
+              child: const CircularProgressIndicator(
+                strokeWidth: 10,
+              )),
+          const Text('Revoking permissions...')
+        ],
+      );
 
   Widget get _permissionsRevoked => const Text('Permissions revoked.');
 
@@ -633,16 +413,16 @@ class HealthAppState extends State<HealthApp> {
       const Text('Failed to revoke permissions');
 
   Widget get _contentFetchingData => Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: <Widget>[
-      Container(
-          padding: const EdgeInsets.all(20),
-          child: const CircularProgressIndicator(
-            strokeWidth: 10,
-          )),
-      const Text('Fetching data...')
-    ],
-  );
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Container(
+              padding: const EdgeInsets.all(20),
+              child: const CircularProgressIndicator(
+                strokeWidth: 10,
+              )),
+          const Text('Fetching data...')
+        ],
+      );
 
   Widget get _contentDataReady => ListView.builder(
       itemCount: _healthDataList.length,
@@ -665,7 +445,7 @@ class HealthAppState extends State<HealthApp> {
             title: Text(
                 "${p.typeString}: ${(p.value as WorkoutHealthValue).totalEnergyBurned} ${(p.value as WorkoutHealthValue).totalEnergyBurnedUnit?.name}"),
             trailing:
-            Text((p.value as WorkoutHealthValue).workoutActivityType.name),
+                Text((p.value as WorkoutHealthValue).workoutActivityType.name),
             subtitle: Text('${p.dateFrom} - ${p.dateTo}\n${p.recordingMethod}'),
           );
         }
@@ -674,7 +454,7 @@ class HealthAppState extends State<HealthApp> {
             title: Text(
                 "${p.typeString} ${(p.value as NutritionHealthValue).mealType}: ${(p.value as NutritionHealthValue).name}"),
             trailing:
-            Text('${(p.value as NutritionHealthValue).calories} kcal'),
+                Text('${(p.value as NutritionHealthValue).calories} kcal'),
             subtitle: Text('${p.dateFrom} - ${p.dateTo}\n${p.recordingMethod}'),
           );
         }
@@ -688,15 +468,12 @@ class HealthAppState extends State<HealthApp> {
   final Widget _contentNoData = const Text('No Data to show');
 
   final Widget _contentNotFetched =
-  const Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      const Column(mainAxisAlignment: MainAxisAlignment.center, children: [
     Text("Press 'Auth' to get permissions to access health data."),
     Text("Press 'Fetch Step Data' to get today's steps and calories."),
-    Text("Press 'Total Calories' to get total calories burned."),
     Text("Press 'Latest Heart Rate' to get recent heart rate."),
-    Text("Press 'Last 3 Min Data' to get last 3 minutes data."),
-    Text("Press 'Elliptical' to get today's elliptical workout details."),
-    Text("Press 'Gymnastics' to get today's gymnastics workout details."),
-    Text("Press 'All Exercises' to get all exercise details for today."),
+    Text(
+        "Press 'Last 3 Min Data' to get latest exercise and heart rate in last 3 hours."),
   ]);
 
   final Widget _authorized = const Text('Authorization granted!');
@@ -719,11 +496,12 @@ class HealthAppState extends State<HealthApp> {
   final Widget _dataDeleted = const Text('Data points deleted successfully.');
 
   Widget get _stepsFetched => Column(
-    children: [
-      Text('Today\'s Steps: $_nofSteps'),
-      Text('Calories Burned Today: ${_caloriesBurned.toStringAsFixed(1)} kcal'),
-    ],
-  );
+        children: [
+          Text('Today\'s Steps: $_nofSteps'),
+          Text(
+              'Calories Burned Today: ${_caloriesBurned.toStringAsFixed(1)} kcal'),
+        ],
+      );
 
   Widget get _caloriesFetched => Text(
       'Total Calories Burned (7 days): ${_caloriesBurned.toStringAsFixed(1)} kcal');
@@ -732,125 +510,64 @@ class HealthAppState extends State<HealthApp> {
       Text('Latest Heart Rate: ${_latestHeartRate.toStringAsFixed(1)} bpm');
 
   Widget get _lastThreeMinutesFetched => Column(
-    children: [
-      Text('Last 3 Minutes Steps: $_lastThreeMinSteps'),
-      Text(
-          'Last 3 Minutes Calories: ${_lastThreeMinCalories.toStringAsFixed(1)} kcal'),
-    ],
-  );
-
-  Widget get _ellipticalWorkoutFetched => ListView.builder(
-    itemCount: _ellipticalWorkouts.length,
-    itemBuilder: (_, index) {
-      final workout = _ellipticalWorkouts[index];
-      final workoutValue = workout.value as WorkoutHealthValue;
-
-      return Card(
-        margin: EdgeInsets.all(8),
-        child: Padding(
-          padding: EdgeInsets.all(8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Elliptical Workout #${index + 1}',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('Start Time: ${workout.dateFrom}'),
-              Text('End Time: ${workout.dateTo}'),
-              Text('Calories Burned: ${workoutValue.totalEnergyBurned?.toStringAsFixed(1) ?? "N/A"} kcal'),
-              Text('Distance: ${workoutValue.totalDistance?.toStringAsFixed(1) ?? "N/A"} ${workoutValue.totalDistanceUnit?.name ?? ""}'),
-              Text('Recording Method: ${workout.recordingMethod.name}'),
-              Text('Title: ${workoutValue.workoutActivityType.name}'),
-            ],
-          ),
-        ),
+        children: [
+          Text('Latest Heart Rate: ${_latestHeartRate.toStringAsFixed(1)} bpm'),
+          if (_latestExercise != null)
+            Card(
+              margin: EdgeInsets.all(8),
+              child: Padding(
+                padding: EdgeInsets.all(8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Latest Exercise (Last 3 Hours)',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                        'Type: ${(_latestExercise!.value as WorkoutHealthValue).workoutActivityType.name}'),
+                    Text('Start Time: ${_latestExercise!.dateFrom}'),
+                    Text('End Time: ${_latestExercise!.dateTo}'),
+                    Text(
+                        'Calories Burned: ${(_latestExercise!.value as WorkoutHealthValue).totalEnergyBurned?.toStringAsFixed(1) ?? "N/A"} kcal'),
+                    Text(
+                        'Distance: ${(_latestExercise!.value as WorkoutHealthValue).totalDistance?.toStringAsFixed(1) ?? "N/A"} ${(_latestExercise!.value as WorkoutHealthValue).totalDistanceUnit?.name ?? ""}'),
+                    Text(
+                        'Steps: ${(_latestExercise!.value as WorkoutHealthValue).totalSteps ?? "N/A"}'),
+                    Text(
+                        'Recording Method: ${_latestExercise!.recordingMethod.name}'),
+                  ],
+                ),
+              ),
+            )
+          else
+            const Text('No exercise data found in the last 3 hours'),
+        ],
       );
-    },
-  );
-
-  Widget get _gymnasticsWorkoutFetched => ListView.builder(
-    itemCount: _gymnasticsWorkouts.length,
-    itemBuilder: (_, index) {
-      final workout = _gymnasticsWorkouts[index];
-      final workoutValue = workout.value as WorkoutHealthValue;
-
-      return Card(
-        margin: EdgeInsets.all(8),
-        child: Padding(
-          padding: EdgeInsets.all(8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Gymnastics Workout #${index + 1}',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('Start Time: ${workout.dateFrom}'),
-              Text('End Time: ${workout.dateTo}'),
-              Text('Calories Burned: ${workoutValue.totalEnergyBurned?.toStringAsFixed(1) ?? "N/A"} kcal'),
-              Text('Distance: ${workoutValue.totalDistance?.toStringAsFixed(1) ?? "N/A"} ${workoutValue.totalDistanceUnit?.name ?? ""}'),
-              Text('Recording Method: ${workout.recordingMethod.name}'),
-              Text('Title: ${workoutValue.workoutActivityType.name}'),
-            ],
-          ),
-        ),
-      );
-    },
-  );
-
-  Widget get _allExercisesFetched => ListView.builder(
-    itemCount: _allExercises.length,
-    itemBuilder: (_, index) {
-      final workout = _allExercises[index];
-      final workoutValue = workout.value as WorkoutHealthValue;
-
-      return Card(
-        margin: EdgeInsets.all(8),
-        child: Padding(
-          padding: EdgeInsets.all(8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Exercise #${index + 1}',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('Exercise Name: ${workoutValue.workoutActivityType.name}'),
-              Text('Start Time: ${workout.dateFrom}'),
-              Text('End Time: ${workout.dateTo}'),
-              Text('Calories Burned: ${workoutValue.totalEnergyBurned?.toStringAsFixed(1) ?? "N/A"} kcal'),
-              Text('Distance: ${workoutValue.totalDistance?.toStringAsFixed(1) ?? "N/A"} ${workoutValue.totalDistanceUnit?.name ?? ""}'),
-              Text('Recording Method: ${workout.recordingMethod.name}'),
-              Text('Title: ${workoutValue.workoutActivityType.name}'),
-            ],
-          ),
-        ),
-      );
-    },
-  );
 
   final Widget _dataNotAdded =
-  const Text('Failed to add data.\nDo you have permissions to add data?');
+      const Text('Failed to add data.\nDo you have permissions to add data?');
 
   final Widget _dataNotDeleted = const Text('Failed to delete data');
 
   Widget get _content => switch (_state) {
-    AppState.DATA_READY => _contentDataReady,
-    AppState.DATA_NOT_FETCHED => _contentNotFetched,
-    AppState.FETCHING_DATA => _contentFetchingData,
-    AppState.NO_DATA => _contentNoData,
-    AppState.AUTHORIZED => _authorized,
-    AppState.AUTH_NOT_GRANTED => _authorizationNotGranted,
-    AppState.DATA_ADDED => _dataAdded,
-    AppState.DATA_DELETED => _dataDeleted,
-    AppState.DATA_NOT_ADDED => _dataNotAdded,
-    AppState.DATA_NOT_DELETED => _dataNotDeleted,
-    AppState.STEPS_READY => _stepsFetched,
-    AppState.HEALTH_CONNECT_STATUS => _contentHealthConnectStatus,
-    AppState.PERMISSIONS_REVOKING => _permissionsRevoking,
-    AppState.PERMISSIONS_REVOKED => _permissionsRevoked,
-    AppState.PERMISSIONS_NOT_REVOKED => _permissionsNotRevoked,
-    AppState.CALORIES_READY => _caloriesFetched,
-    AppState.HEART_RATE_READY => _heartRateFetched,
-    AppState.LAST_THREE_MINUTES_READY => _lastThreeMinutesFetched,
-    AppState.ELLIPTICAL_WORKOUT_READY => _ellipticalWorkoutFetched,
-    AppState.GYMNASTICS_WORKOUT_READY => _gymnasticsWorkoutFetched,
-    AppState.ALL_EXERCISES_READY => _allExercisesFetched,
-  };
+        AppState.DATA_READY => _contentDataReady,
+        AppState.DATA_NOT_FETCHED => _contentNotFetched,
+        AppState.FETCHING_DATA => _contentFetchingData,
+        AppState.NO_DATA => _contentNoData,
+        AppState.AUTHORIZED => _authorized,
+        AppState.AUTH_NOT_GRANTED => _authorizationNotGranted,
+        AppState.DATA_ADDED => _dataAdded,
+        AppState.DATA_DELETED => _dataDeleted,
+        AppState.DATA_NOT_ADDED => _dataNotAdded,
+        AppState.DATA_NOT_DELETED => _dataNotDeleted,
+        AppState.STEPS_READY => _stepsFetched,
+        AppState.HEALTH_CONNECT_STATUS => _contentHealthConnectStatus,
+        AppState.PERMISSIONS_REVOKING => _permissionsRevoking,
+        AppState.PERMISSIONS_REVOKED => _permissionsRevoked,
+        AppState.PERMISSIONS_NOT_REVOKED => _permissionsNotRevoked,
+        AppState.CALORIES_READY => _caloriesFetched,
+        AppState.HEART_RATE_READY => _heartRateFetched,
+        AppState.LAST_THREE_MINUTES_READY => _lastThreeMinutesFetched,
+      };
 }
-

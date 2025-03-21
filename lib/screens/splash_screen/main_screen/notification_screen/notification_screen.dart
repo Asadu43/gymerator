@@ -78,19 +78,27 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
                             child: GestureDetector(
                               onTap: () {
-                                if(response?.data?[index].data?.order  != null ){
-                                  Nav.push(context, OrderDetailsScreen(id: response!.data![index].data!.order!));
-
+                                if (response?.data?[index].data?.order !=
+                                    null) {
+                                  Nav.push(
+                                      context,
+                                      OrderDetailsScreen(
+                                          id: response!
+                                              .data![index].data!.order!));
                                 }
-                                context.read<UserNotificationCubit>().readRequest(
-                                  id: response!.data![index].id!,
-                                );
+                                context
+                                    .read<UserNotificationCubit>()
+                                    .readRequest(
+                                      id: response!.data![index].id!,
+                                    );
                               },
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
@@ -100,14 +108,17 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                       ),
                                       SizedBox(width: screenWidth * 0.02),
                                       Padding(
-                                        padding: const EdgeInsets.only(top: 10.0, left: 10.0),
+                                        padding: const EdgeInsets.only(
+                                            top: 10.0, left: 10.0),
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             SizedBox(
                                               width: screenWidth * 0.6,
                                               child: Text(
-                                                response?.data?[index].tittle ?? "",
+                                                response?.data?[index].tittle ??
+                                                    "",
                                                 overflow: TextOverflow.visible,
                                                 textAlign: TextAlign.start,
                                                 style: GoogleFonts.vazirmatn(
@@ -117,11 +128,15 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                               ),
                                             ),
                                             SizedBox(
-                                              width: screenWidth * 0.7, // Constrain width to prevent overflow
+                                              width: screenWidth *
+                                                  0.7, // Constrain width to prevent overflow
                                               child: Text(
-                                                response?.data?[index].message ?? "",
+                                                response?.data?[index]
+                                                        .message ??
+                                                    "",
                                                 maxLines: 5,
-                                                overflow: TextOverflow.ellipsis, // Handle overflow gracefully
+                                                overflow: TextOverflow
+                                                    .ellipsis, // Handle overflow gracefully
                                                 textAlign: TextAlign.start,
                                                 style: GoogleFonts.vazirmatn(
                                                   fontSize: 11.sp,
@@ -136,10 +151,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   ),
                                   response?.data?[index].status == "unread"
                                       ? const Icon(
-                                    Icons.circle,
-                                    color: AppColors.buttonColor,
-                                    size: 5,
-                                  )
+                                          Icons.circle,
+                                          color: AppColors.buttonColor,
+                                          size: 5,
+                                        )
                                       : const SizedBox(),
                                 ],
                               ),
