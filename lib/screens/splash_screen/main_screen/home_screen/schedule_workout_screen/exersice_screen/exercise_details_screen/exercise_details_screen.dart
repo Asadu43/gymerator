@@ -50,6 +50,8 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
   bool _isAuthorized = false;
   HealthDataPoint? _latestWorkout;
   double _latestHeartRate = 0.0;
+  Widget _contentHealthConnectStatus = const Text(
+      'No status, click getHealthConnectSdkStatus to get the status.');
 
   AppState _state = AppState.DATA_NOT_FETCHED;
   List<RecordingMethod> recordingMethodsToFilter = [];
