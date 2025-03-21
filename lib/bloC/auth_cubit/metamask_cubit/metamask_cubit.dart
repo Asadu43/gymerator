@@ -54,7 +54,7 @@ class MetamaskCubit extends Cubit<MetamaskState> {
     if (model.error == null) {
       emit(VerifySignatureSuccessfully(model));
     } else {
-      emit(FailedToVerifySignature(model.message ?? "Failed To Get Nonce"));
+      emit(FailedToVerifySignature(model));
     }
   }
 

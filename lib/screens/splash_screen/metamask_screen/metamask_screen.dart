@@ -252,7 +252,9 @@ class _MetaMaskScreenState extends State<MetaMaskScreen>
             print("Nonce: ${response?.data?.nonce}");
             createSessionAndSignMessage(response?.data?.nonce ?? 0);
           }
-          if (state is FailedToVerifySignature) {}
+          if (state is FailedToVerifySignature) {
+            showSnackBar(context, state.response?.message ?? "Something Wrong");
+          }
           if (state is VerifySignatureSuccessfully) {
             verifySignatureApiResponse = state.response;
             print(verifySignatureApiResponse?.data);

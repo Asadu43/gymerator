@@ -30,7 +30,7 @@ final class VerifySignatureSuccessfully extends MetamaskState {
 }
 
 final class FailedToVerifySignature extends MetamaskState {
-  final String? response;
+  final VerifySignatureApiResponse? response;
 
   const FailedToVerifySignature(this.response);
 }
