@@ -50,6 +50,8 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
   bool _isAuthorized = false;
   HealthDataPoint? _latestWorkout;
   double _latestHeartRate = 0.0;
+  Widget _contentHealthConnectStatus = const Text(
+      'No status, click getHealthConnectSdkStatus to get the status.');
 
   AppState _state = AppState.DATA_NOT_FETCHED;
   List<RecordingMethod> recordingMethodsToFilter = [];
@@ -57,20 +59,20 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
   List<HealthDataType> get types => (Platform.isAndroid)
       ? dataTypesAndroid
       : (Platform.isIOS)
-          ? dataTypesIOS
-          : [];
+      ? dataTypesIOS
+      : [];
 
   List<HealthDataAccess> get permissions => types
       .map((type) => [
-            HealthDataType.WALKING_HEART_RATE,
-            HealthDataType.ELECTROCARDIOGRAM,
-            HealthDataType.HIGH_HEART_RATE_EVENT,
-            HealthDataType.LOW_HEART_RATE_EVENT,
-            HealthDataType.IRREGULAR_HEART_RATE_EVENT,
-            HealthDataType.EXERCISE_TIME,
-          ].contains(type)
-              ? HealthDataAccess.READ
-              : HealthDataAccess.READ_WRITE)
+    HealthDataType.WALKING_HEART_RATE,
+    HealthDataType.ELECTROCARDIOGRAM,
+    HealthDataType.HIGH_HEART_RATE_EVENT,
+    HealthDataType.LOW_HEART_RATE_EVENT,
+    HealthDataType.IRREGULAR_HEART_RATE_EVENT,
+    HealthDataType.EXERCISE_TIME,
+  ].contains(type)
+      ? HealthDataAccess.READ
+      : HealthDataAccess.READ_WRITE)
       .toList();
 
   @override
@@ -91,29 +93,64 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
   };
 
   Future<void> _checkPermissionsOnInit() async {
-    bool? hasPermissions =
-        await health.hasPermissions(types, permissions: permissions);
-    if (hasPermissions ?? false) {
-      setState(() {
-        _isAuthorized = true;
-        _state = AppState.AUTHORIZED;
-      });
+    try {
+      bool? hasPermissions =
+      await health.hasPermissions(types, permissions: permissions);
+      if (hasPermissions ?? false) {
+        setState(() {
+          _isAuthorized = true;
+          _state = AppState.AUTHORIZED;
+        });
+      }
+    } catch (error) {
+      debugPrint("Exception in _checkPermissionsOnInit: $error");
+      if (Platform.isAndroid && error.toString().contains("Health Connect")) {
+        // Handle case where Health Connect is not available
+        setState(() {
+          _state = AppState.AUTH_NOT_GRANTED; // Keep unauthorized state
+        });
+      }
     }
   }
 
   Future<void> authorize() async {
+    // Check if on Android and Health Connect SDK status
+    if (Platform.isAndroid) {
+      try {
+        final sdkStatus = await health.getHealthConnectSdkStatus();
+
+        // If SDK is not available, install it
+        if (sdkStatus != HealthConnectSdkStatus.sdkAvailable) {
+          try {
+            await installHealthConnect();
+            showSnackBar(context, "Please install Health Connect and try again");
+            return; // Exit the function until user installs and returns
+          } catch (error) {
+            debugPrint("Exception in installHealthConnect: $error");
+            showSnackBar(context, "Failed to initiate Health Connect installation");
+            return;
+          }
+        }
+      } catch (error) {
+        debugPrint("Exception in checking SDK status: $error");
+        showSnackBar(context, "Error checking Health Connect availability");
+        return;
+      }
+    }
+
+    // Proceed with authorization if SDK is available or on iOS
     await Permission.activityRecognition.request();
     await Permission.location.request();
 
     bool? hasPermissions =
-        await health.hasPermissions(types, permissions: permissions);
+    await health.hasPermissions(types, permissions: permissions);
     hasPermissions = false;
 
     bool authorized = false;
     if (!hasPermissions) {
       try {
         authorized =
-            await health.requestAuthorization(types, permissions: permissions);
+        await health.requestAuthorization(types, permissions: permissions);
       } catch (error) {
         debugPrint("Exception in authorize: $error");
       }
@@ -125,13 +162,28 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
     });
   }
 
+  Future<void> installHealthConnect() async =>
+      await health.installHealthConnect();
+
+  Future<void> getHealthConnectSdkStatus() async {
+    assert(Platform.isAndroid, "This is only available on Android");
+
+    final status = await health.getHealthConnectSdkStatus();
+
+    setState(() {
+      _contentHealthConnectStatus =
+          Text('Health Connect Status: ${status?.name.toUpperCase()}');
+      _state = AppState.HEALTH_CONNECT_STATUS;
+    });
+  }
+
   Future<void> fetchLatestData() async {
     setState(() => _state = AppState.FETCHING_DATA);
 
     bool permission = await health.hasPermissions([
-          HealthDataType.WORKOUT,
-          HealthDataType.HEART_RATE,
-        ]) ??
+      HealthDataType.WORKOUT,
+      HealthDataType.HEART_RATE,
+    ]) ??
         false;
 
     if (!permission) {
@@ -144,7 +196,7 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
     if (permission) {
       try {
         final now = DateTime.now();
-        final threeHoursAgo = now.subtract(const Duration(minutes: 2));
+        final threeHoursAgo = now.subtract(const Duration(minutes: 20));
 
         // Fetch workout data
         List<HealthDataPoint> workoutData = await health.getHealthDataFromTypes(
@@ -155,7 +207,7 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
 
         // Fetch heart rate data
         List<HealthDataPoint> heartRateData =
-            await health.getHealthDataFromTypes(
+        await health.getHealthDataFromTypes(
           types: [HealthDataType.HEART_RATE],
           startTime: threeHoursAgo,
           endTime: now,
@@ -230,7 +282,7 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
         builder: (context, state) {
           return LoadingScreenAnimation(
             isLoading:
-                state is LoadingState || _state == AppState.FETCHING_DATA,
+            state is LoadingState || _state == AppState.FETCHING_DATA,
             child: Scaffold(
               body: SafeArea(
                 child: Padding(
@@ -257,7 +309,6 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
                                   Nav.pop(context);
                                 },
                                 icon: const Icon(Icons.arrow_back_ios)),
-                            // SizedBox(width: 0.15.sw),
                             Flexible(
                               child: Text(
                                 widget.exercise.exercise ?? "",
@@ -290,8 +341,7 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
                                         ),
                                       ),
                                     ),
-                                    if (Platform
-                                        .isAndroid) // Condition to show only on Android
+                                    if (Platform.isAndroid)
                                       PopupMenuItem(
                                         height: 0.05.sh,
                                         onTap: () {
@@ -430,7 +480,7 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
                                       ),
                                     if (_latestWorkout != null &&
                                         _latestWorkout!.value
-                                            is WorkoutHealthValue)
+                                        is WorkoutHealthValue)
                                       _buildWorkoutDetails(_latestWorkout!)
                                     else if (_latestHeartRate == 0.0 &&
                                         _latestWorkout == null)
@@ -462,7 +512,7 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
                             text: "Add Your Exercise",
                             onPressed: () {
                               final workoutValue =
-                                  _latestWorkout!.value as WorkoutHealthValue;
+                              _latestWorkout!.value as WorkoutHealthValue;
                               int durationInSeconds = _latestWorkout!.dateTo
                                   .difference(_latestWorkout!.dateFrom)
                                   .inSeconds;
@@ -470,23 +520,23 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
                               context
                                   .read<ExerciseDetailCubit>()
                                   .addWorkoutMetricsRequest(
-                                    day:
-                                        "${weekdayName[DateTime.now().weekday]}",
-                                    exerciseName:
-                                        widget.exercise.exercise ?? "",
-                                    reps: 1,
-                                    sets: 0,
-                                    weightUsed: 0,
-                                    caloriesBurned:
-                                        (workoutValue.totalEnergyBurned ?? 0) *
-                                            10000,
-                                    duration: durationInSeconds,
-                                    heartRate: _latestHeartRate,
-                                    distance:
-                                        workoutValue.totalDistance?.toInt() ??
-                                            0,
-                                    pace: 0,
-                                  );
+                                day:
+                                "${weekdayName[DateTime.now().weekday]}",
+                                exerciseName:
+                                widget.exercise.exercise ?? "",
+                                reps: 1,
+                                sets: 0,
+                                weightUsed: 0,
+                                caloriesBurned:
+                                (workoutValue.totalEnergyBurned ?? 0) *
+                                    10000,
+                                duration: durationInSeconds,
+                                heartRate: _latestHeartRate,
+                                distance:
+                                workoutValue.totalDistance?.toInt() ??
+                                    0,
+                                pace: 0,
+                              );
                             },
                           ),
                       ],
@@ -520,40 +570,40 @@ class _ExerciseDetailsScreenState extends State<ExerciseDetailsScreen> {
             Text(
               'Start: ${workout.dateFrom}',
               style:
-                  GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.black),
+              GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.black),
             ),
             Text(
               'End: ${workout.dateTo}',
               style:
-                  GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.black),
+              GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.black),
             ),
             if (workoutValue.totalEnergyBurned != null)
               Text(
                 'Calories: ${workoutValue.totalEnergyBurned!.toStringAsFixed(1)} ${workoutValue.totalEnergyBurnedUnit?.name ?? "kcal"}',
                 style:
-                    GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.black),
+                GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.black),
               ),
             if (workoutValue.totalDistance != null)
               Text(
                 'Distance: ${(workoutValue.totalDistance! / 1000).toStringAsFixed(2)} km',
                 style:
-                    GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.black),
+                GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.black),
               ),
             if (workoutValue.totalSteps != null)
               Text(
                 'Total Steps: ${workoutValue.totalSteps}',
                 style:
-                    GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.black),
+                GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.black),
               ),
             Text(
               'Source: ${workout.sourceName}',
               style:
-                  GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.black),
+              GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.black),
             ),
             Text(
               'Recording Method: ${workout.recordingMethod.name}',
               style:
-                  GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.black),
+              GoogleFonts.vazirmatn(fontSize: 14.sp, color: Colors.black),
             ),
           ],
         ),
