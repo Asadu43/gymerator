@@ -159,57 +159,65 @@ class _MetaMaskScreenState extends State<MetaMaskScreen>
   Future<dynamic> claimReward(BuildContext context) async {
     final contract = await loadRewardContract();
 
-    if (signatureResponse?.data != null) {
-      print(signatureResponse?.data?.rewardAmount);
+    if (userInfoResponse?.data?.rewardAmount != 0) {
+      if (signatureResponse?.data != null) {
+        print(signatureResponse?.data?.rewardAmount);
 
-      String message = signatureResponse?.data?.message ?? "";
-      Uint8List signatureData = hexToBytes(signatureResponse!.data!.signature!);
+        String message = signatureResponse?.data?.message ?? "";
+        Uint8List signatureData =
+            hexToBytes(signatureResponse!.data!.signature!);
 
-      final receiverAddress = EthereumAddress.fromHex(NamespaceUtils.getAccount(
-          _sessionData!.namespaces.values.first.accounts.first));
-      print(BigInt.parse(response!.data!.nonce.toString()));
-      Transaction transaction = Transaction.callContract(
-        from: EthereumAddress.fromHex(NamespaceUtils.getAccount(
-            _sessionData!.namespaces.values.first.accounts.first)),
-        contract: contract,
-        function: contract.function('claimReward'),
-        parameters: [
-          receiverAddress,
-          BigInt.parse(signatureResponse?.data?.rewardAmount.toString() ?? "0"),
-          signatureData,
-          message,
-          BigInt.parse(signatureResponse!.data!.nonce.toString())
-        ],
-      );
+        final receiverAddress = EthereumAddress.fromHex(
+            NamespaceUtils.getAccount(
+                _sessionData!.namespaces.values.first.accounts.first));
+        print(BigInt.parse(response!.data!.nonce.toString()));
+        Transaction transaction = Transaction.callContract(
+          from: EthereumAddress.fromHex(NamespaceUtils.getAccount(
+              _sessionData!.namespaces.values.first.accounts.first)),
+          contract: contract,
+          function: contract.function('claimReward'),
+          parameters: [
+            receiverAddress,
+            BigInt.parse(
+                signatureResponse?.data?.rewardAmount.toString() ?? "0"),
+            signatureData,
+            message,
+            BigInt.parse(signatureResponse!.data!.nonce.toString())
+          ],
+        );
 
-      EthereumTransaction ethereumTransaction = EthereumTransaction(
-        from: NamespaceUtils.getAccount(
-            _sessionData!.namespaces.values.first.accounts.first),
-        to: contractAddress,
-        value: "0x0",
-        gas: BigInt.from(2000000).toRadixString(16),
-        data: hex.encode(List<int>.from(transaction.data!)),
-      );
+        EthereumTransaction ethereumTransaction = EthereumTransaction(
+          from: NamespaceUtils.getAccount(
+              _sessionData!.namespaces.values.first.accounts.first),
+          to: contractAddress,
+          value: "0x0",
+          gas: BigInt.from(2000000).toRadixString(16),
+          data: hex.encode(List<int>.from(transaction.data!)),
+        );
 
-      await launchUrlString(deepLinkUrl, mode: LaunchMode.externalApplication);
+        await launchUrlString(deepLinkUrl,
+            mode: LaunchMode.externalApplication);
 
-      final signResponse = await _walletConnect?.request(
-        topic: _sessionData!.topic,
-        chainId: "eip155:11155111",
-        request: SessionRequestParams(
-          method: 'eth_sendTransaction',
-          params: [ethereumTransaction.toJson()],
-        ),
-      );
+        final signResponse = await _walletConnect?.request(
+          topic: _sessionData!.topic,
+          chainId: "eip155:11155111",
+          request: SessionRequestParams(
+            method: 'eth_sendTransaction',
+            params: [ethereumTransaction.toJson()],
+          ),
+        );
 
-      // Check if the transaction was signed successfully and navigate back
-      if (signResponse != null) {
-        print("Transaction signed successfully: $signResponse");
-        Nav.push(context,
-            const MainScreen()); // Navigate back to the previous screen
+        // Check if the transaction was signed successfully and navigate back
+        if (signResponse != null) {
+          print("Transaction signed successfully: $signResponse");
+          Nav.push(context,
+              const MainScreen()); // Navigate back to the previous screen
+        }
+
+        return signResponse;
       }
-
-      return signResponse;
+    } else {
+      showSnackBar(context, "You can't claim your Reward");
     }
   }
 
@@ -326,9 +334,14 @@ class _MetaMaskScreenState extends State<MetaMaskScreen>
                         ? AppButton(
                             text: "Connect",
                             onPressed: () async {
-                              await context
-                                  .read<MetamaskCubit>()
-                                  .getNonceRequest();
+                              if (userInfoResponse?.data?.rewardAmount != 0) {
+                                await context
+                                    .read<MetamaskCubit>()
+                                    .getNonceRequest();
+                              } else {
+                                showSnackBar(
+                                    context, "You can't claim your Reward");
+                              }
                             },
                           )
                         : (verifySignatureApiResponse?.data != null)
